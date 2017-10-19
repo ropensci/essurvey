@@ -54,7 +54,7 @@ three_waves <- ess_waves(c(1, 2), "wrong_email@email.com")
 
 # If waves selected don't exists, error will arise
 
-three_waves <- ess_waves(c(1, 1), "your_email@email.com")
+three_waves <- ess_waves(c(1, 8), "your_email@email.com")
 
 # Error in ess_url(waves) :
 # ESS round 8 is not a available at
