@@ -46,3 +46,20 @@ three_waves <- ess_waves(c(1, 8), "your_email@email.com")
 #> ESS round 8 is not a available at
 #> http://www.europeansocialsurvey.org/data/round-index.html
 ```
+
+Stata users
+-----------
+
+I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata format with just one line of code. Just set the `only_download` argument to `TRUE`:
+
+``` r
+ess_waves(c(1, 8), "your_email@email.com", only_download = TRUE)
+```
+
+This will save the ESS waves into separate folders and unzip them in current directory (if you want to know your current directory, type `getwd()`). In case you want to change where the function saves the files, add a directory in the `output_dir` argument.
+
+``` r
+ess_waves(c(1, 8), "your_email@email.com", output_dir = "my/new/directory", only_download = TRUE)
+```
+
+Future versions of the package will allow you to download specific countries for each year. This will have a huge gain in speed because now it takes a few minutes to download all waves. Stay tuned!
