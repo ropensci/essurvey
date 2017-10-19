@@ -13,3 +13,4 @@ Imports: XML,
     httr,
     stringr,
     haven
+Suggests: testthat
