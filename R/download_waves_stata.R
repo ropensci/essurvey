@@ -35,7 +35,6 @@ download_waves_stata <- function(waves , your_email, output_dir = ".") {
     ess_wave <- stringr::str_extract(urls, "ESS[:digit:]")
     
     # create a temporary directory to unzip the stata files
-    # and a temporary file name for each wave.zip
     td <- file.path(output_dir, ess_wave)
     
     for (directory in td) dir.create(directory)
@@ -53,7 +52,7 @@ download_waves_stata <- function(waves , your_email, output_dir = ".") {
       # Write as a .zip file
       writeBin(httr::content( current_file, "raw" ) , temp_download)
       
-      unzip(temp_download, exdir = which_wave)
+      utils::unzip(temp_download, exdir = which_wave)
     }
 
     # Loop throuch each url, wave name and specific wave folder,
@@ -61,4 +60,6 @@ download_waves_stata <- function(waves , your_email, output_dir = ".") {
     mapply(wave_downloader, urls, ess_wave, td)
     
     message("All files saved to ", normalizePath(output_dir))
+    
+    return(td)
 }
