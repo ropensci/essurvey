@@ -1,9 +1,6 @@
 
-<img src="man/figures/ess_logo.png" align="right" />
-====================================================
-
-Overview
---------
+Overview <img src="man/figures/ess_logo.png" align="right" />
+-------------------------------------------------------------
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
