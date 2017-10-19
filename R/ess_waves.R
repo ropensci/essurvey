@@ -14,7 +14,6 @@
 #' @examples
 #' \dontrun{
 #' 
-#' # Not run
 #' # Get first three waves
 #' three_waves <- ess_waves(1:3, "your_email@email.com")
 #' 
