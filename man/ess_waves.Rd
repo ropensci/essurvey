@@ -17,8 +17,9 @@ the \code{only_download} argument. Defaults to the current working directory.}
 \item{only_download}{whether want to only download the files as Stata files. Default to FALSE.}
 }
 \value{
-if only_download == False, returns a list of length(waves) containing the latest
-version of each wave specified in waves
+if \code{only_download} is set to FALSE it returns a list of length(waves) containing the latest
+version of each wave specified in waves. If \code{only_download} is set to TRUE, it returns nothing but
+saves all the waves in .dta format in \code{output_dir}
 }
 \description{
 Download integrated waves from the European Social Survey
@@ -26,7 +27,6 @@ Download integrated waves from the European Social Survey
 \examples{
 \dontrun{
 
-# Not run
 # Get first three waves
 three_waves <- ess_waves(1:3, "your_email@email.com")
 
@@ -34,7 +34,12 @@ sapply(three_waves, class)
 lapply(three_waves, head)
 
 # Only download the files, this will return nothing
-ess_waves(1:3, "your_email@email.com", output_dir "/users/downloads", only_download = TRUE)
+ess_waves(
+ waves = 1:3,
+ your_email = "your_email@email.com",
+ output_dir = "/users/downloads",
+ only_download = TRUE
+)
 
 # If repeat waves, only will download unique ones
 three_waves <- ess_waves(c(1, 1), "your_email@email.com")
@@ -52,7 +57,8 @@ three_waves <- ess_waves(c(1, 2), "wrong_email@email.com")
 three_waves <- ess_waves(c(1, 1), "your_email@email.com")
 
 # Error in ess_url(waves) :
-# ESS round 8 is not a available at http://www.europeansocialsurvey.org/data/round-index.html
+# ESS round 8 is not a available at
+# http://www.europeansocialsurvey.org/data/round-index.html
 
 }
 }

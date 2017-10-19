@@ -21,7 +21,12 @@
 #' lapply(three_waves, head)
 #' 
 #' # Only download the files, this will return nothing
-#' ess_waves(1:3, "your_email@email.com", output_dir "/users/downloads", only_download = TRUE)
+#' ess_waves(
+#'  waves = 1:3,
+#'  your_email = "your_email@email.com",
+#'  output_dir = "/users/downloads",
+#'  only_download = TRUE
+#')
 #' 
 #' # If repeat waves, only will download unique ones
 #' three_waves <- ess_waves(c(1, 1), "your_email@email.com")
@@ -39,7 +44,8 @@
 #' three_waves <- ess_waves(c(1, 1), "your_email@email.com")
 #' 
 #' # Error in ess_url(waves) :
-#' # ESS round 8 is not a available at http://www.europeansocialsurvey.org/data/round-index.html
+#' # ESS round 8 is not a available at
+#' # http://www.europeansocialsurvey.org/data/round-index.html
 #' 
 #' }
 ess_waves <- function(waves, your_email, output_dir = ".", only_download = FALSE) {
