@@ -1,6 +1,6 @@
 
-ess <img src="man/figures/ess_logo.png" align="right" />
-========================================================
+<img src="man/figures/ess_logo.png" align="right" />
+====================================================
 
 Overview
 --------
