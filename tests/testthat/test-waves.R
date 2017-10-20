@@ -36,17 +36,28 @@ expect_equal(all(sapply(all_waves, nrow) > 0), TRUE)
 # check that all data frames have more than 0 columns
 expect_equal(all(sapply(all_waves, ncol) > 0), TRUE)
 
-# Also test that setting the only_download argument will return
-# the directory or nothing? I don't know. I just wanna check consistency
-# in what it returns.
+# Test for only downloads
 
-# Add these tests on another .R file but for download_waves_stata and ess_url
+# Test whether you get a message where the downloads are at
+which_waves <- 2
 
-# These are the functions which are actually doing the work of testing this, not ess_waves
-# # For wrong emails, test it will through error
-# expect_error(ess_waves(1, "random@email.morerandom"),
-#              "email address you provided is not associated with any registered")
-# 
-# # Test it will throw error when wave is not available
-# expect_error(ess_waves(c(1, 8), "cimentadaj@gmail.com"),
-#              "ESS round [0-9] is not a available at")
+expect_message(downloads <- ess_waves(1:which_waves, "cimentadaj@gmail.com", only_download = TRUE),
+              "All files saved to")
+
+# Test whether the downloaded files are indeed there
+ess_files <- list.files(downloads, pattern = "ESS", recursive = TRUE)
+
+# Same number of stata files as the waves attempted
+# to download?
+expect_equal(sum(grepl(".dta", ess_files)), which_waves)
+
+# Same number of zip files as the waves attempted
+# to download?
+expect_equal(sum(grepl(".zip", ess_files)), which_waves)
+
+# Same number of do files as the waves attempted
+# to download?
+expect_equal(sum(grepl(".do", ess_files)), which_waves)
+
+# Delete all downloaded files
+unlink(downloads, recursive = TRUE, force = TRUE)
