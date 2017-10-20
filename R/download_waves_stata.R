@@ -1,4 +1,4 @@
-download_waves_stata <- function(waves , your_email, output_dir = ".") {
+download_waves_stata <- function(waves , your_email, output_dir = ".", only_download = FALSE) {
 
     if( missing(your_email) ) {
     stop(
@@ -23,10 +23,6 @@ download_waves_stata <- function(waves , your_email, output_dir = ".") {
     # ered in the ESS website, or among those lines".
     if (length(error_node) != 0) stop(xml2::xml_text(error_node),
                                       " Create an account at http://www.europeansocialsurvey.org/user/new")
-    
-    # You left off here. The zip file is corrupted but I think this
-    # has to do with downloading the zip file. You're not authenticating correctly
-    # I believe.
     
     # Grab the download urls for each wave
     urls <- ess_url(waves)
@@ -59,7 +55,7 @@ download_waves_stata <- function(waves , your_email, output_dir = ".") {
     # download the data and save in the wave-specific folder
     mapply(wave_downloader, urls, ess_wave, td)
     
-    message("All files saved to ", normalizePath(output_dir))
+    if (only_download) message("All files saved to ", normalizePath(output_dir))
     
     return(td)
 }

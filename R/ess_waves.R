@@ -51,8 +51,11 @@
 ess_waves <- function(waves, your_email, output_dir = ".", only_download = FALSE) {
   
   # If user only wants to download, then download and return
-  if (only_download) return(invisible(download_waves_stata(waves, your_email, output_dir)))
-  
+  if (only_download) {
+    return(
+      invisible(download_waves_stata(waves, your_email, output_dir, only_download))
+      )
+  }
   # If not, download data and save the dir of the downloads
   dir_download <- download_waves_stata(waves, your_email, output_dir)
   
