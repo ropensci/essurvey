@@ -4,10 +4,10 @@
 #' @param your_email a character vector with your email, such as "your_email@email.com".
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to the current working directory.
-#' @param only_download whether want to only download the files as Stata files. Default to FALSE.
+#' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list of length(waves) containing the latest
-#' version of each wave specified in waves. If \code{only_download} is set to TRUE, it returns nothing but
+#' version of each wave. If \code{only_download} is set to TRUE, it returns nothing but
 #' saves all the waves in .dta format in \code{output_dir}
 #' @export
 #'
@@ -17,18 +17,15 @@
 #' # Get first three waves
 #' three_waves <- ess_waves(1:3, "your_email@email.com")
 #' 
-#' sapply(three_waves, class)
-#' lapply(three_waves, head)
-#' 
 #' # Only download the files, this will return nothing
 #' ess_waves(
 #'  waves = 1:3,
 #'  your_email = "your_email@email.com",
-#'  output_dir = "/users/downloads",
+#'  output_dir = ".",
 #'  only_download = TRUE
 #')
 #' 
-#' # If repeat waves, only will download unique ones
+#' # If waves are repeated, will download only unique ones
 #' three_waves <- ess_waves(c(1, 1), "your_email@email.com")
 #' 
 #' # If email is not registered at ESS website, error will arise
@@ -39,12 +36,12 @@
 #' # The email address you provided is not associated with any registered user.
 #' # Create an account at http://www.europeansocialsurvey.org/user/new
 #' 
-#' # If waves selected don't exists, error will arise
+#' # If selected waves don't exist, error will arise
 #' 
-#' three_waves <- ess_waves(c(1, 8), "your_email@email.com")
+#' three_waves <- ess_waves(c(1, 22), "your_email@email.com")
 #' 
 #' # Error in ess_url(waves) :
-#' # ESS round 8 is not a available at
+#' # ESS round 22 is not a available at
 #' # http://www.europeansocialsurvey.org/data/round-index.html
 #' 
 #' }

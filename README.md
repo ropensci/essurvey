@@ -40,10 +40,10 @@ This will download all latest versions of waves 1 through 5 and return a list of
 You should make sure you download the correct waves available at [their website](http://www.europeansocialsurvey.org/data/round-index.html) because if you supply a non existent wave, the function will return an error.
 
 ``` r
-three_waves <- ess_waves(c(1, 8), "your_email@email.com")
+three_waves <- ess_waves(c(1, 22), "your_email@email.com")
 
 #> Error in ess_url(waves) :
-#> ESS round 8 is not a available at
+#> ESS round 22 is not a available at
 #> http://www.europeansocialsurvey.org/data/round-index.html
 ```
 
