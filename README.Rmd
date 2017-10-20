@@ -16,7 +16,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
-The `ess` package is designed to download the ESS data as easily as possible. This is very first stage of the package. At this moment there is only one function that allows you to download all available waves from their website, or simply just a selected number. The next stage of the package is concerned with not only downloading separate waves (which takes a fair amount of time) but to be able to download all waves for a specific country.
+The `ess` package is designed to download the ESS data as easily as possible. This is very first stage of the package. At this moment there is only one function that allows you to download all or a selected number of available waves from their website. The next stage of the package will allow to download all waves for a specific country.
 
 ## Installation
 
@@ -27,11 +27,11 @@ You can install and load the package with these commands:
 devtools::install_github("cimentadaj/ess")
 ```
 
-For now the package will be available in Github but sometime in the near future it will be submitted to CRAN.
+For now the package will be available on Github but sometime in the near future it will be submitted to CRAN.
 
 ## Usage
 
-First, you need to register at the ESS website, in case you haven't. Please visit the [register](http://www.europeansocialsurvey.org/user/new) section from the ESS website. If your email is not registered at their website, an error will be raised prompting you to go register.Eur
+First, you need to register at the ESS website, in case you haven't. Please visit the [register](http://www.europeansocialsurvey.org/user/new) section from the ESS website. If your email is not registered at their website, an error will be raised prompting you to go register.
 
 To download the first wave to use in R:
 
@@ -39,13 +39,13 @@ To download the first wave to use in R:
 three_waves <- ess_waves(1, "your_email@email.com")
 ```
 
-This will return a list object with wave 1 in the first slot. You can also download several waves by just supplying the number of the waves.
+This will return a list object with wave 1 in the first slot. You can also download several waves by just supplying the number of waves.
 
 ```{r, eval = F}
 three_waves <- ess_waves(1:5, "your_email@email.com")
 ```
 
-This will download all latest versions of waves 1 through 5 and return a list of length 5 with wave as a data frame inside the list. 
+This will download all latest versions of waves 1 through 5 and return a list of length 5 with each wave as a data frame inside the list.
 
 You should make sure you download the correct waves available at [their website](http://www.europeansocialsurvey.org/data/round-index.html) because if you supply a non existent wave, the function will return an error.
 
@@ -62,13 +62,13 @@ three_waves <- ess_waves(c(1, 8), "your_email@email.com")
 I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata format with just one line of code. Just set the `only_download` argument to `TRUE`:
 
 ```{r, eval = F}
-ess_waves(c(1, 8), "your_email@email.com", only_download = TRUE)
+ess_waves(c(1, 2), "your_email@email.com", only_download = TRUE)
 ```
 
 This will save the ESS waves into separate folders and unzip them in current directory (if you want to know your current directory, type `getwd()`). In case you want to change where the function saves the files, add a directory in the `output_dir` argument.
 
 ```{r, eval = F}
-ess_waves(c(1, 8), "your_email@email.com", output_dir = "my/new/directory", only_download = TRUE)
+ess_waves(c(1, 2), "your_email@email.com", output_dir = "my/new/directory", only_download = TRUE)
 ```
 
-Future versions of the package will allow you to download specific countries for each year. This will have a huge gain in speed because now it takes a few minutes to download all waves. Stay tuned!
+Stay tuned for new releases!
