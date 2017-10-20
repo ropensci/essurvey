@@ -1,8 +1,8 @@
 Package: ess
-Title: What the Package Does (one line, title case)
+Title: Download data from the European Social Survey on the fly
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre"))
+Description: The ess package allows you to download data from the European Social Survey. Currently, you can download all or any of the available waves on their website, making it possible to obtain all waves with one line of code. Soon you’ll be able to also download country-specific waves.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
