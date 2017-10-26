@@ -26,13 +26,14 @@ First, you need to register at the ESS website, in case you haven't. Please visi
 To download the first wave to use in R:
 
 ``` r
-three_waves <- ess_waves(1, "your_email@email.com")
+library(ess)
+one_wave <- ess_waves(1, "your_email@email.com")
 ```
 
 This will return a list object with wave 1 in the first slot. You can also download several waves by just supplying the number of waves.
 
 ``` r
-three_waves <- ess_waves(1:5, "your_email@email.com")
+five_waves <- ess_waves(1:5, "your_email@email.com")
 ```
 
 This will download all latest versions of waves 1 through 5 and return a list of length 5 with each wave as a data frame inside the list.
@@ -40,7 +41,7 @@ This will download all latest versions of waves 1 through 5 and return a list of
 You should make sure you download the correct waves available at [their website](http://www.europeansocialsurvey.org/data/round-index.html) because if you supply a non existent wave, the function will return an error.
 
 ``` r
-three_waves <- ess_waves(c(1, 22), "your_email@email.com")
+two_waves <- ess_waves(c(1, 22), "your_email@email.com")
 
 #> Error in ess_url(waves) :
 #> ESS round 22 is not a available at
