@@ -33,8 +33,7 @@ show_country_waves <- function(country) {
   country_round_html <-
     extract_cnt_html(
       country,
-      available_countries,
-      all_country_links
+      available_countries
       )
   # Find only the name of the round
   dirty_round_names <- xml2::xml_find_all(country_round_html, "//h2")
@@ -62,7 +61,7 @@ show_country_waves <- function(country) {
 }
 
 # Function to grab a country-round-html
-extract_cnt_html <- function(country, available_countries, all_country_links) {
+extract_cnt_html <- function(country, available_countries) {
   ess_website <- "http://www.europeansocialsurvey.org"
   
   all_country_links <- xml2::xml_attr(get_country_href(ess_website), "href")
