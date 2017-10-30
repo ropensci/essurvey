@@ -1,4 +1,4 @@
-download_waves_stata <- function(waves , your_email, output_dir = ".", only_download = FALSE) {
+download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_download = FALSE) {
 
     if( missing(your_email) ) {
     stop(
@@ -25,7 +25,7 @@ download_waves_stata <- function(waves , your_email, output_dir = ".", only_down
                                       " Create an account at http://www.europeansocialsurvey.org/user/new")
     
     # Grab the download urls for each wave
-    urls <- ess_url(waves)
+    urls <- ess_url(rounds)
     
     # Extract the ESS prefix with the wave number
     ess_wave <- stringr::str_extract(urls, "ESS[:digit:]")
