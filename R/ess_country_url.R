@@ -1,8 +1,5 @@
-country <- "Denm"
-rounds <- 1:2
-
 ess_country_url <- function(country, rounds) {
-
+  
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   # Get unique country to avoid repetitions  
@@ -136,16 +133,8 @@ ess_country_url <- function(country, rounds) {
          " available for ", country)
   }
   
-  
-  country_node <-
-    xml2::xml_find_all(
-      xml2::xml_find_all(
-        xml2::xml_find_all(
-          country_round_html, # Go deep down into the node
-          '//ul'),
-        "//li"),
-      "//a")
-  
+  country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
+
   # Here we have all href from the website
   country_href <- xml2::xml_attrs(country_node, "href")
   
@@ -165,25 +154,23 @@ ess_country_url <- function(country, rounds) {
   round_numbers <- as.numeric(stringr::str_extract(incomplete_links, "[0-9]{1,2}"))
   
   # Build final ESS round links
-  round_links <-
-    paste0(
-      ess_website,
-      incomplete_links[which(round_numbers %in% rounds)]
-    )
-  round_links
+  round_links <- incomplete_links[which(round_numbers %in% rounds)]
   
-  # for (index in seq_along(round_links)) {
-  #   download.page <- httr::GET(paste0("http://www.europeansocialsurvey.org", 
-  #                                     round_links[index]))
-  #   download.block <- XML::htmlParse(download.page, asText = TRUE)
-  #   z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
-  #   stata.files[index] <- z[grep("stata", z)]
-  # }
-  # # } # this bracket closes the loop commented aout from above
-  # 
-  # full_urls <- sort(paste0("http://www.europeansocialsurvey.org", stata.files))
-  # 
-  # full_urls
+  stata.files <- character(length(rounds))
+  
+  # Build stata paths for each round
+  for (index in seq_along(round_links)) {
+    download.page <- httr::GET(paste0(ess_website,
+                                      round_links[index]))
+    download.block <- XML::htmlParse(download.page, asText = TRUE)
+    z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
+    stata.files[index] <- z[grep("stata", z)]
+  }
+  # } # this bracket closes the loop commented aout from above
+  
+  full_urls <- sort(paste0(ess_website, stata.files))
+  
+  full_urls
 }
 
 
