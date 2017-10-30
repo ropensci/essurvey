@@ -7,7 +7,7 @@
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list of length(rounds) containing the latest
-#' version of each wave. If \code{only_download} is set to TRUE, it returns nothing but
+#' version of each round. If \code{only_download} is set to TRUE, it returns nothing but
 #' saves all the rounds in .dta format in \code{output_dir}
 #' @export
 #'

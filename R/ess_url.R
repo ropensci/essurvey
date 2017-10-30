@@ -17,8 +17,8 @@ ess_url <- function(rounds) {
   all_rounds_present <- rounds %in% stringr::str_extract(ess_prefix, "[:digit:]")
   
   # If some is not present, show an error stating which specific round
-  # is not available. This is vectorized so if more than one wave is
-  # not present, you will get a warning for each wave not present
+  # is not available. This is vectorized so if more than one round is
+  # not present, you will get a warning for each round not present
   if (!all(all_rounds_present))  {
     stop(
       paste("ESS round", rounds[!all_rounds_present],
@@ -27,15 +27,15 @@ ess_url <- function(rounds) {
     )
   }
   
-  wave_codes <- paste0("ESS", rounds)
+  round_codes <- paste0("ESS", rounds)
   
   # Extract download urls from rounds selected
-  wave_links <- sort(grep(paste0(wave_codes, collapse = "|"), downloads, value = TRUE))
+  round_links <- sort(grep(paste0(round_codes, collapse = "|"), downloads, value = TRUE))
   
   # empty character to fill with urls
   stata.files <- character(length(rounds))
   
-  # This code is for grabbing countries from each wave-round
+  # This code is for grabbing countries from each round-round
   
   # for (current_round in seq_along(rounds)) {
   # download_page <- httr::GET(paste0("http://www.europeansocialsurvey.org/data/download.html?r=", 
@@ -53,11 +53,11 @@ ess_url <- function(rounds) {
   #                                         rounds[current_round]), z, fixed = TRUE)])
   # 
   # # Take only the integrated round
-  # integrated_round <- all_round_files[all_round_files == wave_links[current_round]]
+  # integrated_round <- all_round_files[all_round_files == round_links[current_round]]
   
-  for (index in seq_along(wave_links)) {
+  for (index in seq_along(round_links)) {
     download.page <- httr::GET(paste0("http://www.europeansocialsurvey.org", 
-                                      wave_links[index]))
+                                      round_links[index]))
     download.block <- XML::htmlParse(download.page, asText = TRUE)
     z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
     stata.files[index] <- z[grep("stata", z)]

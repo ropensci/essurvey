@@ -24,36 +24,36 @@ download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_do
     if (length(error_node) != 0) stop(xml2::xml_text(error_node),
                                       " Create an account at http://www.europeansocialsurvey.org/user/new")
     
-    # Grab the download urls for each wave
+    # Grab the download urls for each round
     urls <- ess_url(rounds)
     
-    # Extract the ESS prefix with the wave number
-    ess_wave <- stringr::str_extract(urls, "ESS[:digit:]")
+    # Extract the ESS prefix with the round number
+    ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
     
     # create a temporary directory to unzip the stata files
-    td <- file.path(output_dir, ess_wave)
+    td <- file.path(output_dir, ess_round)
     
     for (directory in td) dir.create(directory)
     
-    wave_downloader <- function(each_url, which_wave, which_folder) {
+    round_downloader <- function(each_url, which_round, which_folder) {
       
       # Download the data
-      message(paste("Downloading", which_wave))
+      message(paste("Downloading", which_round))
       
-      # wave specific .zip file inside the wave folder
-      temp_download <- file.path(which_folder, paste0(which_wave, ".zip"))
+      # round specific .zip file inside the round folder
+      temp_download <- file.path(which_folder, paste0(which_round, ".zip"))
       
       current_file <- httr::GET(each_url, httr::progress())
       
       # Write as a .zip file
       writeBin(httr::content( current_file, "raw" ) , temp_download)
       
-      utils::unzip(temp_download, exdir = which_wave)
+      utils::unzip(temp_download, exdir = which_round)
     }
 
-    # Loop throuch each url, wave name and specific wave folder,
-    # download the data and save in the wave-specific folder
-    mapply(wave_downloader, urls, ess_wave, td)
+    # Loop throuch each url, round name and specific round folder,
+    # download the data and save in the round-specific folder
+    mapply(round_downloader, urls, ess_round, td)
     
     if (only_download) message("All files saved to ", normalizePath(output_dir))
     
