@@ -34,27 +34,7 @@ ess_round_url <- function(rounds) {
   
   # empty character to fill with urls
   stata.files <- character(length(rounds))
-  
-  # This code is for grabbing countries from each round-round
-  
-  # for (current_round in seq_along(rounds)) {
-  # download_page <- httr::GET(paste0("http://www.europeansocialsurvey.org/data/download.html?r=", 
-  #                                   rounds[current_round]))
-  # 
-  # download_block <- XML::htmlParse(download_page, asText = TRUE)
-  # 
-  # z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
-  # z <- z[!grepl("mailto", z)]
-  # z <- z[tools::file_ext(z) != "html"]
-  # 
-  # # This is where the integrated round is but also all
-  # # other country links.
-  # all_round_files <- unique(z[grep(paste0("/download.html?file=ESS", 
-  #                                         rounds[current_round]), z, fixed = TRUE)])
-  # 
-  # # Take only the integrated round
-  # integrated_round <- all_round_files[all_round_files == round_links[current_round]]
-  
+
   for (index in seq_along(round_links)) {
     download.page <- httr::GET(paste0("http://www.europeansocialsurvey.org", 
                                       round_links[index]))
