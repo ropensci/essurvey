@@ -1,8 +1,8 @@
-country <- "Denmark"
+country <- "Denm"
 rounds <- 1:2
 
 ess_country_url <- function(country, rounds) {
-  
+
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   # Get unique country to avoid repetitions  
@@ -22,12 +22,7 @@ ess_country_url <- function(country, rounds) {
     stringr::str_extract_all(as.character(country_node), ">(.*)</a>$")
   
   # Clean up the name
-  available_countries <-
-    gsub(
-      ">|</a>",
-      "",
-      dirty_country_names
-    )
+  available_countries <- sapply(dirty_country_names, clean_attr, "/a")
   
   # If the chosen country is not available, prompt let the user
   # pick the country interactivibly from a list
@@ -37,17 +32,57 @@ ess_country_url <- function(country, rounds) {
     chosen_index <- 9999 # random country index
     country_indexes <- seq_along(available_countries)
     
+    # # To print out countries in nicely formatted columns
+    # n_countries <- length(available_countries)
+    # ncols <- 4
+    # nrows <- length(available_countries) / ncols
+    # 
+    # strings_withnums <- paste0(1:n_countries, ": ", rep("%s", each = n_countries))
+    # 
+    # separate_strings <-
+    #   split(strings_withnums,
+    #       cut(seq_along(strings_withnums), seq(0, n_countries, length.out = 10)))
+    # 
+    # country_groups <-
+    #   split(available_countries,
+    #       cut(seq_along(available_countries),seq(0, n_countries, length.out = 10)))
+    # 
+    # names(country_groups) <- NULL
+    # 
+    # args_print <- c(list(fmt = as.character(separate_strings)), country_groups)
+    # 
+    # call("sprintf", args_print, quote = FALSE)
+    #   
+    # # I keep getting the first set of countries repeated
+    # sprintf(c("1: %s", "2: %s", "3: %s", "4: %s",
+    #           "5: %s", "6: %s", "7: %s", "8: %s",
+    #           "9: %s", "10: %s", "11: %s", "12: %s", 
+    #           "13: %s", "14: %s", "15: %s", "16: %s",
+    #           "17: %s", "18: %s", "19: %s", "20: %s",
+    #           "21: %s", "22: %s", "23: %s", "24: %s",
+    #           "25: %s", "26: %s", "27: %s", "28: %s",
+    #           "29: %s", "30: %s", "31: %s", "32: %s",
+    #           "33: %s", "34: %s", "35: %s", "36: %s"),
+    #         c("Albania", "Austria", "Belgium", "Bulgaria"),
+    #         c("Croatia", "Cyprus", "Czech Republic", "Denmark"),
+    #         c("Estonia", "Finland", "France", "Germany"),
+    #         c("Greece", "Hungary", "Iceland", "Ireland"),
+    #         c("Israel", "Italy", "Kosovo", "Latvia"),
+    #         c("Lithuania", "Luxembourg","Netherlands", "Norway"),
+    #         c("Poland", "Portugal", "Romania","Russian Federation"),
+    #         c("Slovakia", "Slovenia", "Spain", "Sweden"),
+    #         c("Switzerland", "Turkey", "Ukraine", "United Kingdom"))
+    
+
     # While the chosen index is NOT a valid country,
     # promt a country list with the country numbers
     # until the user chooses a new country
-    
     while (!chosen_index %in% country_indexes) {
       # cat() a country list with the numbers attached
       # before each country
-      cat("The specified country was not available.",
+      cat("The specified country was not available. \n",
           paste0(seq_along(available_countries), ": ",
-                 available_countries),
-          sep = "\n")
+                 available_countries), fill = 1)
       
       # Allow the user to enter the number and update chosen_inders
       cat("Enter the number of the new country:")
@@ -55,57 +90,52 @@ ess_country_url <- function(country, rounds) {
     }
     
     country <- available_countries[as.numeric(chosen_index)]
-    }
-  
-  # Build country links
-  country_links <-  paste0(ess_website, xml2::xml_attr(country_node, "href"))
-  
-  downloads <- unique(grep("^/download.html(.*)[0-9]{4, }$", z, value = TRUE))
-  
-  # extract ESS* part to detect dupliacted
-  ess_prefix <- sort(stringr::str_extract(downloads, "ESS[:digit:]"))
-  
-  # Test whether all rounds specified are present in the website
-  all_rounds_present <- rounds %in% stringr::str_extract(ess_prefix, "[:digit:]")
-  
-  # If some is not present, show an error stating which specific round
-  # is not available. This is vectorized so if more than one round is
-  # not present, you will get a warning for each round not present
-  if (!all(all_rounds_present))  {
-    stop(
-      paste("ESS round", rounds[!all_rounds_present],
-            "is not a available at http://www.europeansocialsurvey.org/data/round-index.html",
-            collapse = "\n")
-    )
   }
   
-  round_codes <- paste0("ESS", rounds)
   
-  # Extract download urls from rounds selected
-  round_links <- sort(grep(paste0(round_codes, collapse = "|"), downloads, value = TRUE))
+  all_country_links <- xml2::xml_attr(country_node, "href")
   
-  # empty character to fill with urls
-  stata.files <- character(length(rounds))
+  # Build full url to chosen country
+  chosen_country_link <-
+    paste0(
+      ess_website,
+      all_country_links[which(country == available_countries)] # index where the country is at
+    )
   
-  # This code is for grabbing countries from each round-round
+  # Extract html from country link to donwnload rounds
+  country_rounds <- httr::GET(chosen_country_link)
   
-  # for (current_round in seq_along(rounds)) {
-  # download_page <- httr::GET(paste0("http://www.europeansocialsurvey.org/data/download.html?r=", 
-  #                                   rounds[current_round]))
-  # 
-  # download_block <- XML::htmlParse(download_page, asText = TRUE)
-  # 
-  # z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
-  # z <- z[!grepl("mailto", z)]
-  # z <- z[tools::file_ext(z) != "html"]
-  # 
-  # # This is where the integrated round is but also all
-  # # other country links.
-  # all_round_files <- unique(z[grep(paste0("/download.html?file=ESS", 
-  #                                         rounds[current_round]), z, fixed = TRUE)])
-  # 
-  # # Take only the integrated round
-  # integrated_round <- all_round_files[all_round_files == round_links[current_round]]
+  # Find only the name of the round
+  dirty_round_names <- xml2::xml_find_all(xml2::read_html(country_rounds), "//h2")
+  
+  # Clean it from it's attributes
+  round_names <-
+    sapply(
+      X = as.character(dirty_round_names),
+      FUN = clean_attr,
+      "/", "h2", # FUN ARGS
+      USE.NAMES = FALSE
+    )
+  
+  # Extract only the ESS round number
+  available_rounds <-
+    sort(
+      as.numeric(
+        trimws(
+          stringr::str_extract_all(round_names, " [0-9] ")
+        )
+      )
+    )
+  
+  # If any ESS round is missing
+  if(any(!rounds %in% available_rounds)) {
+    stop("Only rounds ",
+         paste0(available_rounds, collapse = "-"),
+         " available for ", country)
+  }
+  
+  
+  XML::htmlParse(country_rounds, asText = TRUE)
   
   for (index in seq_along(round_links)) {
     download.page <- httr::GET(paste0("http://www.europeansocialsurvey.org", 
@@ -121,3 +151,9 @@ ess_country_url <- function(country, rounds) {
   full_urls
 }
 
+
+# Function to automatically clean attributes
+clean_attr <- function(x, ...) {
+  other_attrs <- paste0((list(...)), collapse = "|")
+  gsub(paste0(">|", "<|", other_attrs), "", x)
+}
