@@ -40,7 +40,7 @@
 #' 
 #' two_rounds <- ess_rounds(c(1, 22), "your_email@email.com")
 #' 
-#' # Error in ess_url(rounds) :
+#' # Error in ess_round_url(rounds) :
 #' # ESS round 22 is not a available at
 #' # http://www.europeansocialsurvey.org/data/round-index.html
 #' 

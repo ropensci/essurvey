@@ -1,4 +1,4 @@
-ess_url <- function(rounds) {
+ess_round_url <- function(rounds) {
   
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))

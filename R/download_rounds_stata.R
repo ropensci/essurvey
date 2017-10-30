@@ -25,7 +25,7 @@ download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_do
                                       " Create an account at http://www.europeansocialsurvey.org/user/new")
     
     # Grab the download urls for each round
-    urls <- ess_url(rounds)
+    urls <- ess_round_url(rounds)
     
     # Extract the ESS prefix with the round number
     ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
