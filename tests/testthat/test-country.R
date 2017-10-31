@@ -1,8 +1,6 @@
 # your_email is an environment variable containing an email
 # right now it's outsource through Travis CI
 
-
-
 # Test for only one wave
 wave_one <- ess_country("Denmark", 1, your_email)
 

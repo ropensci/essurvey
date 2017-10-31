@@ -3,3 +3,4 @@
 ^packrat/
 ^\.Rprofile$
 ^README.Rmd
+^\.travis\.yml$
