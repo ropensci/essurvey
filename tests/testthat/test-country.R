@@ -2,9 +2,12 @@
 
 your_email <- Sys.getenv("your_email")
 
+# Check email is there
+expect_true(your_email != "")
+
 test_that("ess_country for one round", {
   
-  skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email)
@@ -27,7 +30,7 @@ test_that("ess_country for one round", {
 
 test_that("ess_country for all rounds of a country", {
   
-  skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for all rounds
   all_rounds <- ess_country("Netherlands", 1:7, your_email)
@@ -51,7 +54,7 @@ test_that("ess_country for all rounds of a country", {
 
 test_that("Test that downloading files is working fine", {
   
-  skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test whether you get a message where the downloads are at
   which_rounds <- 2

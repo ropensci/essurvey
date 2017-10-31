@@ -3,7 +3,7 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_round for only one round", {
   
-  skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for only one round
   round_one <- ess_rounds(1, your_email)
@@ -26,7 +26,7 @@ test_that("ess_round for only one round", {
 
 test_that("ess_round for all rounds", {
   
-  skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for all rounds
   all_rounds <- ess_rounds(1:7, your_email)
@@ -49,7 +49,7 @@ test_that("ess_round for all rounds", {
 
 test_that("ess_round for downloading works fine", {
 
-  skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(downloads <- ess_rounds(1:which_rounds, your_email, only_download = TRUE),
