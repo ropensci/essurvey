@@ -13,4 +13,7 @@ Imports: XML,
     httr,
     stringr,
     haven
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -37,7 +37,12 @@ ess_all_cntrounds("Denmark", "your_email@gmail.com")
 
 # Will download all rounds to directory "./denmark/
 # as .dta files and won't return the rounds in R.
-ess_all_cntrounds("Denmark", "your_email@gmail.com", output_dir = "./denmark/", only_download = TRUE)
+ess_all_cntrounds(
+"Denmark",
+"your_email@gmail.com",
+ output_dir = "./denmark/",
+ only_download = TRUE
+ )
 
 }
 }
