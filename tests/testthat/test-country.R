@@ -2,9 +2,6 @@
 
 your_email <- Sys.getenv("your_email")
 
-# Check email is there
-expect_true(your_email != "")
-
 test_that("ess_country for one round", {
   
   testthat::skip_on_cran()
