@@ -4,7 +4,7 @@ Overview <img src="man/figures/ess_logo.png" align="right" />
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
-The `ess` package is designed to download the ESS data as easily as possible. This is very first stage of the package. At this moment there is only one function that allows you to download all or a selected number of available rounds from their website. The next stage of the package will allow to download all rounds for a specific country.
+The `ess` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds, rounds for a selected country and to show which rounds/countries are available. Check out the vignette for a more detailed example of the `ess` package.
 
 Installation
 ------------
