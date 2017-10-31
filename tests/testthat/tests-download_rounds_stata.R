@@ -5,7 +5,7 @@ expect_error(authenticate("random@email.morerandom"),
 
 # Test round download throw error when wave is not available
 expect_error(download_rounds_stata(c(1, 22), "cimentadaj@gmail.com"),
-             "ESS round [0-9]+ is not a available at")
+             "ESS round [0-9]+ is not a available. Check show_waves()")
 
 # Test country download will throw error when wave is not available
 expect_error(download_country_stata("Sweden", c(1, 22), "cimentadaj@gmail.com"),

@@ -31,7 +31,6 @@
 #')
 #' 
 #' # If email is not registered at ESS website, error will arise
-#' 
 #' uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
 
 #' # Error in authenticate(your_email) : 
