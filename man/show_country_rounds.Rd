@@ -7,8 +7,8 @@
 show_country_rounds(country)
 }
 \arguments{
-\item{country}{A character of length 1 with the full name of the country. Use show_countries()
-for a list of available countries.}
+\item{country}{A character of length 1 with the full name of the country.
+Use \code{\link{show_countries}}for a list of available countries.}
 }
 \value{
 character vector with available rounds for \code{country}
@@ -18,10 +18,13 @@ Helper function to return available rounds for a country in the European Social 
 }
 \examples{
 
+\dontrun{
+
 show_country_rounds("Germany")
 
 show_country_rounds("Spain")
 
 show_country_rounds("Turkey")
 
+}
 }

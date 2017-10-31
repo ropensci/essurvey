@@ -6,7 +6,9 @@
 #' @examples
 #' 
 #' \dontrun{
+#' 
 #' show_countries()
+#' 
 #' }
 show_countries <- function() {
   
