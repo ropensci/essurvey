@@ -1,3 +1,7 @@
+# Function downloads the rounds specified with your_email and saves
+# in output_dir unzipped as .dta files. If only_download, function will
+# print a out a message where it saved everything. the specifi ess_* functions
+# takes care of deleting the folders in only_downloader was FALSE.
 download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_download = FALSE) {
 
     authenticate(your_email)
@@ -21,6 +25,10 @@ download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_do
     return(td)
 }
 
+# Function downloads the rounds for country specified with your_email and saves
+# in output_dir unzipped as .dta files. If only_download, function will
+# print a out a message where it saved everything. the specifi ess_* functions
+# takes care of deleting the folders in only_downloader was FALSE.
 download_country_stata <- function(country, rounds , your_email, output_dir = ".", only_download = FALSE) {
   
   authenticate(your_email)
@@ -44,6 +52,7 @@ download_country_stata <- function(country, rounds , your_email, output_dir = ".
   return(td)
 }
 
+# function authenticas the user with his/her email.
 authenticate <- function(your_email) {
   
   if( missing(your_email) ) {
@@ -72,6 +81,8 @@ authenticate <- function(your_email) {
   
 }
 
+# Function downloads the url after authentification and saves
+# in the which_folder
 round_downloader <- function(each_url, which_round, which_folder) {
   
   # Download the data

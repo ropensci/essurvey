@@ -9,9 +9,7 @@
 #' 
 show_countries <- function() {
   
-  ess_website <- "http://www.europeansocialsurvey.org"
-  
-  country_node <- get_country_href(ess_website)
+  country_node <- get_country_href(.global_vars$ess_website)
   
   # Extract the name
   dirty_country_names <-

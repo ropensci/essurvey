@@ -49,3 +49,9 @@ ess_round_url <- function(rounds) {
   full_urls
 }
 
+# Here I define an environment to hold the ess_website vector
+# because it's a variable I'll use in nearly all functions to
+# access the website
+.global_vars <- new.env()
+assign("ess_website",
+       "http://www.europeansocialsurvey.org", envir = .global_vars)
