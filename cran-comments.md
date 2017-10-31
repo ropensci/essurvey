@@ -7,6 +7,11 @@
 
 0 errors | 0 warnings | 0 notes
 
+For win-builder:
+
+Status: 1 NOTE
+R Under development (unstable) (2017-09-12 r73242)
+
 * This is a new release.
 
 ## Reverse dependencies
