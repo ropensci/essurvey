@@ -13,7 +13,12 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-## Overview <img src="man/figures/ess_logo.png" align="right" />
+## ess <img src="man/figures/ess_logo.png" align="right" />
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ess)](https://cran.r-project.org/package=ess)
+[![Travis-CI Build Status](https://travis-ci.org/cimentadaj/ess.svg?branch=master)](https://travis-ci.org/cimentadaj/ess)
+
+## Description
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
