@@ -4,7 +4,7 @@ ess_round_url <- function(rounds) {
   rounds <- sort(unique(rounds))
   
   # Test whether all rounds specified are present in the website
-  all_rounds_present <- rounds %in% show_waves()
+  all_rounds_present <- rounds %in% show_rounds()
   
   # If some is not present, show an error stating which specific round
   # is not available. This is vectorized so if more than one round is
@@ -12,7 +12,7 @@ ess_round_url <- function(rounds) {
   if (!all(all_rounds_present))  {
     stop(
       paste("ESS round", rounds[!all_rounds_present],
-            "is not a available. Check show_waves()",
+            "is not a available. Check show_rounds()",
             collapse = "\n")
     )
   }

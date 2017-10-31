@@ -38,15 +38,23 @@ five_rounds <- ess_rounds(1:5, "your_email@email.com")
 
 This will download all latest versions of rounds 1 through 5 and return a list of length 5 with each round as a data frame inside the list.
 
-You should make sure you download the correct rounds available at [their website](http://www.europeansocialsurvey.org/data/round-index.html) because if you supply a non existent round, the function will return an error.
+You can check the available rounds with `show_rounds()` because if you supply a non existent round, the function will return an error.
 
 ``` r
 two_rounds <- ess_rounds(c(1, 22), "your_email@email.com")
-
-#> Error in ess_url(rounds) :
-#> ESS round 22 is not a available at
-#> http://www.europeansocialsurvey.org/data/round-index.html
+#> Error in ess_round_url(rounds) : 
+#> ESS round 22 is not a available. Check show_rounds() 
 ```
+
+Alternatively, you can download all available rounds with `ess_all_rounds()`.
+
+You can also download rounds by country:
+
+``` r
+dk_two <- ess_country("Denmark", 1:2, "your_email@.com")
+```
+
+Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country.
 
 Stata users
 -----------
@@ -60,7 +68,11 @@ ess_rounds(c(1, 2), "your_email@email.com", only_download = TRUE)
 This will save the ESS rounds into separate folders and unzip them in current directory (if you want to know your current directory, type `getwd()`). In case you want to change where the function saves the files, add a directory in the `output_dir` argument.
 
 ``` r
-ess_rounds(c(1, 2), "your_email@email.com", output_dir = "my/new/directory", only_download = TRUE)
+ess_country("Sweden",
+            rounds = c(1, 2),
+            "your_email@email.com",
+            output_dir = "my/new/directory",
+            only_download = TRUE)
 ```
 
-Stay tuned for new releases!
+This functionality works both ways for `ess_country()` and `ess_rounds()`.

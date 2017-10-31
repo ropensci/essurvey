@@ -13,7 +13,7 @@ ess_country_url <- function(country, rounds) {
     stop("Country not available in ESS. Check show_countries()")
   }
   
-  available_rounds <- show_country_waves(country)
+  available_rounds <- show_country_rounds(country)
   
   # If any ESS round is missing
   if(any(!rounds %in% available_rounds)) {
@@ -23,16 +23,16 @@ ess_country_url <- function(country, rounds) {
   }
   
   # Returns the chosen countries html that contains
-  # the links to all waves.
+  # the links to all rounds.
   country_round_html <- extract_cnt_html(country, available_countries)
   
-  # Go deeper in the node to grab that countries url to the waves
+  # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
 
   # Here we have all href from the website
   country_href <- xml2::xml_attrs(country_node, "href")
   
-  # Only select the waves that match this:
+  # Only select the rounds that match this:
   # /download.html\\?file= for the downoad section
   # ESS[0-9] for any of the rounds
   # [A-Z]{1,1} followed by a capital letter for

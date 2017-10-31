@@ -17,23 +17,23 @@
 #' \dontrun{
 #' 
 #' # Will return all available rounds for Denmark
-#' ess_all_cntwaves("Denmark", "your_email@gmail.com")
+#' ess_all_cntrounds("Denmark", "your_email@gmail.com")
 #' 
-#' # Will download all waves to directory "./denmark/
+#' # Will download all rounds to directory "./denmark/
 #' # as .dta files and won't return the rounds in R.
-#' ess_all_cntwaves("Denmark", "your_email@gmail.com", output_dir = "./denmark/", only_download = TRUE)
+#' ess_all_cntrounds("Denmark", "your_email@gmail.com", output_dir = "./denmark/", only_download = TRUE)
 #' 
 #' }
 ess_all_cntrounds <- function(country, your_email, output_dir = ".", only_download = FALSE) {
 
-  all_waves <-
+  all_rounds <-
     ess_country(
     country,
-    show_country_waves(country),
+    show_country_rounds(country),
     your_email,
     output_dir,
     only_download
   )
   
-  all_waves
+  all_rounds
 }

@@ -1,13 +1,13 @@
-#' Helper function to return available waves in the European Social Survey
+#' Helper function to return available rounds in the European Social Survey
 #'
-#' @return numeric vector with available waves
+#' @return numeric vector with available rounds
 #' @export
 #'
 #' @examples
 #' 
-#' show_waves()
+#' show_rounds()
 #' 
-show_waves <- function() {
+show_rounds <- function() {
   incomplete_links <- grab_rounds_link()
   
   # extract ESS* part to detect dupliacted

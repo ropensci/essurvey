@@ -30,10 +30,10 @@ Download all available integrated rounds from the European Social Survey
 
 \dontrun{
 
-# Will download all waves and return a list with each one
+# Will download all rounds and return a list with each one
 ess_all_rounds("your_email@gmail.com")
 
-# Will download all waves to directory "./mydownloads/
+# Will download all rounds to directory "./mydownloads/
 # as .dta files and won't return the rounds in R.
 ess_all_rounds("your_email@gmail.com", output_dir = "./mydownloads/", only_download = TRUE)
 } 

@@ -1,20 +1,20 @@
-#' Helper function to return available waves for a country in the European Social Survey
+#' Helper function to return available rounds for a country in the European Social Survey
 #'
 #' @param country A character of length 1 with the full name of the country. Use show_countries()
 #' for a list of available countries.
 #'
-#' @return character vector with available waves for \code{country}
+#' @return character vector with available rounds for \code{country}
 #' @export
 #'
 #' @examples
 #' 
-#' show_country_waves("Germany")
+#' show_country_rounds("Germany")
 #' 
-#' show_country_waves("Spain")
+#' show_country_rounds("Spain")
 #' 
-#' show_country_waves("Turkey")
+#' show_country_rounds("Turkey")
 #' 
-show_country_waves <- function(country) {
+show_country_rounds <- function(country) {
 
   # Get unique country to avoid repetitions  
   country <- sort(unique(country))
@@ -29,7 +29,7 @@ show_country_waves <- function(country) {
   }
   
   # Returns the chosen countries html that contains
-  # the links to all waves.
+  # the links to all rounds.
   country_round_html <-
     extract_cnt_html(
       country,
@@ -64,7 +64,7 @@ show_country_waves <- function(country) {
 # Function accepts the chosen country and the list
 # of all available countries and returns the html doc
 # for the chosen country that contains the whole list of
-# links to download that countries waves.
+# links to download that countries rounds.
 extract_cnt_html <- function(country, available_countries) {
   
   # Returns "/data/country.html?c=ukraine" for all countries
