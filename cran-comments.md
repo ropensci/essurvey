@@ -1,5 +1,6 @@
 ## Test environments
-* local macOS Sierra 10.12.6, R 3.4.1
+* local macOS Sierra 10.12.6, R-3.4.2
+* Ubuntu 14.04.5 LTS (on travis-ci), R-3.4.2
 * win-builder
 
 ## R CMD check results
