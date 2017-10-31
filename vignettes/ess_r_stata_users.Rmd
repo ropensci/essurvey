@@ -1,0 +1,115 @@
+---
+title: "Using ess for R and Stata users"
+author: "Jorge Cimentada"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using ess for R and Stata users}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  eval = FALSE
+)
+```
+
+## Introduction
+
+Using the `ess` package is fairly easy. There are are two families of functions: `ess_*` and `show_*`. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven't registered, create an account at http://www.europeansocialsurvey.org/user/new
+
+Once you register visit your email to validate your account and you're ready to access the data.
+
+Given that some `ess` functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.
+
+
+## Downloading country specific rounds
+
+To install and load the package use:
+```{r}
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("cimentadaj/ess")
+
+library(ess)
+```
+
+```{r, echo = FALSE, eval = TRUE}
+library(ess)
+```
+
+Let's suppose you don't know which countries or rounds are available for the ESS. Then the `show_*` family of functions is your friend.
+
+To find out which countries have participated you can use `show_countries()`
+
+```{r, eval = TRUE}
+show_countries()
+```
+
+This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let's checkout Turkey. How many rounds has Turkey participated in? We can use `show_country_rounds()`
+
+```{r, eval = TRUE}
+tk_rnds <- show_country_rounds("Turkey")
+tk_rnds
+```
+Note that country names are case sensitive. Use the exact name printed out by `show_countries()`
+
+Using this information, we can download those specific rounds easily with `ess_country`.
+
+```{r}
+turkey <-
+  ess_country(
+    country = "Turkey",
+    rounds = c(2, 4),
+    your_email = "your_email@random.com"
+    )
+```
+
+`turkey` will now be a list of length(rounds) containing a data frame for each round. `ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
+
+```{r}
+ess_all_cntrounds("Turkey", "your_email@random.com")
+```
+
+The `ess_*` family is  concerned with downloading the data and thus always returns a list containing data frames. Conversely, the `show_*` family grabs information from the ESS website and always returns vectors.
+
+## Download complete rounds
+
+Similarly, we can use other functions to download rounds. To see which rounds are currently available, use `show_rounds`.
+
+```{r, eval = TRUE}
+show_rounds()
+```
+
+Similar to `show_countries`, `show_rounds` interactively looks up rounds in the ESS website, so any future rounds will automatically be included.
+
+To download all available rounds, use `ess_all_rounds`
+
+```{r}
+all_rounds <- ess_all_rounds("your_email@random.com")
+```
+
+Alternatively, use `ess_rounds` for selected ones.
+
+```{r}
+selected_rounds <- ess_rounds(c(1, 3, 6), "your_email@random.com")
+```
+
+## Downloading data for Stata users
+
+All `ess_*` functions allow the user to save the datasets in a specified folder as `.dta` files.
+
+For example, to save round two from Turkey in a folder called `./my_folder`, we use:
+
+```{r}
+ess_country("Turkey", 2,
+            "your_email@random.com",
+            output_dir = "./myfolder/",
+            only_download = TRUE)
+```
+
+This will save the data to `./myfolder/ESS_Turkey` and inside that folder there will be the `ESS2` folder that contains the data. If you specify `only_download = TRUE`, the function won't return the data but only save it. This can be used exactly the same way for `ess_rounds`. 
+
+Currently the user can either download the data or use it in `R`. For example, we can't download the data into the specified folder and also get the list with the rounds.
