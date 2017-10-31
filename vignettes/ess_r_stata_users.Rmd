@@ -25,15 +25,19 @@ Once you register visit your email to validate your account and you're ready to 
 
 Given that some `ess` functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.
 
-
 ## Downloading country specific rounds
 
-To install and load the package use:
+To install and load development version of the package use:
 ```{r}
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("cimentadaj/ess")
 
 library(ess)
+```
+
+To install the stable version use:
+```{r}
+install.packages("ess")
 ```
 
 ```{r, echo = FALSE, eval = TRUE}

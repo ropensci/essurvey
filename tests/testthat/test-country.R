@@ -1,5 +1,10 @@
+# your_email is an environment variable containing an email
+# right now it's outsource through Travis CI
+
+
+
 # Test for only one wave
-wave_one <- ess_country("Denmark", 1, "cimentadaj@gmail.com")
+wave_one <- ess_country("Denmark", 1, your_email)
 
 # check is list
 expect_is(wave_one, "list")
@@ -18,7 +23,7 @@ expect_gt(ncol(wave_one[[1]]), 0)
 
 
 # Test for all rounds
-all_rounds <- ess_country("Netherlands", 1:7, "cimentadaj@gmail.com")
+all_rounds <- ess_country("Netherlands", 1:7, your_email)
 
 # check is list
 expect_is(all_rounds, "list")
@@ -43,7 +48,7 @@ which_rounds <- 2
 expect_message(downloads <-
                  ess_country("Austria",
                              1:which_rounds,
-                             "cimentadaj@gmail.com",
+                             your_email,
                              only_download = TRUE
                              ),
                "All files saved to")

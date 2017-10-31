@@ -1,6 +1,5 @@
-
 # Test for only one round
-round_one <- ess_rounds(1, "cimentadaj@gmail.com")
+round_one <- ess_rounds(1, your_email)
 
 # check is list
 expect_is(round_one, "list")
@@ -19,7 +18,7 @@ expect_gt(ncol(round_one[[1]]), 0)
 
 
 # Test for all rounds
-all_rounds <- ess_rounds(1:7, "cimentadaj@gmail.com")
+all_rounds <- ess_rounds(1:7, your_email)
 
 # check is list
 expect_is(all_rounds, "list")
@@ -41,7 +40,7 @@ expect_equal(all(sapply(all_rounds, ncol) > 0), TRUE)
 # Test whether you get a message where the downloads are at
 which_rounds <- 2
 
-expect_message(downloads <- ess_rounds(1:which_rounds, "cimentadaj@gmail.com", only_download = TRUE),
+expect_message(downloads <- ess_rounds(1:which_rounds, your_email, only_download = TRUE),
               "All files saved to")
 
 # Test whether the downloaded files are indeed there
