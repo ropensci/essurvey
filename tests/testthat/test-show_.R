@@ -12,26 +12,26 @@ expect_false(all(duplicated(show_countries())))
 
 
 
-# show_country_waves
+# show_country_rounds
 
 # Check whether show_countries is character
-expect_is(show_country_waves("Denmark"), "numeric")
+expect_is(show_country_rounds("Denmark"), "numeric")
 
 # Check whether show_countries has length greater than 0
-expect_gt(length(show_country_waves("Denmark")), 0)
+expect_gt(length(show_country_rounds("Denmark")), 0)
 
-# # Check there are no duplicate waves for countries
-expect_false(all(duplicated(show_country_waves("Denmark"))))
-expect_false(all(duplicated(show_country_waves("United Kingdom"))))
+# # Check there are no duplicate rounds for countries
+expect_false(all(duplicated(show_country_rounds("Denmark"))))
+expect_false(all(duplicated(show_country_rounds("United Kingdom"))))
 
 
-# show_waves
+# show_rounds
 
 # Check whether show_countries is character
-expect_is(show_waves(), "numeric")
+expect_is(show_rounds(), "numeric")
 
 # Check whether show_countries has length greater than 0
-expect_gt(length(show_waves()), 0)
+expect_gt(length(show_rounds()), 0)
 
-# Check there are no duplicate waves
-expect_false(all(duplicated(show_waves())))
+# Check there are no duplicate rounds
+expect_false(all(duplicated(show_rounds())))

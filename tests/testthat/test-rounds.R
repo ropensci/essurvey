@@ -1,21 +1,21 @@
 
-# Test for only one wave
-wave_one <- ess_rounds(1, "cimentadaj@gmail.com")
+# Test for only one round
+round_one <- ess_rounds(1, "cimentadaj@gmail.com")
 
 # check is list
-expect_is(wave_one, "list")
+expect_is(round_one, "list")
 
 # check is length one
-expect_length(wave_one, 1)
+expect_length(round_one, 1)
 
 # check that ess_rounds returns data frames
-expect_is(wave_one[[1]], "data.frame")
+expect_is(round_one[[1]], "data.frame")
 
 # check that the number of rows is greater than 0
-expect_gt(nrow(wave_one[[1]]), 0)
+expect_gt(nrow(round_one[[1]]), 0)
 
 # check that the number of columns is greater than 0
-expect_gt(ncol(wave_one[[1]]), 0)
+expect_gt(ncol(round_one[[1]]), 0)
 
 
 # Test for all rounds
