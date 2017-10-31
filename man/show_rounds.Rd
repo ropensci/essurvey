@@ -14,6 +14,7 @@ Helper function to return available rounds in the European Social Survey
 }
 \examples{
 
+\dontrun {
 show_rounds()
-
+}
 }

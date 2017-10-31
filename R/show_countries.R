@@ -5,8 +5,9 @@
 #'
 #' @examples
 #' 
+#' \dontrun{
 #' show_countries()
-#' 
+#' }
 show_countries <- function() {
   
   country_node <- get_country_href(.global_vars$ess_website)

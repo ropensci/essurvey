@@ -14,6 +14,7 @@ Helper function to return available countries in the European Social Survey
 }
 \examples{
 
+\dontrun{
 show_countries()
-
+}
 }

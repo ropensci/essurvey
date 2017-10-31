@@ -5,8 +5,9 @@
 #'
 #' @examples
 #' 
+#' \dontrun {
 #' show_rounds()
-#' 
+#' }
 show_rounds <- function() {
   incomplete_links <- grab_rounds_link()
   

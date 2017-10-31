@@ -1,10 +1,12 @@
 #' Download integrated rounds separately for countries from the European Social Survey
 #'
-#' @param country A character of length 1 with the full name of the country. Use show_countries()
-#' for a list of available countries.
-#' @param rounds a numeric vector with the rounds to download. See also
-#'  \href{http://www.europeansocialsurvey.org/data/country_index.html}{here}
+#' @param country A character of length 1 with the full name of the country. 
+#' Use \code{\link{show_countries}} for a list of available countries.
+#' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
+#' for all available rounds.
 #' @param your_email a character vector with your email, such as "your_email@email.com".
+#' If you haven't registered in the ESS website, create an account at 
+#' \url{http://www.europeansocialsurvey.org/user/new}
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to the current working directory. Files will be saved
 #' as ESS_*/ESS\* where the first star is the country name and the second start the round number. 

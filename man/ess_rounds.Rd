@@ -7,10 +7,12 @@
 ess_rounds(rounds, your_email, output_dir = ".", only_download = FALSE)
 }
 \arguments{
-\item{rounds}{a numeric vector with the rounds to download. See
-\href{http://www.europeansocialsurvey.org/data/country_index.html}{here}}
+\item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_rounds}}
+for all available rounds.}
 
-\item{your_email}{a character vector with your email, such as "your_email@email.com".}
+\item{your_email}{a character vector with your email, such as "your_email@email.com".
+If you haven't registered in the ESS website, create an account at 
+\url{http://www.europeansocialsurvey.org/user/new}}
 
 \item{output_dir}{a character vector with the output directory in case you want to only download the files using
 the \code{only_download} argument. Defaults to the current working directory.}
