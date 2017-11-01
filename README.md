@@ -35,7 +35,7 @@ library(ess)
 one_round <- ess_rounds(1, "your_email@email.com")
 ```
 
-This will return a list object with round 1 in the first slot. You can also download several rounds by just supplying the number of rounds.
+This will return a list object with round 1 in the first slot. You can also download several rounds by supplying the number of rounds.
 
 ``` r
 five_rounds <- ess_rounds(1:5, "your_email@email.com")
@@ -56,7 +56,7 @@ Alternatively, you can download all available rounds with `ess_all_rounds()`.
 You can also download rounds by country:
 
 ``` r
-dk_two <- ess_country("Denmark", 1:2, "your_email@.com")
+dk_two <- ess_country("Denmark", 1:2, "your_email@email.com")
 ```
 
 Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country.
