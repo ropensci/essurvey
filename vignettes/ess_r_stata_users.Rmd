@@ -35,8 +35,9 @@ devtools::install_github("cimentadaj/ess")
 library(ess)
 ```
 
-To install the stable version use:
-```{r}
+```{r,echo = FALSE}
+# To install the stable version use:
+
 install.packages("ess")
 ```
 
