@@ -14,7 +14,7 @@ If you haven't registered in the ESS website, create an account at
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
 \item{output_dir}{a character vector with the output directory in case you want to only download the files using
-the \code{only_download} argument. Defaults to the current working directory.}
+the \code{only_download} argument. Defaults to NULL because data is not saved by default.}
 }
 \value{
 if \code{only_download} is set to FALSE it returns a list containing the

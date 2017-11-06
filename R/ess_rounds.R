@@ -7,11 +7,11 @@
 #' \url{http://www.europeansocialsurvey.org/user/new}
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
-#' the \code{only_download} argument. Defaults to the current working directory.
+#' the \code{only_download} argument. Defaults to NULL because data is not saved by default.
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 #' containing the latest version of each round. If \code{only_download} is set to TRUE and
-#' output_dir is a valid directory, it returns the saved directories invisible and saves all
+#' output_dir is a valid directory, it returns the saved directories invisibly and saves all
 #' the rounds in .dta format in \code{output_dir}
 #' @export
 #'
@@ -44,10 +44,8 @@
 #' 
 #' two_rounds <- ess_rounds(c(1, 22), "your_email@email.com")
 #' 
-#' # Error in ess_round_url(rounds) :
-#' # ESS round 22 is not a available at
-#' # http://www.europeansocialsurvey.org/data/round-index.html
-#' 
+#' # Error in ess_round_url(rounds) : 
+#' # ESS round 22 is not a available. Check show_rounds()
 #' }
 ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
   

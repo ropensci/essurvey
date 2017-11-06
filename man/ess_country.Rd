@@ -20,10 +20,10 @@ If you haven't registered in the ESS website, create an account at
 
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
-\item{output_dir}{a character vector with the output directory in case you want to only download
-the files using the \code{only_download} argument. Defaults to NULL.
-Files will be saved as ESS_*/ESS\* where the first star is the country name and the second star
-the round number.}
+\item{output_dir}{a character vector with the output directory in case you want to only
+download the files using the \code{only_download} argument. Defaults to NULL because data
+is not saved by default. Files will be saved as ESS_*/ESS\* where the first star is the
+country name and the second star the round number.}
 }
 \value{
 if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
@@ -60,8 +60,7 @@ uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
 czech_two <- ess_country("Czech Republic", c(1, 22), "your_email@email.com")
 
 # Error in ess_country_url(country, rounds) : 
-# Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7 available
+# Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available
 # for Czech Republic
-
 }
 }

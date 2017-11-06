@@ -5,7 +5,7 @@
 #' \url{http://www.europeansocialsurvey.org/user/new}
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
-#' the \code{only_download} argument. Defaults to the current working directory.
+#' the \code{only_download} argument. Defaults to NULL because data is not saved by default.
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list containing the
 #' latest version of each round. If \code{only_download} is set to TRUE and
