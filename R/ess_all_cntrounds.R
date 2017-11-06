@@ -8,12 +8,12 @@
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only
 #' download the files using the \code{only_download} argument. Defaults to NULL because data
-#' is not saved by default. Files will be saved as ESS_*/ESS\* where the first star is the
-#' country name and the second star the round number.
+#' is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the first star is the
+#' country name and \code{N} the round number.
 #' 
 #' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 #' containing the latest version of each round for the selected country. If \code{only_download}
-#' is set to TRUE and \code{output_dir} is a validd directory, it returns the saved directories
+#' is set to TRUE and \code{output_dir} is a valid directory, it returns the saved directories
 #' invisibly and saves all the rounds in .dta format in \code{output_dir}
 #' @export
 #'
