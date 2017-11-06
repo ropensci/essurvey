@@ -43,14 +43,13 @@ download_country_stata <- function(country, rounds , your_email, only_download =
   ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
   
   # create a temporary directory to unzip the stata files
-  
-  td <- file.path(tempdir(), ess_round)
+  td <- file.path(tempdir(), paste0("ESS_", country), ess_round)
   
   # If the user wants to download, save to the specified directory in
   # output_dir
-  if (only_download)  td <- file.path(output_dir, ess_round)
+  if (only_download)  td <- file.path(output_dir, paste0("ESS_", country), ess_round)
   
-  for (directory in td) dir.create(directory)
+  for (directory in td) dir.create(directory, recursive = TRUE)
   # Loop throuch each url, round name and specific round folder,
   # download the data and save in the round-specific folder
   mapply(round_downloader, urls, ess_round, td)
