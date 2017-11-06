@@ -77,3 +77,14 @@ test_that("ess_round for downloading works fine", {
   # Delete all downloaded files
   unlink(downloads, recursive = TRUE, force = TRUE)
 })
+
+test_that("Test if only_download is TRUE, output_dir should be valid", {
+  
+  testthat::skip_on_cran()
+  
+  # Here output_dir is set to NULL
+  expect_error(ess_rounds( 1:which_rounds,
+                           your_email,
+                           only_download = TRUE,
+                           output_dir = NULL))
+})

@@ -59,7 +59,8 @@ test_that("Test that downloading files is working fine", {
                    ess_country("Austria",
                                1:which_rounds,
                                your_email,
-                               only_download = TRUE
+                               only_download = TRUE,
+                               output_dir = tempdir()
                    ),
                  "All files saved to")
   
@@ -80,4 +81,16 @@ test_that("Test that downloading files is working fine", {
   
   # Delete all downloaded files
   unlink(dirname(downloads), recursive = TRUE, force = TRUE)
+})
+
+test_that("Test if only_download is TRUE, output_dir should be valid", {
+  
+  testthat::skip_on_cran()
+  
+  # Here output_dir is set to NULL
+  expect_error(ess_country("Austria",
+                           1:which_rounds,
+                           your_email,
+                           only_download = TRUE,
+                           output_dir = NULL))
 })
