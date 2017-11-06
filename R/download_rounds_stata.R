@@ -2,27 +2,34 @@
 # in output_dir unzipped as .dta files. If only_download, function will
 # print a out a message where it saved everything. the specifi ess_* functions
 # takes care of deleting the folders in only_downloader was FALSE.
-download_rounds_stata <- function(rounds , your_email, output_dir = ".", only_download = FALSE) {
-
-    authenticate(your_email)
-    # Grab the download urls for each round
-    urls <- ess_round_url(rounds)
-    
-    # Extract the ESS prefix with the round number
-    ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
-    
-    # create a temporary directory to unzip the stata files
-    td <- file.path(output_dir, ess_round)
-    
-    for (directory in td) dir.create(directory)
-
-    # Loop throuch each url, round name and specific round folder,
-    # download the data and save in the round-specific folder
-    mapply(round_downloader, urls, ess_round, td)
-    
-    if (only_download) message("All files saved to ", normalizePath(output_dir))
-    
-    return(td)
+download_rounds_stata <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
+  
+  if (only_download && is.null(output_dir)) {
+    stop("If only_download = TRUE, please provide a directory
+           to save the files in output_dir")
+  }
+  
+  authenticate(your_email)
+  # Grab the download urls for each round
+  urls <- ess_round_url(rounds)
+  
+  # Extract the ESS prefix with the round number
+  ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
+  
+  # create a temporary directory to unzip the stata files
+  
+  td <- file.path(tempdir(), ess_round)
+  
+  # If the user wants to download, save to the specified directory in
+  # output_dir
+  if (only_download)  td <- file.path(output_dir, ess_round)
+  
+  for (directory in td) dir.create(directory)
+  # Loop throuch each url, round name and specific round folder,
+  # download the data and save in the round-specific folder
+  mapply(round_downloader, urls, ess_round, td)
+  
+  td
 }
 
 # Function downloads the rounds for country specified with your_email and saves
