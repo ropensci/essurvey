@@ -52,7 +52,11 @@ test_that("ess_round for downloading works fine", {
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
-  expect_message(downloads <- ess_rounds(1:which_rounds, your_email, only_download = TRUE),
+  expect_message(downloads <-
+                   ess_rounds(1:which_rounds,
+                              your_email,
+                              only_download = TRUE,
+                              output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there

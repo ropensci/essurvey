@@ -4,11 +4,6 @@
 # takes care of deleting the folders in only_downloader was FALSE.
 download_rounds_stata <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
   
-  if (only_download && is.null(output_dir)) {
-    stop("If only_download = TRUE, please provide a directory
-           to save the files in output_dir")
-  }
-  
   authenticate(your_email)
   # Grab the download urls for each round
   urls <- ess_round_url(rounds)
@@ -28,6 +23,8 @@ download_rounds_stata <- function(rounds, your_email, only_download = FALSE, out
   # Loop throuch each url, round name and specific round folder,
   # download the data and save in the round-specific folder
   mapply(round_downloader, urls, ess_round, td)
+  
+  if (only_download) message("All files saved to ", normalizePath(output_dir))
   
   td
 }

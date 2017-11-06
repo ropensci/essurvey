@@ -48,16 +48,22 @@
 #' # http://www.europeansocialsurvey.org/data/round-index.html
 #' 
 #' }
-ess_rounds <- function(rounds, your_email, output_dir = ".", only_download = FALSE) {
+ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
+  
+  if (only_download && is.null(output_dir)) {
+    stop(
+      "If only_download = TRUE, please provide a directory to save the files in output_dir"
+      )
+  }
   
   # If user only wants to download, then download and return
   if (only_download) {
     return(
-      invisible(download_rounds_stata(rounds, your_email, output_dir, only_download))
+      invisible(download_rounds_stata(rounds, your_email, only_download, output_dir))
       )
   }
   # If not, download data and save the dir of the downloads
-  dir_download <- download_rounds_stata(rounds, your_email, output_dir)
+  dir_download <- download_rounds_stata(rounds, your_email)
   
   # Get all .dta paths
   stata_dirs <- list.files(dir_download, pattern = ".dta", full.names = TRUE)
