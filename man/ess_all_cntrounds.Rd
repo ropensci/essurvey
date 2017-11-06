@@ -25,8 +25,8 @@ the round number.}
 \value{
 if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 containing the latest version of each round for the selected country. If \code{only_download}
-is set to TRUE and \code{output_dir} is a validd directory, it returns nothing but saves all
-the rounds in .dta format in \code{output_dir}
+is set to TRUE and \code{output_dir} is a validd directory, it returns the saved directories
+invisibly and saves all the rounds in .dta format in \code{output_dir}
 }
 \description{
 Download all available integrated rounds for a country from the European Social Survey

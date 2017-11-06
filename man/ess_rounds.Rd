@@ -22,8 +22,8 @@ the \code{only_download} argument. Defaults to the current working directory.}
 \value{
 if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 containing the latest version of each round. If \code{only_download} is set to TRUE and
-output_dir is a valid directory, it returns nothing but saves all the rounds in .dta
-format in \code{output_dir}
+output_dir is a valid directory, it returns the saved directories invisible and saves all
+the rounds in .dta format in \code{output_dir}
 }
 \description{
 Download integrated rounds from the European Social Survey
