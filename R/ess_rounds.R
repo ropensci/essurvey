@@ -5,13 +5,14 @@
 #' @param your_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
 #' \url{http://www.europeansocialsurvey.org/user/new}
+#' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to the current working directory.
-#' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #'
-#' @return if \code{only_download} is set to FALSE it returns a list of length(rounds) containing the latest
-#' version of each round. If \code{only_download} is set to TRUE, it returns nothing but
-#' saves all the rounds in .dta format in \code{output_dir}
+#' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+#' containing the latest version of each round. If \code{only_download} is set to TRUE and
+#' output_dir is a valid directory, it returns nothing but saves all the rounds in .dta
+#'format in \code{output_dir}
 #' @export
 #'
 #' @examples
@@ -20,13 +21,13 @@
 #' # Get first three rounds
 #' three_rounds <- ess_rounds(1:3, "your_email@email.com")
 #' 
-#' # Only download the files, this will return nothing
+#' # Only download the files to output_dir, this will return nothing.
 #' ess_rounds(
 #'  rounds = 1:3,
 #'  your_email = "your_email@email.com",
+#'  only_download = TRUE,
 #'  output_dir = ".",
-#'  only_download = TRUE
-#')
+#' )
 #' 
 #' # If rounds are repeated, will download only unique ones
 #' two_rounds <- ess_rounds(c(1, 1), "your_email@email.com")
