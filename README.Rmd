@@ -70,7 +70,7 @@ You can also download rounds by country:
 dk_two <- ess_country("Denmark", 1:2, "your_email@email.com")
 ```
 
-Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country.
+Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `ess_all_cntrounds()` to download all available rounds of a country.
 
 ## Stata users
 
