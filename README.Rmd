@@ -74,20 +74,21 @@ Use `show_countries()` to see available countries and `show_country_rounds("Denm
 
 ## Stata users
 
-I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata format with just one line of code. Just set the `only_download` argument to `TRUE`:
+I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata format with just one line of code. Just set the `only_download` argument to `TRUE` and specify where it will be saved:
 
 ```{r}
-ess_rounds(c(1, 2), "your_email@email.com", only_download = TRUE)
+ess_rounds(c(1, 2),
+           "your_email@email.com",
+           only_download = TRUE,
+           output_dir = "my/new/directory")
 ```
 
-This will save the ESS rounds into separate folders and unzip them in current directory (if you want to know your current directory, type `getwd()`). In case you want to change where the function saves the files, add a directory in the `output_dir` argument.
+This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`.
 
 ```{r}
 ess_country("Sweden",
             rounds = c(1, 2),
             "your_email@email.com",
-            output_dir = "my/new/directory",
-            only_download = TRUE)
+            only_download = TRUE,
+            output_dir = "my/new/directory")
 ```
-
-This functionality works both ways for `ess_country()` and `ess_rounds()`.
