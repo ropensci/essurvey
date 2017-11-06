@@ -4,8 +4,8 @@
 \alias{ess_all_cntrounds}
 \title{Download all available integrated rounds for a country from the European Social Survey}
 \usage{
-ess_all_cntrounds(country, your_email, output_dir = ".",
-  only_download = FALSE)
+ess_all_cntrounds(country, your_email, only_download = FALSE,
+  output_dir = NULL)
 }
 \arguments{
 \item{country}{A character of length 1 with the full name of the country.
@@ -15,16 +15,18 @@ Use \code{\link{show_countries}} for a list of available countries.}
 If you haven't registered in the ESS website, create an account at 
 \url{http://www.europeansocialsurvey.org/user/new}}
 
-\item{output_dir}{a character vector with the output directory in case you want to only download the files using
-the \code{only_download} argument. Defaults to the current working directory. Files will be saved
-as ESS_*/ESS\* where the first star is the country name and the second start the round number.}
-
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
+
+\item{output_dir}{a character vector with the output directory in case you want to only download
+the files using the \code{only_download} argument. Defaults to NULL.
+Files will be saved as ESS_*/ESS\* where the first star is the country name and the second star
+the round number.}
 }
 \value{
-if \code{only_download} is set to FALSE it returns a list containing the latest
-version of all available rounds. If \code{only_download} is set to TRUE, it returns nothing but
-saves all the rounds in .dta format in \code{output_dir}
+if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+containing the latest version of each round for the selected country. If \code{only_download}
+is set to TRUE and \code{output_dir} is a validd directory, it returns nothing but saves all
+the rounds in .dta format in \code{output_dir}
 }
 \description{
 Download all available integrated rounds for a country from the European Social Survey

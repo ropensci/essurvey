@@ -5,14 +5,16 @@
 #' @param your_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
 #' \url{http://www.europeansocialsurvey.org/user/new}
-#' @param output_dir a character vector with the output directory in case you want to only download the files using
-#' the \code{only_download} argument. Defaults to the current working directory. Files will be saved
-#' as ESS_*/ESS\* where the first star is the country name and the second start the round number. 
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
-#'
-#' @return if \code{only_download} is set to FALSE it returns a list containing the latest
-#' version of all available rounds. If \code{only_download} is set to TRUE, it returns nothing but
-#' saves all the rounds in .dta format in \code{output_dir} 
+#' @param output_dir a character vector with the output directory in case you want to only download
+#' the files using the \code{only_download} argument. Defaults to NULL.
+#' Files will be saved as ESS_*/ESS\* where the first star is the country name and the second star
+#' the round number.
+#' 
+#' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+#' containing the latest version of each round for the selected country. If \code{only_download}
+#' is set to TRUE and \code{output_dir} is a validd directory, it returns nothing but saves all
+#' the rounds in .dta format in \code{output_dir}
 #' @export
 #'
 #' @examples
@@ -31,15 +33,15 @@
 #'  )
 #' 
 #' }
-ess_all_cntrounds <- function(country, your_email, output_dir = ".", only_download = FALSE) {
+ess_all_cntrounds <- function(country, your_email, only_download = FALSE, output_dir = NULL) {
 
   all_rounds <-
     ess_country(
     country,
     show_country_rounds(country),
     your_email,
-    output_dir,
-    only_download
+    only_download,
+    output_dir
   )
   
   all_rounds

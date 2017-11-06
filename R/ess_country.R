@@ -7,14 +7,16 @@
 #' @param your_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
 #' \url{http://www.europeansocialsurvey.org/user/new}
-#' @param output_dir a character vector with the output directory in case you want to only download the files using
-#' the \code{only_download} argument. Defaults to the current working directory. Files will be saved
-#' as ESS_*/ESS\* where the first star is the country name and the second start the round number. 
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
-#'
-#' @return if \code{only_download} is set to FALSE it returns a list of length(rounds) containing the latest
-#' version of each round. If \code{only_download} is set to TRUE, it returns nothing but
-#' saves all the rounds in .dta format in \code{output_dir}
+#' @param output_dir a character vector with the output directory in case you want to only download
+#' the files using the \code{only_download} argument. Defaults to NULL.
+#' Files will be saved as ESS_*/ESS\* where the first star is the country name and the second star
+#' the round number.
+#' 
+#' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+#' containing the latest version of each round for the selected country. If \code{only_download}
+#' is set to TRUE and \code{output_dir} is a validd directory, it returns nothing but saves all
+#' the rounds in .dta format in \code{output_dir}
 #' @export
 #'
 #' @examples
@@ -28,13 +30,12 @@
 #'  "Turkey"
 #'  rounds = c(2, 4),
 #'  your_email = "your_email@email.com",
-#'  output_dir = ".",
-#'  only_download = TRUE
-#')
+#'  only_download = TRUE,
+#'  output_dir = "."
+#' )
 #' 
 #' # If email is not registered at ESS website, error will arise
 #' uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
-
 #' # Error in authenticate(your_email) : 
 #' # The email address you provided is not associated with any registered user.
 #' # Create an account at http://www.europeansocialsurvey.org/user/new
@@ -49,18 +50,23 @@
 #' 
 #' }
 
-ess_country <- function(country, rounds, your_email, output_dir = ".", only_download = FALSE) {
+ess_country <- function(country, rounds, your_email, only_download = FALSE, output_dir = NULL) {
+  
+  if (only_download && is.null(output_dir)) {
+    stop(
+      "If only_download = TRUE, please provide a directory to save the files in output_dir"
+    )
+  }
   
   # If user only wants to download, then download and return
   if (only_download) {
-    
     return(
-      invisible(download_country_stata(country, rounds, your_email, output_dir, only_download))
+      invisible(download_country_stata(country, rounds, your_email, only_download, output_dir))
     )
   }
   
   # If not, download data and save the dir of the downloads
-  dir_download <- download_country_stata(country, rounds, your_email, output_dir)
+  dir_download <- download_country_stata(country, rounds, your_email)
   
   # Get all .dta paths
   stata_dirs <- list.files(dir_download, pattern = ".dta", full.names = TRUE)

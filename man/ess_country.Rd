@@ -4,8 +4,8 @@
 \alias{ess_country}
 \title{Download integrated rounds separately for countries from the European Social Survey}
 \usage{
-ess_country(country, rounds, your_email, output_dir = ".",
-  only_download = FALSE)
+ess_country(country, rounds, your_email, only_download = FALSE,
+  output_dir = NULL)
 }
 \arguments{
 \item{country}{A character of length 1 with the full name of the country. 
@@ -18,16 +18,18 @@ for all available rounds.}
 If you haven't registered in the ESS website, create an account at 
 \url{http://www.europeansocialsurvey.org/user/new}}
 
-\item{output_dir}{a character vector with the output directory in case you want to only download the files using
-the \code{only_download} argument. Defaults to the current working directory. Files will be saved
-as ESS_*/ESS\* where the first star is the country name and the second start the round number.}
-
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
+
+\item{output_dir}{a character vector with the output directory in case you want to only download
+the files using the \code{only_download} argument. Defaults to NULL.
+Files will be saved as ESS_*/ESS\* where the first star is the country name and the second star
+the round number.}
 }
 \value{
-if \code{only_download} is set to FALSE it returns a list of length(rounds) containing the latest
-version of each round. If \code{only_download} is set to TRUE, it returns nothing but
-saves all the rounds in .dta format in \code{output_dir}
+if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+containing the latest version of each round for the selected country. If \code{only_download}
+is set to TRUE and \code{output_dir} is a validd directory, it returns nothing but saves all
+the rounds in .dta format in \code{output_dir}
 }
 \description{
 Download integrated rounds separately for countries from the European Social Survey
@@ -43,8 +45,8 @@ ess_country(
  "Turkey"
  rounds = c(2, 4),
  your_email = "your_email@email.com",
- output_dir = ".",
- only_download = TRUE
+ only_download = TRUE,
+ output_dir = "."
 )
 
 # If email is not registered at ESS website, error will arise
