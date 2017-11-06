@@ -72,7 +72,7 @@ turkey <-
     )
 ```
 
-`turkey` will now be a list of length(rounds) containing a data frame for each round. `ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
+`turkey` will now be a list of `length(rounds)` containing a data frame for each round. `ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
 
 ```{r}
 ess_all_cntrounds("Turkey", "your_email@random.com")
@@ -111,10 +111,10 @@ For example, to save round two from Turkey in a folder called `./my_folder`, we 
 ```{r}
 ess_country("Turkey", 2,
             "your_email@random.com",
-            output_dir = "./myfolder/",
-            only_download = TRUE)
+            only_download = TRUE,
+            output_dir = "./myfolder/")
 ```
 
-This will save the data to `./myfolder/ESS_Turkey` and inside that folder there will be the `ESS2` folder that contains the data. If you specify `only_download = TRUE`, the function won't return the data but only save it. This can be used exactly the same way for `ess_rounds`. 
+This will save the data to `./myfolder/ESS_Turkey` and inside that folder there will be the `ESS2` folder that contains the data. If you specify `only_download = TRUE`, but don't specify a directory, an error will be raised. All of this applies exactly the same way for `ess_rounds`.
 
 Currently the user can either download the data or use it in `R`. For example, we can't download the data into the specified folder and also get the list with the rounds.
