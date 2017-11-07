@@ -8,9 +8,6 @@
 #'
 #' @examples
 #' 
-#' 
-#' show_country_rounds("Germany")
-#' 
 #' show_country_rounds("Spain")
 #' 
 #' show_country_rounds("Turkey")

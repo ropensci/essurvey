@@ -18,9 +18,6 @@ Helper function to return available rounds for a country in the European Social 
 }
 \examples{
 
-
-show_country_rounds("Germany")
-
 show_country_rounds("Spain")
 
 show_country_rounds("Turkey")
