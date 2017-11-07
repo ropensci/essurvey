@@ -19,7 +19,7 @@ download_rounds_stata <- function(rounds, your_email, only_download = FALSE, out
   # output_dir
   if (only_download)  td <- file.path(output_dir, ess_round)
   
-  for (directory in td) dir.create(directory)
+  for (directory in td) dir.create(directory, recursive = TRUE)
   # Loop throuch each url, round name and specific round folder,
   # download the data and save in the round-specific folder
   mapply(round_downloader, urls, ess_round, td)
