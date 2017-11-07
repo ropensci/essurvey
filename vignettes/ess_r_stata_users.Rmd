@@ -117,4 +117,6 @@ ess_country("Turkey", 2,
 
 This will save the data to `./myfolder/ESS_Turkey` and inside that folder there will be the `ESS2` folder that contains the data. If you specify `only_download = TRUE`, but don't specify a directory, an error will be raised. All of this applies exactly the same way for `ess_rounds`.
 
-Currently the user can either download the data or use it in `R`. For example, we can't download the data into the specified folder and also get the list with the rounds.
+Note that downloading the data **doesn't** run the corresponding `.do` file on the Stata file. The user should do that on it's own.
+
+Currently the user can either download the data or use it in `R`. For example, you can't download the data into the specified folder and also get the list with the rounds.
