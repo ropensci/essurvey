@@ -32,9 +32,12 @@ Download all available integrated rounds from the European Social Survey
 # Will download all rounds and return a list with each one
 ess_all_rounds("your_email@gmail.com")
 
-# Will download all rounds to directory "./mydownloads/
+# Will download all rounds to the directory below
 # as .dta files and won't return the rounds in R.
-ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = "./mydownloads/")
-} 
+
+dl_dir <- file.path(tempdir(), "mydownloads")
+
+ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = dl_dir)
+}
 
 }

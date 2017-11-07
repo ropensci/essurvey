@@ -41,12 +41,15 @@ Download integrated rounds separately for countries from the European Social Sur
 dk_three <- ess_country("Denmark", 1:3, "your_email@email.com")
 
 # Only download the files, this will return nothing
+
+temp_dir <- tempdir()
+
 ess_country(
  "Turkey"
  rounds = c(2, 4),
  your_email = "your_email@email.com",
  only_download = TRUE,
- output_dir = "."
+ output_dir = temp_dir
 )
 
 # If email is not registered at ESS website, error will arise

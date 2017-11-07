@@ -34,12 +34,14 @@ Download integrated rounds from the European Social Survey
 # Get first three rounds
 three_rounds <- ess_rounds(1:3, "your_email@email.com")
 
+temp_dir <- tempdir()
+
 # Only download the files to output_dir, this will return nothing.
 ess_rounds(
  rounds = 1:3,
  your_email = "your_email@email.com",
  only_download = TRUE,
- output_dir = ".",
+ output_dir = temp_dir,
 )
 
 # If rounds are repeated, will download only unique ones

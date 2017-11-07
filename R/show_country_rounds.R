@@ -8,7 +8,6 @@
 #'
 #' @examples
 #' 
-#' \dontrun{
 #' 
 #' show_country_rounds("Germany")
 #' 
@@ -16,7 +15,6 @@
 #' 
 #' show_country_rounds("Turkey")
 #' 
-#' }
 show_country_rounds <- function(country) {
 
   # Get unique country to avoid repetitions  

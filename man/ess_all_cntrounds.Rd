@@ -37,13 +37,16 @@ Download all available integrated rounds for a country from the European Social 
 # Will return all available rounds for Denmark
 ess_all_cntrounds("Denmark", "your_email@gmail.com")
 
-# Will download all rounds to directory "./denmark/
+# Will download all rounds to the directory stored below
 # as .dta files and won't return the rounds in R.
+
+dl_dir <- file.path(tempdir(), "denmark/")
+
 ess_all_cntrounds(
 "Denmark",
 "your_email@gmail.com",
  only_download = TRUE,
- output_dir = "./denmark/"
+ output_dir = dl_dir
  )
 
 }
