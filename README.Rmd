@@ -26,14 +26,18 @@ The `ess` package is designed to download the ESS data as easily as possible. It
 
 ## Installation
 
-You can install and load the package with these commands:
+You can install and load the development version with these commands:
 
 ```{r}
 # install.packages("devtools") in case you don't have it
 devtools::install_github("cimentadaj/ess")
 ```
 
-For now the package will be available on Github but sometime in the near future it will be submitted to CRAN.
+or the stable version with:
+
+```{r}
+install.packages("ess")
+```
 
 ## Usage
 
