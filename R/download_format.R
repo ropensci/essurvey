@@ -3,8 +3,8 @@
 # If only_download, function will print a out a message where it saved everything.
 # the specifi ess_* functions takes care of deleting the folders in only_downloader was FALSE.
 download_format <- function(rounds, country, your_email, only_download = FALSE, output_dir = NULL,
-                                   format = 'stata') {
-
+                            format = 'stata') {
+  
   # Check if the format is either 'stata', 'spss' or 'sas'.
   if(!format %in% c('stata', 'spss', 'sas')) {
     stop("Format not available. Only 'stata', 'spss', or 'sas'")
@@ -25,14 +25,24 @@ download_format <- function(rounds, country, your_email, only_download = FALSE, 
   # Extract the ESS prefix with the round number
   ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
   
-  # create a temporary directory to unzip the stata files
-  
-  td <- file.path(tempdir(), ess_round)
+  # create a temporary directory to unzip the files
+  # if country is specified, create pre-folder with country
+  # name
+  if (!missing(country)) {
+    td <- file.path(tempdir(), paste0("ESS_", country), ess_round)
+  } else {
+    td <- file.path(tempdir(), ess_round)
+  }
   
   # If the user wants to download, save to the specified directory in
-  # output_dir
-  if (only_download)  td <- file.path(output_dir, ess_round)
-  
+  # output_dir. If country is specified, append pre-folder name, otherwise
+  # leave it with round name
+  if (only_download && !missing(country)) {
+    td <- file.path(output_dir, paste0("ESS_", country), ess_round)
+  } else {
+    td <- file.path(output_dir, ess_round)
+  }
+
   for (directory in td) dir.create(directory, recursive = TRUE)
   # Loop throuch each url, round name and specific round folder,
   # download the data and save in the round-specific folder
@@ -43,7 +53,7 @@ download_format <- function(rounds, country, your_email, only_download = FALSE, 
   td
 }
 
-# function authenticatess the user with his/her email.
+# function authenticates the user with his/her email.
 authenticate <- function(your_email) {
   
   if( missing(your_email) ) {
