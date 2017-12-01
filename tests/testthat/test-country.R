@@ -4,7 +4,7 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_country for one round", {
   
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email)
@@ -27,7 +27,7 @@ test_that("ess_country for one round", {
 
 test_that("ess_country for all rounds of a country", {
   
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   
   # Test for all rounds
   all_rounds <- ess_country("Netherlands", 1:7, your_email)
@@ -51,7 +51,7 @@ test_that("ess_country for all rounds of a country", {
 
 test_that("Test that downloading files is working fine", {
   
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
@@ -85,7 +85,7 @@ test_that("Test that downloading files is working fine", {
 
 test_that("Test if only_download is TRUE, output_dir should be valid", {
   
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   
   # Here output_dir is set to NULL
   expect_error(ess_country("Austria",
@@ -93,4 +93,27 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
                            your_email,
                            only_download = TRUE,
                            output_dir = NULL))
+})
+
+test_that("Download country files with other non-stata file is ignored", {
+  # testthat::skip_on_cran()
+  
+  # Test for only one wave
+  wave_one <- ess_country("Denmark", 1, your_email, format = "spss")
+  
+  # check is list
+  expect_is(wave_one, "list")
+  
+  # check is length one
+  expect_length(wave_one, 1)
+  
+  # check that ess_country returns data frames
+  expect_is(wave_one[[1]], "data.frame")
+  
+  # check that the number of rows is greater than 0
+  expect_gt(nrow(wave_one[[1]]), 0)
+  
+  # check that the number of columns is greater than 0
+  expect_gt(ncol(wave_one[[1]]), 0)
+  
 })
