@@ -25,22 +25,17 @@ download_format <- function(rounds, country, your_email, only_download = FALSE, 
   # Extract the ESS prefix with the round number
   ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
   
+  # The saving path is output if download is set to TRUE
+  # otherwise tempdir()
+  alt_dir <- ifelse(only_download, output_dir, tempdir())
+  
   # create a temporary directory to unzip the files
   # if country is specified, create pre-folder with country
   # name
   if (!missing(country)) {
-    td <- file.path(tempdir(), paste0("ESS_", country), ess_round)
+    td <- file.path(alt_dir, paste0("ESS_", country), ess_round)
   } else {
-    td <- file.path(tempdir(), ess_round)
-  }
-  
-  # If the user wants to download, save to the specified directory in
-  # output_dir. If country is specified, append pre-folder name, otherwise
-  # leave it with round name
-  if (only_download && !missing(country)) {
-    td <- file.path(output_dir, paste0("ESS_", country), ess_round)
-  } else {
-    td <- file.path(output_dir, ess_round)
+    td <- file.path(alt_dir, ess_round)
   }
 
   for (directory in td) dir.create(directory, recursive = TRUE)
