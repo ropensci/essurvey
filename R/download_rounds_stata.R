@@ -1,3 +1,49 @@
+# Function downloads the rounds or country rounds specified with your_email and saves
+# in output_dir unzipped as the format specified in format (only supports sas, spss and stata).
+# If only_download, function will print a out a message where it saved everything.
+# the specifi ess_* functions takes care of deleting the folders in only_downloader was FALSE.
+download_format <- function(rounds, country, your_email, only_download = FALSE, output_dir = NULL,
+                                   format = 'stata') {
+
+  # Check if the format is either 'stata', 'spss' or 'sas'.
+  if(!format %in% c('stata', 'spss', 'sas')) {
+    stop("Format not available. Only 'stata', 'spss', or 'sas'")
+  }
+  
+  # Check user is valid
+  authenticate(your_email)
+  
+  # I check whether we want to download rounds or country
+  # rounds by checking whether the rounds and country args
+  # are both available
+  if (!missing(rounds) && !missing(country)) {
+    urls <- ess_country_url(country, rounds, format = format)
+  } else {
+    urls <- ess_round_url(rounds, format = format)
+  }
+  
+  # Extract the ESS prefix with the round number
+  ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
+  
+  # create a temporary directory to unzip the stata files
+  
+  td <- file.path(tempdir(), ess_round)
+  
+  # If the user wants to download, save to the specified directory in
+  # output_dir
+  if (only_download)  td <- file.path(output_dir, ess_round)
+  
+  for (directory in td) dir.create(directory, recursive = TRUE)
+  # Loop throuch each url, round name and specific round folder,
+  # download the data and save in the round-specific folder
+  mapply(round_downloader, urls, ess_round, td)
+  
+  if (only_download) message("All files saved to ", normalizePath(output_dir))
+  
+  td
+}
+
+
 # Function downloads the rounds specified with your_email and saves
 # in output_dir unzipped as .dta files. If only_download, function will
 # print a out a message where it saved everything. the specifi ess_* functions
