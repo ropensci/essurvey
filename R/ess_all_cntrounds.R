@@ -10,11 +10,14 @@
 #' download the files using the \code{only_download} argument. Defaults to NULL because data
 #' is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the first star is the
 #' country name and \code{N} the round number.
+#' @param format the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+#' with 'stata' as default. This argument is used only when \code{only_download} is set
+#' to TRUE, otherwise it's ignored.
 #' 
 #' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 #' containing the latest version of each round for the selected country. If \code{only_download}
 #' is set to TRUE and \code{output_dir} is a valid directory, it returns the saved directories
-#' invisibly and saves all the rounds in .dta format in \code{output_dir}
+#' invisibly and saves all the rounds in the chosen \code{format} in \code{output_dir}
 #' @export
 #'
 #' @examples
@@ -24,7 +27,8 @@
 #' ess_all_cntrounds("Denmark", "your_email@gmail.com")
 #' 
 #' # Will download all rounds to the directory stored below
-#' # as .dta files and won't return the rounds in R.
+#' # as stata files (set by default) and won't return the rounds
+#' # in R.
 #' 
 #' dl_dir <- file.path(tempdir(), "denmark/")
 #' 
@@ -36,16 +40,16 @@
 #'  )
 #' 
 #' }
-ess_all_cntrounds <- function(country, your_email, only_download = FALSE, output_dir = NULL) {
+ess_all_cntrounds <- function(country, your_email, only_download = FALSE, output_dir = NULL,
+                              format = 'stata') {
 
-  all_rounds <-
     ess_country(
     country,
     show_country_rounds(country),
     your_email,
     only_download,
-    output_dir
+    output_dir,
+    format
   )
-  
-  all_rounds
 }
+
