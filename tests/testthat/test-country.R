@@ -95,7 +95,7 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
                            output_dir = NULL))
 })
 
-test_that("Download country files with other non-stata file is ignored", {
+test_that("Download country files with other non-stata format is ignored", {
   # testthat::skip_on_cran()
   
   # Test for only one wave
