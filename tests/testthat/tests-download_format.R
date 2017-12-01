@@ -3,7 +3,7 @@ save_dir <- tempdir()
 
 test_that("Download function return correct errors", {
   
-  # skip_on_cran()
+  testthat::skip_on_cran()
   
   # These are the functions which are actually doing the work of testing this, not ess_rounds
   # For wrong emails, test it will through error
@@ -26,7 +26,7 @@ test_that("Download function return correct errors", {
 
 test_that("download_format can download COUNTRY files in STATA format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
@@ -60,7 +60,7 @@ test_that("download_format can download COUNTRY files in STATA format successful
 
 test_that("download_format can download ROUND files in STATA format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
@@ -93,7 +93,7 @@ test_that("download_format can download ROUND files in STATA format successfully
 
 test_that("download_format can download COUNTRY files in SPSS format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
@@ -127,7 +127,7 @@ test_that("download_format can download COUNTRY files in SPSS format successfull
 
 test_that("download_format can download ROUND files in SPSS format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
@@ -160,7 +160,7 @@ test_that("download_format can download ROUND files in SPSS format successfully"
 
 test_that("download_format can download COUNTRY files in SAS format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
@@ -191,7 +191,7 @@ test_that("download_format can download COUNTRY files in SAS format successfully
 
 test_that("download_format can download ROUND files in SAS format successfully", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   expect_message(download_link <-
