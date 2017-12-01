@@ -2,11 +2,19 @@
 # in output_dir unzipped as .dta files. If only_download, function will
 # print a out a message where it saved everything. the specifi ess_* functions
 # takes care of deleting the folders in only_downloader was FALSE.
-download_rounds_stata <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
+download_rounds_format <- function(rounds, your_email, only_download = FALSE, output_dir = NULL,
+                                   format = 'stata') {
   
+  # Check if the format is either 'stata', 'spss' or 'sas'.
+  if(!format %in% c('stata', 'spss', 'sas')) {
+    stop("Format not available. Only 'stata', 'spss', or 'sas'")
+  }
+  
+  # Check user is valid
   authenticate(your_email)
+  
   # Grab the download urls for each round
-  urls <- ess_round_url(rounds)
+  urls <- ess_round_url(rounds, format)
   
   # Extract the ESS prefix with the round number
   ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
@@ -30,14 +38,21 @@ download_rounds_stata <- function(rounds, your_email, only_download = FALSE, out
 }
 
 # Function downloads the rounds for country specified with your_email and saves
-# in output_dir unzipped as .dta files. If only_download, function will
-# print a out a message where it saved everything. the specifi ess_* functions
-# takes care of deleting the folders in only_downloader was FALSE.
-download_country_stata <- function(country, rounds , your_email, only_download = FALSE, output_dir = NULL) {
+# in output_dir unzipped as the format in format files. Only 'stata', 'spss' and 'sas' supported.
+# If only_download, function will print a out a message where it saved everything.
+# the specifi ess_* functions takes care of deleting the folders in only_downloader was FALSE.
+download_country_format <- function(country, rounds , your_email, only_download = FALSE, output_dir = NULL,
+                                    format = 'stata') {
   
+  # Check if the format is either 'stata', 'spss' or 'sas'.
+  if(!format %in% c('stata', 'spss', 'sas')) {
+    stop("Format not available. Only 'stata', 'spss', or 'sas'")
+  }
+  
+  # Check user is valid
   authenticate(your_email)
   # Grab the download urls for each round
-  urls <- ess_country_url(country, rounds)
+  urls <- ess_country_url(country, rounds, format)
   
   # Extract the ESS prefix with the round number
   ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
@@ -59,7 +74,7 @@ download_country_stata <- function(country, rounds , your_email, only_download =
   td
 }
 
-# function authenticas the user with his/her email.
+# function authenticatess the user with his/her email.
 authenticate <- function(your_email) {
   
   if( missing(your_email) ) {

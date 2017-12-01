@@ -1,5 +1,5 @@
-ess_country_url <- function(country, rounds) {
-  
+ess_country_url <- function(country, rounds, format) {
+
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   # Get unique country to avoid repetitions  
@@ -50,7 +50,7 @@ ess_country_url <- function(country, rounds) {
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
   
-  stata.files <- character(length(rounds))
+  format.files <- character(length(rounds))
   
   # Build stata paths for each round
   for (index in seq_along(round_links)) {
@@ -58,11 +58,11 @@ ess_country_url <- function(country, rounds) {
                                       round_links[index]))
     download.block <- XML::htmlParse(download.page, asText = TRUE)
     z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
-    stata.files[index] <- z[grep("stata", z)]
+    format.files[index] <- z[grep(format, z)]
   }
   # } # this bracket closes the loop commented aout from above
   
-  full_urls <- sort(paste0(.global_vars$ess_website, stata.files))
+  full_urls <- sort(paste0(.global_vars$ess_website, format.files))
   
   full_urls
 }

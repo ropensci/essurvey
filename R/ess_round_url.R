@@ -1,4 +1,10 @@
-ess_round_url <- function(rounds) {
+ess_round_url <- function(rounds, format) {
+  
+  # Check if the format is either 'stata', 'spss' or 'sas'.
+  
+  if(!format %in% c('stata', 'spss', 'sas')) {
+    stop("Format not available. Only 'stata', 'spss', or 'sas'")
+  }
   
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
@@ -24,18 +30,18 @@ ess_round_url <- function(rounds) {
                            grab_rounds_link(), value = TRUE))
   
   # empty character to fill with urls
-  stata.files <- character(length(rounds))
+  format.files <- character(length(rounds))
 
   for (index in seq_along(round_links)) {
     download.page <- httr::GET(paste0(.global_vars$ess_website, 
                                       round_links[index]))
     download.block <- XML::htmlParse(download.page, asText = TRUE)
     z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
-    stata.files[index] <- z[grep("stata", z)]
+    format.files[index] <- z[grep(format, z)]
   }
   # } # this bracket closes the loop commented aout from above
   
-  full_urls <- sort(paste0(.global_vars$ess_website, stata.files))
+  full_urls <- sort(paste0(.global_vars$ess_website, format.files))
   
   full_urls
 }
