@@ -4,7 +4,7 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_country for one round", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email)
@@ -27,7 +27,7 @@ test_that("ess_country for one round", {
 
 test_that("ess_country for all rounds of a country", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for all rounds
   all_rounds <- ess_country("Netherlands", 1:7, your_email)
@@ -51,7 +51,7 @@ test_that("ess_country for all rounds of a country", {
 
 test_that("Test that downloading files is working fine", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
@@ -85,7 +85,7 @@ test_that("Test that downloading files is working fine", {
 
 test_that("Test if only_download is TRUE, output_dir should be valid", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Here output_dir is set to NULL
   expect_error(ess_country("Austria",
@@ -96,7 +96,7 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
 })
 
 test_that("Download country files with other non-stata format is ignored", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email, format = "spss")
