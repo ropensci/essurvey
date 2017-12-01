@@ -33,7 +33,7 @@
 #' temp_dir <- tempdir()
 #' 
 #' ess_country(
-#'  "Turkey"
+#'  "Turkey",
 #'  rounds = c(2, 4),
 #'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
@@ -44,7 +44,7 @@
 #' # you can also download 'spss' or 'sas' files.
 #' 
 #' ess_country(
-#'  "Turkey"
+#'  "Turkey",
 #'  rounds = c(2, 4),
 #'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
