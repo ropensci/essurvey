@@ -4,7 +4,8 @@
 \alias{ess_rounds}
 \title{Download integrated rounds from the European Social Survey}
 \usage{
-ess_rounds(rounds, your_email, only_download = FALSE, output_dir = NULL)
+ess_rounds(rounds, your_email, only_download = FALSE, output_dir = NULL,
+  format = "stata")
 }
 \arguments{
 \item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_rounds}}
@@ -18,12 +19,16 @@ If you haven't registered in the ESS website, create an account at
 
 \item{output_dir}{a character vector with the output directory in case you want to only download the files using
 the \code{only_download} argument. Defaults to NULL because data is not saved by default.}
+
+\item{format}{the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+with 'stata' as default. This argument is used only when \code{only_download} is set
+to TRUE, otherwise it's ignored.}
 }
 \value{
 if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 containing the latest version of each round. If \code{only_download} is set to TRUE and
 output_dir is a valid directory, it returns the saved directories invisibly and saves all
-the rounds in .dta format in \code{output_dir}
+the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
 Download integrated rounds from the European Social Survey
@@ -42,6 +47,17 @@ ess_rounds(
  your_email = "your_email@email.com",
  only_download = TRUE,
  output_dir = temp_dir,
+)
+
+# By default, ess_rounds saves a 'stata' file. You can
+# also download 'spss' and 'sas' files.
+
+ess_rounds(
+ rounds = 1:3,
+ your_email = "your_email@email.com",
+ only_download = TRUE,
+ output_dir = temp_dir,
+ format = 'spss'
 )
 
 # If rounds are repeated, will download only unique ones

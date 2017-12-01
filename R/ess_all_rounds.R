@@ -6,11 +6,15 @@
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to NULL because data is not saved by default.
+#' @param format the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+#' with 'stata' as default. This argument is used only when \code{only_download} is set
+#' to TRUE, otherwise it's ignored.
 #'
-#' @return if \code{only_download} is set to FALSE it returns a list containing the
-#' latest version of each round. If \code{only_download} is set to TRUE and
-#' output_dir is a valid directory, it returns the saved directories invisibly and saves
-#' all the rounds in .dta format in \code{output_dir}
+#' @return if \code{only_download} is set to FALSE it returns a list with all the latest rounds.
+#' If \code{only_download} is set to TRUE and output_dir is a valid directory, it returns the
+#' saved directories invisibly and saves all the rounds in the chosen \code{format} in
+#' \code{output_dir}
+#' 
 #' @export
 #'
 #' @examples
@@ -28,14 +32,14 @@
 #' ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = dl_dir)
 #' }
 #' 
-ess_all_rounds <- function(your_email, only_download = FALSE, output_dir = NULL) {
-  all_rounds <-
+ess_all_rounds <- function(your_email, only_download = FALSE, output_dir = NULL,
+                           format = 'stata') {
     ess_rounds(
     show_rounds(),
     your_email,
     only_download,
-    output_dir
+    output_dir,
+    format
   )
   
-  all_rounds
 }

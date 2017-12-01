@@ -8,11 +8,14 @@
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to NULL because data is not saved by default.
+#' @param format the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+#' with 'stata' as default. This argument is used only when \code{only_download} is set
+#' to TRUE, otherwise it's ignored.
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 #' containing the latest version of each round. If \code{only_download} is set to TRUE and
 #' output_dir is a valid directory, it returns the saved directories invisibly and saves all
-#' the rounds in .dta format in \code{output_dir}
+#' the rounds in the chosen \code{format} in \code{output_dir}
 #' @export
 #'
 #' @examples
@@ -29,6 +32,17 @@
 #'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
 #'  output_dir = temp_dir,
+#' )
+#' 
+#' # By default, ess_rounds saves a 'stata' file. You can
+#' # also download 'spss' and 'sas' files.
+#' 
+#' ess_rounds(
+#'  rounds = 1:3,
+#'  your_email = "your_email@email.com",
+#'  only_download = TRUE,
+#'  output_dir = temp_dir,
+#'  format = 'spss'
 #' )
 #' 
 #' # If rounds are repeated, will download only unique ones
@@ -49,7 +63,8 @@
 #' # Error in ess_round_url(rounds) : 
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
-ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = NULL) {
+ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = NULL,
+                       format = 'stata') {
   
   if (only_download && is.null(output_dir)) {
     stop(
@@ -60,11 +75,16 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = N
   # If user only wants to download, then download and return
   if (only_download) {
     return(
-      invisible(download_rounds_stata(rounds, your_email, only_download, output_dir))
+      invisible(download_format(rounds = rounds,
+                                your_email = your_email,
+                                only_download = only_download,
+                                output_dir = output_dir,
+                                format = format))
       )
   }
   # If not, download data and save the dir of the downloads
-  dir_download <- download_rounds_stata(rounds, your_email)
+  dir_download <- download_format(rounds = rounds,
+                                  your_email = your_email)
   
   # Get all .dta paths
   stata_dirs <- list.files(dir_download, pattern = ".dta", full.names = TRUE)
