@@ -33,7 +33,7 @@ to TRUE, otherwise it's ignored.}
 if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 containing the latest version of each round for the selected country. If \code{only_download}
 is set to TRUE and \code{output_dir} is a valid directory, it returns the saved directories
-invisibly and saves all the rounds in .dta format in \code{output_dir}
+invisibly and saves all the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
 Download integrated rounds separately for countries from the European Social Survey

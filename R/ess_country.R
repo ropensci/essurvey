@@ -19,7 +19,7 @@
 #' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
 #' containing the latest version of each round for the selected country. If \code{only_download}
 #' is set to TRUE and \code{output_dir} is a valid directory, it returns the saved directories
-#' invisibly and saves all the rounds in .dta format in \code{output_dir}
+#' invisibly and saves all the rounds in the chosen \code{format} in \code{output_dir}
 #' @export
 #'
 #' @examples
