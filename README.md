@@ -65,16 +65,17 @@ dk_two <- ess_country("Denmark", 1:2, "your_email@email.com")
 
 Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `ess_all_cntrounds()` to download all available rounds of a country.
 
-Stata users
------------
+Stata, SPSS and SAS users
+-------------------------
 
-I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata format with just one line of code. Just set the `only_download` argument to `TRUE` and specify where it will be saved:
+I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata, SPSS or SAS format with just one line of code. Just set the `only_download` argument to `TRUE`, specify where it will be saved and specify the format to be either `'stata'` (default), `'spss'` or `'sas'`:
 
 ``` r
 ess_rounds(c(1, 2),
            "your_email@email.com",
            only_download = TRUE,
-           output_dir = "my/new/directory")
+           output_dir = "my/new/directory",
+           format = 'spss')
 ```
 
 This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`.
@@ -84,5 +85,6 @@ ess_country("Sweden",
             rounds = c(1, 2),
             "your_email@email.com",
             only_download = TRUE,
-            output_dir = "my/new/directory")
+            output_dir = "my/new/directory",
+            format = 'sas')
 ```
