@@ -12,6 +12,14 @@
 #' 
 #' show_country_rounds("Turkey")
 #' 
+
+# Start to work on show_theme_rounds.
+# Think about creating a generic show_*_rounds and
+# I THINK this function works well until the xml2::xml_find_all()
+# function. Perhaps you can create a new function only for this part
+# To determine how to extract the node that contains the round names
+# for both countries and themes.
+
 show_country_rounds <- function(country) {
 
   # Get unique country to avoid repetitions  
