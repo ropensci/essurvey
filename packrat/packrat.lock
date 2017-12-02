@@ -59,6 +59,12 @@ Source: CRAN
 Version: 1.4
 Hash: 91d7807331a4a37ef8376fb073960ee4
 
+Package: cranlogs
+Source: CRAN
+Version: 2.1.0
+Hash: 3f372b02cf395deaca12942d87eb5a05
+Requires: httr, jsonlite
+
 Package: crayon
 Source: CRAN
 Version: 1.3.4

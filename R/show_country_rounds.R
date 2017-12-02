@@ -66,7 +66,7 @@ show_country_rounds <- function(country) {
 extract_cnt_html <- function(country, available_countries) {
   
   # Returns "/data/country.html?c=ukraine" for all countries
-  all_country_links <- xml2::xml_attr(get_country_href(.global_vars$ess_website), "href")
+  all_country_links <- xml2::xml_attr(get_href(.global_vars$ess_website, .global_vars$country_index), "href")
   
   # Build full url for chosen country
   chosen_country_link <-
@@ -85,8 +85,8 @@ extract_cnt_html <- function(country, available_countries) {
 
 # Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
 # for each country
-get_country_href <- function(ess_website) {
-  download_page <- httr::GET(paste0(ess_website, "/data/country_index.html"))
+get_href <- function(ess_website, module_index) {
+  download_page <- httr::GET(paste0(ess_website, module_index))
   download_block <- XML::htmlParse(download_page, asText = TRUE)
   z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
   
