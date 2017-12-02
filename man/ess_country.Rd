@@ -25,7 +25,7 @@ download the files using the \code{only_download} argument. Defaults to NULL bec
 is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the first star is the
 country name and \code{N} the round number.}
 
-\item{format}{the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+\item{format}{the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 with 'stata' as default. This argument is used only when \code{only_download} is set
 to TRUE, otherwise it's ignored.}
 }

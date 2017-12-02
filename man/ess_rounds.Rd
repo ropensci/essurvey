@@ -20,7 +20,7 @@ If you haven't registered in the ESS website, create an account at
 \item{output_dir}{a character vector with the output directory in case you want to only download the files using
 the \code{only_download} argument. Defaults to NULL because data is not saved by default.}
 
-\item{format}{the format from which download the data. Can either be 'stata', 'spss' or 'sas',
+\item{format}{the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 with 'stata' as default. This argument is used only when \code{only_download} is set
 to TRUE, otherwise it's ignored.}
 }
