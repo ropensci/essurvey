@@ -30,10 +30,11 @@ with 'stata' as default. This argument is used only when \code{only_download} is
 to TRUE, otherwise it's ignored.}
 }
 \value{
-if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
-containing the latest version of each round for the selected country. If \code{only_download}
-is set to TRUE and \code{output_dir} is a valid directory, it returns the saved directories
-invisibly and saves all the rounds in the chosen \code{format} in \code{output_dir}
+if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
+with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
+containing the latest version of each round. If \code{only_download} is set to TRUE and
+output_dir is a valid directory, it returns the saved directories invisibly and saves all
+the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
 Download integrated rounds separately for countries from the European Social Survey
@@ -59,14 +60,6 @@ ess_country(
 # By default, ess_country downloads 'stata' files but
 # you can also download 'spss' or 'sas' files.
 
-ess_country(
- "Turkey",
- rounds = c(2, 4),
- your_email = "your_email@email.com",
- only_download = TRUE,
- output_dir = temp_dir,
- format = 'spss'
-)
 
 # If email is not registered at ESS website, error will arise
 uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
