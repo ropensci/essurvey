@@ -29,9 +29,10 @@ show_country_rounds <- function(country) {
   # Returns the chosen countries html that contains
   # the links to all rounds.
   country_round_html <-
-    extract_cnt_html(
+    extract_html(
       country,
-      available_countries
+      available_countries,
+      .global_vars$country_index
       )
   
   # Find only the name of the round
@@ -63,24 +64,28 @@ show_country_rounds <- function(country) {
 # of all available countries and returns the html doc
 # for the chosen country that contains the whole list of
 # links to download that countries rounds.
-extract_cnt_html <- function(country, available_countries) {
+extract_html <- function(chosen_module, available_modules, module_index) {
   
   # Returns "/data/country.html?c=ukraine" for all countries
-  all_country_links <- xml2::xml_attr(get_href(.global_vars$ess_website, .global_vars$country_index), "href")
+  all_module_links <-
+    xml2::xml_attr(
+      get_href(.global_vars$ess_website, module_index),
+      "href"
+    )
   
   # Build full url for chosen country
-  chosen_country_link <-
+  chosen_module_link <-
     paste0(
       .global_vars$ess_website,
-      all_country_links[which(country == available_countries)] # index where the country is at
+      all_module_links[which(chosen_module == available_modules)] # index where the country is at
     )
   
   # Extract html from country link to donwnload rounds
-  country_rounds <- httr::GET(chosen_country_link)
+  module_rounds <- httr::GET(chosen_module_link)
   
-  country_round_html <- xml2::read_html(country_rounds)
+  module_round_html <- xml2::read_html(module_rounds)
   
-  country_round_html
+  module_round_html
 }
 
 # Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
