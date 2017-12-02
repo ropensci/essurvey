@@ -43,14 +43,14 @@
 #' # By default, ess_country downloads 'stata' files but
 #' # you can also download 'spss' or 'sas' files.
 #' 
-#' ess_country(
-#'  "Turkey",
-#'  rounds = c(2, 4),
-#'  your_email = "your_email@email.com",
-#'  only_download = TRUE,
-#'  output_dir = temp_dir,
-#'  format = 'spss'
-#' )
+# ess_country(
+#  "Turkey",
+#  rounds = c(2, 4),
+#  your_email = "your_email@email.com",
+#  only_download = TRUE,
+#  output_dir = temp_dir,
+#  format = 'spss'
+# )
 #' 
 #' # If email is not registered at ESS website, error will arise
 #' uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
@@ -104,6 +104,9 @@ ess_country <- function(country, rounds, your_email, only_download = FALSE, outp
   # Remove everything that was downloaded
   unlink(dirname(dir_download), recursive = TRUE, force = TRUE)
   
-  # return dataset
+  # If it's only one round, return a df rather than a list
+  if (length(rounds) == 1) dataset <- dataset[[1]]
+  
   dataset
 }
+
