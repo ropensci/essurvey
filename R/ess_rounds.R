@@ -12,7 +12,8 @@
 #' with 'stata' as default. This argument is used only when \code{only_download} is set
 #' to TRUE, otherwise it's ignored.
 #'
-#' @return if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+#' @return if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
+#' with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
 #' containing the latest version of each round. If \code{only_download} is set to TRUE and
 #' output_dir is a valid directory, it returns the saved directories invisibly and saves all
 #' the rounds in the chosen \code{format} in \code{output_dir}
@@ -94,6 +95,9 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = N
   # Remove everything that was downloaded
   unlink(dir_download, recursive = TRUE, force = TRUE)
   
-  # return dataset
+  # If it's only one round, return a df rather than a list
+  if (length(rounds) == 1) dataset <- dataset[[1]]
+  
   dataset
 }
+

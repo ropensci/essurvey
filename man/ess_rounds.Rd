@@ -25,7 +25,8 @@ with 'stata' as default. This argument is used only when \code{only_download} is
 to TRUE, otherwise it's ignored.}
 }
 \value{
-if \code{only_download} is set to FALSE it returns a list of \code{length(rounds)}
+if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
+with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
 containing the latest version of each round. If \code{only_download} is set to TRUE and
 output_dir is a valid directory, it returns the saved directories invisibly and saves all
 the rounds in the chosen \code{format} in \code{output_dir}

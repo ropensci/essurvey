@@ -3,25 +3,19 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_round for only one round", {
   
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   
   # Test for only one round
   round_one <- ess_rounds(1, your_email)
   
   # check is list
-  expect_is(round_one, "list")
-  
-  # check is length one
-  expect_length(round_one, 1)
-  
-  # check that ess_rounds returns data frames
-  expect_is(round_one[[1]], "data.frame")
+  expect_is(round_one, "data.frame")
   
   # check that the number of rows is greater than 0
-  expect_gt(nrow(round_one[[1]]), 0)
+  expect_gt(nrow(round_one), 0)
   
   # check that the number of columns is greater than 0
-  expect_gt(ncol(round_one[[1]]), 0)
+  expect_gt(ncol(round_one), 0)
 })
 
 test_that("ess_round for all rounds", {
