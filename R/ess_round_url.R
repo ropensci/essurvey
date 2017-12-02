@@ -64,3 +64,9 @@ grab_rounds_link <- function(ess_website = .global_vars$ess_website) {
 .global_vars <- new.env()
 assign("ess_website",
        "http://www.europeansocialsurvey.org", envir = .global_vars)
+
+assign("theme_index",
+       "/data/module-index.html", envir = .global_vars)
+
+assign("country_index",
+       "/data/country_index.html", envir = .global_vars)
