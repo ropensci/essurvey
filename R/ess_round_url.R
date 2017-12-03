@@ -74,7 +74,7 @@ var_values <- list(
   "http://www.europeansocialsurvey.org",
   "/data/module-index.html",
   "/data/country_index.html",
-  1:8
+  show_rounds()
 )
 
 mapply(assign, var_names, var_values, list(envir = .global_vars))
