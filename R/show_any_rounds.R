@@ -1,7 +1,7 @@
 #' Return available rounds for a country in the European Social Survey
 #'
 #' @param country A character of length 1 with the full name of the country.
-#'  Use \code{\link{show_countries()}}for a list of available countries.
+#'  Use \code{\link{show_countries}}for a list of available countries.
 #'
 #' @return character vector with available rounds for \code{country}
 #' @export
@@ -26,13 +26,13 @@ show_country_rounds <- function(country) {
 #' Return available rounds for a theme in the European Social Survey
 #'
 #' This function returns the available rounds for any theme from
-#' \code{\link{show_themes()}}. However, contrary to \code{\link{show_country_rounds()}}
+#' \code{\link{show_themes}}. However, contrary to \code{\link{show_country_rounds}}
 #' themes can not be downloaded as separate datasets. This and the 
-#' \code{\link{show_themes()}} function serve purely for informative purposes.
+#' \code{\link{show_themes}} function serve purely for informative purposes.
 #' 
 #' 
 #' @param theme A character of length 1 with the full name of the theme.
-#'  Use \code{\link{show_themes()}}for a list of available themes.
+#'  Use \code{\link{show_themes}}for a list of available themes.
 #'
 #' @return character vector with available rounds for \code{country}
 #' @export

@@ -8,16 +8,16 @@ show_theme_rounds(theme)
 }
 \arguments{
 \item{theme}{A character of length 1 with the full name of the theme.
-Use \code{\link{show_themes()}}for a list of available themes.}
+Use \code{\link{show_themes}}for a list of available themes.}
 }
 \value{
 character vector with available rounds for \code{country}
 }
 \description{
 This function returns the available rounds for any theme from
-\code{\link{show_themes()}}. However, contrary to \code{\link{show_country_rounds()}}
+\code{\link{show_themes}}. However, contrary to \code{\link{show_country_rounds}}
 themes can not be downloaded as separate datasets. This and the 
-\code{\link{show_themes()}} function serve purely for informative purposes.
+\code{\link{show_themes}} function serve purely for informative purposes.
 }
 \examples{
 
