@@ -8,7 +8,7 @@
 #' show_rounds()
 #' 
 show_rounds <- function() {
-  incomplete_links <- grab_rounds_link()
+  incomplete_links <- grab_rounds_link(.global_vars$ess_website)
   
   # extract ESS* part to detect dupliacted
   ess_prefix <- sort(stringr::str_extract(incomplete_links, "ESS[:digit:]"))
@@ -51,17 +51,13 @@ show_themes <- function() {
 
 show_any <- function(ess_website, module_index) {
   
-  node <- get_href(ess_website, module_index)
-  
-  # Extract the name
-  dirty_names <-
-    stringr::str_extract_all(as.character(node), ">(.*)</a>$")
-  
-  # Clean up the name
-  available_names <- sapply(dirty_names, clean_attr, "/a")
-  
-  available_names
+  module_table <- table_to_list(ess_website, module_index)
+
+  names(module_table)
 }
+
+
+
 
 # Here I define an environment to hold the ess_website vector
 # because it's a variable I'll use in nearly all functions to
@@ -71,19 +67,33 @@ show_any <- function(ess_website, module_index) {
 var_names <- c(
   "ess_website",
   "theme_index",
-  "country_index",
+  "country_index"
+)
+
+var_values <-
+  list(
+  "http://www.europeansocialsurvey.org",
+  "/data/module-index.html",
+  "/data/country_index.html"
+)
+
+mapply(assign, var_names, var_values, list(envir = .global_vars))
+
+# Why not put these variables together with the previous variables and
+# just run one single loop of assignment? Becuse the show_* funs actually
+# use the .global_vars inside them. We have te define those first and
+# then the show_* results.
+
+show_names <- c(
   "rounds",
   "countries",
   "themes"
 )
 
-var_values <- list(
-  "http://www.europeansocialsurvey.org",
-  "/data/module-index.html",
-  "/data/country_index.html",
+show_results <- list(
   show_rounds(),
   show_countries(),
   show_themes()
 )
 
-mapply(assign, var_names, var_values, list(envir = .global_vars))
+mapply(assign, show_names, show_results, list(envir = .global_vars))
