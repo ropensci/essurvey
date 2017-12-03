@@ -62,11 +62,19 @@ grab_rounds_link <- function(ess_website = .global_vars$ess_website) {
 # because it's a variable I'll use in nearly all functions to
 # access the website
 .global_vars <- new.env()
-assign("ess_website",
-       "http://www.europeansocialsurvey.org", envir = .global_vars)
 
-assign("theme_index",
-       "/data/module-index.html", envir = .global_vars)
+var_names <- c(
+  "ess_website",
+  "theme_index",
+  "country_index",
+  "rounds"
+)
 
-assign("country_index",
-       "/data/country_index.html", envir = .global_vars)
+var_values <- list(
+  "http://www.europeansocialsurvey.org",
+  "/data/module-index.html",
+  "/data/country_index.html",
+  1:8
+)
+
+mapply(assign, var_names, var_values, list(envir = .global_vars))
