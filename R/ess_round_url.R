@@ -48,7 +48,7 @@ ess_round_url <- function(rounds, format) {
 
 # This will return a link like "/download.html?file=ESS8e01&y=2016"
 # for every round available in the ess website.
-grab_rounds_link <- function(ess_website = .global_vars$ess_website) {
+grab_rounds_link <- function(ess_website) {
   download_page <- httr::GET(paste0(ess_website, "/data/download.html?r="))
   download_block <- XML::htmlParse(download_page, asText = TRUE)
   z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])

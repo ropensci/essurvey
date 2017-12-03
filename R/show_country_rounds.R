@@ -1,7 +1,7 @@
-#' Helper function to return available rounds for a country in the European Social Survey
+#' Return available rounds for a country in the European Social Survey
 #'
 #' @param country A character of length 1 with the full name of the country.
-#'  Use \code{\link{show_countries}}for a list of available countries.
+#'  Use \code{\link{show_countries()}}for a list of available countries.
 #'
 #' @return character vector with available rounds for \code{country}
 #' @export
@@ -22,97 +22,89 @@
 
 show_country_rounds <- function(country) {
 
-  # Get unique country to avoid repetitions  
-  country <- sort(unique(country))
-  
-  # Returns each countries href attribute with its website
-  # ess_website is a vector set as metadata
-  available_countries <- show_countries()
-  
   # Check if country is present
-  if (!country %in% available_countries) {
+  if (!country %in% .global_vars$countries) {
     stop("Country not available in ESS. Check show_countries()")
   }
   
-  # Returns the chosen countries html that contains
-  # the links to all rounds.
-  country_round_html <-
-    extract_html(
-      country,
-      available_countries,
-      .global_vars$country_index
-      )
+  show_any_rounds(country, .global_vars$country_index)
   
-  # Find only the name of the round
-  dirty_round_names <- xml2::xml_find_all(country_round_html, "//h2")
+}
+
+#' Return available rounds for a theme in the European Social Survey
+#'
+#' @param theme A character of length 1 with the full name of the theme.
+#'  Use \code{\link{show_themes()}}for a list of available themes.
+#'
+#' @return character vector with available rounds for \code{country}
+#' @export
+#'
+#' @examples
+#' 
+#' chosen_theme <- show_themes()[3]
+#' 
+#' # In which rounds was the topic of 'Democracy' asked?
+#' show_theme_rounds(chosen_theme)
+#' 
+#' # And politics?
+#' show_theme_rounds("Politics")
+#' 
+show_theme_rounds <- function(theme) {
   
-  # Clean the dirty round name fromit's attributes
-  round_names <-
-    sapply(
-      X = as.character(dirty_round_names),
-      FUN = clean_attr,
-      "/", "h2", # FUN ARGS
-      USE.NAMES = FALSE
-    )
+  # Check if country is present
+  if (!theme %in% .global_vars$themes) {
+    stop("Theme not available in ESS. Check show_themes()")
+  }
   
-  # Extract only the ESS round number
-  available_rounds <-
-    sort(
-      as.numeric(
-        trimws(
-          stringr::str_extract_all(round_names, " [0-9] ")
-        )
-      )
-    )
+  show_any_rounds(theme, .global_vars$theme_index)
+}
+
+# Generic function to grab the rounds of any module
+show_any_rounds <- function(module, module_index) {
+  
+  # Get unique country to avoid repetitions  
+  module <- sort(unique(module))
+  
+  # Get the table for each module-round combination as a list
+  module_list <- table_to_list(.global_vars$ess_website, module_index)
+  
+  # The list is easy to subset, so just subset the available module
+  # from the list and then subset the available rounds from the
+  # global variable
+  available_rounds <- .global_vars$rounds[module_list[[module]]]
   
   available_rounds
 }
 
-# Function accepts the chosen country and the list
-# of all available countries and returns the html doc
-# for the chosen country that contains the whole list of
-# links to download that countries rounds.
-extract_html <- function(chosen_module, available_modules, module_index) {
-  
-  # Returns "/data/country.html?c=ukraine" for all countries
-  all_module_links <-
-    xml2::xml_attr(
-      get_href(.global_vars$ess_website, module_index),
-      "href"
-    )
-  
-  # Build full url for chosen country
-  chosen_module_link <-
-    paste0(
-      .global_vars$ess_website,
-      all_module_links[which(chosen_module == available_modules)] # index where the country is at
-    )
-  
-  # Extract html from country link to donwnload rounds
-  module_rounds <- httr::GET(chosen_module_link)
-  
-  module_round_html <- xml2::read_html(module_rounds)
-  
-  module_round_html
-}
+# This is the workhorse of the show_* funs.
+# Function takes the esswebsite and the module index
+# and scrapes the table from the index and returns a list
+# where every slot is a country and contains a logical
+# for which rounds are available for every country
 
-# Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
-# for each country
-get_href <- function(ess_website, module_index) {
+table_to_list <- function(ess_website, module_index) {
   download_page <- httr::GET(paste0(ess_website, module_index))
-  download_block <- XML::htmlParse(download_page, asText = TRUE)
-  z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
   
-  # Get the <a href="/data/country.html?c=latvia">Latvia</a> for each country
-  country_node <- xml2::xml_find_all(xml2::read_html(download_page), '//td [@class="label"]//a')
+  # Extract the table in xml format
+  table_rounds_xml <- rvest::html_node(xml2::read_html(download_page), "table")
   
-  country_node
-}
-
-# Function to automatically clean attributes such as
-# <a> something <\a>. This will clean to: something
-# if a and /a are specified as arguments.
-clean_attr <- function(x, ...) {
-  other_attrs <- paste0((list(...)), collapse = "|")
-  gsub(paste0(">|", "<|", other_attrs), "", x)
+  # Turn the xml table into a df. First col is country names and
+  # all other are rounds
+  dirty_table_df <- rvest::html_table(table_rounds_xml, header = TRUE)
+  
+  # Recode the empty cells to FALSE and others to TRUE
+  dirty_table_df[, -1] <-
+    lapply(dirty_table_df[, -1],
+           function(x) ifelse(x == "", FALSE, TRUE)
+    )
+  
+  # Returns a list for every country containing the
+  # logical for which rounds they were present. This
+  # is better than a df because subsetting would be
+  # too dirty to subset country rows.
+  list_rounds <- split(dirty_table_df[, -1], dirty_table_df[[1]])
+  
+  list_rounds <- lapply(list_rounds, as.logical)
+  
+  list_rounds
 }

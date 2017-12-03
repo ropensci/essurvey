@@ -2,19 +2,19 @@
 % Please edit documentation in R/show_country_rounds.R
 \name{show_country_rounds}
 \alias{show_country_rounds}
-\title{Helper function to return available rounds for a country in the European Social Survey}
+\title{Return available rounds for a country in the European Social Survey}
 \usage{
 show_country_rounds(country)
 }
 \arguments{
 \item{country}{A character of length 1 with the full name of the country.
-Use \code{\link{show_countries}}for a list of available countries.}
+Use \code{\link{show_countries()}}for a list of available countries.}
 }
 \value{
 character vector with available rounds for \code{country}
 }
 \description{
-Helper function to return available rounds for a country in the European Social Survey
+Return available rounds for a country in the European Social Survey
 }
 \examples{
 

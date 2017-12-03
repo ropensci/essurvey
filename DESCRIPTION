@@ -12,7 +12,8 @@ Imports: XML,
     xml2,
     httr,
     stringr,
-    haven
+    haven,
+    rvest
 Suggests: testthat,
     knitr,
     rmarkdown
