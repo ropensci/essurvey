@@ -33,6 +33,12 @@ show_country_rounds <- function(country) {
 
 #' Return available rounds for a theme in the European Social Survey
 #'
+#' This function returns the available rounds for any theme from
+#' \code{show_themes()}. However, contrary to \code{show_country_rounds()}
+#' themes can not be downloaded as separate datasets. This and the 
+#' \code{show_themes()} function serve purely for informative purposes.
+#' 
+#' 
 #' @param theme A character of length 1 with the full name of the theme.
 #'  Use \code{\link{show_themes()}}for a list of available themes.
 #'
