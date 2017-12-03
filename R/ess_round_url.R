@@ -56,29 +56,3 @@ grab_rounds_link <- function(ess_website = .global_vars$ess_website) {
   downloads <- unique(grep("^/download.html(.*)[0-9]{4, }$", z, value = TRUE))
   downloads
 }
-
-
-# Here I define an environment to hold the ess_website vector
-# because it's a variable I'll use in nearly all functions to
-# access the website
-.global_vars <- new.env()
-
-var_names <- c(
-  "ess_website",
-  "theme_index",
-  "country_index",
-  "rounds",
-  "countries",
-  "themes"
-)
-
-var_values <- list(
-  "http://www.europeansocialsurvey.org",
-  "/data/module-index.html",
-  "/data/country_index.html",
-  show_rounds(),
-  show_countries(),
-  show_themes()
-)
-
-mapply(assign, var_names, var_values, list(envir = .global_vars))

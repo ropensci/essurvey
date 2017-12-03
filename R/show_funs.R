@@ -62,3 +62,28 @@ show_any <- function(ess_website, module_index) {
   
   available_names
 }
+
+# Here I define an environment to hold the ess_website vector
+# because it's a variable I'll use in nearly all functions to
+# access the website
+.global_vars <- new.env(parent = emptyenv())
+
+var_names <- c(
+  "ess_website",
+  "theme_index",
+  "country_index",
+  "rounds",
+  "countries",
+  "themes"
+)
+
+var_values <- list(
+  "http://www.europeansocialsurvey.org",
+  "/data/module-index.html",
+  "/data/country_index.html",
+  show_rounds(),
+  show_countries(),
+  show_themes()
+)
+
+mapply(assign, var_names, var_values, list(envir = .global_vars))
