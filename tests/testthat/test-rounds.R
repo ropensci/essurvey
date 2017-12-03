@@ -3,7 +3,7 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_round for only one round", {
   
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   
   # Test for only one round
   round_one <- ess_rounds(1, your_email)

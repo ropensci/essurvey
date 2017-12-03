@@ -27,7 +27,7 @@ ess_round_url <- function(rounds, format) {
   
   # Extract download urls from selected_rounds
   round_links <- sort(grep(paste0(round_codes, collapse = "|"),
-                           grab_rounds_link(), value = TRUE))
+                           grab_rounds_link(.global_vars$ess_website), value = TRUE))
   
   # empty character to fill with urls
   format.files <- character(length(rounds))
