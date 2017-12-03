@@ -67,14 +67,18 @@ var_names <- c(
   "ess_website",
   "theme_index",
   "country_index",
-  "rounds"
+  "rounds",
+  "countries",
+  "themes"
 )
 
 var_values <- list(
   "http://www.europeansocialsurvey.org",
   "/data/module-index.html",
   "/data/country_index.html",
-  show_rounds()
+  show_rounds(),
+  show_countries(),
+  show_themes()
 )
 
 mapply(assign, var_names, var_values, list(envir = .global_vars))
