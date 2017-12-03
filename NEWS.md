@@ -3,6 +3,7 @@
 ## New features
 
 * Can download files in 'stata', 'spss' and 'sas' formats for all functions.
+* show_themes() and show_theme_rounds() now available to see which themes have been asked in which rounds.
 
 ## Bug fixes
 * Downloading 1 round both for countries or single rounds now returns a data frame rather than a list.
