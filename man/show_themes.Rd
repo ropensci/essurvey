@@ -11,9 +11,9 @@ character vector with available themes
 }
 \description{
 #' This function returns the available themes in the European Social Survey
-However, contrary to \code{show_country()} and \code{show_country_rounds()},
+However, contrary to \code{\link{show_country()}} and \code{\link{show_country_rounds()}},
 themes can not be downloaded as separate datasets. This and the 
-\code{show_theme_rounds()} function serve purely for informative purposes.
+\code{\link{show_theme_rounds()}} function serve purely for informative purposes.
 }
 \examples{
 

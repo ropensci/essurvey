@@ -12,14 +12,6 @@
 #' 
 #' show_country_rounds("Turkey")
 #' 
-
-# Start to work on show_theme_rounds.
-# Think about creating a generic show_*_rounds and
-# I THINK this function works well until the xml2::xml_find_all()
-# function. Perhaps you can create a new function only for this part
-# To determine how to extract the node that contains the round names
-# for both countries and themes.
-
 show_country_rounds <- function(country) {
 
   # Check if country is present
@@ -34,9 +26,9 @@ show_country_rounds <- function(country) {
 #' Return available rounds for a theme in the European Social Survey
 #'
 #' This function returns the available rounds for any theme from
-#' \code{show_themes()}. However, contrary to \code{show_country_rounds()}
+#' \code{\link{show_themes()}}. However, contrary to \code{\link{show_country_rounds()}}
 #' themes can not be downloaded as separate datasets. This and the 
-#' \code{show_themes()} function serve purely for informative purposes.
+#' \code{\link{show_themes()}} function serve purely for informative purposes.
 #' 
 #' 
 #' @param theme A character of length 1 with the full name of the theme.
@@ -82,12 +74,12 @@ show_any_rounds <- function(module, module_index) {
   available_rounds
 }
 
+
 # This is the workhorse of the show_* funs.
 # Function takes the esswebsite and the module index
 # and scrapes the table from the index and returns a list
 # where every slot is a country and contains a logical
 # for which rounds are available for every country
-
 table_to_list <- function(ess_website, module_index) {
   download_page <- httr::GET(paste0(ess_website, module_index))
   

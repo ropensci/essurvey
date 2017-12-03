@@ -15,9 +15,9 @@ character vector with available rounds for \code{country}
 }
 \description{
 This function returns the available rounds for any theme from
-\code{show_themes()}. However, contrary to \code{show_country_rounds()}
+\code{\link{show_themes()}}. However, contrary to \code{\link{show_country_rounds()}}
 themes can not be downloaded as separate datasets. This and the 
-\code{show_themes()} function serve purely for informative purposes.
+\code{\link{show_themes()}} function serve purely for informative purposes.
 }
 \examples{
 
