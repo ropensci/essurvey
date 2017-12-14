@@ -54,7 +54,7 @@ ess_country_url <- function(country, rounds, format) {
   
   # Build stata paths for each round
   for (index in seq_along(round_links)) {
-    download.page <- httr::GET(paste0(.global_vars$ess_website,
+    download.page <- safe_GET(paste0(.global_vars$ess_website,
                                       round_links[index]))
     download.block <- XML::htmlParse(download.page, asText = TRUE)
     z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
@@ -88,7 +88,7 @@ extract_html <- function(chosen_module, available_modules, module_index) {
     )
   
   # Extract html from country link to donwnload rounds
-  module_rounds <- httr::GET(chosen_module_link)
+  module_rounds <- safe_GET(chosen_module_link)
   
   module_round_html <- xml2::read_html(module_rounds)
   
@@ -98,7 +98,7 @@ extract_html <- function(chosen_module, available_modules, module_index) {
 # Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
 # for each country
 get_href <- function(ess_website, module_index) {
-  download_page <- httr::GET(paste0(ess_website, module_index))
+  download_page <- safe_GET(paste0(ess_website, module_index))
   download_block <- XML::htmlParse(download_page, asText = TRUE)
   z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
   

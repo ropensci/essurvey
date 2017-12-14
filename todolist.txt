@@ -1,0 +1,5 @@
+TODO:
+
+* Docs of show_theme() has a # infant. Delete
+
+* Add tests for show_* variables for inputting a wrong country/theme and test for an error
