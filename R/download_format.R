@@ -64,7 +64,7 @@ authenticate <- function(your_email) {
   authen <- httr::POST( "http://www.europeansocialsurvey.org/user/login" , body = values )
   
   check_authen <-
-    httr::GET( "http://www.europeansocialsurvey.org/user/login" , query = values )
+    safe_GET( "http://www.europeansocialsurvey.org/user/login" , query = values )
   
   authen_xml <- xml2::read_html(check_authen)
   error_node <- xml2::xml_find_all(authen_xml, '//p [@class="error"]')
@@ -87,10 +87,15 @@ round_downloader <- function(each_url, which_round, which_folder) {
   # round specific .zip file inside the round folder
   temp_download <- file.path(which_folder, paste0(which_round, ".zip"))
   
-  current_file <- httr::GET(each_url, httr::progress())
+  current_file <- safe_GET(each_url, httr::progress())
   
   # Write as a .zip file
   writeBin(httr::content( current_file, "raw" ) , temp_download)
   
   utils::unzip(temp_download, exdir = which_folder)
+}
+
+# Safe getter
+safe_GET <- function(url, config = list(), ...) {
+  httr::stop_for_status(httr::GET(url = url, config = config, ...))
 }
