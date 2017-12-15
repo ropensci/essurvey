@@ -17,6 +17,6 @@ themes can not be downloaded as separate datasets. This and
 }
 \examples{
 
-# show_themes()
+show_themes()
 
 }
