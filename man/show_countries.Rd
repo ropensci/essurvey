@@ -14,6 +14,6 @@ Return available countries in the European Social Survey
 }
 \examples{
 
-show_countries()
+# show_countries()
 
 }

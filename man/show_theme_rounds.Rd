@@ -21,12 +21,12 @@ themes can not be downloaded as separate datasets. This and the
 }
 \examples{
 
-chosen_theme <- show_themes()[3]
+# chosen_theme <- show_themes()[3]
 
 # In which rounds was the topic of 'Democracy' asked?
-show_theme_rounds(chosen_theme)
+# show_theme_rounds(chosen_theme)
 
 # And politics?
-show_theme_rounds("Politics")
+# show_theme_rounds("Politics")
 
 }

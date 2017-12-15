@@ -14,6 +14,6 @@ Return available rounds in the European Social Survey
 }
 \examples{
 
-show_rounds()
+# show_rounds()
 
 }

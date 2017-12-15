@@ -18,8 +18,8 @@ Return available rounds for a country in the European Social Survey
 }
 \examples{
 
-show_country_rounds("Spain")
+# show_country_rounds("Spain")
 
-show_country_rounds("Turkey")
+# show_country_rounds("Turkey")
 
 }
