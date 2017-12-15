@@ -3,6 +3,9 @@ test_that("show_rounds returns correct output", {
   # Check whether show_countries is character
   expect_is(show_rounds(), "numeric")
   
+  # Check that not input is available
+  expect_error(show_rounds("whatever"), "unused argument")
+  
   # Check whether show_countries has length greater than 0
   expect_gt(length(show_rounds()), 0)
   
@@ -23,6 +26,11 @@ test_that("show_countries returns correct output", {
 })
 
 # show_country_rounds
+test_that("show_theme_rounds returns error when wrong theme as argument", {
+  expect_error(show_country_rounds("whatever"),
+               "Country not available in ESS. Check show_countries()")
+})
+
 test_that("show_country_rounds returns correct output", {
   # Check whether show_countries is character
   expect_is(show_country_rounds("Denmark"), "numeric")
@@ -40,6 +48,9 @@ test_that("show_themes returns correct output", {
   # Check whether show_countries is character
   expect_is(show_themes(), "character")
   
+  # Check that no input is available
+  expect_error(show_themes("whatever"), "unused argument")
+  
   # Check whether show_countries has length greater than 0
   expect_gt(length(show_themes()), 0)
   
@@ -47,7 +58,12 @@ test_that("show_themes returns correct output", {
   expect_false(all(duplicated(show_themes())))
 })
 
-# show_theme_rounds
+# show theme_rounds
+test_that("show_theme_rounds returns error when wrong theme as argument", {
+  expect_error(show_theme_rounds("whatever"),
+               "Theme not available in ESS. Check show_themes()")
+})
+
 test_that("show_theme_rounds returns correct output for rounds  == 1", {
   # Check whether show_countries is character
   expect_is(show_theme_rounds("Democracy"), "numeric")

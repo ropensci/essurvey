@@ -35,10 +35,10 @@ show_countries <- function() {
 
 #' Return available themes in the European Social Survey
 #' 
-#' #' This function returns the available themes in the European Social Survey
+#' This function returns the available themes in the European Social Survey.
 #' However, contrary to \code{\link{show_countries}} and \code{\link{show_country_rounds}},
-#' themes can not be downloaded as separate datasets. This and the 
-#' \code{\link{show_theme_rounds}} function serve purely for informative purposes.
+#' themes can not be downloaded as separate datasets. This and
+#' \code{\link{show_theme_rounds}} serve purely for informative purposes.
 #'
 #' @return character vector with available themes
 #' @export
