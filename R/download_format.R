@@ -2,6 +2,9 @@
 # in output_dir unzipped as the format specified in format (only supports sas, spss and stata).
 # If only_download, function will print a out a message where it saved everything.
 # the specifi ess_* functions takes care of deleting the folders in only_downloader was FALSE.
+
+# If only wants to download rounds, then name every argument after rounds.
+# If rounds and country are specified, country rounds will be downloaded.
 download_format <- function(rounds, country, your_email, only_download = FALSE, output_dir = NULL,
                             format = 'stata') {
   
