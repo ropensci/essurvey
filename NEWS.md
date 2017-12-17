@@ -2,7 +2,7 @@
 
 ## New features
 
-* Can download files in 'stata', 'spss' and 'sas' formats for all functions.
+* Can download files in 'stata', 'spss' and 'sas' formats for all functions (both for downloading to user's directory and for reading data. See issue [#11](https://github.com/cimentadaj/ess/issues/11) for details.).
 * show_themes() and show_theme_rounds() now available to see which themes have been included in which rounds.
 
 ## Bug fixes

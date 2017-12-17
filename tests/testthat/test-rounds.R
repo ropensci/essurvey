@@ -83,7 +83,7 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
                            output_dir = NULL))
 })
 
-test_that("Download round files with other non-stata format is ignored", {
+test_that("Download round files with other non-stata format", {
   testthat::skip_on_cran()
   
   # Test for only one wave
@@ -98,4 +98,9 @@ test_that("Download round files with other non-stata format is ignored", {
   # check that the number of columns is greater than 0
   expect_gt(ncol(wave_one), 0)
   
+})
+
+test_that("Specify 'sas' for reading ess data throws error",{
+  expect_error(ess_rounds(1, your_email, format = "sas"),
+               "You cannot read SAS but only 'spss' and 'stata' files with this function")
 })

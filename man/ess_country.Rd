@@ -26,8 +26,9 @@ is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the firs
 country name and \code{N} the round number.}
 
 \item{format}{the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
-with 'stata' as default. This argument is used only when \code{only_download} is set
-to TRUE, otherwise it's ignored.}
+with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
+the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
+from the specified \code{format} (only 'spss' and 'stata' supported, see details).}
 }
 \value{
 if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
@@ -37,7 +38,10 @@ output_dir is a valid directory, it returns the saved directories invisibly and 
 the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
-Download integrated rounds separately for countries from the European Social Survey
+If \code{only_download} is set to FALSE, the data will be read in the format specified
+in \code{format}. 'sas' is not supported because the data formats have changed between
+ESS waves and separate formats require different functions to be read. To preserve parsimony
+and format errors between waves, the user should use 'spss' or 'stata'.
 }
 \examples{
 \dontrun{

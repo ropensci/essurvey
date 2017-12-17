@@ -105,3 +105,8 @@ test_that("Download country files with other non-stata format is ignored", {
   expect_gt(ncol(wave_one), 0)
   
 })
+
+test_that("Specify 'sas' for reading ess data throws error",{
+  expect_error(ess_country("Denmark", 1, your_email, format = "sas"),
+               "You cannot read SAS but only 'spss' and 'stata' files with this function")
+})

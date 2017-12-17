@@ -1,4 +1,10 @@
 #' Download integrated rounds from the European Social Survey
+#' 
+#' If \code{only_download} is set to FALSE, the data will be read in the format specified
+#' in \code{format}. 'sas' is not supported because the data formats have changed between
+#' ESS waves and separate formats require different functions to be read. To preserve parsimony
+#' and format errors between waves, the user should use 'spss' or 'stata'.
+#' 
 #'
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 #' for all available rounds.
@@ -9,8 +15,9 @@
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to NULL because data is not saved by default.
 #' @param format the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
-#' with 'stata' as default. This argument is used only when \code{only_download} is set
-#' to TRUE, otherwise it's ignored.
+#' with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
+#' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
+#' from the specified \code{format} (only 'spss' and 'stata' supported, see details).
 #'
 #' @return if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
 #' with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
@@ -83,21 +90,18 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = N
       )
   }
   # If not, download data and save the dir of the downloads
+  
+  if (format == "sas") {
+  stop(
+    "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_rounds for more details")
+  }
+  
   dir_download <- download_format(rounds = rounds,
-                                  your_email = your_email)
+                                  your_email = your_email,
+                                  format = format)
   
-  # Get all .dta paths
-  stata_dirs <- list.files(dir_download, pattern = ".dta", full.names = TRUE)
+  all_data <- read_format_data(dir_download, format, rounds)
   
-  # Read only the .dta file
-  dataset <- lapply(stata_dirs, haven::read_dta)
-  
-  # Remove everything that was downloaded
-  unlink(dir_download, recursive = TRUE, force = TRUE)
-  
-  # If it's only one round, return a df rather than a list
-  if (length(rounds) == 1) dataset <- dataset[[1]]
-  
-  dataset
+  all_data
 }
 
