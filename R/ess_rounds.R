@@ -1,10 +1,10 @@
 #' Download integrated rounds from the European Social Survey
 #' 
+#' @details
 #' If \code{only_download} is set to FALSE, the data will be read in the format specified
 #' in \code{format}. 'sas' is not supported because the data formats have changed between
 #' ESS waves and separate formats require different functions to be read. To preserve parsimony
 #' and format errors between waves, the user should use 'spss' or 'stata'.
-#' 
 #'
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 #' for all available rounds.

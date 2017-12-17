@@ -33,6 +33,9 @@ output_dir is a valid directory, it returns the saved directories invisibly and 
 the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
+Download integrated rounds from the European Social Survey
+}
+\details{
 If \code{only_download} is set to FALSE, the data will be read in the format specified
 in \code{format}. 'sas' is not supported because the data formats have changed between
 ESS waves and separate formats require different functions to be read. To preserve parsimony
