@@ -86,6 +86,20 @@ table_to_list <- function(ess_website, module_index) {
   # Extract the table in xml format
   table_rounds_xml <- rvest::html_node(xml2::read_html(download_page), "table")
   
+  # Some of these tables have a shaded dot which means that the data will be
+  # available in the future but it is not currently available. It's best
+  # if we don't show those dots at all because it confuses the users (
+  # and raises an error) thinking that the round is there (at least
+  # when looking at it from R).
+  
+  # Here I search for the .//span tag which is the tag that gives the dots
+  # shaded color. <span> could be a tag somewhere else in the document
+  # that's why I set .// so that it searchers below the current node,
+  # that is, only on the table.
+  
+  # remove those nodes
+  xml2::xml_remove(xml2::xml_find_all(table_rounds_xml, ".//span"), free = TRUE)
+  
   # Turn the xml table into a df. First col is country names and
   # all other are rounds
   dirty_table_df <- rvest::html_table(table_rounds_xml, header = TRUE)

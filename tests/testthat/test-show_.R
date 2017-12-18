@@ -26,7 +26,7 @@ test_that("show_countries returns correct output", {
 })
 
 # show_country_rounds
-test_that("show_theme_rounds returns error when wrong theme as argument", {
+test_that("show_country_rounds returns error when wrong theme as argument", {
   expect_error(show_country_rounds("whatever"),
                "Country not available in ESS. Check show_countries()")
 })
@@ -41,6 +41,18 @@ test_that("show_country_rounds returns correct output", {
   # # Check there are no duplicate rounds for countries
   expect_false(all(duplicated(show_country_rounds("Denmark"))))
   expect_false(all(duplicated(show_country_rounds("United Kingdom"))))
+})
+
+# If this raises an error, it might that it needs to be 
+# upated every year with the new round the url is: 
+# http://www.europeansocialsurvey.org/data/country_index.html
+
+test_that("show_country_rounds returns correct rounds for countries", {
+  expect_equal(show_country_rounds("Germany"), 1:8)
+  expect_equal(show_country_rounds("Albania"), 6)
+  expect_equal(show_country_rounds("Turkey"), c(2, 4))
+  expect_equal(show_country_rounds("Italy"), c(1, 2, 6))
+  expect_equal(show_country_rounds("Spain"), 1:7)
 })
 
 # show_themes()
