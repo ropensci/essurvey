@@ -4,6 +4,7 @@
 
 * Can download files in 'stata', 'spss' and 'sas' formats for all functions (both for downloading to user's directory and for reading data. See issue [#11](https://github.com/cimentadaj/ess/issues/11) for details.).
 * show_themes() and show_theme_rounds() now available to see which themes have been included in which rounds.
+* show_rounds_country() is now available to see which countries participated in which rounds
 
 ## Bug fixes
 * The show_* functions now run much faster because they now share a common API that requests data and distributes accordingly to the show_ functions

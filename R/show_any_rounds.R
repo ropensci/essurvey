@@ -1,3 +1,59 @@
+#' Return participating countries for rounds in the European Social Survey
+#'
+#' @param rounds A numeric vector specifying the rounds from which to return the countries.
+#' Use \code{\link{show_rounds}}for a list of available rounds.
+#' @param participate A logical that controls whether to show participating countries in that/those
+#' rounds or countries that didn't participate. Set to TRUE by default.
+#'
+#' @return A character vector with the country names
+#' @export
+#'
+#' @examples
+#' 
+#' # Return countries that participated in round 2
+#' 
+#' show_rounds_country(2)
+#' 
+#' # Return countries that participated in all rounds
+#' 
+#' show_rounds_country(1:8)
+#' 
+#' # Return countries that didn't participate in the first three rounds
+#' 
+#' show_rounds_country(1:3, participate = FALSE)
+#' 
+show_rounds_country <- function(rounds, participate = TRUE) {
+  
+  if (!all(rounds %in% .global_vars$rounds)) {
+    stop("Rounds not available in ESS. Check show_rounds()")
+  }
+  
+  # Obtaine the country list with years that participated
+  module_list <- table_to_list(.global_vars$ess_website, .global_vars$country_index)
+  
+  # Because names get messed up when turning module_list into a df
+  # here I save the pretty country names
+  country_names <- names(module_list)
+  
+  # Turn the list into a lookupable matrix
+  country_rnd_subset <- t(data.frame(module_list))
+  
+  # create all() function depending on whether the user wants the participating
+  # or non-participating countries. The +1 is so that if its TRUE, +1 will
+  # return the second argument, and 0+1 the first arguments
+  new_all <- switch(as.numeric(participate) + 1, function(x) !all(x), all)
+  
+  # Take only the rounds specified
+  subset_df <- country_rnd_subset[, rounds, drop = FALSE]
+  
+  # Check which countries participates in all rounds
+  which_cnts <- vapply(seq_len(nrow(subset_df)),
+                       function(x) new_all(subset_df[x, ]),
+                       FUN.VALUE = logical(1))
+  
+  country_names[which_cnts]
+}
+
 #' Return available rounds for a country in the European Social Survey
 #'
 #' @param country A character of length 1 with the full name of the country.

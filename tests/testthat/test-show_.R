@@ -13,6 +13,52 @@ test_that("show_rounds returns correct output", {
   expect_false(all(duplicated(show_rounds())))
 })
 
+# show_rounds_country
+test_that("show_rounds_country returns error when arguments are wrong", {
+  expect_error(show_rounds_country("whatever"),
+               "Rounds not available in ESS. Check show_rounds()")
+  
+  expect_error(show_rounds_country(1:100),
+               "Rounds not available in ESS. Check show_rounds()")
+})
+
+test_that("show_rounds_country returns correct output", {
+  # Check whether is character
+  expect_is(show_rounds_country(1), "character")
+  
+  # Check whether has length 22, the number of countries
+  # as 20 December 2017
+  expect_equal(length(show_rounds_country(1)), 22)
+})
+
+test_that("show_rounds_country returns non-duplicate rounds and consistent results", {
+  # # Check there are no duplicate countries
+  expect_false(all(duplicated(show_rounds_country(1:6))))
+  expect_false(all(duplicated(show_rounds_country(c(1, 5, 2)))))
+  
+  # Participating and non participating should be different!
+  non_pt <- show_rounds_country(7:2, participate = FALSE)
+  part <- show_rounds_country(7:2, participate = TRUE)
+  all(!part %in% non_pt)
+})
+
+test_that("show_rounds_country returns correct countries always", {
+  
+  # Countries that participated in the first three rounds. This
+  # shouldn't change and was like this as of 20 of December of 2017
+  one_to_three <-
+    c("Austria", "Belgium", "Denmark", "Finland", "France", "Germany", 
+      "Hungary", "Ireland", "Netherlands", "Norway", "Poland", "Portugal", 
+      "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"
+    )
+  
+  # Check it returns the same countries all the time
+  expect_equal(show_rounds_country(1:3), one_to_three)
+  
+  # Check that it returns the same countries when parsing twice
+  expect_equal(show_rounds_country(c(7, 1, 6)), show_rounds_country(c(7, 1, 6)))
+})
+
 # show_countries
 test_that("show_countries returns correct output", {
   # Check whether show_countries is character
@@ -26,7 +72,7 @@ test_that("show_countries returns correct output", {
 })
 
 # show_country_rounds
-test_that("show_country_rounds returns error when wrong theme as argument", {
+test_that("show_country_rounds returns error when wrong country as argument", {
   expect_error(show_country_rounds("whatever"),
                "Country not available in ESS. Check show_countries()")
 })
