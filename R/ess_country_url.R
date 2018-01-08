@@ -7,7 +7,7 @@ ess_country_url <- function(country, rounds, format) {
   
   # Returns each countries href attribute with its website
   # ess_website is a vector set as metadata
-  available_countries <- .global_vars$countries
+  available_countries <- show_countries()
   
   if (!country %in% available_countries) {
     stop("Country not available in ESS. Check show_countries()")

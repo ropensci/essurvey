@@ -81,21 +81,9 @@ var_values <-
 
 mapply(assign, var_names, var_values, list(envir = .global_vars))
 
-# Why not put these variables together with the previous variables and
-# just run one single loop of assignment? Becuse the show_* funs actually
-# use the .global_vars inside them. We have te define those first and
-# then the show_* results.
-
-show_names <- c(
-  "rounds",
-  "countries",
-  "themes"
-)
-
-show_results <- list(
-  show_rounds(),
-  show_countries(),
-  show_themes()
-)
-
-mapply(assign, show_names, show_results, list(envir = .global_vars))
+# At some point I also added the show_* funs here so that I only ran them once
+# and then I called .global_vars$ with the result of the show_ fun. I removed it
+# because if a user called show_countries() in a script and later called
+# an ess_ fun that uses the show_countries() that was called from .global_vars$countries
+# and if ess updated countries or rounds in that time then the result would be different
+# and we wouldn't want contradictory results.

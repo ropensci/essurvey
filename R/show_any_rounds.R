@@ -24,7 +24,7 @@
 #' 
 show_rounds_country <- function(rounds, participate = TRUE) {
   
-  if (!all(rounds %in% .global_vars$rounds)) {
+  if (!all(rounds %in% show_rounds())) {
     stop("Rounds not available in ESS. Check show_rounds()")
   }
   
@@ -71,7 +71,7 @@ show_rounds_country <- function(rounds, participate = TRUE) {
 show_country_rounds <- function(country) {
 
   # Check if country is present
-  if (!country %in% .global_vars$countries) {
+  if (!country %in% show_countries()) {
     stop("Country not available in ESS. Check show_countries()")
   }
   
@@ -106,7 +106,7 @@ show_country_rounds <- function(country) {
 show_theme_rounds <- function(theme) {
   
   # Check if country is present
-  if (!theme %in% .global_vars$themes) {
+  if (!theme %in% show_themes()) {
     stop("Theme not available in ESS. Check show_themes()")
   }
   
@@ -125,7 +125,7 @@ show_any_rounds <- function(module, module_index) {
   # The list is easy to subset, so just subset the available module
   # from the list and then subset the available rounds from the
   # global variable
-  available_rounds <- .global_vars$rounds[module_list[[module]]]
+  available_rounds <- show_rounds()[module_list[[module]]]
   
   available_rounds
 }
