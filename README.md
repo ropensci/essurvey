@@ -80,11 +80,6 @@ ess_rounds(c(1, 2),
 
 This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`.
 
-``` r
-ess_country("Sweden",
-            rounds = c(1, 2),
-            "your_email@email.com",
-            only_download = TRUE,
-            output_dir = "my/new/directory",
-            format = 'sas')
-```
+------------------------------------------------------------------------
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
