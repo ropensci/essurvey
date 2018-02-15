@@ -69,14 +69,22 @@ show_any <- function(ess_website, module_index) {
 var_names <- c(
   "ess_website",
   "theme_index",
-  "country_index"
+  "country_index",
+  "all_codes"
 )
+
+codes <- c("6" = "Not applicable",
+           "7" = "Refusal",
+           "8" = "Don't know",
+           "9" = "No answer",
+           "9" = "Not available")
 
 var_values <-
   list(
   "http://www.europeansocialsurvey.org",
   "/data/module-index.html",
-  "/data/country_index.html"
+  "/data/country_index.html",
+  codes
 )
 
 mapply(assign, var_names, var_values, list(envir = .global_vars))

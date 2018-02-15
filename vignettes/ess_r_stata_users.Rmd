@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Using the `ess` package is fairly easy. There are are two families of functions: `ess_*` and `show_*`. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven't registered, create an account at http://www.europeansocialsurvey.org/user/new
+Using the `ess` package is fairly easy. There are are two main families of functions: `ess_*` and `show_*`. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven't registered, create an account at http://www.europeansocialsurvey.org/user/new
 
-Once you register visit your email to validate your account and you're ready to access the data.
+Once you register visit your email account to validate the account and you're ready to access the data.
 
 Given that some `ess` functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.
 
@@ -36,6 +36,7 @@ library(ess)
 ```
 
 to install the stable version from CRAN use:
+
 ```{r}
 install.packages("ess")
 ```
@@ -71,7 +72,7 @@ turkey <-
     )
 ```
 
-`turkey` will now be a list of `length(rounds)` containing a data frame for each round. `ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
+`turkey` will now be a list of `length(rounds)` containing a data frame for each round. If you only specified one round, then all `ess_*` functions return a data frame. ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
 
 ```{r}
 ess_all_cntrounds("Turkey", "your_email@random.com")
@@ -126,7 +127,32 @@ ess_country("Turkey", 2,
 
 This will save the data to `./myfolder/ESS_Turkey` and inside that folder there will be the `ESS2` folder that contains the data. If you specify `only_download = TRUE`, but don't specify a directory, an error will be raised. All of this applies exactly the same way for `ess_rounds`. If `only_download = TRUE` the format argument will be ignored, as it's only useful for downloading the data.
 
+## Correcting for missing values
 
-Note that downloading the data **does not** run the corresponding pre-processing files from the specified format. The user should do that on it's own.
+Whenever you download the ESS data, it comes together with a script that recodes the values 6 = 'Not applicable', 7 = 'Refusal', 8 = 'Don't know', 9 = 'No answer' and 9 = 'Not available' as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as
+
+```{r}
+sp <- ess_country("Spain", 1, your_email)
+mean(sp$tvtot)
+# 4.622406
+```
+
+But that vector numbers such as `66`, `77`, that shouldn't be there. `recode_missings()` removes the corresponding missings for numeric variables as well as for character variables.
+
+```{r}
+new_coding <- recode_missings(sp)
+mean(new_coding$tvtot)
+# 4.527504
+```
+
+It also gives you the option of recoding only specific categories. For example
+
+```{r}
+other_newcoding <- recode_missings(sp, c("Don't know", "Refusal"))
+table(other_newcoding$tvpol)
+#  0   1   2   3   4   5   6   7  66 
+# 167 460 610 252  95  36  26  31  45 
+```
+Still has missing values but recoded the ones you were interested in. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn't answer and answered questions. But if you're decided to do so, use `recode_missings` to recode everything and the `recode_*_missings` functions for numeric and character recodings separately. See the documentation of `recode_missings` for more information.
 
 Currently the user can either download the data or use it in `R`. For example, you can't download the data into the specified folder and also get the list with the rounds.
