@@ -15,23 +15,25 @@
 #' all values are chosen. Note that the wording is case sensitive.
 #'
 #' @return 
-#' The same data frame but with values 'Not applicable',
+#' The same data frame or \code{\link[tibble]{tibble}} but with values 'Not applicable',
 #' 'Refusal', 'Don't Know', 'No answer' and 'Not available' recoded
-#' as NA. See the details seciond for a more detailed explanation.
+#' as NA.
 #' 
 #' @details 
 #' When downloading data directly from the European Social Survey's website,
 #' the downloaded .zip file contains a script that recodes some categories
-#' as missings in Stata and SPSS formats. For recoding numeric variables the
-#' function uses the labels provided by the \code{\link[haven]{labelled}}
-#' class to delete the ones matched in \code{missing_codes}. For the character
+#' as missings in Stata and SPSS formats. 
+#' 
+#' For recoding numeric variables \code{recode_numeric_missings}
+#' uses the labels provided by the \code{\link[haven]{labelled}}
+#' class to delete the labels matched in \code{missing_codes}. For the
 #' character variables matching is done with the underlying number assigned to
 #' each category, namely 6, 7, 8, 9 and 9 for 'Not applicable', Refusal',
-#' 'Don't Know', No answer' or 'Not available'.
+#' 'Don't Know', No answer' and 'Not available'.
 #' 
 #' The functions are a direct translation of the Stata script that comes
 #' along when downloading one of the rounds. The Stata script is the same
-#' for all rounds and all countries, meaning that this functions works
+#' for all rounds and all countries, meaning that these functions work
 #' for all rounds.
 #' 
 #' @export
