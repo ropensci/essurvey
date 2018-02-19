@@ -22,4 +22,4 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-Note: This package ess is named to match the European Social Survey (ESS) hosted at http://www.europeansocialsurvey.org/. It is unrelated to the Emacs Speaks Statistics (ESS) project, an emacs-based Integrated Development Environment hosted at https://ess.r-project.org
+Note: The package ess is named to match the European Social Survey (ESS) hosted at http://www.europeansocialsurvey.org/. It is unrelated to the Emacs Speaks Statistics (ESS) project, an emacs-based Integrated Development Environment hosted at https://ess.r-project.org
