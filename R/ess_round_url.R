@@ -33,10 +33,10 @@ ess_round_url <- function(rounds, format) {
   format.files <- character(length(rounds))
 
   for (index in seq_along(round_links)) {
-    download.page <- safe_GET(paste0(.global_vars$ess_website, 
+    download_page <- safe_GET(paste0(.global_vars$ess_website, 
                                       round_links[index]))
-    download.block <- XML::htmlParse(download.page, asText = TRUE)
-    z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
+    html_ess <- xml2::read_html(download_page) 
+    z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- z[grep(format, z)]
   }
   # } # this bracket closes the loop commented aout from above
@@ -50,8 +50,8 @@ ess_round_url <- function(rounds, format) {
 # for every round available in the ess website.
 grab_rounds_link <- function(ess_website) {
   download_page <- safe_GET(paste0(ess_website, "/data/download.html?r="))
-  download_block <- XML::htmlParse(download_page, asText = TRUE)
-  z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
+  html_ess <- xml2::read_html(download_page) 
+  z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
   
   downloads <- unique(grep("^/download.html(.*)[0-9]{4, }$", z, value = TRUE))
   downloads

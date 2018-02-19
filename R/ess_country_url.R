@@ -54,10 +54,10 @@ ess_country_url <- function(country, rounds, format) {
   
   # Build stata paths for each round
   for (index in seq_along(round_links)) {
-    download.page <- safe_GET(paste0(.global_vars$ess_website,
+    download_page <- safe_GET(paste0(.global_vars$ess_website,
                                       round_links[index]))
-    download.block <- XML::htmlParse(download.page, asText = TRUE)
-    z <- XML::xpathSApply(download.block, "//a", function(u) XML::xmlAttrs(u)["href"])
+    html_ess <- xml2::read_html(download_page) 
+    z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- z[grep(format, z)]
   }
   # } # this bracket closes the loop commented aout from above
@@ -99,8 +99,6 @@ extract_html <- function(chosen_module, available_modules, module_index) {
 # for each country
 get_href <- function(ess_website, module_index) {
   download_page <- safe_GET(paste0(ess_website, module_index))
-  download_block <- XML::htmlParse(download_page, asText = TRUE)
-  z <- XML::xpathSApply(download_block, "//a", function(u) XML::xmlAttrs(u)["href"])
   
   # Get the <a href="/data/country.html?c=latvia">Latvia</a> for each country
   country_node <- xml2::xml_find_all(xml2::read_html(download_page), '//td [@class="label"]//a')
