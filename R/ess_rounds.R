@@ -71,13 +71,7 @@
 #' # Error in ess_round_url(rounds) : 
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
-ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = NULL, format = 'stata') {
-  
-  if (only_download && is.null(output_dir)) {
-    stop(
-      "If only_download = TRUE, please provide a directory to save the files in output_dir"
-      )
-  }
+ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
   if (only_download) {

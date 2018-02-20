@@ -4,7 +4,7 @@
 \alias{ess_rounds}
 \title{Download integrated rounds from the European Social Survey}
 \usage{
-ess_rounds(rounds, your_email, only_download = FALSE, output_dir = NULL,
+ess_rounds(rounds, your_email, only_download = FALSE, output_dir = getwd(),
   format = "stata")
 }
 \arguments{

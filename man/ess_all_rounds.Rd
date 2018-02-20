@@ -4,7 +4,7 @@
 \alias{ess_all_rounds}
 \title{Download all available integrated rounds from the European Social Survey}
 \usage{
-ess_all_rounds(your_email, only_download = FALSE, output_dir = NULL,
+ess_all_rounds(your_email, only_download = FALSE, output_dir = getwd(),
   format = "stata")
 }
 \arguments{
@@ -15,7 +15,7 @@ If you haven't registered in the ESS website, create an account at
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
 \item{output_dir}{a character vector with the output directory in case you want to only download the files using
-the \code{only_download} argument. Defaults to NULL because data is not saved by default.}
+the \code{only_download} argument. Defaults to your working directory.}
 
 \item{format}{the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in

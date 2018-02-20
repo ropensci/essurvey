@@ -5,7 +5,7 @@
 \title{Download integrated rounds separately for countries from the European Social Survey}
 \usage{
 ess_country(country, rounds, your_email, only_download = FALSE,
-  output_dir = NULL, format = "stata")
+  output_dir = getwd(), format = "stata")
 }
 \arguments{
 \item{country}{a character of length 1 with the full name of the country. 
@@ -21,9 +21,9 @@ If you haven't registered in the ESS website, create an account at
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
 \item{output_dir}{a character vector with the output directory in case you want to only
-download the files using the \code{only_download} argument. Defaults to NULL because data
-is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the first star is the
-country name and \code{N} the round number.}
+download the files using the \code{only_download} argument. Defaults to your working directory.
+Files will be saved as ESS_*/ESS\code{N} where the first star is the country name and \code{N}
+the round number.}
 
 \item{format}{the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in

@@ -15,9 +15,9 @@
 #' \url{http://www.europeansocialsurvey.org/user/new}
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only
-#' download the files using the \code{only_download} argument. Defaults to NULL because data
-#' is not saved by default. Files will be saved as ESS_*/ESS\code{N} where the first star is the
-#' country name and \code{N} the round number.
+#' download the files using the \code{only_download} argument. Defaults to your working directory.
+#' Files will be saved as ESS_*/ESS\code{N} where the first star is the country name and \code{N}
+#' the round number.
 #' @param format the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 #' with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
 #' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
@@ -75,13 +75,7 @@
 #' # for Czech Republic
 #' }
 
-ess_country <- function(country, rounds, your_email, only_download = FALSE, output_dir = NULL, format = 'stata') {
-  
-  if (only_download && is.null(output_dir)) {
-    stop(
-      "If only_download = TRUE, please provide a directory to save the files in output_dir"
-    )
-  }
+ess_country <- function(country, rounds, your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
   if (only_download) {
