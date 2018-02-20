@@ -2,14 +2,19 @@ context("test-recode_missings.R")
 
 your_email <- Sys.getenv("your_email")
 
-esp <- ess_rounds(7, your_email)
-recode_esp <- recode_missings(esp)
 
 test_that("recoded object is a df", {
+  skip_on_cran()
+  
+  recode_esp <- recode_missings(ess_rounds(7, your_email))
   expect_is(recode_esp, "data.frame")
 })
 
 test_that("recode_missing correctly recodes chr na's", {
+  skip_on_cran()
+  
+  recode_esp <- recode_missings(ess_rounds(7, your_email))
+  
   chrs <- vapply(recode_esp, is.character, logical(1))
   
   chr_miss <- vapply(recode_esp[chrs], function(.x) sum(is.na(.x)), numeric(1))
@@ -28,7 +33,11 @@ test_that("recode_missing correctly recodes chr na's", {
   
   expect_equal(chr_miss, stata_chr_missings)
 })
+
 test_that("recoding_mising correctly recodes numeric na's", {
+  skip_on_cran()
+  
+  recode_esp <- recode_missings(ess_rounds(7, your_email))
   num_miss <- vapply(recode_esp[c("tvtot", "agea", "vote")], function(x) sum(is.na(x)), numeric(1))
   
   stata_num_missings <- c(tvtot = 74,
@@ -39,6 +48,11 @@ test_that("recoding_mising correctly recodes numeric na's", {
 })
 
 test_that("recoding_missing recodes cutomized labels", {
+  skip_on_cran()
+  
+  esp <- ess_rounds(7, your_email)
+  recode_esp <- recode_missings(esp)
+  
   remove_labels <- c("Don't know", "Not available")
   equivalent_codes <- c("888", "999") # for strings!
   
@@ -56,6 +70,10 @@ test_that("recoding_missing recodes cutomized labels", {
 test_that("recode_numeric can recode customized labels", {
   all_codes <- .global_vars$all_codes
   
+  skip_on_cran()
+  
+  esp <- ess_rounds(7, your_email)
+
   removed_miss <- names(attr(recode_numeric_missing(esp$tvtot), "labels"))
   
   # All codes were removed
@@ -82,6 +100,10 @@ test_that("recode_numeric can recode customized labels", {
 
 test_that("recode_strings can recode customized labels", {
   all_codes <- .global_vars$all_codes
+  
+  skip_on_cran()
+  
+  esp <- ess_rounds(7, your_email)
   
   # 777, 888, 999
   removed_miss <-
