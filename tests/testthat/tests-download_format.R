@@ -26,7 +26,7 @@ test_that("Download function return correct errors", {
                "Only rounds (.*) available for Sweden")
 })
 
-test_that("download_format can download COUNTRY files in STATA format successfully", {
+test_that("download_format can download COUNTRY files in STATA format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at

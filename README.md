@@ -32,14 +32,42 @@ Usage
 
 First, you need to register at the ESS website, in case you haven't. Please visit the [register](http://www.europeansocialsurvey.org/user/new) section from the ESS website. If your email is not registered at their website, an error will be raised prompting you to go register.
 
-To download the first round to use in R:
+To explore which rounds/countries are present in the ESS use the `show_*()` family of functions.
 
 ``` r
 library(ess)
+show_countries()
+#>  [1] "Albania"            "Austria"            "Belgium"           
+#>  [4] "Bulgaria"           "Croatia"            "Cyprus"            
+#>  [7] "Czech Republic"     "Denmark"            "Estonia"           
+#> [10] "Finland"            "France"             "Germany"           
+#> [13] "Greece"             "Hungary"            "Iceland"           
+#> [16] "Ireland"            "Israel"             "Italy"             
+#> [19] "Kosovo"             "Latvia"             "Lithuania"         
+#> [22] "Luxembourg"         "Netherlands"        "Norway"            
+#> [25] "Poland"             "Portugal"           "Romania"           
+#> [28] "Russian Federation" "Slovakia"           "Slovenia"          
+#> [31] "Spain"              "Sweden"             "Switzerland"       
+#> [34] "Turkey"             "Ukraine"            "United Kingdom"
+```
+
+To download the first round to use in R:
+
+``` r
 one_round <- ess_rounds(1, "your_email@email.com")
 ```
 
-This will return a list object with round 1 in the first slot. You can also download several rounds by supplying the number of rounds.
+This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to `NA` for different programs (Stata, SPSS, SAS).
+
+Use `recode_missings` to recode all values automatically.
+
+``` r
+one_round <-
+  ess_rounds(1, "your_email@email.com") %>%
+  recode_missings()
+```
+
+See the package vignette for greater detail or see the help page with `?recode_missings`. You can also download several rounds by supplying the number of rounds.
 
 ``` r
 five_rounds <- ess_rounds(1:5, "your_email@email.com")
