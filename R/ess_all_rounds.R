@@ -12,10 +12,14 @@
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to your working directory.
+#' This will be interpreted as a \strong{directory} and not a file name. Files names
+#' will be used as folder names, such as "./myfile.dta/.
+#' 
 #' @param format the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 #' with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
 #' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
 #' from the specified \code{format} (only 'spss' and 'stata' supported, see details).
+#' 
 #'
 #' @return if \code{only_download} is set to FALSE it returns a list with all the latest rounds.
 #' If \code{only_download} is set to TRUE and output_dir is a valid directory, it returns the

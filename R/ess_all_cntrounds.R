@@ -15,7 +15,9 @@
 #' @param output_dir a character vector with the output directory in case you want to only
 #' download the files using the \code{only_download} argument. Defaults to your working directory.
 #' Files will be saved as ESS_*/ESS\code{N} where the first star is the country name and \code{N}
-#' the round number.
+#' the round number. This will be interpreted as a \strong{directory} and not a file name. Files names
+#' will be used as folder names, such as "./myfile.dta/.
+#' 
 #' @param format the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
 #' with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
 #' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
