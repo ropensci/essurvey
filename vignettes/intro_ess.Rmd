@@ -1,5 +1,5 @@
 ---
-title: "Using ess for R and Stata users"
+title: "Introduction to the ess package"
 author: "Jorge Cimentada"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
