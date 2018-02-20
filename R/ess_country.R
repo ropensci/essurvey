@@ -76,7 +76,8 @@
 #' # for Czech Republic
 #' }
 
-ess_country <- function(country, rounds, your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
+ess_country <- function(country, rounds, your_email, only_download = FALSE,
+                        output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
   if (only_download) {
@@ -95,7 +96,8 @@ ess_country <- function(country, rounds, your_email, only_download = FALSE, outp
   
   if (format == "sas") {
     stop(
-      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_country for more details")
+      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_country for more details"
+      )
   }
   
   # If not, download data and save the dir of the downloads
@@ -120,7 +122,9 @@ read_format_data <- function(urls, format, rounds) {
   
   format_ext <- c(".dta", ".sav")
   # Get all paths from the format
-  format_dirs <- list.files(urls, pattern = paste0(format_ext, "$", collapse = "|"), full.names = TRUE)
+  format_dirs <- list.files(urls,
+                            pattern = paste0(format_ext, "$", collapse = "|"),
+                            full.names = TRUE)
   
   # Read only the .dta/.sav/ files
   dataset <- lapply(format_dirs, format_read)

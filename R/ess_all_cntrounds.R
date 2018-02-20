@@ -49,7 +49,8 @@
 #'  )
 #' 
 #' }
-ess_all_cntrounds <- function(country, your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
+ess_all_cntrounds <- function(country, your_email, only_download = FALSE,
+                              output_dir = getwd(), format = 'stata') {
 
     ess_country(
     country,

@@ -38,7 +38,8 @@ test_that("recoding_mising correctly recodes numeric na's", {
   skip_on_cran()
   
   recode_esp <- recode_missings(ess_rounds(7, your_email))
-  num_miss <- vapply(recode_esp[c("tvtot", "agea", "vote")], function(x) sum(is.na(x)), numeric(1))
+  num_miss <- vapply(recode_esp[c("tvtot", "agea", "vote")],
+                     function(x) sum(is.na(x)), numeric(1))
   
   stata_num_missings <- c(tvtot = 74,
                           agea = 99,
@@ -78,14 +79,11 @@ test_that("recode_numeric can recode customized labels", {
   
   # All codes were removed
   expect_true(all(!all_codes %in% removed_miss))
+
+  act_labels <- attr(recode_numeric_missing(esp$tvtot, c("Don't know")),
+                     "labels")
   
-  
-  remove_one_miss <- names(attr(recode_numeric_missing(esp$tvtot, c("Don't know")),
-                                "labels"))
-  
-  expect_true(!"Don't know" %in% remove_one_miss)
-  
-  
+  expect_true(!"Don't know" %in% names(act_labels))
   
   expect_error(
     recode_numeric_missing(esp$tvtot, c("Hey", "Don't know")),

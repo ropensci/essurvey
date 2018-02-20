@@ -29,7 +29,8 @@ show_rounds_country <- function(rounds, participate = TRUE) {
   }
   
   # Obtaine the country list with years that participated
-  module_list <- table_to_list(.global_vars$ess_website, .global_vars$country_index)
+  module_list <- table_to_list(.global_vars$ess_website,
+                               .global_vars$country_index)
   
   # Because names get messed up when turning module_list into a df
   # here I save the pretty country names

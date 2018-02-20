@@ -24,7 +24,8 @@ ess_country_url <- function(country, rounds, format) {
   
   # Returns the chosen countries html that contains
   # the links to all rounds.
-  country_round_html <- extract_html(country, available_countries, .global_vars$country_index)
+  country_round_html <- extract_html(country, available_countries,
+                                     .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
@@ -45,7 +46,8 @@ ess_country_url <- function(country, rounds, format) {
               value = TRUE))
   
   # Extract round numbers
-  round_numbers <- as.numeric(stringr::str_extract(incomplete_links, "[0-9]{1,2}"))
+  round_numbers <- as.numeric(stringr::str_extract(incomplete_links,
+                                                   "[0-9]{1,2}"))
   
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
@@ -84,7 +86,8 @@ extract_html <- function(chosen_module, available_modules, module_index) {
   chosen_module_link <-
     paste0(
       .global_vars$ess_website,
-      all_module_links[which(chosen_module == available_modules)] # index where the country is at
+      all_module_links[which(chosen_module == available_modules)] 
+      # index where the country is at
     )
   
   # Extract html from country link to donwnload rounds
@@ -101,7 +104,8 @@ get_href <- function(ess_website, module_index) {
   download_page <- safe_GET(paste0(ess_website, module_index))
   
   # Get the <a href="/data/country.html?c=latvia">Latvia</a> for each country
-  country_node <- xml2::xml_find_all(xml2::read_html(download_page), '//td [@class="label"]//a')
+  country_node <- xml2::xml_find_all(xml2::read_html(download_page),
+                                     '//td [@class="label"]//a')
   
   country_node
 }

@@ -72,7 +72,8 @@
 #' # Error in ess_round_url(rounds) : 
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
-ess_rounds <- function(rounds, your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
+ess_rounds <- function(rounds, your_email, only_download = FALSE,
+                       output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
   if (only_download) {

@@ -31,7 +31,7 @@ test_that("show_rounds_country returns correct output", {
   expect_equal(length(show_rounds_country(1)), 22)
 })
 
-test_that("show_rounds_country returns non-duplicate rounds and consistent results", {
+test_that("show_rounds_country returns non-duplicate rounds", {
   # # Check there are no duplicate countries
   expect_false(all(duplicated(show_rounds_country(1:6))))
   expect_false(all(duplicated(show_rounds_country(c(1, 5, 2)))))

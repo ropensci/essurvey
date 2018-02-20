@@ -5,8 +5,8 @@ test_that("Download function return correct errors", {
   
   testthat::skip_on_cran()
   
-  # These are the functions which are actually doing the work of testing this, not ess_rounds
-  # For wrong emails, test it will through error
+  # These are the functions which are actually doing the work of testing this,
+  # not ess_rounds. For wrong emails, test it will through error
   
   expect_error(authenticate("random@email.morerandom"),
                "email address you provided is not associated with any registered")
@@ -20,7 +20,9 @@ test_that("Download function return correct errors", {
                "ESS round [0-9]+ is not a available. Check show_rounds()")
   
   # Test country download will throw error when wave is not available
-  expect_error(download_format(rounds = c(1, 22), country = "Sweden", your_email = your_email),
+  expect_error(download_format(rounds = c(1, 22),
+                               country = "Sweden",
+                               your_email = your_email),
                "Only rounds (.*) available for Sweden")
 })
 
@@ -58,7 +60,7 @@ test_that("download_format can download COUNTRY files in STATA format successful
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("download_format can download ROUND files in STATA format successfully", {
+test_that("download_format can download ROUND files in STATA format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
@@ -91,7 +93,7 @@ test_that("download_format can download ROUND files in STATA format successfully
   unlink(download_link, recursive = TRUE, force = TRUE)
 })
 
-test_that("download_format can download COUNTRY files in SPSS format successfully", {
+test_that("download_format can download COUNTRY files in SPSS format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
@@ -125,7 +127,7 @@ test_that("download_format can download COUNTRY files in SPSS format successfull
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("download_format can download ROUND files in SPSS format successfully", {
+test_that("download_format can download ROUND files in SPSS format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
@@ -158,7 +160,7 @@ test_that("download_format can download ROUND files in SPSS format successfully"
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("download_format can download COUNTRY files in SAS format successfully", {
+test_that("download_format can download COUNTRY files in SAS format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at
@@ -189,7 +191,7 @@ test_that("download_format can download COUNTRY files in SAS format successfully
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
 
-test_that("download_format can download ROUND files in SAS format successfully", {
+test_that("download_format can download ROUND files in SAS format", {
   
   testthat::skip_on_cran()
   # Test whether you get a message where the downloads are at

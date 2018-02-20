@@ -4,7 +4,7 @@ your_email <- Sys.getenv("your_email")
 
 test_that("ess_country for one round", {
   
-  testthat::skip_on_cran()
+  skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email)
@@ -21,7 +21,7 @@ test_that("ess_country for one round", {
 
 test_that("ess_country for all rounds of a country", {
   
-  testthat::skip_on_cran()
+  skip_on_cran()
   
   # Test for all rounds
   all_rounds <- ess_country("Netherlands", 1:7, your_email)
@@ -33,19 +33,21 @@ test_that("ess_country for all rounds of a country", {
   expect_length(all_rounds, 7)
   
   # check that all ess returns data frames
-  expect_equal(all(sapply(all_rounds, function(x) "data.frame" %in% class(x))), TRUE)
+  expect_true(all(vapply(all_rounds,
+                         function(x) "data.frame" %in% class(x),
+                         FUN.VALUE = logical(1))))
   
   # check that all data frames have more than 0 rows
-  expect_equal(all(sapply(all_rounds, nrow) > 0), TRUE)
+  expect_equal(all(vapply(all_rounds, nrow, numeric(1)) > 0), TRUE)
   
   # check that all data frames have more than 0 columns
-  expect_equal(all(sapply(all_rounds, ncol) > 0), TRUE)
+  expect_equal(all(vapply(all_rounds, ncol, numeric(1)) > 0), TRUE)
   
 })
 
 test_that("Test that downloading files is working fine", {
   
-  testthat::skip_on_cran()
+  skip_on_cran()
   
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
@@ -79,7 +81,7 @@ test_that("Test that downloading files is working fine", {
 
 test_that("Test if only_download is TRUE, output_dir should be valid", {
   
-  testthat::skip_on_cran()
+  skip_on_cran()
   
   # Here output_dir is set to NULL
   expect_error(ess_country("Austria",
@@ -90,7 +92,7 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
 })
 
 test_that("Download country files with other non-stata format", {
-  testthat::skip_on_cran()
+  skip_on_cran()
   
   # Test for only one wave
   wave_one <- ess_country("Denmark", 1, your_email, format = "spss")

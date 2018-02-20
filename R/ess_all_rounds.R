@@ -43,7 +43,8 @@
 #' ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = dl_dir)
 #' }
 #' 
-ess_all_rounds <- function(your_email, only_download = FALSE, output_dir = getwd(), format = 'stata') {
+ess_all_rounds <- function(your_email, only_download = FALSE,
+                           output_dir = getwd(), format = 'stata') {
     ess_rounds(
     show_rounds(),
     your_email,

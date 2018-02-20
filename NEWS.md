@@ -1,6 +1,5 @@
 # ess 0.1.1
 
-
 ## Breaking changes
 
 * Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list.
@@ -17,8 +16,14 @@
 
 ## Bug fixes
 
+* The `ouput_dir` argument is now set to `getwd()` rather than `NULL` as default. [#16](https://github.com/cimentadaj/ess/issues/16)
+
 * When parsing country rounds from the [table](http://www.europeansocialsurvey.org/data/country_index.html), shaded dots were being interpreted as valid rounds when in fact they're not. show_* funs new exclude shaded dots until they've been added as valid rounds
 
-* If the functions can not connect to the ESS website they will return an explicit R error
+* If any `ess_*` function can not connect to the ESS website they will return an explicit R error
 
 * `ess_all_cntrounds` and `ess_all_rounds` were returning the directory of each of the files. Now they only return the single directory where the files where saved as a message
+
+# ess 0.0.1
+
+First release
