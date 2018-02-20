@@ -10,7 +10,7 @@
 For win-builder:
 
 Status: 1 NOTE
-R Under development (unstable) (2017-09-12 r73242)
+R Under development (unstable) (2018-02-19 r74276)
 
 ## Reverse dependencies
 
