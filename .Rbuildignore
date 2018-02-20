@@ -5,6 +5,5 @@
 ^README.Rmd
 ^\.travis\.yml$
 ^cran-comments\.md$
-^NEWS\.md$
 ^CONDUCT\.md$
 ^revdep$
