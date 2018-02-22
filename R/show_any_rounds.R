@@ -138,7 +138,7 @@ show_any_rounds <- function(module, module_index) {
 # where every slot is a country and contains a logical
 # for which rounds are available for every country
 table_to_list <- function(ess_website, module_index) {
-  download_page <- httr::GET(paste0(ess_website, module_index))
+  download_page <- safe_GET(paste0(ess_website, module_index))
   
   # Extract the table in xml format
   table_rounds_xml <- rvest::html_node(xml2::read_html(download_page), "table")
