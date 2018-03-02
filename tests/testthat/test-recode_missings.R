@@ -19,6 +19,8 @@ test_that("recode_missing correctly recodes chr na's", {
   
   chr_miss <- vapply(recode_esp[chrs], function(.x) sum(is.na(.x)), numeric(1))
   
+  # These are the missing values taken from running this script
+  # in stata. This is only for comparison.
   stata_chr_missings <- c(name = 0,
                           edition = 0,
                           proddate = 0,

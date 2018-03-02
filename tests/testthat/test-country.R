@@ -7,7 +7,7 @@ test_that("ess_country for one round", {
   skip_on_cran()
   
   # Test for only one wave
-  wave_one <- ess_country("Denmark", 1, your_email)
+  wave_one <- ess_country("Denmark", 1, your_email, format = 'stata')
   
   # check is list
   expect_is(wave_one, "data.frame")

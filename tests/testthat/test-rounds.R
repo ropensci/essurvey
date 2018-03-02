@@ -52,7 +52,8 @@ test_that("ess_round for downloading works fine", {
                    ess_rounds(1:which_rounds,
                               your_email,
                               only_download = TRUE,
-                              output_dir = tempdir()),
+                              output_dir = tempdir(),
+                              format = 'stata'),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there

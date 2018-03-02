@@ -76,7 +76,7 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE,
                        output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
-  if (only_download) {
+  if (only_download == TRUE) {
     return(
       invisible(download_format(rounds = rounds,
                                 your_email = your_email,
