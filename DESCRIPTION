@@ -17,8 +17,10 @@ Imports:
     haven,
     rvest,
     tibble
-Suggests: testthat,
+Suggests: 
+    testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 VignetteBuilder: knitr
 Note: The ess package is named to match the European Social Survey (ESS) hosted at http://www.europeansocialsurvey.org/. It is unrelated to the Emacs Speaks Statistics (ESS) project, an emacs-based Integrated Development Environment hosted at https://ess.r-project.org
