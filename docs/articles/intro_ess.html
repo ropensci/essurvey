@@ -164,21 +164,20 @@ tk_rnds</code></pre></div>
 <div id="correcting-for-missing-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#correcting-for-missing-values" class="anchor"></a>Correcting for missing values</h2>
-<p>Whenever you download the ESS data, it comes together with a script that recodes the values 6 = ‘Not applicable’, 7 = ‘Refusal’, 8 = ‘Don’t know’, 9 = ‘No answer’ and 9 = ‘Not available’ as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as</p>
+<p>Whenever you download the ESS data, it comes together with a script that recodes the values 6 = ‘Not applicable’, 7 = ‘Refusal’, 8 = ‘Don’t know’, 9 = ‘No answer’ and 9 = ‘Not available’ as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(<span class="st">"Spain"</span>, <span class="dv">1</span>, your_email)
 <span class="kw">mean</span>(sp<span class="op">$</span>tvtot)
 <span class="co"># 4.622406</span></code></pre></div>
-<p>But that vector numbers such as <code>66</code>, <code>77</code>, that shouldn’t be there. <code><a href="../reference/recode_missings.html">recode_missings()</a></code> removes the corresponding missings for numeric variables as well as for character variables.</p>
+<p>..but that vector contains numbers such as <code>66</code>, <code>77</code>, that shouldn’t be there. <code><a href="../reference/recode_missings.html">recode_missings()</a></code> removes the corresponding missings for numeric variables as well as for character variables. It accepts the complete <code>tibble</code> and recodes all variables that should be recoded.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_coding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp)
 <span class="kw">mean</span>(new_coding<span class="op">$</span>tvtot)
 <span class="co"># 4.527504</span></code></pre></div>
-<p>It also gives you the option of recoding only specific categories. For example</p>
+<p>It also gives you the option of recoding only specific categories. For example…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">other_newcoding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp, <span class="kw">c</span>(<span class="st">"Don't know"</span>, <span class="st">"Refusal"</span>))
 <span class="kw">table</span>(other_newcoding<span class="op">$</span>tvpol)
 <span class="co">#  0   1   2   3   4   5   6   7  66 </span>
 <span class="co"># 167 460 610 252  95  36  26  31  45 </span></code></pre></div>
-<p>Still has missing values but recoded the ones you were interested in. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn’t answer and answered questions. But if you’re decided to do so, use <code>recode_missings</code> to recode everything and the <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code>recode_missings</code> for more information.</p>
-<p>Currently the user can either download the data or use it in <code>R</code>. For example, you can’t download the data into the specified folder and also get the list with the rounds.</p>
+<p>…still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn’t and who did answer questions. If the user is decided to do so, use <code>recode_missings</code> to recode everything and the corresponding <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code><a href="../reference/recode_missings.html">?recode_missings</a></code> for more information.</p>
 </div>
 </div>
   </div>
