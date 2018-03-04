@@ -1,6 +1,6 @@
 Package: ess
 Title: Download Data from the European Social Survey on the Fly
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre"))
 BugReports: https://github.com/cimentadaj/ess/issues
 Description: Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two family of functions that allow you to download and interactively check all countries and rounds available.
