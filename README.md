@@ -106,7 +106,7 @@ ess_rounds(c(1, 2),
            format = 'spss')
 ```
 
-This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`.
+This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`. Be aware that if you download the files manually you should read them into R with the `haven` package for all `ess` related functions to work.
 
 ------------------------------------------------------------------------
 
