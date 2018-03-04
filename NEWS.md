@@ -1,10 +1,10 @@
-# ess 0.1.1 (2018-02-20)
+## ess 0.1.1 (2018-03-05)
 
-## Breaking changes
+### Breaking changes
 
 * Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list. [#8](https://github.com/cimentadaj/ess/issues/8)
 
-## New features
+### New features
 
 * remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories 'Not applicable', 'Don't know', etc.. into NA's. See the vignette example for more details. [#1](https://github.com/cimentadaj/ess/issues/1)
 
@@ -14,7 +14,7 @@
 
 * show_rounds_country() is now available to see which countries participated in which rounds [#14](https://github.com/cimentadaj/ess/issues/14)
 
-## Bug fixes
+### Bug fixes
 
 * The `ouput_dir` argument is now set to `getwd()` rather than `NULL` as default. [#16](https://github.com/cimentadaj/ess/issues/16)
 
@@ -24,6 +24,6 @@
 
 * `ess_all_cntrounds` and `ess_all_rounds` were returning the directory of each of the files. Now they only return the single directory where the files where saved as a message
 
-# ess 0.0.1 (2017-11-07)
+## ess 0.0.1 (2017-11-07)
 
 First release
