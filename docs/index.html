@@ -147,7 +147,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
            <span class="dt">only_download =</span> <span class="ot">TRUE</span>,
            <span class="dt">output_dir =</span> <span class="st">"my/new/directory"</span>,
            <span class="dt">format =</span> <span class="st">'spss'</span>)</code></pre></div>
-<p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/ess_country.html">ess_country()</a></code>.</p>
+<p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/ess_country.html">ess_country()</a></code>. Be aware that if you download the files manually you should read them into R with the <code>haven</code> package for all <code>ess</code> related functions to work.</p>
 <hr>
 <p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>

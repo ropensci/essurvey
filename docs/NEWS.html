@@ -102,20 +102,25 @@
     </div>
 
 
-<div id="ess-0-1-1-2018-02-20" class="section level1">
-<h1 class="hasAnchor">
-<a href="#ess-0-1-1-2018-02-20" class="anchor"></a>ess 0.1.1 (2018-02-20)</h1>
-<div id="breaking-changes" class="section level2">
+<div id="ess-0-1-1-9000" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<a href="#ess-0-1-1-9000" class="anchor"></a>ess 0.1.1.9000</h2>
+<p>No changes so far</p>
+</div>
+<div id="ess-0-1-1-2018-03-05" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ess-0-1-1-2018-03-05" class="anchor"></a>ess 0.1.1 (2018-03-05)</h2>
+<div id="breaking-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h3>
 <ul>
 <li>Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list. <a href="https://github.com/cimentadaj/ess/issues/8">#8</a>
 </li>
 </ul>
 </div>
-<div id="new-features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<div id="new-features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h3>
 <ul>
 <li><p>remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories ‘Not applicable’, ‘Don’t know’, etc.. into NA’s. See the vignette example for more details. <a href="https://github.com/cimentadaj/ess/issues/1">#1</a></p></li>
 <li><p>Can download files in ‘stata’, ‘spss’ and ‘sas’ formats for all functions (both for downloading to user’s directory and for reading data). <a href="https://github.com/cimentadaj/ess/issues/11">#11</a>.</p></li>
@@ -123,9 +128,9 @@
 <li><p>show_rounds_country() is now available to see which countries participated in which rounds <a href="https://github.com/cimentadaj/ess/issues/14">#14</a></p></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<div id="bug-fixes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
 <ul>
 <li><p>The <code>ouput_dir</code> argument is now set to <code>getwd()</code> rather than <code>NULL</code> as default. <a href="https://github.com/cimentadaj/ess/issues/16">#16</a></p></li>
 <li><p>When parsing country rounds from the <a href="http://www.europeansocialsurvey.org/data/country_index.html">table</a>, shaded dots were being interpreted as valid rounds when in fact they’re not. show_* funs new exclude shaded dots until they’ve been added as valid rounds</p></li>
@@ -134,9 +139,9 @@
 </ul>
 </div>
 </div>
-<div id="ess-0-0-1-2017-11-07" class="section level1">
-<h1 class="hasAnchor">
-<a href="#ess-0-0-1-2017-11-07" class="anchor"></a>ess 0.0.1 (2017-11-07)</h1>
+<div id="ess-0-0-1-2017-11-07" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ess-0-0-1-2017-11-07" class="anchor"></a>ess 0.0.1 (2017-11-07)</h2>
 <p>First release</p>
 </div>
 
