@@ -9,10 +9,8 @@ download_format <- function(rounds, country, your_email, only_download = FALSE,
                             output_dir = NULL, format = 'stata') {
   
   # Check if the format is either 'stata', 'spss' or 'sas'.
-  if(!format %in% c('stata', 'spss', 'sas')) {
-    stop("Format not available. Only 'stata', 'spss', or 'sas'")
-  }
-  
+  format <- match.arg(format, c("stata", "spss", "sas"))
+
   # Check user is valid
   authenticate(your_email)
   
@@ -56,7 +54,7 @@ authenticate <- function(your_email) {
   
   if(missing(your_email)) {
     stop(
-      "`your_email` parameter must be specified. Create an account at http://www.europeansocialsurvey.org/user/new"
+      "`your_email` parameter must be specified. Create an account at http://www.europeansocialsurvey.org/user/new" # nolint
     ) 
   }
   

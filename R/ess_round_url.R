@@ -1,11 +1,4 @@
 ess_round_url <- function(rounds, format) {
-  
-  # Check if the format is either 'stata', 'spss' or 'sas'.
-  
-  if(!format %in% c('stata', 'spss', 'sas')) {
-    stop("Format not available. Only 'stata', 'spss', or 'sas'")
-  }
-  
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   
