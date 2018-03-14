@@ -2,7 +2,7 @@
 ess <img src="man/figures/ess_logo.png" align="right" />
 --------------------------------------------------------
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ess)](https://cran.r-project.org/package=ess) [![Travis-CI Build Status](https://travis-ci.org/cimentadaj/ess.svg?branch=master)](https://travis-ci.org/cimentadaj/ess) [![Coverage status](https://codecov.io/gh/cimentadaj/ess/branch/master/graph/badge.svg)](https://codecov.io/github/cimentadaj/ess?branch=master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ess)](https://cran.r-project.org/package=ess) [![Travis-CI Build Status](https://travis-ci.org/cimentadaj/ess.svg?branch=master)](https://travis-ci.org/cimentadaj/ess) [![Coverage status](https://codecov.io/gh/cimentadaj/ess/branch/master/graph/badge.svg)](https://codecov.io/github/cimentadaj/ess?branch=master) [![rOpensci\_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/onboarding/issues/201)
 
 Description
 -----------
