@@ -96,7 +96,7 @@ ess_country <- function(country, rounds, your_email, only_download = FALSE,
   
   if (format == "sas") {
     stop(
-      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_country for more details"
+      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_country for more details" # nolint
       )
   }
   

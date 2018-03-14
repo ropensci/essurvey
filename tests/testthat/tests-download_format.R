@@ -9,7 +9,7 @@ test_that("Download function return correct errors", {
   # not ess_rounds. For wrong emails, test it will through error
   
   expect_error(authenticate("random@email.morerandom"),
-               "email address you provided is not associated with any registered")
+               "email address you provided is not associated with any registered") # nolint
   
   # Remember that download_format is very sensitive to arguments
   # If both rounds and country are specified, then it downloads

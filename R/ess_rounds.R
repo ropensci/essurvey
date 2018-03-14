@@ -89,7 +89,7 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE,
   
   if (format == "sas") {
   stop(
-    "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_rounds for more details")
+    "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_rounds for more details") # nolint
   }
   
   dir_download <- download_format(rounds = rounds,
