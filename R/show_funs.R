@@ -70,6 +70,7 @@ show_any <- function(ess_website, module_index) {
 
 var_names <- c(
   "ess_website",
+  "path_login",
   "theme_index",
   "country_index",
   "all_codes"
@@ -83,7 +84,8 @@ codes <- c("6" = "Not applicable",
 
 var_values <-
   list(
-  "http://www.europeansocialsurvey.org",
+  "https://www.europeansocialsurvey.org",
+  "/user/login",
   "/data/module-index.html",
   "/data/country_index.html",
   codes

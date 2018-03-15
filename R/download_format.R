@@ -54,19 +54,20 @@ authenticate <- function(your_email) {
   
   if(missing(your_email)) {
     stop(
-      "`your_email` parameter must be specified. Create an account at http://www.europeansocialsurvey.org/user/new" # nolint
+      "`your_email` parameter must be specified. Create an account at https://www.europeansocialsurvey.org/user/new" # nolint
     ) 
   }
   
   # store your e-mail address in a list to be passed to the website
   values <- list( u = your_email )
   
+  url_login <- paste0(.global_vars$ess_website, .global_vars$path_login)
   # authenticate on the ess website
-  authen <- httr::POST("http://www.europeansocialsurvey.org/user/login",
+  authen <- httr::POST(url_login,
                         body = values)
   
   check_authen <-
-    safe_GET("http://www.europeansocialsurvey.org/user/login",
+    safe_GET(url_login,
               query = values)
   
   authen_xml <- xml2::read_html(check_authen)
@@ -77,7 +78,7 @@ authenticate <- function(your_email) {
   # ered in the ESS website, or among those lines".
   if (length(error_node) != 0) {
     stop(xml2::xml_text(error_node),
-         " Create an account at http://www.europeansocialsurvey.org/user/new")
+         " Create an account at https://www.europeansocialsurvey.org/user/new")
   }
   
 }
@@ -95,7 +96,7 @@ round_downloader <- function(each_url, which_round, which_folder) {
   current_file <- safe_GET(each_url, httr::progress())
   
   # Write as a .zip file
-  writeBin(httr::content( current_file, "raw" ) , temp_download)
+  writeBin(httr::content(current_file, as = "raw") , temp_download)
   
   utils::unzip(temp_download, exdir = which_folder)
 }
