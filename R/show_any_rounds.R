@@ -1,9 +1,15 @@
-#' Return participating countries for rounds in the European Social Survey
+#' Return countries that participated in \strong{all} of the specified rounds.
 #'
 #' @param rounds A numeric vector specifying the rounds from which to return the countries.
 #' Use \code{\link{show_rounds}}for a list of available rounds.
 #' @param participate A logical that controls whether to show participating countries in that/those
-#' rounds or countries that didn't participate. Set to TRUE by default.
+#' rounds or countries that didn't participate. Set to \code{TRUE} by default.
+#' 
+#' @details \code{show_rounds_country} returns the countries that participated in
+#' \strong{all} of the specified rounds. That is, \code{show_rounds_country(1:2)}
+#' will return countries that participated both in round 1 and round 2. Conversely,
+#' if \code{participate = FALSE} it will return the countries that did not
+#' participate in \strong{both} round 1 and round 2.
 #'
 #' @return A character vector with the country names
 #' @export
@@ -28,7 +34,7 @@ show_rounds_country <- function(rounds, participate = TRUE) {
     stop("Rounds not available in ESS. Check show_rounds()")
   }
   
-  # Obtaine the country list with years that participated
+  # Obtain the country list with years that participated
   module_list <- table_to_list(.global_vars$ess_website,
                                .global_vars$country_index)
   

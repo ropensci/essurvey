@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_any_rounds.R
 \name{show_rounds_country}
 \alias{show_rounds_country}
-\title{Return participating countries for rounds in the European Social Survey}
+\title{Return countries that participated in \strong{all} of the specified rounds.}
 \usage{
 show_rounds_country(rounds, participate = TRUE)
 }
@@ -11,13 +11,20 @@ show_rounds_country(rounds, participate = TRUE)
 Use \code{\link{show_rounds}}for a list of available rounds.}
 
 \item{participate}{A logical that controls whether to show participating countries in that/those
-rounds or countries that didn't participate. Set to TRUE by default.}
+rounds or countries that didn't participate. Set to \code{TRUE} by default.}
 }
 \value{
 A character vector with the country names
 }
 \description{
-Return participating countries for rounds in the European Social Survey
+Return countries that participated in \strong{all} of the specified rounds.
+}
+\details{
+\code{show_rounds_country} returns the countries that participated in
+\strong{all} of the specified rounds. That is, \code{show_rounds_country(1:2)}
+will return countries that participated both in round 1 and round 2. Conversely,
+if \code{participate = FALSE} it will return the countries that did not
+participate in \strong{both} round 1 and round 2.
 }
 \examples{
 
