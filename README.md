@@ -93,6 +93,8 @@ dk_two <- ess_country("Denmark", 1:2, "your_email@email.com")
 
 Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `ess_all_cntrounds()` to download all available rounds of a country.
 
+You should be be aware that data from the ESS survey should by analyzed by taking into consideration the sampling and weights of the survey. A useful example comes from the work of Anthony Damico and Daniel Oberski [here](http://asdfree.com/european-social-survey-ess.html).
+
 Stata, SPSS and SAS users
 -------------------------
 

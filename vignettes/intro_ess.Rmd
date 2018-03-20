@@ -155,3 +155,8 @@ table(other_newcoding$tvpol)
 ```
 
 ...still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn't and who did answer questions. If the user is decided to do so, use `recode_missings` to recode everything and the corresponding `recode_*_missings` functions for numeric and character recodings separately. See the documentation of `?recode_missings` for more information.
+
+## Analyzing ESS data
+
+Be aware that for analyzing data from the ESS survey you should take into consideration the sampling and weights of the survey. The [survey](http://r-survey.r-forge.r-project.org/survey/) package provides very good support for this. A useful example comes from the work of Anthony Damico and Daniel Oberski [here](http://asdfree.com/european-social-survey-ess.html).
+

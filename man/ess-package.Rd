@@ -9,8 +9,14 @@
 Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two family of functions that allow you to download and interactively check all countries and rounds available.
 }
 \details{
-For detailed examples visit the package
- website at \url{https://cimentadaj.github.io/ess/}
+Note that this package is for downloading data from the ESS survey.
+For analyzing the data, the user should consider the weights and sampling
+design of each country/round combination as well as sampling between round.
+For some examples, check out the work of Anthony Damico and Daniel Oberski 
+\href{http://asdfree.com/european-social-survey-ess.html}{here}. For detailed
+examples on how to explore/download data using package, visit the package website
+at \url{https://cimentadaj.github.io/ess/}
+}
 \seealso{
 Useful links:
 \itemize{
