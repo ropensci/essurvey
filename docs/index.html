@@ -53,7 +53,7 @@
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -89,7 +89,7 @@
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
-<p>The <code>ess</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds, rounds for a selected country and to show which rounds/countries are available. Check out the vignette for a more detailed example of the <code>ess</code> package.</p>
+<p>The <code>ess</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds, rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/ess/">package’s website</a> for more detailed examples of the <code>ess</code> package.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -137,6 +137,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>You can also download rounds by country:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dk_two &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_country.html">ess_country</a></span>(<span class="st">"Denmark"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">"your_email@email.com"</span>)</code></pre></div>
 <p>Use <code><a href="reference/show_countries.html">show_countries()</a></code> to see available countries and <code><a href="reference/show_country_rounds.html">show_country_rounds("Denmark")</a></code> to see available rounds for chosen country. Alternatively, use <code><a href="reference/ess_all_cntrounds.html">ess_all_cntrounds()</a></code> to download all available rounds of a country.</p>
+<p>You should be be aware that data from the ESS survey should by analyzed by taking into consideration the sampling and weights of the survey. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html">here</a>.</p>
 </div>
 <div id="stata-spss-and-sas-users" class="section level2">
 <h2 class="hasAnchor">
@@ -149,7 +150,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
            <span class="dt">format =</span> <span class="st">'spss'</span>)</code></pre></div>
 <p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/ess_country.html">ess_country()</a></code>. Be aware that if you download the files manually you should read them into R with the <code>haven</code> package for all <code>ess</code> related functions to work.</p>
 <hr>
-<p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
@@ -166,7 +167,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
+<p><a href="LICENSE.html">Full license</a><br><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a><small></small></small></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Jorge Cimentada <br><small class="roles"> Author, maintainer </small>  </li>
@@ -176,6 +177,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><a href="https://cran.r-project.org/package=ess"><img src="http://www.r-pkg.org/badges/version/ess" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://travis-ci.org/cimentadaj/ess"><img src="https://travis-ci.org/cimentadaj/ess.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://codecov.io/github/cimentadaj/ess?branch=master"><img src="https://codecov.io/gh/cimentadaj/ess/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://github.com/ropensci/onboarding/issues/201"><img src="https://badges.ropensci.org/201_status.svg" alt="rOpensci_Badge"></a></li>
 </ul>
 </div>
 

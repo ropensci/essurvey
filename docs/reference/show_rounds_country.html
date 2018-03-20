@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return participating countries for rounds in the European Social Survey — show_rounds_country • ess</title>
+<title>Return countries that participated in <strong>all</strong> of the specified rounds. — show_rounds_country • ess</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,11 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
-<meta property="og:title" content="Return participating countries for rounds in the European Social Survey — show_rounds_country" />
+<meta property="og:title" content="Return countries that participated in <strong>all</strong> of the specified rounds. — show_rounds_country" />
 
-<meta property="og:description" content="Return participating countries for rounds in the European Social Survey" />
+<meta property="og:description" content="Return countries that participated in all of the specified rounds." />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -79,7 +77,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -101,11 +99,12 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return participating countries for rounds in the European Social Survey</h1>
+    <h1>Return countries that participated in <strong>all</strong> of the specified rounds.</h1>
+    <small>Source: <a href='https:/github.com/cimentadaj/ess/blob/master/R/show_any_rounds.R'><code>R/show_any_rounds.R</code></a></small>
     </div>
 
     
-    <p>Return participating countries for rounds in the European Social Survey</p>
+    <p>Return countries that participated in <strong>all</strong> of the specified rounds.</p>
     
 
     <pre class="usage"><span class='fu'>show_rounds_country</span>(<span class='no'>rounds</span>, <span class='kw'>participate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -121,13 +120,21 @@ Use <code><a href='show_rounds.html'>show_rounds</a></code>for a list of availab
     <tr>
       <th>participate</th>
       <td><p>A logical that controls whether to show participating countries in that/those
-rounds or countries that didn't participate. Set to TRUE by default.</p></td>
+rounds or countries that didn't participate. Set to <code>TRUE</code> by default.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A character vector with the country names</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>show_rounds_country</code> returns the countries that participated in
+<strong>all</strong> of the specified rounds. That is, <code>show_rounds_country(1:2)</code>
+will return countries that participated both in round 1 and round 2. Conversely,
+if <code>participate = FALSE</code> it will return the countries that did not
+participate in <strong>both</strong> round 1 and round 2.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -163,6 +170,8 @@ rounds or countries that didn't participate. Set to TRUE by default.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -184,3 +193,4 @@ rounds or countries that didn't participate. Set to TRUE by default.</p></td>
 
   </body>
 </html>
+

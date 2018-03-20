@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • ess</title>
+<title>Changelog • ess</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
-<meta property="og:title" content="All news" />
+<meta property="og:title" content="Changelog" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -76,7 +74,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,14 +97,30 @@
 
   <div class="col-md-9">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Change log <small></small></h1>
+      <small>Source: <a href='https:/github.com/cimentadaj/ess/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div class="contents">
     <div id="ess-0-1-1-9000" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ess-0-1-1-9000" class="anchor"></a>ess 0.1.1.9000</h2>
-<p>No changes so far</p>
+<div id="new-features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h3>
+<ul>
+<li><p>All requests to the ESS website are now done through HTTPS rather than HTTP <a href="https://github.com/cimentadaj/ess/issues/24"><a href='https://github.com/cimentadaj/ess/issues/24'>#24</a></a></p></li>
+<li><p>Add package level documentation <a href="https://github.com/cimentadaj/ess/issues/20"><a href='https://github.com/cimentadaj/ess/issues/20'>#20</a></a></p></li>
+</ul>
+</div>
+<div id="minor-fixes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-fixes" class="anchor"></a>Minor fixes</h3>
+<ul>
+<li>The <code>format</code> argument is now checked through <code>match.arg</code> rathern than manual check <a href="https://github.com/cimentadaj/ess/issues/25"><a href='https://github.com/cimentadaj/ess/issues/25'>#25</a></a>
+</li>
+</ul>
+</div>
 </div>
     <div id="ess-0-1-1-2018-03-05" class="section level2">
 <h2 class="hasAnchor">
@@ -119,9 +133,9 @@
 </li>
 </ul>
 </div>
-<div id="new-features" class="section level3">
+<div id="new-features-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h3>
+<a href="#new-features-1" class="anchor"></a>New features</h3>
 <ul>
 <li><p>remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories ‘Not applicable’, ‘Don’t know’, etc.. into NA’s. See the vignette example for more details. <a href="https://github.com/cimentadaj/ess/issues/1"><a href='https://github.com/cimentadaj/ess/issues/1'>#1</a></a></p></li>
 <li><p>Can download files in ‘stata’, ‘spss’ and ‘sas’ formats for all functions (both for downloading to user’s directory and for reading data). <a href="https://github.com/cimentadaj/ess/issues/11"><a href='https://github.com/cimentadaj/ess/issues/11'>#11</a></a>.</p></li>
@@ -175,3 +189,4 @@
 
   </body>
 </html>
+

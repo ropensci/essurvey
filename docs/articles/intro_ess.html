@@ -53,7 +53,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -78,8 +78,11 @@
       <h1>Introduction to the ess package</h1>
                         <h4 class="author">Jorge Cimentada</h4>
             
-            <h4 class="date">2018-03-05</h4>
-          </div>
+            <h4 class="date">2018-03-20</h4>
+      
+      <small>Source: <a href="https:/github.com/cimentadaj/ess/blob/master/vignettes/intro_ess.Rmd"><code>vignettes/intro_ess.Rmd</code></a></small>
+
+    </div>
 
     
     
@@ -179,6 +182,11 @@ tk_rnds</code></pre></div>
 <span class="co"># 167 460 610 252  95  36  26  31  45 </span></code></pre></div>
 <p>…still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn’t and who did answer questions. If the user is decided to do so, use <code>recode_missings</code> to recode everything and the corresponding <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code><a href="../reference/recode_missings.html">?recode_missings</a></code> for more information.</p>
 </div>
+<div id="analyzing-ess-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#analyzing-ess-data" class="anchor"></a>Analyzing ESS data</h2>
+<p>Be aware that for analyzing data from the ESS survey you should take into consideration the sampling and weights of the survey. The <a href="http://r-survey.r-forge.r-project.org/survey/">survey</a> package provides very good support for this. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html">here</a>.</p>
+</div>
 </div>
   </div>
 
@@ -192,6 +200,7 @@ tk_rnds</code></pre></div>
       <li><a href="#download-complete-rounds">Download complete rounds</a></li>
       <li><a href="#downloading-data-for-stata-spss-and-sas-users">Downloading data for Stata, SPSS and SAS users</a></li>
       <li><a href="#correcting-for-missing-values">Correcting for missing values</a></li>
+      <li><a href="#analyzing-ess-data">Analyzing ESS data</a></li>
       </ul>
 </div>
       </div>
