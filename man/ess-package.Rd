@@ -11,7 +11,6 @@ Download data from the European Social Survey directly from their website <http:
 \details{
 For detailed examples visit the package
  website at \url{https://cimentadaj.github.io/ess/}
-}
 \seealso{
 Useful links:
 \itemize{
