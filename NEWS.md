@@ -1,6 +1,14 @@
 ## ess 0.1.1.9000
 
-No changes so far
+### New features
+
+* All requests to the ESS website are now done through HTTPS rather than HTTP [#24](https://github.com/cimentadaj/ess/issues/24)
+
+* Add package level documentation [#20](https://github.com/cimentadaj/ess/issues/20)
+
+### Minor fixes
+
+* The `format` argument is now checked through `match.arg` rathern than manual check [#25](https://github.com/cimentadaj/ess/issues/25)
 
 ## ess 0.1.1 (2018-03-05)
 
