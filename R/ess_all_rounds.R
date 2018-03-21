@@ -6,9 +6,10 @@
 #' ESS waves and separate formats require different functions to be read. To preserve parsimony
 #' and format errors between waves, the user should use 'spss' or 'stata'.
 #' 
-#' @param your_email a character vector with your email, such as "your_email@email.com".
+#' @param ess_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
-#' \url{http://www.europeansocialsurvey.org/user/new}
+#' \url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+#' through \code{\link{set_email}}.
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to your working directory.
@@ -32,22 +33,24 @@
 #' 
 #' \dontrun{
 #' 
+#' set_email("your@email.com")
+#' 
 #' # Will download all rounds and return a list with each one
-#' ess_all_rounds("your_email@gmail.com")
+#' ess_all_rounds()
 #' 
 #' # Will download all rounds to the directory below
 #' # as .dta files and won't return the rounds in R.
 #' 
 #' dl_dir <- file.path(tempdir(), "mydownloads")
 #' 
-#' ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = dl_dir)
+#' ess_all_rounds(only_download = TRUE, output_dir = dl_dir)
 #' }
 #' 
-ess_all_rounds <- function(your_email, only_download = FALSE,
+ess_all_rounds <- function(ess_email = NULL, only_download = FALSE,
                            output_dir = getwd(), format = 'stata') {
     ess_rounds(
     show_rounds(),
-    your_email,
+    ess_email,
     only_download,
     output_dir,
     format

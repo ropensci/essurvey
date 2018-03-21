@@ -16,13 +16,13 @@ test_that("Download function return correct errors", {
   # country rounds. If only rounds are specified, only
   # rounds are specified. That's why I name every argument.
   # Test round download throw error when round is not available
-  expect_error(download_format(rounds = c(1, 22), your_email = your_email),
+  expect_error(download_format(rounds = c(1, 22), ess_email = your_email),
                "ESS round [0-9]+ is not a available. Check show_rounds()")
   
   # Test country download will throw error when wave is not available
   expect_error(download_format(rounds = c(1, 22),
                                country = "Sweden",
-                               your_email = your_email),
+                               ess_email = your_email),
                "Only rounds (.*) available for Sweden")
 })
 
@@ -35,7 +35,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
                    download_format(
                      rounds = 1:which_rounds,
                      country = "Spain",
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'stata'),
@@ -68,7 +68,7 @@ test_that("download_format can download ROUND files in STATA format", {
   expect_message(download_link <-
                    download_format(
                      rounds = 1:which_rounds,
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'stata'),
@@ -102,7 +102,7 @@ test_that("download_format can download COUNTRY files in SPSS format", {
                    download_format(
                      rounds = 1:which_rounds,
                      country = "Spain",
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'spss'),
@@ -135,7 +135,7 @@ test_that("download_format can download ROUND files in SPSS format", {
   expect_message(download_link <-
                    download_format(
                      rounds = 1:which_rounds,
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'spss'),
@@ -169,7 +169,7 @@ test_that("download_format can download COUNTRY files in SAS format", {
                    download_format(
                      rounds = 1:which_rounds,
                      country = "Spain",
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'sas'),
@@ -199,7 +199,7 @@ test_that("download_format can download ROUND files in SAS format", {
   expect_message(download_link <-
                    download_format(
                      rounds = 1:which_rounds,
-                     your_email = your_email,
+                     ess_email = your_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'sas'),

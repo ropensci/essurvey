@@ -29,10 +29,8 @@ Given that some `ess` functions require your email address, this vignette will u
 
 To install and load development version of the package use:
 ```{r}
-install.packages("devtools")
+# install.packages("devtools")
 devtools::install_github("cimentadaj/ess")
-
-library(ess)
 ```
 
 to install the stable version from CRAN use:
@@ -44,6 +42,14 @@ install.packages("ess")
 ```{r, echo = FALSE, eval = TRUE}
 library(ess)
 ```
+
+Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with `set_email`.
+
+```{r}
+set_email("your@email.com")
+```
+
+Once that's executed you can delete the previous line and any `ess_*` call will look for the email automatically, stored as an environment variable.
 
 Let's suppose you don't know which countries or rounds are available for the ESS. Then the `show_*` family of functions is your friend.
 
@@ -67,18 +73,17 @@ Using this information, we can download those specific rounds easily with `ess_c
 turkey <-
   ess_country(
     country = "Turkey",
-    rounds = c(2, 4),
-    your_email = "your_email@random.com"
+    rounds = c(2, 4)
     )
 ```
 
 `turkey` will now be a list of `length(rounds)` containing a data frame for each round. If you only specified one round, then all `ess_*` functions return a data frame. ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
 
 ```{r}
-ess_all_cntrounds("Turkey", "your_email@random.com")
+ess_all_cntrounds("Turkey")
 ```
 
-The `ess_*` family is  concerned with downloading the data and thus always returns a list containing data frames. Conversely, the `show_*` family grabs information from the ESS website and always returns vectors.
+The `ess_*` family is  concerned with downloading the data and thus always returns a list containing data frames unless only one round is specified, in which it returns a `tibble`. Conversely, the `show_*` family grabs information from the ESS website and always returns vectors.
 
 ## Download complete rounds
 
@@ -93,13 +98,13 @@ Similar to `show_countries`, `show_rounds` interactively looks up rounds in the 
 To download all available rounds, use `ess_all_rounds`
 
 ```{r}
-all_rounds <- ess_all_rounds("your_email@random.com")
+all_rounds <- ess_all_rounds()
 ```
 
 Alternatively, use `ess_rounds` for selected ones.
 
 ```{r}
-selected_rounds <- ess_rounds(c(1, 3, 6), "your_email@random.com")
+selected_rounds <- ess_rounds(c(1, 3, 6))
 ```
 
 ## Downloading data for Stata, SPSS and SAS users
@@ -110,7 +115,6 @@ For example, to save round two from Turkey in a folder called `./my_folder`, we 
 
 ```{r}
 ess_country("Turkey", 2,
-            "your_email@random.com",
             only_download = TRUE,
             output_dir = "./myfolder/")
 ```
@@ -119,7 +123,6 @@ By default it saves the data as `'stata'` files. Alternatively you can use `'sps
 
 ```{r}
 ess_country("Turkey", 2,
-            "your_email@random.com",
             only_download = TRUE,
             output_dir = "./myfolder/",
             format = 'sas')
@@ -132,7 +135,7 @@ This will save the data to `./myfolder/ESS_Turkey` and inside that folder there 
 Whenever you download the ESS data, it comes together with a script that recodes the values 6 = 'Not applicable', 7 = 'Refusal', 8 = 'Don't know', 9 = 'No answer' and 9 = 'Not available' as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as...
 
 ```{r}
-sp <- ess_country("Spain", 1, your_email)
+sp <- ess_country("Spain", 1)
 mean(sp$tvtot)
 # 4.622406
 ```
@@ -141,7 +144,7 @@ mean(sp$tvtot)
 
 ```{r}
 new_coding <- recode_missings(sp)
-mean(new_coding$tvtot)
+mean(new_coding$tvtot, na.rm = TRUE)
 # 4.527504
 ```
 

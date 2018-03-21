@@ -4,13 +4,14 @@
 \alias{ess_all_rounds}
 \title{Download all available integrated rounds from the European Social Survey}
 \usage{
-ess_all_rounds(your_email, only_download = FALSE, output_dir = getwd(),
-  format = "stata")
+ess_all_rounds(ess_email = NULL, only_download = FALSE,
+  output_dir = getwd(), format = "stata")
 }
 \arguments{
-\item{your_email}{a character vector with your email, such as "your_email@email.com".
+\item{ess_email}{a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-\url{http://www.europeansocialsurvey.org/user/new}}
+\url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+through \code{\link{set_email}}.}
 
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
@@ -43,15 +44,17 @@ and format errors between waves, the user should use 'spss' or 'stata'.
 
 \dontrun{
 
+set_email("your@email.com")
+
 # Will download all rounds and return a list with each one
-ess_all_rounds("your_email@gmail.com")
+ess_all_rounds()
 
 # Will download all rounds to the directory below
 # as .dta files and won't return the rounds in R.
 
 dl_dir <- file.path(tempdir(), "mydownloads")
 
-ess_all_rounds("your_email@gmail.com", only_download = TRUE, output_dir = dl_dir)
+ess_all_rounds(only_download = TRUE, output_dir = dl_dir)
 }
 
 }

@@ -32,6 +32,12 @@ Usage
 
 First, you need to register at the ESS website, in case you haven't. Please visit the [register](http://www.europeansocialsurvey.org/user/new) section from the ESS website. If your email is not registered at their website, an error will be raised prompting you to go register.
 
+Set your valid email as en environment variable.
+
+``` r
+set_email("your@email.com")
+```
+
 To explore which rounds/countries are present in the ESS use the `show_*()` family of functions.
 
 ``` r
@@ -54,7 +60,7 @@ show_countries()
 To download the first round to use in R:
 
 ``` r
-one_round <- ess_rounds(1, "your_email@email.com")
+one_round <- ess_rounds(1)
 ```
 
 This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to `NA` for different programs (Stata, SPSS, SAS).
@@ -63,14 +69,14 @@ Use `recode_missings` to recode all values automatically.
 
 ``` r
 one_round <-
-  ess_rounds(1, "your_email@email.com") %>%
+  ess_rounds(1) %>%
   recode_missings()
 ```
 
 See the package vignette for greater detail or see the help page with `?recode_missings`. You can also download several rounds by supplying the number of rounds.
 
 ``` r
-five_rounds <- ess_rounds(1:5, "your_email@email.com")
+five_rounds <- ess_rounds(1:5)
 ```
 
 This will download all latest versions of rounds 1 through 5 and return a list of length 5 with each round as a data frame inside the list.
@@ -78,7 +84,7 @@ This will download all latest versions of rounds 1 through 5 and return a list o
 You can check the available rounds with `show_rounds()` because if you supply a non existent round, the function will return an error.
 
 ``` r
-two_rounds <- ess_rounds(c(1, 22), "your_email@email.com")
+two_rounds <- ess_rounds(c(1, 22))
 #> Error in ess_round_url(rounds) : 
 #> ESS round 22 is not a available. Check show_rounds() 
 ```
@@ -88,7 +94,7 @@ Alternatively, you can download all available rounds with `ess_all_rounds()`.
 You can also download rounds by country:
 
 ``` r
-dk_two <- ess_country("Denmark", 1:2, "your_email@email.com")
+dk_two <- ess_country("Denmark", 1:2)
 ```
 
 Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `ess_all_cntrounds()` to download all available rounds of a country.
@@ -102,7 +108,6 @@ I'm quite aware that most ESS users don't know R, that is why the function also 
 
 ``` r
 ess_rounds(c(1, 2),
-           "your_email@email.com",
            only_download = TRUE,
            output_dir = "my/new/directory",
            format = 'spss')

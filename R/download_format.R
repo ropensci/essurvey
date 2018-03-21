@@ -1,18 +1,19 @@
-# Function downloads the rounds or country rounds specified with your_email and saves
+# Function downloads the rounds or country rounds specified with ess_email and saves
 # in output_dir unzipped as the format specified in format (only supports sas, spss and stata).
 # If only_download, function will print a out a message where it saved everything.
 # the specifi ess_* functions takes care of deleting the folders in only_downloader was FALSE.
 
 # If only wants to download rounds, then name every argument after rounds.
 # If rounds and country are specified, country rounds will be downloaded.
-download_format <- function(rounds, country, your_email, only_download = FALSE,
+download_format <- function(rounds, country, ess_email, only_download = FALSE,
                             output_dir = NULL, format = 'stata') {
   
   # Check if the format is either 'stata', 'spss' or 'sas'.
   format <- match.arg(format, c("stata", "spss", "sas"))
 
+  if (is.null(ess_email)) ess_email <- get_email()
   # Check user is valid
-  authenticate(your_email)
+  authenticate(ess_email)
   
   # I check whether we want to download rounds or country
   # rounds by checking whether the rounds and country args
@@ -50,16 +51,16 @@ download_format <- function(rounds, country, your_email, only_download = FALSE,
 }
 
 # function authenticates the user with his/her email.
-authenticate <- function(your_email) {
+authenticate <- function(ess_email) {
   
-  if(missing(your_email)) {
+  if(missing(ess_email)) {
     stop(
-      "`your_email` parameter must be specified. Create an account at https://www.europeansocialsurvey.org/user/new" # nolint
+      "`ess_email` parameter must be specified. Create an account at https://www.europeansocialsurvey.org/user/new" # nolint
     ) 
   }
   
   # store your e-mail address in a list to be passed to the website
-  values <- list( u = your_email )
+  values <- list( u = ess_email )
   
   url_login <- paste0(.global_vars$ess_website, .global_vars$path_login)
   # authenticate on the ess website

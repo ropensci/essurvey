@@ -4,7 +4,7 @@
 \alias{ess_country}
 \title{Download integrated rounds separately for countries from the European Social Survey}
 \usage{
-ess_country(country, rounds, your_email, only_download = FALSE,
+ess_country(country, rounds, ess_email = NULL, only_download = FALSE,
   output_dir = getwd(), format = "stata")
 }
 \arguments{
@@ -14,9 +14,10 @@ Use \code{\link{show_countries}} for a list of available countries.}
 \item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 for all available rounds.}
 
-\item{your_email}{a character vector with your email, such as "your_email@email.com".
+\item{ess_email}{a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-\url{http://www.europeansocialsurvey.org/user/new}}
+\url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+through \code{\link{set_email}}.}
 
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
@@ -50,8 +51,10 @@ and format errors between waves, the user should use 'spss' or 'stata'.
 \examples{
 \dontrun{
 
+set_email("your_email@email.com")
+
 # Get first three rounds for Denmark
-dk_three <- ess_country("Denmark", 1:3, "your_email@email.com")
+dk_three <- ess_country("Denmark", 1:3)
 
 # Only download the files, this will return nothing
 
@@ -60,7 +63,6 @@ temp_dir <- tempdir()
 ess_country(
  "Turkey",
  rounds = c(2, 4),
- your_email = "your_email@email.com",
  only_download = TRUE,
  output_dir = temp_dir
 )
@@ -77,7 +79,7 @@ uk_one <- ess_country("United Kingdom", 5, "wrong_email@email.com")
 
 # If selected rounds don't exist, error will arise
 
-czech_two <- ess_country("Czech Republic", c(1, 22), "your_email@email.com")
+czech_two <- ess_country("Czech Republic", c(1, 22))
 
 # Error in ess_country_url(country, rounds) : 
 # Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available

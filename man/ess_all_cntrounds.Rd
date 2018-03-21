@@ -4,16 +4,17 @@
 \alias{ess_all_cntrounds}
 \title{Download all available integrated rounds for a country from the European Social Survey}
 \usage{
-ess_all_cntrounds(country, your_email, only_download = FALSE,
+ess_all_cntrounds(country, ess_email = NULL, only_download = FALSE,
   output_dir = getwd(), format = "stata")
 }
 \arguments{
 \item{country}{A character of length 1 with the full name of the country.
 Use \code{\link{show_countries}} for a list of available countries.}
 
-\item{your_email}{a character vector with your email, such as "your_email@email.com".
+\item{ess_email}{a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-\url{http://www.europeansocialsurvey.org/user/new}}
+\url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+through \code{\link{set_email}}.}
 
 \item{only_download}{whether to only download the files as Stata files. Defaults to FALSE.}
 
@@ -46,8 +47,10 @@ and format errors between waves, the user should use 'spss' or 'stata'.
 \examples{
 \dontrun{
 
+set_email("your@email.com")
+
 # Will return all available rounds for Denmark
-ess_all_cntrounds("Denmark", "your_email@gmail.com")
+ess_all_cntrounds("Denmark")
 
 # Will download all rounds to the directory stored below
 # as stata files (set by default) and won't return the rounds
@@ -57,7 +60,6 @@ dl_dir <- file.path(tempdir(), "denmark/")
 
 ess_all_cntrounds(
 "Denmark",
-"your_email@gmail.com",
  only_download = TRUE,
  output_dir = dl_dir
  )

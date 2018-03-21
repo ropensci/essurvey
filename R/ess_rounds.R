@@ -8,9 +8,10 @@
 #'
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 #' for all available rounds.
-#' @param your_email a character vector with your email, such as "your_email@email.com".
+#' @param ess_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
-#' \url{http://www.europeansocialsurvey.org/user/new}
+#' \url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+#' through \code{\link{set_email}}.
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
 #' the \code{only_download} argument. Defaults to your working directory. This will be interpreted as
@@ -30,15 +31,16 @@
 #' @examples
 #' \dontrun{
 #' 
+#' set_email("your_email@email.com")
+#' 
 #' # Get first three rounds
-#' three_rounds <- ess_rounds(1:3, "your_email@email.com")
+#' three_rounds <- ess_rounds(1:3)
 #' 
 #' temp_dir <- tempdir()
 #' 
 #' # Only download the files to output_dir, this will return nothing.
 #' ess_rounds(
 #'  rounds = 1:3,
-#'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
 #'  output_dir = temp_dir,
 #' )
@@ -48,38 +50,37 @@
 #' 
 #' ess_rounds(
 #'  rounds = 1:3,
-#'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
 #'  output_dir = temp_dir,
 #'  format = 'spss'
 #' )
 #' 
 #' # If rounds are repeated, will download only unique ones
-#' two_rounds <- ess_rounds(c(1, 1), "your_email@email.com")
+#' two_rounds <- ess_rounds(c(1, 1))
 #' 
 #' # If email is not registered at ESS website, error will arise
 #' 
 #' two_rounds <- ess_rounds(c(1, 2), "wrong_email@email.com")
 #' 
-#' # Error in download_rounds_stata(rounds, your_email, output_dir) : 
+#' # Error in download_rounds_stata(rounds, ess_email, output_dir) : 
 #' # The email address you provided is not associated with any registered user.
 #' # Create an account at http://www.europeansocialsurvey.org/user/new
 #' 
 #' # If selected rounds don't exist, error will arise
 #' 
-#' two_rounds <- ess_rounds(c(1, 22), "your_email@email.com")
+#' two_rounds <- ess_rounds(c(1, 22))
 #' 
 #' # Error in ess_round_url(rounds) : 
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
-ess_rounds <- function(rounds, your_email, only_download = FALSE,
+ess_rounds <- function(rounds, ess_email = NULL, only_download = FALSE,
                        output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
   if (only_download == TRUE) {
     return(
       invisible(download_format(rounds = rounds,
-                                your_email = your_email,
+                                ess_email= ess_email,
                                 only_download = only_download,
                                 output_dir = output_dir,
                                 format = format))
@@ -93,7 +94,7 @@ ess_rounds <- function(rounds, your_email, only_download = FALSE,
   }
   
   dir_download <- download_format(rounds = rounds,
-                                  your_email = your_email,
+                                  ess_email = ess_email,
                                   format = format)
   
   all_data <- read_format_data(dir_download, format, rounds)

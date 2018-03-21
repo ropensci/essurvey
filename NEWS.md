@@ -1,12 +1,21 @@
 ## ess 0.1.1.9000
 
+
+## Breaking changes
+
+* The `your_email` argument name of `ess_*` functions has be changed to `ess_email` [#23](https://github.com/cimentadaj/ess/issues/23)
+
 ### New features
+
+* `set_email` to set your email as environmental variable rather than write it in each call [#23](https://github.com/cimentadaj/ess/issues/23)
 
 * All requests to the ESS website are now done through HTTPS rather than HTTP [#24](https://github.com/cimentadaj/ess/issues/24)
 
 * Add package level documentation [#20](https://github.com/cimentadaj/ess/issues/20)
 
-### Minor fixes
+### Minor changes
+
+* `ess_email` had no default value but now has `NULL` as default [#23](https://github.com/cimentadaj/ess/issues/23)
 
 * The `format` argument is now checked through `match.arg` rathern than manual check [#25](https://github.com/cimentadaj/ess/issues/25)
 

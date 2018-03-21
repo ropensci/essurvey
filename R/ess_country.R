@@ -10,9 +10,10 @@
 #' Use \code{\link{show_countries}} for a list of available countries.
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 #' for all available rounds.
-#' @param your_email a character vector with your email, such as "your_email@email.com".
+#' @param ess_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
-#' \url{http://www.europeansocialsurvey.org/user/new}
+#' \url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+#' through \code{\link{set_email}}.
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only
 #' download the files using the \code{only_download} argument. Defaults to your working directory.
@@ -34,8 +35,10 @@
 #' @examples
 #' \dontrun{
 #' 
+#' set_email("your_email@email.com")
+#' 
 #' # Get first three rounds for Denmark
-#' dk_three <- ess_country("Denmark", 1:3, "your_email@email.com")
+#' dk_three <- ess_country("Denmark", 1:3)
 #' 
 #' # Only download the files, this will return nothing
 #' 
@@ -44,7 +47,6 @@
 #' ess_country(
 #'  "Turkey",
 #'  rounds = c(2, 4),
-#'  your_email = "your_email@email.com",
 #'  only_download = TRUE,
 #'  output_dir = temp_dir
 #' )
@@ -55,7 +57,6 @@
 # ess_country(
 #  "Turkey",
 #  rounds = c(2, 4),
-#  your_email = "your_email@email.com",
 #  only_download = TRUE,
 #  output_dir = temp_dir,
 #  format = 'spss'
@@ -69,14 +70,13 @@
 #' 
 #' # If selected rounds don't exist, error will arise
 #' 
-#' czech_two <- ess_country("Czech Republic", c(1, 22), "your_email@email.com")
+#' czech_two <- ess_country("Czech Republic", c(1, 22))
 #' 
 #' # Error in ess_country_url(country, rounds) : 
 #' # Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available
 #' # for Czech Republic
 #' }
-
-ess_country <- function(country, rounds, your_email, only_download = FALSE,
+ess_country <- function(country, rounds, ess_email = NULL, only_download = FALSE,
                         output_dir = getwd(), format = 'stata') {
   
   # If user only wants to download, then download and return
@@ -85,7 +85,7 @@ ess_country <- function(country, rounds, your_email, only_download = FALSE,
       invisible(
         download_format(rounds = rounds,
                         country = country,
-                        your_email = your_email,
+                        ess_email = ess_email,
                         only_download = only_download,
                         output_dir = output_dir,
                         format = format
@@ -103,7 +103,7 @@ ess_country <- function(country, rounds, your_email, only_download = FALSE,
   # If not, download data and save the dir of the downloads
   dir_download <- download_format(rounds = rounds,
                                   country = country,
-                                  your_email = your_email,
+                                  ess_email = ess_email,
                                   format = format)
   
   all_data <- read_format_data(dir_download, format, rounds)
