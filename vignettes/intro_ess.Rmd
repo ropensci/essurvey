@@ -59,7 +59,7 @@ To find out which countries have participated you can use `show_countries()`
 show_countries()
 ```
 
-This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let's checkout Turkey. How many rounds has Turkey participated in? We can use `show_country_rounds()`
+This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let's check out Turkey. How many rounds has Turkey participated in? We can use `show_country_rounds()`
 
 ```{r, eval = TRUE}
 tk_rnds <- show_country_rounds("Turkey")
@@ -77,7 +77,7 @@ turkey <-
     )
 ```
 
-`turkey` will now be a list of `length(rounds)` containing a data frame for each round. If you only specified one round, then all `ess_*` functions return a data frame. ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
+`turkey` will now be a list of `length(rounds)` containing a data frame for each round. If you only specified one round, then all `ess_*` functions return a data frame. `ess_country` is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use `ess_all_cntrounds`.
 
 ```{r}
 ess_all_cntrounds("Turkey")

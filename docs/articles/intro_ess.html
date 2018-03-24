@@ -120,7 +120,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ## [28] "Russian Federation" "Slovakia"           "Slovenia"          
 ## [31] "Spain"              "Sweden"             "Switzerland"       
 ## [34] "Turkey"             "Ukraine"            "United Kingdom"</code></pre>
-<p>This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let’s checkout Turkey. How many rounds has Turkey participated in? We can use <code><a href="../reference/show_country_rounds.html">show_country_rounds()</a></code></p>
+<p>This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let’s check out Turkey. How many rounds has Turkey participated in? We can use <code><a href="../reference/show_country_rounds.html">show_country_rounds()</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tk_rnds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/show_country_rounds.html">show_country_rounds</a></span>(<span class="st">"Turkey"</span>)
 tk_rnds</code></pre></div>
 <pre><code>## [1] 2 4</code></pre>
@@ -131,7 +131,7 @@ tk_rnds</code></pre></div>
     <span class="dt">country =</span> <span class="st">"Turkey"</span>,
     <span class="dt">rounds =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)
     )</code></pre></div>
-<p><code>turkey</code> will now be a list of <code>length(rounds)</code> containing a data frame for each round. If you only specified one round, then all <code>ess_*</code> functions return a data frame. ess_country<code>is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use</code>ess_all_cntrounds`.</p>
+<p><code>turkey</code> will now be a list of <code>length(rounds)</code> containing a data frame for each round. If you only specified one round, then all <code>ess_*</code> functions return a data frame. <code>ess_country</code> is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use <code>ess_all_cntrounds</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ess_all_cntrounds.html">ess_all_cntrounds</a></span>(<span class="st">"Turkey"</span>)</code></pre></div>
 <p>The <code>ess_*</code> family is concerned with downloading the data and thus always returns a list containing data frames unless only one round is specified, in which it returns a <code>tibble</code>. Conversely, the <code>show_*</code> family grabs information from the ESS website and always returns vectors.</p>
 </div>
