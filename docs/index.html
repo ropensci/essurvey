@@ -89,7 +89,7 @@
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
-<p>The <code>ess</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds, rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/ess/">package’s website</a> for more detailed examples of the <code>ess</code> package.</p>
+<p>The <code>ess</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/ess/">package’s website</a> for more detailed examples of the <code>ess</code> package.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -104,6 +104,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>First, you need to register at the ESS website, in case you haven’t. Please visit the <a href="http://www.europeansocialsurvey.org/user/new">register</a> section from the ESS website. If your email is not registered at their website, an error will be raised prompting you to go register.</p>
+<p>Set your valid email as en environment variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</code></pre></div>
 <p>To explore which rounds/countries are present in the ESS use the <code>show_*()</code> family of functions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ess)
 <span class="kw"><a href="reference/show_countries.html">show_countries</a></span>()
@@ -120,22 +122,24 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co">#&gt; [31] "Spain"              "Sweden"             "Switzerland"       </span>
 <span class="co">#&gt; [34] "Turkey"             "Ukraine"            "United Kingdom"</span></code></pre></div>
 <p>To download the first round to use in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>, <span class="st">"your_email@email.com"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>)</code></pre></div>
 <p>This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to <code>NA</code> for different programs (Stata, SPSS, SAS).</p>
 <p>Use <code>recode_missings</code> to recode all values automatically.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_round &lt;-
-<span class="st">  </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>, <span class="st">"your_email@email.com"</span>) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+
+one_round &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/recode_missings.html">recode_missings</a></span>()</code></pre></div>
 <p>See the package vignette for greater detail or see the help page with <code><a href="reference/recode_missings.html">?recode_missings</a></code>. You can also download several rounds by supplying the number of rounds.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">five_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="st">"your_email@email.com"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">five_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <p>This will download all latest versions of rounds 1 through 5 and return a list of length 5 with each round as a data frame inside the list.</p>
 <p>You can check the available rounds with <code><a href="reference/show_rounds.html">show_rounds()</a></code> because if you supply a non existent round, the function will return an error.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">22</span>), <span class="st">"your_email@email.com"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">22</span>))
 <span class="co">#&gt; Error in ess_round_url(rounds) : </span>
 <span class="co">#&gt; ESS round 22 is not a available. Check show_rounds() </span></code></pre></div>
 <p>Alternatively, you can download all available rounds with <code><a href="reference/ess_all_rounds.html">ess_all_rounds()</a></code>.</p>
 <p>You can also download rounds by country:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dk_two &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_country.html">ess_country</a></span>(<span class="st">"Denmark"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">"your_email@email.com"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dk_two &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_country.html">ess_country</a></span>(<span class="st">"Denmark"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</code></pre></div>
 <p>Use <code><a href="reference/show_countries.html">show_countries()</a></code> to see available countries and <code><a href="reference/show_country_rounds.html">show_country_rounds("Denmark")</a></code> to see available rounds for chosen country. Alternatively, use <code><a href="reference/ess_all_cntrounds.html">ess_all_cntrounds()</a></code> to download all available rounds of a country.</p>
 <p>You should be be aware that data from the ESS survey should by analyzed by taking into consideration the sampling and weights of the survey. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html">here</a>.</p>
 </div>
@@ -144,7 +148,6 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#stata-spss-and-sas-users" class="anchor"></a>Stata, SPSS and SAS users</h2>
 <p>I’m quite aware that most ESS users don’t know R, that is why the function also allows you to download the data in Stata, SPSS or SAS format with just one line of code. Just set the <code>only_download</code> argument to <code>TRUE</code>, specify where it will be saved and specify the format to be either <code>'stata'</code> (default), <code>'spss'</code> or <code>'sas'</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
-           <span class="st">"your_email@email.com"</span>,
            <span class="dt">only_download =</span> <span class="ot">TRUE</span>,
            <span class="dt">output_dir =</span> <span class="st">"my/new/directory"</span>,
            <span class="dt">format =</span> <span class="st">'spss'</span>)</code></pre></div>

@@ -78,7 +78,7 @@
       <h1>Introduction to the ess package</h1>
                         <h4 class="author">Jorge Cimentada</h4>
             
-            <h4 class="date">2018-03-20</h4>
+            <h4 class="date">2018-03-24</h4>
       
       <small>Source: <a href="https:/github.com/cimentadaj/ess/blob/master/vignettes/intro_ess.Rmd"><code>vignettes/intro_ess.Rmd</code></a></small>
 
@@ -90,7 +90,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>Using the <code>ess</code> package is fairly easy. There are are two main families of functions: <code>ess_*</code> and <code>show_*</code>. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven’t registered, create an account at <a href="http://www.europeansocialsurvey.org/user/new" class="uri">http://www.europeansocialsurvey.org/user/new</a></p>
+<p>Using the <code>ess</code> package is fairly easy. There are are two main families of functions: <code>ess_*</code> and <code>show_*</code>. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven’t registered, create an account at <a href="http://www.europeansocialsurvey.org/user/new" class="uri">http://www.europeansocialsurvey.org/user/new</a>. For those unfamiliar with the ESS, this vignette uses the term rounds, here a synonym of waves to denote the same survey in different time points.</p>
 <p>Once you register visit your email account to validate the account and you’re ready to access the data.</p>
 <p>Given that some <code>ess</code> functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.</p>
 </div>
@@ -98,12 +98,13 @@
 <h2 class="hasAnchor">
 <a href="#downloading-country-specific-rounds" class="anchor"></a>Downloading country specific rounds</h2>
 <p>To install and load development version of the package use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/ess"</span>)
-
-<span class="kw">library</span>(ess)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/ess"</span>)</code></pre></div>
 <p>to install the stable version from CRAN use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"ess"</span>)</code></pre></div>
+<p>Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with <code>set_email</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</code></pre></div>
+<p>Once that’s executed you can delete the previous line and any <code>ess_*</code> call will look for the email automatically, stored as an environment variable.</p>
 <p>Let’s suppose you don’t know which countries or rounds are available for the ESS. Then the <code>show_*</code> family of functions is your friend.</p>
 <p>To find out which countries have participated you can use <code><a href="../reference/show_countries.html">show_countries()</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/show_countries.html">show_countries</a></span>()</code></pre></div>
@@ -128,12 +129,11 @@ tk_rnds</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">turkey &lt;-
 <span class="st">  </span><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(
     <span class="dt">country =</span> <span class="st">"Turkey"</span>,
-    <span class="dt">rounds =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>),
-    <span class="dt">your_email =</span> <span class="st">"your_email@random.com"</span>
+    <span class="dt">rounds =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)
     )</code></pre></div>
 <p><code>turkey</code> will now be a list of <code>length(rounds)</code> containing a data frame for each round. If you only specified one round, then all <code>ess_*</code> functions return a data frame. ess_country<code>is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use</code>ess_all_cntrounds`.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ess_all_cntrounds.html">ess_all_cntrounds</a></span>(<span class="st">"Turkey"</span>, <span class="st">"your_email@random.com"</span>)</code></pre></div>
-<p>The <code>ess_*</code> family is concerned with downloading the data and thus always returns a list containing data frames. Conversely, the <code>show_*</code> family grabs information from the ESS website and always returns vectors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ess_all_cntrounds.html">ess_all_cntrounds</a></span>(<span class="st">"Turkey"</span>)</code></pre></div>
+<p>The <code>ess_*</code> family is concerned with downloading the data and thus always returns a list containing data frames unless only one round is specified, in which it returns a <code>tibble</code>. Conversely, the <code>show_*</code> family grabs information from the ESS website and always returns vectors.</p>
 </div>
 <div id="download-complete-rounds" class="section level2">
 <h2 class="hasAnchor">
@@ -143,9 +143,9 @@ tk_rnds</code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 <p>Similar to <code>show_countries</code>, <code>show_rounds</code> interactively looks up rounds in the ESS website, so any future rounds will automatically be included.</p>
 <p>To download all available rounds, use <code>ess_all_rounds</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_all_rounds.html">ess_all_rounds</a></span>(<span class="st">"your_email@random.com"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_all_rounds.html">ess_all_rounds</a></span>()</code></pre></div>
 <p>Alternatively, use <code>ess_rounds</code> for selected ones.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>), <span class="st">"your_email@random.com"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>))</code></pre></div>
 </div>
 <div id="downloading-data-for-stata-spss-and-sas-users" class="section level2">
 <h2 class="hasAnchor">
@@ -153,12 +153,10 @@ tk_rnds</code></pre></div>
 <p>All <code>ess_*</code> functions allow the user to save the datasets in a specified folder in <code>'stata'</code>, <code>'spss'</code> or <code>'sas'</code> formats.</p>
 <p>For example, to save round two from Turkey in a folder called <code>./my_folder</code>, we use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(<span class="st">"Turkey"</span>, <span class="dv">2</span>,
-            <span class="st">"your_email@random.com"</span>,
             <span class="dt">only_download =</span> <span class="ot">TRUE</span>,
             <span class="dt">output_dir =</span> <span class="st">"./myfolder/"</span>)</code></pre></div>
 <p>By default it saves the data as <code>'stata'</code> files. Alternatively you can use <code>'spss'</code> or <code>'sas'</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(<span class="st">"Turkey"</span>, <span class="dv">2</span>,
-            <span class="st">"your_email@random.com"</span>,
             <span class="dt">only_download =</span> <span class="ot">TRUE</span>,
             <span class="dt">output_dir =</span> <span class="st">"./myfolder/"</span>,
             <span class="dt">format =</span> <span class="st">'sas'</span>)</code></pre></div>
@@ -168,12 +166,12 @@ tk_rnds</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#correcting-for-missing-values" class="anchor"></a>Correcting for missing values</h2>
 <p>Whenever you download the ESS data, it comes together with a script that recodes the values 6 = ‘Not applicable’, 7 = ‘Refusal’, 8 = ‘Don’t know’, 9 = ‘No answer’ and 9 = ‘Not available’ as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(<span class="st">"Spain"</span>, <span class="dv">1</span>, your_email)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ess_country.html">ess_country</a></span>(<span class="st">"Spain"</span>, <span class="dv">1</span>)
 <span class="kw">mean</span>(sp<span class="op">$</span>tvtot)
 <span class="co"># 4.622406</span></code></pre></div>
 <p>..but that vector contains numbers such as <code>66</code>, <code>77</code>, that shouldn’t be there. <code><a href="../reference/recode_missings.html">recode_missings()</a></code> removes the corresponding missings for numeric variables as well as for character variables. It accepts the complete <code>tibble</code> and recodes all variables that should be recoded.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_coding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp)
-<span class="kw">mean</span>(new_coding<span class="op">$</span>tvtot)
+<span class="kw">mean</span>(new_coding<span class="op">$</span>tvtot, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 <span class="co"># 4.527504</span></code></pre></div>
 <p>It also gives you the option of recoding only specific categories. For example…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">other_newcoding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp, <span class="kw">c</span>(<span class="st">"Don't know"</span>, <span class="st">"Refusal"</span>))

@@ -107,8 +107,8 @@
     <p>Download integrated rounds from the European Social Survey</p>
     
 
-    <pre class="usage"><span class='fu'>ess_rounds</span>(<span class='no'>rounds</span>, <span class='no'>your_email</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(),
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
+    <pre class="usage"><span class='fu'>ess_rounds</span>(<span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -119,10 +119,11 @@
 for all available rounds.</p></td>
     </tr>
     <tr>
-      <th>your_email</th>
+      <th>ess_email</th>
       <td><p>a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a></p></td>
+<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A prefered method is to login
+through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
       <th>only_download</th>
@@ -161,15 +162,16 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
+
 <span class='co'># Get first three rounds</span>
-<span class='no'>three_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='st'>"your_email@email.com"</span>)
+<span class='no'>three_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)
 
 <span class='no'>temp_dir</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
 
 <span class='co'># Only download the files to output_dir, this will return nothing.</span>
 <span class='fu'>ess_rounds</span>(
  <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
- <span class='kw'>your_email</span> <span class='kw'>=</span> <span class='st'>"your_email@email.com"</span>,
  <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
 )
@@ -179,26 +181,25 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
 <span class='fu'>ess_rounds</span>(
  <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
- <span class='kw'>your_email</span> <span class='kw'>=</span> <span class='st'>"your_email@email.com"</span>,
  <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>'spss'</span>
 )
 
 <span class='co'># If rounds are repeated, will download only unique ones</span>
-<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>), <span class='st'>"your_email@email.com"</span>)
+<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))
 
 <span class='co'># If email is not registered at ESS website, error will arise</span>
 
 <span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='st'>"wrong_email@email.com"</span>)
 
-<span class='co'># Error in download_rounds_stata(rounds, your_email, output_dir) : </span>
+<span class='co'># Error in download_rounds_stata(rounds, ess_email, output_dir) : </span>
 <span class='co'># The email address you provided is not associated with any registered user.</span>
 <span class='co'># Create an account at http://www.europeansocialsurvey.org/user/new</span>
 
 <span class='co'># If selected rounds don't exist, error will arise</span>
 
-<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>), <span class='st'>"your_email@email.com"</span>)
+<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>))
 
 <span class='co'># Error in ess_round_url(rounds) : </span>
 <span class='co'># ESS round 22 is not a available. Check show_rounds()</span>

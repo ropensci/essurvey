@@ -105,20 +105,25 @@
     <div id="ess-0-1-1-9000" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ess-0-1-1-9000" class="anchor"></a>ess 0.1.1.9000</h2>
+<ul>
+<li>The <code>your_email</code> argument name of <code>ess_*</code> functions has be changed to <code>ess_email</code> <a href="https://github.com/cimentadaj/ess/issues/23"><a href='https://github.com/cimentadaj/ess/issues/23'>#23</a></a>
+</li>
+</ul>
 <div id="new-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h3>
 <ul>
+<li><p><code>set_email</code> to set your email as environmental variable rather than write it in each call <a href="https://github.com/cimentadaj/ess/issues/23"><a href='https://github.com/cimentadaj/ess/issues/23'>#23</a></a></p></li>
 <li><p>All requests to the ESS website are now done through HTTPS rather than HTTP <a href="https://github.com/cimentadaj/ess/issues/24"><a href='https://github.com/cimentadaj/ess/issues/24'>#24</a></a></p></li>
 <li><p>Add package level documentation <a href="https://github.com/cimentadaj/ess/issues/20"><a href='https://github.com/cimentadaj/ess/issues/20'>#20</a></a></p></li>
 </ul>
 </div>
-<div id="minor-fixes" class="section level3">
+<div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-fixes" class="anchor"></a>Minor fixes</h3>
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>The <code>format</code> argument is now checked through <code>match.arg</code> rathern than manual check <a href="https://github.com/cimentadaj/ess/issues/25"><a href='https://github.com/cimentadaj/ess/issues/25'>#25</a></a>
-</li>
+<li><p><code>ess_email</code> had no default value but now has <code>NULL</code> as default <a href="https://github.com/cimentadaj/ess/issues/23"><a href='https://github.com/cimentadaj/ess/issues/23'>#23</a></a></p></li>
+<li><p>The <code>format</code> argument is now checked through <code>match.arg</code> rathern than manual check <a href="https://github.com/cimentadaj/ess/issues/25"><a href='https://github.com/cimentadaj/ess/issues/25'>#25</a></a></p></li>
 </ul>
 </div>
 </div>

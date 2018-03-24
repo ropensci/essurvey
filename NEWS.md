@@ -1,8 +1,5 @@
 ## ess 0.1.1.9000
 
-
-## Breaking changes
-
 * The `your_email` argument name of `ess_*` functions has be changed to `ess_email` [#23](https://github.com/cimentadaj/ess/issues/23)
 
 ### New features

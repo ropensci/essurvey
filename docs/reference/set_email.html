@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download all available integrated rounds from the European Social Survey — ess_all_rounds • ess</title>
+<title>Save your ESS email as an environment variable — set_email • ess</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Download all available integrated rounds from the European Social Survey — ess_all_rounds" />
+<meta property="og:title" content="Save your ESS email as an environment variable — set_email" />
 
-<meta property="og:description" content="Download all available integrated rounds from the European Social Survey" />
+<meta property="og:description" content="Save your ESS email as an environment variable" />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -99,76 +99,38 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download all available integrated rounds from the European Social Survey</h1>
-    <small>Source: <a href='https:/github.com/cimentadaj/ess/blob/master/R/ess_all_rounds.R'><code>R/ess_all_rounds.R</code></a></small>
+    <h1>Save your ESS email as an environment variable</h1>
+    <small>Source: <a href='https:/github.com/cimentadaj/ess/blob/master/R/set_email.R'><code>R/set_email.R</code></a></small>
     </div>
 
     
-    <p>Download all available integrated rounds from the European Social Survey</p>
+    <p>Save your ESS email as an environment variable</p>
     
 
-    <pre class="usage"><span class='fu'>ess_all_rounds</span>(<span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
+    <pre class="usage"><span class='fu'>set_email</span>(<span class='no'>ess_email</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ess_email</th>
-      <td><p>a character vector with your email, such as "your_email@email.com".
-If you haven't registered in the ESS website, create an account at 
-<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A prefered method is to login
-through <code><a href='set_email.html'>set_email</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>only_download</th>
-      <td><p>whether to only download the files as Stata files. Defaults to FALSE.</p></td>
-    </tr>
-    <tr>
-      <th>output_dir</th>
-      <td><p>a character vector with the output directory in case you want to only download the files using
-the <code>only_download</code> argument. Defaults to your working directory.
-This will be interpreted as a <strong>directory</strong> and not a file name. Files names
-will be used as folder names, such as "./myfile.dta/.</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
-with 'stata' as default. When <code>only_download</code> is set to TRUE, the data will be downloaded in
-the <code>format</code> specified. If <code>only_download</code> is FALSE, the data is downloaded and read
-from the specified <code>format</code> (only 'spss' and 'stata' supported, see details).</p></td>
+      <td><p>a character string with your registered email.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>if <code>only_download</code> is set to FALSE it returns a list with all the latest rounds.
-If <code>only_download</code> is set to TRUE and output_dir is a valid directory, it returns the
-saved directories invisibly and saves all the rounds in the chosen <code>format</code> in
-<code>output_dir</code></p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>only_download</code> is set to FALSE, the data will be read in the format specified
-in <code>format</code>. 'sas' is not supported because the data formats have changed between
-ESS waves and separate formats require different functions to be read. To preserve parsimony
-and format errors between waves, the user should use 'spss' or 'stata'.</p>
+    <p>You should only run <code>set_email()</code> once and every <code>ess_*</code> function
+should work fine. Make sure your email is registered at 
+<a href='http://www.europeansocialsurvey.org/'>http://www.europeansocialsurvey.org/</a> before setting the email.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your@email.com"</span>)
+<span class='fu'>set_email</span>(<span class='st'>"my_registered@email.com"</span>)
 
-<span class='co'># Will download all rounds and return a list with each one</span>
-<span class='fu'>ess_all_rounds</span>()
-
-<span class='co'># Will download all rounds to the directory below</span>
-<span class='co'># as .dta files and won't return the rounds in R.</span>
-
-<span class='no'>dl_dir</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"mydownloads"</span>)
-
-<span class='fu'>ess_all_rounds</span>(<span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>dl_dir</span>)
+<span class='fu'><a href='ess_country.html'>ess_country</a></span>(<span class='fl'>1</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -177,8 +139,6 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>

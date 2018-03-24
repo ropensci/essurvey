@@ -107,7 +107,7 @@
     <p>Download all available integrated rounds for a country from the European Social Survey</p>
     
 
-    <pre class="usage"><span class='fu'>ess_all_cntrounds</span>(<span class='no'>country</span>, <span class='no'>your_email</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>ess_all_cntrounds</span>(<span class='no'>country</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -119,10 +119,11 @@
 Use <code><a href='show_countries.html'>show_countries</a></code> for a list of available countries.</p></td>
     </tr>
     <tr>
-      <th>your_email</th>
+      <th>ess_email</th>
       <td><p>a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a></p></td>
+<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A prefered method is to login
+through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
       <th>only_download</th>
@@ -162,8 +163,10 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your@email.com"</span>)
+
 <span class='co'># Will return all available rounds for Denmark</span>
-<span class='fu'>ess_all_cntrounds</span>(<span class='st'>"Denmark"</span>, <span class='st'>"your_email@gmail.com"</span>)
+<span class='fu'>ess_all_cntrounds</span>(<span class='st'>"Denmark"</span>)
 
 <span class='co'># Will download all rounds to the directory stored below</span>
 <span class='co'># as stata files (set by default) and won't return the rounds</span>
@@ -173,7 +176,6 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
 <span class='fu'>ess_all_cntrounds</span>(
 <span class='st'>"Denmark"</span>,
-<span class='st'>"your_email@gmail.com"</span>,
  <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>dl_dir</span>
  )

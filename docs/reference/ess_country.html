@@ -107,7 +107,7 @@
     <p>Download integrated rounds separately for countries from the European Social Survey</p>
     
 
-    <pre class="usage"><span class='fu'>ess_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='no'>your_email</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>ess_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -124,10 +124,11 @@ Use <code><a href='show_countries.html'>show_countries</a></code> for a list of 
 for all available rounds.</p></td>
     </tr>
     <tr>
-      <th>your_email</th>
+      <th>ess_email</th>
       <td><p>a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
-<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a></p></td>
+<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A prefered method is to login
+through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
       <th>only_download</th>
@@ -168,8 +169,10 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
+
 <span class='co'># Get first three rounds for Denmark</span>
-<span class='no'>dk_three</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Denmark"</span>, <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='st'>"your_email@email.com"</span>)
+<span class='no'>dk_three</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Denmark"</span>, <span class='fl'>1</span>:<span class='fl'>3</span>)
 
 <span class='co'># Only download the files, this will return nothing</span>
 
@@ -178,7 +181,6 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 <span class='fu'>ess_country</span>(
  <span class='st'>"Turkey"</span>,
  <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>4</span>),
- <span class='kw'>your_email</span> <span class='kw'>=</span> <span class='st'>"your_email@email.com"</span>,
  <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>
 )
@@ -195,7 +197,7 @@ and format errors between waves, the user should use 'spss' or 'stata'.</p>
 
 <span class='co'># If selected rounds don't exist, error will arise</span>
 
-<span class='no'>czech_two</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Czech Republic"</span>, <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>), <span class='st'>"your_email@email.com"</span>)
+<span class='no'>czech_two</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Czech Republic"</span>, <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>))
 
 <span class='co'># Error in ess_country_url(country, rounds) : </span>
 <span class='co'># Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available</span>
