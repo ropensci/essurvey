@@ -68,6 +68,8 @@ This will return a data frame containing the first round. Typically, the Europea
 Use `recode_missings` to recode all values automatically.
 
 ``` r
+library(tidyverse)
+
 one_round <-
   ess_rounds(1) %>%
   recode_missings()
