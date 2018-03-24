@@ -1,12 +1,12 @@
 # Environment variables from Travis CI
-your_email <- Sys.getenv("your_email")
+ess_email <- Sys.getenv("ess_email")
 
 test_that("ess_round for only one round", {
   
   skip_on_cran()
   
   # Test for only one round
-  round_one <- ess_rounds(1, your_email)
+  round_one <- ess_rounds(1, ess_email)
   
   # check is list
   expect_is(round_one, "data.frame")
@@ -23,7 +23,7 @@ test_that("ess_round for all rounds", {
   skip_on_cran()
   
   # Test for all rounds
-  all_rounds <- ess_rounds(1:7, your_email)
+  all_rounds <- ess_rounds(1:7, ess_email)
   
   # check is list
   expect_is(all_rounds, "list")
@@ -50,7 +50,7 @@ test_that("ess_round for downloading works fine", {
   which_rounds <- 2
   expect_message(downloads <-
                    ess_rounds(1:which_rounds,
-                              your_email,
+                              ess_email,
                               only_download = TRUE,
                               output_dir = tempdir(),
                               format = 'stata'),
@@ -81,7 +81,7 @@ test_that("Test if only_download is TRUE, output_dir should be valid", {
   
   # Here output_dir is set to NULL
   expect_error(ess_rounds( 1:which_rounds,
-                           your_email,
+                           ess_email,
                            only_download = TRUE,
                            output_dir = NULL))
 })
@@ -90,7 +90,7 @@ test_that("Download round files with other non-stata format", {
   skip_on_cran()
   
   # Test for only one wave
-  wave_one <- ess_rounds(1, your_email, format = "spss")
+  wave_one <- ess_rounds(1, ess_email, format = "spss")
   
   # check is list
   expect_is(wave_one, "data.frame")
@@ -104,6 +104,6 @@ test_that("Download round files with other non-stata format", {
 })
 
 test_that("Specify 'sas' for reading ess data throws error",{
-  expect_error(ess_rounds(1, your_email, format = "sas"),
+  expect_error(ess_rounds(1, ess_email, format = "sas"),
                "You cannot read SAS but only 'spss' and 'stata' files with this function") # nolint
 })
