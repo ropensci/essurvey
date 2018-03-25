@@ -11,10 +11,11 @@
 #' the \code{download_rounds}. Defaults to your working directory. This will be interpreted as
 #' a \strong{directory} and not a path with a file name.
 #' 
-#' @param format the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
-#' with 'stata' as default. When \code{only_download} is set to TRUE, the data will be downloaded in
-#' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
-#' from the specified \code{format} (only 'spss' and 'stata' supported, see details).
+#' @param format the format from which to download the data. Can either be 'stata',
+#' 'spss' or 'sas', with 'stata' as default. When using \code{import_rounds} the
+#' data will be downloaded and read in the \code{format} specified (only 'spss'
+#' and 'stata' supported, see details). For \code{download_rounds}, the data is
+#' downloaded from the specified \code{format}.
 #'
 #' @details
 #' Use \code{import_rounds} to download specified rounds and import them to R.
@@ -28,7 +29,7 @@
 #' so that the user
 #' can switch between formats if any encoding errors are found in the data. For more
 #' details see the dicussion \href{https://github.com/cimentadaj/ess/issues/11}{here}.
-#' For this particular argument, 'sas' is not supported because the data formats have
+#' For this particular argument in, 'sas' is not supported because the data formats have
 #' changed between ESS waves and separate formats require different functions to be
 #' read. To preserve parsimony and format errors between waves, the user should use
 #' 'spss' or 'stata'.

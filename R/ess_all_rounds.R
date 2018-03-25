@@ -1,6 +1,6 @@
 #' Download all available integrated rounds from the European Social Survey
 #' 
-#' #' This function is deprecated and will be removed in future releases. Use
+#' This function is deprecated and will be removed in the next release. Use
 #' \code{\link{import_all_rounds}} instead.
 #'
 #' @details 

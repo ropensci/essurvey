@@ -32,7 +32,7 @@ saved directories invisibly and saves all the rounds in the chosen \code{format}
 \code{output_dir}
 }
 \description{
-#' This function is deprecated and will be removed in future releases. Use
+This function is deprecated and will be removed in the next release. Use
 \code{\link{import_all_rounds}} instead.
 }
 \details{
