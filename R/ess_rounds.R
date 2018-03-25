@@ -1,10 +1,7 @@
 #' Download integrated rounds from the European Social Survey
 #' 
-#' @details
-#' If \code{only_download} is set to FALSE, the data will be read in the format specified
-#' in \code{format}. 'sas' is not supported because the data formats have changed between
-#' ESS waves and separate formats require different functions to be read. To preserve parsimony
-#' and format errors between waves, the user should use 'spss' or 'stata'.
+#' This function is deprecated and will be removed in future releases. Use
+#' \code{\link{import_rounds}} instead.
 #'
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_rounds}}
 #' for all available rounds.
@@ -21,12 +18,19 @@
 #' the \code{format} specified. If \code{only_download} is FALSE, the data is downloaded and read
 #' from the specified \code{format} (only 'spss' and 'stata' supported, see details).
 #'
+#' @details
+#' If \code{only_download} is set to FALSE, the data will be read in the format specified
+#' in \code{format}. 'sas' is not supported because the data formats have changed between
+#' ESS waves and separate formats require different functions to be read. To preserve parsimony
+#' and format errors between waves, the user should use 'spss' or 'stata'.
+#'
 #' @return if \code{only_download} is set to FALSE and \code{length(rounds)} is 1, it returns a tibble
 #' with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
 #' containing the latest version of each round. If \code{only_download} is set to TRUE and
 #' output_dir is a valid directory, it returns the saved directories invisibly and saves all
 #' the rounds in the chosen \code{format} in \code{output_dir}
 #' @export
+#' 
 #'
 #' @examples
 #' \dontrun{
@@ -75,6 +79,8 @@
 #' }
 ess_rounds <- function(rounds, ess_email = NULL, only_download = FALSE,
                        output_dir = getwd(), format = 'stata') {
+  
+  .Deprecated("import_rounds or download_rounds")
   
   # If user only wants to download, then download and return
   if (only_download == TRUE) {
