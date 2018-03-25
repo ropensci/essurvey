@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contributor Code of Conduct • essurvey</title>
+<title>essurvey: Download Data from the European Social Survey on the Fly — essurvey-package • essurvey</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -22,10 +22,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
-<meta property="og:title" content="Contributor Code of Conduct" />
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
+<meta property="og:title" content="essurvey: Download Data from the European Social Survey on the Fly — essurvey-package" />
+
+<meta property="og:description" content="Download data from the European Social Survey directly from their website &lt;http://www.europeansocialsurvey.org/&gt;. There are two family of functions that allow you to download and interactively check all countries and rounds available." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -38,7 +41,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -48,18 +51,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">essurvey</a>
+      <a class="navbar-brand" href="../index.html">essurvey</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -69,12 +72,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/intro_ess.html">Introduction to the essurvey package</a>
+      <a href="../articles/intro_ess.html">Introduction to the essurvey package</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -94,25 +97,52 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Contributor Code of Conduct</h1>
+    <h1>essurvey: Download Data from the European Social Survey on the Fly</h1>
+    <small>Source: <a href='https:/github.com/cimentadaj/essurvey/blob/master/R/essurvey-package.R'><code>R/essurvey-package.R</code></a></small>
     </div>
 
-<div id="contributor-code-of-conduct" class="section level1">
+    
+    <p>Download data from the European Social Survey directly from their website &lt;http://www.europeansocialsurvey.org/&gt;. There are two family of functions that allow you to download and interactively check all countries and rounds available.</p>
+    
 
-<p>As contributors and maintainers of this project, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.</p>
-<p>We are committed to making participation in this project a harassment-free experience for everyone, regardless of level of experience, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, or religion.</p>
-<p>Examples of unacceptable behavior by participants include the use of sexual language or imagery, derogatory comments or personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.</p>
-<p>Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct. Project maintainers who do not follow the Code of Conduct may be removed from the project team.</p>
-<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or contacting one or more of the project maintainers.</p>
-<p>This Code of Conduct is adapted from the Contributor Covenant (<a href="http:contributor-covenant.org" class="uri">http:contributor-covenant.org</a>), version 1.0.0, available at <a href="http://contributor-covenant.org/version/1/0/0/" class="uri">http://contributor-covenant.org/version/1/0/0/</a></p>
-</div>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note that this package is for downloading data from the ESS survey.
+For analyzing the data, the user should consider the weights and sampling
+design of each country/round combination as well as sampling between round.
+For some examples, check out the work of Anthony Damico and Daniel Oberski 
+<a href='http://asdfree.com/european-social-survey-ess.html'>here</a>. For detailed
+examples on how to explore/download data using package, visit the package website
+at <a href='https://cimentadaj.github.io/essurvey/'>https://cimentadaj.github.io/essurvey/</a></p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>Useful links:</p><ul>
+<li><p><a href='https://github.com/cimentadaj/essurvey'>https://github.com/cimentadaj/essurvey</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/cimentadaj/essurvey/issues'>https://github.com/cimentadaj/essurvey/issues</a></p></li>
+</ul>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#details">Details</a></li>
 
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
+    <h2>Author</h2>
+    
+<strong>Maintainer</strong>: Jorge Cimentada <a href='mailto:cimentadaj@gmail.com'>cimentadaj@gmail.com</a>
+
+
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">

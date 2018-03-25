@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Download Data from the European Social Survey on the Fly • ess</title>
+<title>Download Data from the European Social Survey on the Fly • essurvey</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">ess</a>
+      <a class="navbar-brand" href="index.html">essurvey</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -48,7 +48,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/intro_ess.html">Introduction to the ess package</a>
+      <a href="articles/intro_ess.html">Introduction to the essurvey package</a>
     </li>
   </ul>
 </li>
@@ -58,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cimentadaj/ess">
+  <a href="https://github.com/cimentadaj/essurvey">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -79,9 +79,9 @@
     
     
 <div class="contents">
-<div id="ess" class="section level2">
+<div id="essurvey" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ess" class="anchor"></a>ess <img src="reference/figures/ess_logo.png" align="right">
+<a href="#essurvey" class="anchor"></a>essurvey <img src="reference/figures/ess_logo.png" align="right">
 </h2>
 
 </div>
@@ -89,16 +89,16 @@
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
-<p>The <code>ess</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/ess/">package’s website</a> for more detailed examples of the <code>ess</code> package.</p>
+<p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install and load the development version with these commands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools") in case you don't have it</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/ess"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/essurvey"</span>)</code></pre></div>
 <p>or the stable version with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"ess"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"essurvey"</span>)</code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -107,7 +107,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>Set your valid email as en environment variable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</code></pre></div>
 <p>To explore which rounds/countries are present in the ESS use the <code>show_*()</code> family of functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ess)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(essurvey)
 <span class="kw"><a href="reference/show_countries.html">show_countries</a></span>()
 <span class="co">#&gt;  [1] "Albania"            "Austria"            "Belgium"           </span>
 <span class="co">#&gt;  [4] "Bulgaria"           "Croatia"            "Cyprus"            </span>
@@ -122,36 +122,35 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co">#&gt; [31] "Spain"              "Sweden"             "Switzerland"       </span>
 <span class="co">#&gt; [34] "Turkey"             "Ukraine"            "United Kingdom"</span></code></pre></div>
 <p>To download the first round to use in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="dv">1</span>)</code></pre></div>
 <p>This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to <code>NA</code> for different programs (Stata, SPSS, SAS).</p>
 <p>Use <code>recode_missings</code> to recode all values automatically.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 
 one_round &lt;-
-<span class="st">  </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/recode_missings.html">recode_missings</a></span>()</code></pre></div>
 <p>See the package vignette for greater detail or see the help page with <code><a href="reference/recode_missings.html">?recode_missings</a></code>. You can also download several rounds by supplying the number of rounds.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">five_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">five_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <p>This will download all latest versions of rounds 1 through 5 and return a list of length 5 with each round as a data frame inside the list.</p>
 <p>You can check the available rounds with <code><a href="reference/show_rounds.html">show_rounds()</a></code> because if you supply a non existent round, the function will return an error.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">22</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_rounds &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">22</span>))
 <span class="co">#&gt; Error in ess_round_url(rounds) : </span>
 <span class="co">#&gt; ESS round 22 is not a available. Check show_rounds() </span></code></pre></div>
-<p>Alternatively, you can download all available rounds with <code><a href="reference/ess_all_rounds.html">ess_all_rounds()</a></code>.</p>
+<p>Alternatively, you can download all available rounds with <code><a href="reference/import_rounds.html">import_all_rounds()</a></code>.</p>
 <p>You can also download rounds by country:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dk_two &lt;-<span class="st"> </span><span class="kw"><a href="reference/ess_country.html">ess_country</a></span>(<span class="st">"Denmark"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</code></pre></div>
-<p>Use <code><a href="reference/show_countries.html">show_countries()</a></code> to see available countries and <code><a href="reference/show_country_rounds.html">show_country_rounds("Denmark")</a></code> to see available rounds for chosen country. Alternatively, use <code><a href="reference/ess_all_cntrounds.html">ess_all_cntrounds()</a></code> to download all available rounds of a country.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dk_two &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_country.html">import_country</a></span>(<span class="st">"Denmark"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</code></pre></div>
+<p>Use <code><a href="reference/show_countries.html">show_countries()</a></code> to see available countries and <code><a href="reference/show_country_rounds.html">show_country_rounds("Denmark")</a></code> to see available rounds for chosen country. Alternatively, use <code><a href="reference/import_country.html">import_all_cntrounds()</a></code> to download all available rounds of a country.</p>
 <p>You should be be aware that data from the ESS survey should by analyzed by taking into consideration the sampling and weights of the survey. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html">here</a>.</p>
 </div>
 <div id="stata-spss-and-sas-users" class="section level2">
 <h2 class="hasAnchor">
 <a href="#stata-spss-and-sas-users" class="anchor"></a>Stata, SPSS and SAS users</h2>
-<p>I’m quite aware that most ESS users don’t know R, that is why the function also allows you to download the data in Stata, SPSS or SAS format with just one line of code. Just set the <code>only_download</code> argument to <code>TRUE</code>, specify where it will be saved and specify the format to be either <code>'stata'</code> (default), <code>'spss'</code> or <code>'sas'</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/ess_rounds.html">ess_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
-           <span class="dt">only_download =</span> <span class="ot">TRUE</span>,
-           <span class="dt">output_dir =</span> <span class="st">"my/new/directory"</span>,
-           <span class="dt">format =</span> <span class="st">'spss'</span>)</code></pre></div>
-<p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/ess_country.html">ess_country()</a></code>. Be aware that if you download the files manually you should read them into R with the <code>haven</code> package for all <code>ess</code> related functions to work.</p>
+<p>I’m quite aware that most ESS users don’t know R, that is why the package also allows to download the data in Stata, SPSS or SAS format with just one line of code. Instead of the <code>import_*</code> functions, use the <code>download_*</code> functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/import_rounds.html">download_rounds</a></span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),
+                <span class="dt">output_dir =</span> <span class="st">"my/new/directory"</span>,
+                <span class="dt">format =</span> <span class="st">'spss'</span>)</code></pre></div>
+<p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/import_country.html">download_country()</a></code>. Be aware that if you download the files manually you should read them into R with the <code>haven</code> package for all <code>essurvey</code> related functions to work.</p>
 <hr>
 <p>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
@@ -162,11 +161,9 @@ one_round &lt;-
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=ess">https://​cran.r-project.org/​package=ess</a>
+<li>Browse source code at <br><a href="https://github.com/cimentadaj/essurvey">https://​github.com/​cimentadaj/​essurvey</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/cimentadaj/ess">https://​github.com/​cimentadaj/​ess</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/cimentadaj/ess/issues">https://​github.com/​cimentadaj/​ess/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/cimentadaj/essurvey/issues">https://​github.com/​cimentadaj/​essurvey/​issues</a>
 </li>
 </ul>
 <h2>License</h2>
@@ -177,9 +174,9 @@ one_round &lt;-
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=ess"><img src="http://www.r-pkg.org/badges/version/ess" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/cimentadaj/ess"><img src="https://travis-ci.org/cimentadaj/ess.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://codecov.io/github/cimentadaj/ess?branch=master"><img src="https://codecov.io/gh/cimentadaj/ess/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://cran.r-project.org/package=essurvey"><img src="http://www.r-pkg.org/badges/version/essurvey" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://travis-ci.org/cimentadaj/essurvey"><img src="https://travis-ci.org/cimentadaj/essurvey.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://codecov.io/github/cimentadaj/essurvey?branch=master"><img src="https://codecov.io/gh/cimentadaj/essurvey/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://github.com/ropensci/onboarding/issues/201"><img src="https://badges.ropensci.org/201_status.svg" alt="rOpensci_Badge"></a></li>
 </ul>
 </div>

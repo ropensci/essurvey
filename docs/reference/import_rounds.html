@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download integrated rounds separately for countries from the European Social Survey — ess_country • essurvey</title>
+<title>Download integrated rounds from the European Social Survey — import_rounds • essurvey</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Download integrated rounds separately for countries from the European Social Survey — ess_country" />
+<meta property="og:title" content="Download integrated rounds from the European Social Survey — import_rounds" />
 
-<meta property="og:description" content="This function is deprecated and will be removed in the next release. Use
-import_country instead." />
+<meta property="og:description" content="Download integrated rounds from the European Social Survey" />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -100,26 +99,24 @@ import_country instead." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download integrated rounds separately for countries from the European Social Survey</h1>
-    <small>Source: <a href='https:/github.com/cimentadaj/essurvey/blob/master/R/ess_country.R'><code>R/ess_country.R</code></a></small>
+    <h1>Download integrated rounds from the European Social Survey</h1>
+    <small>Source: <a href='https:/github.com/cimentadaj/essurvey/blob/master/R/rounds.R'><code>R/rounds.R</code></a></small>
     </div>
 
     
-    <p>This function is deprecated and will be removed in the next release. Use
-<code><a href='import_country.html'>import_country</a></code> instead.</p>
+    <p>Download integrated rounds from the European Social Survey</p>
     
 
-    <pre class="usage"><span class='fu'>ess_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
+    <pre class="usage"><span class='fu'>import_rounds</span>(<span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)
+
+<span class='fu'>import_all_rounds</span>(<span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)
+
+<span class='fu'>download_rounds</span>(<span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(),
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>country</th>
-      <td><p>a character of length 1 with the full name of the country. 
-Use <code><a href='show_countries.html'>show_countries</a></code> for a list of available countries.</p></td>
-    </tr>
     <tr>
       <th>rounds</th>
       <td><p>a numeric vector with the rounds to download. See <code><a href='show_rounds.html'>show_rounds</a></code>
@@ -133,78 +130,89 @@ If you haven't registered in the ESS website, create an account at
 through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
-      <th>only_download</th>
-      <td><p>whether to only download the files as Stata files. Defaults to FALSE.</p></td>
+      <th>format</th>
+      <td><p>the format from which to download the data. Can either be 'stata',
+'spss' or 'sas', with 'stata' as default. When using <code>import_rounds</code> the
+data will be downloaded and read in the <code>format</code> specified (only 'spss'
+and 'stata' supported, see details). For <code>download_rounds</code>, the data is
+downloaded from the specified <code>format</code>.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p>a character vector with the output directory in case you want to only
-download the files using the <code>only_download</code> argument. Defaults to your working directory.
-Files will be saved as ESS_*/ESS<code>N</code> where the first star is the country name and <code>N</code>
-the round number. This will be interpreted as a <strong>directory</strong> and not a file name. Files names
-will be used as folder names, such as "./myfile.dta/.</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>the format from which to download the data. Can either be 'stata', 'spss' or 'sas',
-with 'stata' as default. When <code>only_download</code> is set to TRUE, the data will be downloaded in
-the <code>format</code> specified. If <code>only_download</code> is FALSE, the data is downloaded and read
-from the specified <code>format</code> (only 'spss' and 'stata' supported, see details).</p></td>
+      <td><p>a character vector with the output directory in case you want to only download the files using
+the <code>download_rounds</code>. Defaults to your working directory. This will be interpreted as
+a <strong>directory</strong> and not a path with a file name.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>if <code>only_download</code> is set to FALSE and <code>length(rounds)</code> is 1, it returns a tibble
+    <p>for <code>import_rounds</code> if <code>length(rounds)</code> is 1, it returns a tibble
 with the latest version of that round. Otherwise it returns a list of <code>length(rounds)</code>
-containing the latest version of each round. If <code>only_download</code> is set to TRUE and
-output_dir is a valid directory, it returns the saved directories invisibly and saves all
-the rounds in the chosen <code>format</code> in <code>output_dir</code></p>
+containing the latest version of each round. For <code>download_rounds</code>, if 
+<code>output_dir</code> is a valid directory, it returns the saved directories invisibly
+and saves all the rounds in the chosen <code>format</code> in <code>output_dir</code></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>only_download</code> is set to FALSE, the data will be read in the format specified
-in <code>format</code>. 'sas' is not supported because the data formats have changed between
-ESS waves and separate formats require different functions to be read. To preserve parsimony
-and format errors between waves, the user should use 'spss' or 'stata'.</p>
+    <p>Use <code>import_rounds</code> to download specified rounds and import them to R.
+<code>import_all_rounds</code> will download all rounds by default and <code>download_rounds</code>
+will download rounds and save them in a specified <code>format</code> in the supplied
+directory.</p>
+<p>The <code>format</code> argument from <code>import_rounds</code> should not matter to the user
+because the data is read into R either way. However, different formats might have
+different handling of the encoding of some questions. This option was preserved
+so that the user
+can switch between formats if any encoding errors are found in the data. For more
+details see the dicussion <a href='https://github.com/cimentadaj/ess/issues/11'>here</a>.
+For this particular argument in, 'sas' is not supported because the data formats have
+changed between ESS waves and separate formats require different functions to be
+read. To preserve parsimony and format errors between waves, the user should use
+'spss' or 'stata'.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
 
-<span class='co'># Get first three rounds for Denmark</span>
-<span class='no'>dk_three</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Denmark"</span>, <span class='fl'>1</span>:<span class='fl'>3</span>)
-
-<span class='co'># Only download the files, this will return nothing</span>
+<span class='co'># Get first three rounds</span>
+<span class='no'>three_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>import_rounds</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)
 
 <span class='no'>temp_dir</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
 
-<span class='fu'>ess_country</span>(
- <span class='st'>"Turkey"</span>,
- <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>4</span>),
- <span class='kw'>only_download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
- <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>
+<span class='co'># Only download the files to output_dir, this will return nothing.</span>
+<span class='fu'>download_rounds</span>(
+ <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
+ <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
 )
 
-<span class='co'># By default, ess_country downloads 'stata' files but</span>
-<span class='co'># you can also download 'spss' or 'sas' files.</span>
+<span class='co'># By default, download_rounds saves a 'stata' file. You can</span>
+<span class='co'># also download 'spss' and 'sas' files.</span>
 
+<span class='fu'>download_rounds</span>(
+ <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
+ <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
+ <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>'spss'</span>
+)
+
+<span class='co'># If rounds are repeated, will download only unique ones</span>
+<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>import_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))
 
 <span class='co'># If email is not registered at ESS website, error will arise</span>
-<span class='no'>uk_one</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"United Kingdom"</span>, <span class='fl'>5</span>, <span class='st'>"wrong_email@email.com"</span>)
-<span class='co'># Error in authenticate(your_email) : </span>
+<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>import_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='st'>"wrong_email@email.com"</span>)
+
+<span class='co'># Error in authenticate(ess_email) : </span>
 <span class='co'># The email address you provided is not associated with any registered user.</span>
-<span class='co'># Create an account at http://www.europeansocialsurvey.org/user/new</span>
+<span class='co'># Create an account at https://www.europeansocialsurvey.org/user/new</span>
 
 <span class='co'># If selected rounds don't exist, error will arise</span>
 
-<span class='no'>czech_two</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_country</span>(<span class='st'>"Czech Republic"</span>, <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>))
-
-<span class='co'># Error in ess_country_url(country, rounds) : </span>
-<span class='co'># Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available</span>
-<span class='co'># for Czech Republic</span>
-<span class='co'># }</span></pre>
+<span class='no'>two_rounds</span> <span class='kw'>&lt;-</span> <span class='fu'>import_rounds</span>(<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>22</span>))
+<span class='co'># Error in ess_round_url(rounds) : </span>
+<span class='co'># ESS round 22 is not a available. Check show_rounds()</span>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
