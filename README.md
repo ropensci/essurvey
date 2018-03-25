@@ -60,7 +60,7 @@ show_countries()
 To download the first round to use in R:
 
 ``` r
-one_round <- ess_rounds(1)
+one_round <- import_rounds(1)
 ```
 
 This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to `NA` for different programs (Stata, SPSS, SAS).
@@ -71,14 +71,14 @@ Use `recode_missings` to recode all values automatically.
 library(tidyverse)
 
 one_round <-
-  ess_rounds(1) %>%
+  import_rounds(1) %>%
   recode_missings()
 ```
 
 See the package vignette for greater detail or see the help page with `?recode_missings`. You can also download several rounds by supplying the number of rounds.
 
 ``` r
-five_rounds <- ess_rounds(1:5)
+five_rounds <- import_rounds(1:5)
 ```
 
 This will download all latest versions of rounds 1 through 5 and return a list of length 5 with each round as a data frame inside the list.
@@ -86,36 +86,35 @@ This will download all latest versions of rounds 1 through 5 and return a list o
 You can check the available rounds with `show_rounds()` because if you supply a non existent round, the function will return an error.
 
 ``` r
-two_rounds <- ess_rounds(c(1, 22))
+two_rounds <- import_rounds(c(1, 22))
 #> Error in ess_round_url(rounds) : 
 #> ESS round 22 is not a available. Check show_rounds() 
 ```
 
-Alternatively, you can download all available rounds with `ess_all_rounds()`.
+Alternatively, you can download all available rounds with `import_all_rounds()`.
 
 You can also download rounds by country:
 
 ``` r
-dk_two <- ess_country("Denmark", 1:2)
+dk_two <- import_country("Denmark", 1:2)
 ```
 
-Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `ess_all_cntrounds()` to download all available rounds of a country.
+Use `show_countries()` to see available countries and `show_country_rounds("Denmark")` to see available rounds for chosen country. Alternatively, use `import_all_cntrounds()` to download all available rounds of a country.
 
 You should be be aware that data from the ESS survey should by analyzed by taking into consideration the sampling and weights of the survey. A useful example comes from the work of Anthony Damico and Daniel Oberski [here](http://asdfree.com/european-social-survey-ess.html).
 
 Stata, SPSS and SAS users
 -------------------------
 
-I'm quite aware that most ESS users don't know R, that is why the function also allows you to download the data in Stata, SPSS or SAS format with just one line of code. Just set the `only_download` argument to `TRUE`, specify where it will be saved and specify the format to be either `'stata'` (default), `'spss'` or `'sas'`:
+I'm quite aware that most ESS users don't know R, that is why the package also allows to download the data in Stata, SPSS or SAS format with just one line of code. Instead of the `import_*` functions, use the `download_*` functions.
 
 ``` r
-ess_rounds(c(1, 2),
-           only_download = TRUE,
-           output_dir = "my/new/directory",
-           format = 'spss')
+download_rounds(c(1, 2),
+                output_dir = "my/new/directory",
+                format = 'spss')
 ```
 
-This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `ess_country()`. Be aware that if you download the files manually you should read them into R with the `haven` package for all `ess` related functions to work.
+This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `download_country()`. Be aware that if you download the files manually you should read them into R with the `haven` package for all `ess` related functions to work.
 
 ------------------------------------------------------------------------
 
