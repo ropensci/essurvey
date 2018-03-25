@@ -36,7 +36,8 @@ is set to TRUE and \code{output_dir} is a valid directory, it returns the saved 
 invisibly and saves all the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
-Download all available integrated rounds for a country from the European Social Survey
+This function is deprecated and will be removed in future releases. Use
+\code{\link{import_all_cntrounds}} instead.
 }
 \details{
 If \code{only_download} is set to FALSE, the data will be read in the format specified

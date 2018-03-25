@@ -1,5 +1,8 @@
 #' Download integrated rounds separately for countries from the European Social Survey
 #'
+#' This function is deprecated and will be removed in the next release. Use
+#' \code{\link{import_country}} instead.
+#'
 #' @details 
 #' If \code{only_download} is set to FALSE, the data will be read in the format specified
 #' in \code{format}. 'sas' is not supported because the data formats have changed between
@@ -78,6 +81,8 @@
 #' }
 ess_country <- function(country, rounds, ess_email = NULL, only_download = FALSE,
                         output_dir = getwd(), format = 'stata') {
+  
+  .Deprecated("import_country or download_country")
   
   # If user only wants to download, then download and return
   if (only_download) {

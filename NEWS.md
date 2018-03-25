@@ -1,8 +1,18 @@
 ## ess 0.1.1.9000
 
+### Breaking changes
+
+* `ess_rounds` and `ess_all_rounds` are deprecated and will be removed in the next release. Use `import_rounds` instead [#22](https://github.com/cimentadaj/ess/issues/22)
+
+* `ess_country` and `ess_all_cntrounds` are deprecated and will be removed in the next release. Use `import_countries` instead [#22](https://github.com/cimentadaj/ess/issues/22)
+
 * The `your_email` argument name of `ess_*` functions has be changed to `ess_email` [#23](https://github.com/cimentadaj/ess/issues/23)
 
 ### New features
+
+* `import_rounds`, `import_all_rounds` and `download_rounds` have been introduced as
+replacements of `ess_rounds` and `ess_all_rounds`. Same changes were repeated for
+`ess_country` and `ess_all_cntrounds` [#22](https://github.com/cimentadaj/ess/issues/22)
 
 * `set_email` to set your email as environmental variable rather than write it in each call [#23](https://github.com/cimentadaj/ess/issues/23)
 

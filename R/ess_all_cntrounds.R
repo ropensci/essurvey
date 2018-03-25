@@ -1,5 +1,8 @@
 #' Download all available integrated rounds for a country from the European Social Survey
 #'
+#' This function is deprecated and will be removed in future releases. Use
+#' \code{\link{import_all_cntrounds}} instead.
+#'
 #' @details 
 #' If \code{only_download} is set to FALSE, the data will be read in the format specified
 #' in \code{format}. 'sas' is not supported because the data formats have changed between
@@ -53,8 +56,9 @@
 #' }
 ess_all_cntrounds <- function(country, ess_email = NULL, only_download = FALSE,
                               output_dir = getwd(), format = 'stata') {
-
-    ess_country(
+  .Deprecated("import_all_cntrounds")
+  
+  ess_country(
     country,
     show_country_rounds(country),
     ess_email,

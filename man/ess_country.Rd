@@ -40,7 +40,8 @@ output_dir is a valid directory, it returns the saved directories invisibly and 
 the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
-Download integrated rounds separately for countries from the European Social Survey
+This function is deprecated and will be removed in the next release. Use
+\code{\link{import_country}} instead.
 }
 \details{
 If \code{only_download} is set to FALSE, the data will be read in the format specified
