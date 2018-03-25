@@ -1,4 +1,7 @@
 #' Download all available integrated rounds from the European Social Survey
+#' 
+#' #' This function is deprecated and will be removed in future releases. Use
+#' \code{\link{import_all_rounds}} instead.
 #'
 #' @details 
 #' If \code{only_download} is set to FALSE, the data will be read in the format specified
@@ -48,6 +51,7 @@
 #' 
 ess_all_rounds <- function(ess_email = NULL, only_download = FALSE,
                            output_dir = getwd(), format = 'stata') {
+  .Deprecated("import_all_rounds")
     ess_rounds(
     show_rounds(),
     ess_email,

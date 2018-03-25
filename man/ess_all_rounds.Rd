@@ -32,7 +32,8 @@ saved directories invisibly and saves all the rounds in the chosen \code{format}
 \code{output_dir}
 }
 \description{
-Download all available integrated rounds from the European Social Survey
+#' This function is deprecated and will be removed in future releases. Use
+\code{\link{import_all_rounds}} instead.
 }
 \details{
 If \code{only_download} is set to FALSE, the data will be read in the format specified
