@@ -40,7 +40,7 @@ install.packages("essurvey")
 ```
 
 ```{r, echo = FALSE, eval = TRUE}
-library(ess)
+library(essurvey)
 ```
 
 Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with `set_email`.

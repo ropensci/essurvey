@@ -55,7 +55,7 @@ set_email("your@email.com")
 To explore which rounds/countries are present in the ESS use the `show_*()` family of functions.
 
 ```{r, eval = TRUE}
-library(ess)
+library(essurvey)
 show_countries()
 ```
 

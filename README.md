@@ -41,7 +41,7 @@ set_email("your@email.com")
 To explore which rounds/countries are present in the ESS use the `show_*()` family of functions.
 
 ``` r
-library(ess)
+library(essurvey)
 show_countries()
 #>  [1] "Albania"            "Austria"            "Belgium"           
 #>  [4] "Bulgaria"           "Croatia"            "Cyprus"            
