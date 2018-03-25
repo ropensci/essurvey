@@ -67,7 +67,7 @@ tk_rnds
 ```
 Note that country names are case sensitive. Use the exact name printed out by `show_countries()`
 
-Using this information, we can download those specific rounds easily with `import_country`.
+Using this information, we can download those specific rounds easily with `import_country`. Since `essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of the `import_*` and `download_*` functions.
 
 ```{r}
 turkey <-

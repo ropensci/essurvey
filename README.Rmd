@@ -25,6 +25,8 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
+Note: The `essurvey` package was originally called `ess`. Since `essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of the `import_*` and `download_*` functions.
+
 The `essurvey` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://cimentadaj.github.io/essurvey/) for more detailed examples of the `essurvey` package.
 
 ## Installation
