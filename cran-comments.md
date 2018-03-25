@@ -29,7 +29,7 @@ There are currently no downstream dependencies for this package.
 - The tests are wrapped skip_on_cran()
   since they absolutely require using a private email. Full tests
   are run on Travis (weekly) with results available for review:
-  https://travis-ci.org/cimentadaj/ess
+  https://travis-ci.org/cimentadaj/essurvey
   
   The Travis tests have an environment variable containing the email. This
   allows the tests to run smoothly.

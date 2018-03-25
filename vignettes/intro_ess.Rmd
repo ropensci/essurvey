@@ -1,10 +1,10 @@
 ---
-title: "Introduction to the ess package"
+title: "Introduction to the essurvey package"
 author: "Jorge Cimentada"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using ess for R and Stata users}
+  %\VignetteIndexEntry{Using essurvey for R and Stata users}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,24 +19,24 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Using the `ess` package is fairly easy. There are are two main families of functions: `import_*` and `show_*`. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven't registered, create an account at http://www.europeansocialsurvey.org/user/new. For those unfamiliar with the ESS, this vignette uses the term rounds, here a synonym of waves to denote the same survey in different time points.
+Using the `essurvey` package is fairly easy. There are are two main families of functions: `import_*` and `show_*`. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven't registered, create an account at http://www.europeansocialsurvey.org/user/new. For those unfamiliar with the ESS, this vignette uses the term rounds, here a synonym of waves to denote the same survey in different time points.
 
 Once you register visit your email account to validate the account and you're ready to access the data.
 
-Given that some `ess` functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.
+Given that some `essurvey` functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.
 
 ## Downloading country specific rounds
 
 To install and load development version of the package use:
 ```{r}
 # install.packages("devtools")
-devtools::install_github("cimentadaj/ess")
+devtools::install_github("cimentadaj/essurvey")
 ```
 
 to install the stable version from CRAN use:
 
 ```{r}
-install.packages("ess")
+install.packages("essurvey")
 ```
 
 ```{r, echo = FALSE, eval = TRUE}

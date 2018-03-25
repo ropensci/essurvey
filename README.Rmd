@@ -13,11 +13,11 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-## ess <img src="man/figures/ess_logo.png" align="right" />
+## essurvey <img src="man/figures/ess_logo.png" align="right" />
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ess)](https://cran.r-project.org/package=ess)
-[![Travis-CI Build Status](https://travis-ci.org/cimentadaj/ess.svg?branch=master)](https://travis-ci.org/cimentadaj/ess)
-[![Coverage status](https://codecov.io/gh/cimentadaj/ess/branch/master/graph/badge.svg)](https://codecov.io/github/cimentadaj/ess?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/essurvey)](https://cran.r-project.org/package=essurvey)
+[![Travis-CI Build Status](https://travis-ci.org/cimentadaj/essurvey.svg?branch=master)](https://travis-ci.org/cimentadaj/essurvey)
+[![Coverage status](https://codecov.io/gh/cimentadaj/essurvey/branch/master/graph/badge.svg)](https://codecov.io/github/cimentadaj/essurvey?branch=master)
 [![rOpensci_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/onboarding/issues/201)
 
 
@@ -25,7 +25,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the [ESS website](http://www.europeansocialsurvey.org/about/).
 
-The `ess` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://cimentadaj.github.io/ess/) for more detailed examples of the `ess` package.
+The `essurvey` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://cimentadaj.github.io/essurvey/) for more detailed examples of the `essurvey` package.
 
 ## Installation
 
@@ -33,13 +33,13 @@ You can install and load the development version with these commands:
 
 ```{r}
 # install.packages("devtools") in case you don't have it
-devtools::install_github("cimentadaj/ess")
+devtools::install_github("cimentadaj/essurvey")
 ```
 
 or the stable version with:
 
 ```{r}
-install.packages("ess")
+install.packages("essurvey")
 ```
 
 ## Usage
@@ -114,7 +114,7 @@ download_rounds(c(1, 2),
                 format = 'spss')
 ```
 
-This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `download_country()`. Be aware that if you download the files manually you should read them into R with the `haven` package for all `ess` related functions to work.
+This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type `getwd()`). This works the same way for `download_country()`. Be aware that if you download the files manually you should read them into R with the `haven` package for all `essurvey` related functions to work.
 
 ---
 

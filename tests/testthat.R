@@ -1,4 +1,4 @@
 library(testthat)
-library(ess)
+library(essurvey)
 
-test_check("ess")
+test_check("essurvey")

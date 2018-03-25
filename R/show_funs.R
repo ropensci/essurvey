@@ -96,6 +96,6 @@ mapply(assign, var_names, var_values, list(envir = .global_vars))
 # At some point I also added the show_* funs here so that I only ran them once
 # and then I called .global_vars$ with the result of the show_ fun. I removed it
 # because if a user called show_countries() in a script and later called
-# an ess_ fun that uses the show_countries() that was called from .global_vars$countries
+# an import_ fun that uses the show_countries() that was called from .global_vars$countries
 # and if ess updated countries or rounds in that time then the result would be different
 # and we wouldn't want contradictory results.
