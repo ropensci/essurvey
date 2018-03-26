@@ -58,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cimentadaj/essurvey">
+  <a href="https://github.com/ropensci/essurvey">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -90,14 +90,14 @@
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
 <p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions.</p>
-<p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
+<p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://ropensci.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install and load the development version with these commands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools") in case you don't have it</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/essurvey"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/essurvey"</span>)</code></pre></div>
 <!-- or the stable version with: -->
 </div>
 <div id="usage" class="section level2">
@@ -153,6 +153,7 @@ one_round &lt;-
 <p>This will save the ESS rounds into separate folders and unzip them in the specified directory (if you want to know your current directory, type <code>getwd()</code>). This works the same way for <code><a href="reference/import_country.html">download_country()</a></code>. Be aware that if you download the files manually you should read them into R with the <code>haven</code> package for all <code>essurvey</code> related functions to work.</p>
 <hr>
 <p>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
   </div>
@@ -161,9 +162,9 @@ one_round &lt;-
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/cimentadaj/essurvey">https://​github.com/​cimentadaj/​essurvey</a>
+<li>Browse source code at <br><a href="https://github.com/ropensci/essurvey">https://​github.com/​ropensci/​essurvey</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/cimentadaj/essurvey/issues">https://​github.com/​cimentadaj/​essurvey/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/ropensci/essurvey/issues">https://​github.com/​ropensci/​essurvey/​issues</a>
 </li>
 </ul>
 <h2>License</h2>
@@ -176,8 +177,8 @@ one_round &lt;-
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=essurvey"><img src="http://www.r-pkg.org/badges/version/essurvey" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/cimentadaj/essurvey"><img src="https://travis-ci.org/cimentadaj/essurvey.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://codecov.io/github/cimentadaj/essurvey?branch=master"><img src="https://codecov.io/gh/cimentadaj/essurvey/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://travis-ci.org/ropensci/essurvey"><img src="https://travis-ci.org/ropensci/essurvey.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://codecov.io/github/ropensci/essurvey?branch=master"><img src="https://codecov.io/gh/ropensci/essurvey/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://github.com/ropensci/onboarding/issues/201"><img src="https://badges.ropensci.org/201_status.svg" alt="rOpensci_Badge"></a></li>
 </ul>
 </div>

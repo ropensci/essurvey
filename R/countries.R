@@ -32,7 +32,7 @@
 #' different handling of the encoding of some questions. This option was preserved
 #' so that the user
 #' can switch between formats if any encoding errors are found in the data. For more
-#' details see the dicussion \href{https://github.com/cimentadaj/essurvey/issues/11}{here}.
+#' details see the dicussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
 #' For this particular argument, 'sas' is not supported because the data formats have
 #' changed between ESS waves and separate formats require different functions to be
 #' read. To preserve parsimony and format errors between waves, the user should use

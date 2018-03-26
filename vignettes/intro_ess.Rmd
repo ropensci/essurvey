@@ -30,7 +30,7 @@ Given that some `essurvey` functions require your email address, this vignette w
 To install and load development version of the package use:
 ```{r}
 # install.packages("devtools")
-devtools::install_github("cimentadaj/essurvey")
+devtools::install_github("ropensci/essurvey")
 ```
 
 <!-- to install the stable version from CRAN use: -->

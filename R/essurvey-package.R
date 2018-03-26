@@ -5,5 +5,5 @@
 #' For some examples, check out the work of Anthony Damico and Daniel Oberski 
 #' \href{http://asdfree.com/european-social-survey-ess.html}{here}. For detailed
 #' examples on how to explore/download data using this package, visit the package website
-#' at \url{https://cimentadaj.github.io/essurvey/}
+#' at \url{https://ropensci.github.io/essurvey/}
 "_PACKAGE"

@@ -15,14 +15,14 @@ design of each country/round combination as well as sampling between rounds.
 For some examples, check out the work of Anthony Damico and Daniel Oberski 
 \href{http://asdfree.com/european-social-survey-ess.html}{here}. For detailed
 examples on how to explore/download data using this package, visit the package website
-at \url{https://cimentadaj.github.io/essurvey/}
+at \url{https://ropensci.github.io/essurvey/}
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/cimentadaj/essurvey}
-  \item \url{https://cimentadaj.github.io/essurvey/}
-  \item Report bugs at \url{https://github.com/cimentadaj/essurvey/issues}
+  \item \url{https://github.com/ropensci/essurvey}
+  \item \url{https://ropensci.github.io/essurvey/}
+  \item Report bugs at \url{https://github.com/ropensci/essurvey/issues}
 }
 
 }

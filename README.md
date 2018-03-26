@@ -2,7 +2,7 @@
 essurvey <img src="man/figures/ess_logo.png" align="right" />
 -------------------------------------------------------------
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/essurvey)](https://cran.r-project.org/package=essurvey) [![Travis-CI Build Status](https://travis-ci.org/cimentadaj/essurvey.svg?branch=master)](https://travis-ci.org/cimentadaj/essurvey) [![Coverage status](https://codecov.io/gh/cimentadaj/essurvey/branch/master/graph/badge.svg)](https://codecov.io/github/cimentadaj/essurvey?branch=master) [![rOpensci\_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/onboarding/issues/201)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/essurvey)](https://cran.r-project.org/package=essurvey) [![Travis-CI Build Status](https://travis-ci.org/ropensci/essurvey.svg?branch=master)](https://travis-ci.org/ropensci/essurvey) [![Coverage status](https://codecov.io/gh/ropensci/essurvey/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/essurvey?branch=master) [![rOpensci\_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/onboarding/issues/201)
 
 Description
 -----------
@@ -11,7 +11,7 @@ The European Social Survey (ESS) is an academically driven cross-national survey
 
 Note: The `essurvey` package was originally called `ess`. Since `essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of the `import_*` and `download_*` functions.
 
-The `essurvey` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://cimentadaj.github.io/essurvey/) for more detailed examples of the `essurvey` package.
+The `essurvey` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://ropensci.github.io/essurvey/) for more detailed examples of the `essurvey` package.
 
 Installation
 ------------
@@ -20,7 +20,7 @@ You can install and load the development version with these commands:
 
 ``` r
 # install.packages("devtools") in case you don't have it
-devtools::install_github("cimentadaj/essurvey")
+devtools::install_github("ropensci/essurvey")
 ```
 
 <!-- or the stable version with: -->
@@ -116,3 +116,5 @@ This will save the ESS rounds into separate folders and unzip them in the specif
 ------------------------------------------------------------------------
 
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
