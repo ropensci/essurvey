@@ -33,9 +33,9 @@ To install and load development version of the package use:
 devtools::install_github("cimentadaj/essurvey")
 ```
 
-to install the stable version from CRAN use:
+<!-- to install the stable version from CRAN use: -->
 
-```{r}
+```{r, echo = FALSE}
 install.packages("essurvey")
 ```
 

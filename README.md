@@ -23,12 +23,7 @@ You can install and load the development version with these commands:
 devtools::install_github("cimentadaj/essurvey")
 ```
 
-or the stable version with:
-
-``` r
-install.packages("essurvey")
-```
-
+<!-- or the stable version with: -->
 Usage
 -----
 

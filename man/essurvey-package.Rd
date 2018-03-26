@@ -11,22 +11,29 @@ Download data from the European Social Survey directly from their website <http:
 \details{
 Note that this package is for downloading data from the ESS survey.
 For analyzing the data, the user should consider the weights and sampling
-design of each country/round combination as well as sampling between round.
+design of each country/round combination as well as sampling between rounds.
 For some examples, check out the work of Anthony Damico and Daniel Oberski 
 \href{http://asdfree.com/european-social-survey-ess.html}{here}. For detailed
-examples on how to explore/download data using package, visit the package website
+examples on how to explore/download data using this package, visit the package website
 at \url{https://cimentadaj.github.io/essurvey/}
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/cimentadaj/essurvey}
+  \item \url{https://cimentadaj.github.io/essurvey/}
   \item Report bugs at \url{https://github.com/cimentadaj/essurvey/issues}
 }
 
 }
 \author{
 \strong{Maintainer}: Jorge Cimentada \email{cimentadaj@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201) [NA]
+  \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201) [NA]
+}
 
 }
 \keyword{internal}
