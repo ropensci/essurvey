@@ -4,7 +4,7 @@
 #' for all available rounds.
 #' @param ess_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
-#' \url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+#' \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 #' through \code{\link{set_email}}.
 #' 
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
@@ -28,7 +28,7 @@
 #' different handling of the encoding of some questions. This option was preserved
 #' so that the user
 #' can switch between formats if any encoding errors are found in the data. For more
-#' details see the dicussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
+#' details see the discussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
 #' For this particular argument in, 'sas' is not supported because the data formats have
 #' changed between ESS waves and separate formats require different functions to be
 #' read. To preserve parsimony and format errors between waves, the user should use

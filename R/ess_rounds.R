@@ -7,7 +7,7 @@
 #' for all available rounds.
 #' @param ess_email a character vector with your email, such as "your_email@email.com".
 #' If you haven't registered in the ESS website, create an account at 
-#' \url{http://www.europeansocialsurvey.org/user/new}. A prefered method is to login
+#' \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 #' through \code{\link{set_email}}.
 #' @param only_download whether to only download the files as Stata files. Defaults to FALSE.
 #' @param output_dir a character vector with the output directory in case you want to only download the files using
