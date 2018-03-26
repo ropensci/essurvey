@@ -89,6 +89,7 @@
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
+<p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions.</p>
 <p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://cimentadaj.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
 </div>
 <div id="installation" class="section level2">
@@ -97,8 +98,7 @@
 <p>You can install and load the development version with these commands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools") in case you don't have it</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"cimentadaj/essurvey"</span>)</code></pre></div>
-<p>or the stable version with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"essurvey"</span>)</code></pre></div>
+<!-- or the stable version with: -->
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -171,6 +171,7 @@ one_round &lt;-
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Jorge Cimentada <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
