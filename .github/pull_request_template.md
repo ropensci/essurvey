@@ -1,7 +1,5 @@
 <!-- IF THIS INVOLVES AUTHENTICATION: DO NOT SHARE YOUR USERNAME/PASSWORD, OR API KEYS/TOKENS IN THIS ISSUE - MOST LIKELY THE MAINTAINER WILL HAVE THEIR OWN EQUIVALENT KEY -->
 
-<!-- If you've updated a file in the man-roxygen directory, make sure to update the man/ files by running devtools::document() or similar as .Rd files should be affected by your change -->
-
 <!--- Provide a general summary of your changes in the Title above -->
 
 ## Description
@@ -16,5 +14,11 @@ it like "#4" -->
 <!--- if introducing a new feature or changing behavior of existing
 methods/functions, include an example if possible to do in brief form -->
 
-<!--- Did you remember to include tests? Unless you're just changing
+## Best Practices
+<!--- Did you remember to include documentation, examples andtests? Unless you're just changing
 grammar, please include new tests for your change -->
+The following have been updated or added as needed:
+[ ] Documentation
+[ ] Examples in documentation
+[ ] Vignettes
+[ ] `testthat` Tests
