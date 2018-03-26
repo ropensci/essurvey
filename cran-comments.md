@@ -18,6 +18,12 @@ There are currently no downstream dependencies for this package.
 
 ---
 
+**Change of name**
+
+`essurvey` is the same package as `ess` in CRAN. I've decided to change the name of the package because it has very strong conflicts with the name Emacs Speaks Statistics (ESS). This problem was raised in the R-pkgs mailing list [here](http://r.789695.n4.nabble.com/R-pkgs-Release-of-ess-0-0-1-td4746540.html) and it also raised issues with other members of the R community [here](https://github.com/ropensci/onboarding/issues/201#issuecomment-372304003). In fact, the developers of the R package for Emacs Speaks Statistics and me agreed to put a note in the DESCRIPTION file of the `ess` package to explain that this is unrelated to the Emacs Speaks Statistics package. Because Emacs Speaks Statistics (ESS) has such a long precedence in the R community (dating back to at least 1994), I've decided to switch the name of `ess` to `essurvey` to avoid further conflicts. However, `essurvey` has new features so the idea is to drop `ess` altogether and upload `essurvey` instead.
+
+---
+
 - *Most* examples are wrapped in \dontrun{} because they cannot be run
   in < 5 seconds. No smaller toy examples can be created. Functions
   which can be executed in < 5 are allow to run.

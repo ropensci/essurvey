@@ -12,3 +12,4 @@
 ^docs$
 ^\.github$
 ^codemeta\.json$
+^intro_ropensci\.*$

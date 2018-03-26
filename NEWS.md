@@ -1,6 +1,6 @@
 ## essurvey 1.0.0
 
-The `ess` package has been renamed to `essurvey` for a name conflict with Emacs Speaks Statistics (ESS). See [here](https://github.com/ropensci/onboarding/issues/201) and [here](http://r.789695.n4.nabble.com/R-pkgs-Release-of-ess-0-0-1-td4746540.html)
+The `ess` package has been renamed to `essurvey` for a name conflict with Emacs Speaks Statistics (ESS). See [here](https://github.com/ropensci/onboarding/issues/201#issuecomment-372304003) and [here](http://r.789695.n4.nabble.com/R-pkgs-Release-of-ess-0-0-1-td4746540.html)
 
 ### Breaking changes
 

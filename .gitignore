@@ -3,3 +3,4 @@
 .RData
 inst/doc
 /revdep/.cache.rds
+intro_ropensci.*
