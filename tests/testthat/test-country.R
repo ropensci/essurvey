@@ -82,7 +82,7 @@ test_that("Test that downloading files is working fine", {
 
 test_that("output_dir should be valid", {
   
-  # skip_on_cran()
+  skip_on_cran()
   
   # Here output_dir is set to NULL
   expect_error(download_country("Austria",
@@ -92,7 +92,7 @@ test_that("output_dir should be valid", {
 })
 
 test_that("import_country files with other non-stata format", {
-  # skip_on_cran()
+  skip_on_cran()
   
   # Test for only one wave
   wave_one <- import_country("Denmark", 1, ess_email, format = "spss")
@@ -109,6 +109,8 @@ test_that("import_country files with other non-stata format", {
 })
 
 test_that("Specify 'sas' for reading ess data throws error",{
+  skip_on_cran()
+  
   expect_error(import_country("Denmark", 1, ess_email, format = "sas"),
                "You cannot read SAS but only 'spss' and 'stata' files with this function") #nolint
 })
