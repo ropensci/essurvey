@@ -6,7 +6,7 @@
 \alias{essurvey-package}
 \title{essurvey: Download Data from the European Social Survey on the Fly}
 \description{
-Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two family of functions that allow you to download and interactively check all countries and rounds available.
+Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two families of functions that allow you to download and interactively check all countries and rounds available.
 }
 \details{
 Note that this package is for downloading data from the ESS survey.
