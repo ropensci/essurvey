@@ -126,7 +126,7 @@ these categories to NA</p>
       <th>ess_data</th>
       <td><p>data frame or <code><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> with data from the
 European Social Survey. This data frame should come either
-from <code><a href='ess_rounds.html'>ess_rounds</a></code>, <code><a href='ess_country.html'>ess_country</a></code> or read with
+from <code><a href='import_rounds.html'>import_rounds</a></code>, <code><a href='import_country.html'>import_country</a></code> or read with
 <code><a href='http://www.rdocumentation.org/packages/haven/topics/read_dta'>read_dta</a></code> or <code><a href='http://www.rdocumentation.org/packages/haven/topics/read_spss'>read_spss</a></code>. This is the case because it
 identifies missing values using <code><a href='http://www.rdocumentation.org/packages/haven/topics/labelled'>labelled</a></code> classes.</p></td>
     </tr>
@@ -171,7 +171,7 @@ for all rounds.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>seven</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ess_rounds.html'>ess_rounds</a></span>(<span class='fl'>7</span>, <span class='no'>your_email</span>)
+<span class='no'>seven</span> <span class='kw'>&lt;-</span> <span class='fu'>ess_rounds</span>(<span class='fl'>7</span>, <span class='no'>your_email</span>)
 
 <span class='fu'>attr</span>(<span class='no'>seven</span>$<span class='no'>tvtot</span>, <span class='st'>"labels"</span>)
 <span class='fu'>mean</span>(<span class='no'>seven</span>$<span class='no'>tvtot</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)

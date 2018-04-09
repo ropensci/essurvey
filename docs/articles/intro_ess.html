@@ -78,7 +78,7 @@
       <h1>Introduction to the essurvey package</h1>
                         <h4 class="author">Jorge Cimentada</h4>
             
-            <h4 class="date">2018-03-26</h4>
+            <h4 class="date">2018-04-09</h4>
       
       <small>Source: <a href="https:/github.com/ropensci/essurvey/blob/master/vignettes/intro_ess.Rmd"><code>vignettes/intro_ess.Rmd</code></a></small>
 
@@ -100,7 +100,8 @@
 <p>To install and load development version of the package use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/essurvey"</span>)</code></pre></div>
-<!-- to install the stable version from CRAN use: -->
+<p>to install the stable version from CRAN use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"essurvey"</span>)</code></pre></div>
 <p>Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with <code>set_email</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</code></pre></div>
 <p>Once that’s executed you can delete the previous line and any <code>import_*</code> call will look for the email automatically, stored as an environment variable.</p>

@@ -105,32 +105,32 @@
     <div id="essurvey-1-0-0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#essurvey-1-0-0" class="anchor"></a>essurvey 1.0.0</h2>
-<p>The <code>ess</code> package has been renamed to <code>essurvey</code> for a name conflict with Emacs Speaks Statistics (ESS). See <a href="https://github.com/ropensci/onboarding/issues/201">here</a> and <a href="http://r.789695.n4.nabble.com/R-pkgs-Release-of-ess-0-0-1-td4746540.html">here</a></p>
+<p>The <code>ess</code> package has been renamed to <code>essurvey</code> for a name conflict with Emacs Speaks Statistics (ESS). See R-pkg mailing list, the post related to the release of ess-0-0-1.</p>
 <div id="breaking-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h3>
 <ul>
-<li><p><code>ess_rounds</code> and <code>ess_all_rounds</code> are deprecated and will be removed in the next release. Use <code>import_rounds</code> instead <a href="https://github.com/ropensci/ess/issues/22"><a href='https://github.com/ropensci/essurvey/issues/22'>#22</a></a></p></li>
-<li><p><code>ess_country</code> and <code>ess_all_cntrounds</code> are deprecated and will be removed in the next release. Use <code>import_countries</code> instead <a href="https://github.com/ropensci/ess/issues/22"><a href='https://github.com/ropensci/essurvey/issues/22'>#22</a></a></p></li>
-<li><p>The <code>your_email</code> argument name of <code>ess_*</code> functions has be changed to <code>ess_email</code> <a href="https://github.com/ropensci/ess/issues/23"><a href='https://github.com/ropensci/essurvey/issues/23'>#23</a></a></p></li>
+<li><p><code>ess_rounds</code> and <code>ess_all_rounds</code> are deprecated and will be removed in the next release. Use <code>import_rounds</code> instead [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
+<li><p><code>ess_country</code> and <code>ess_all_cntrounds</code> are deprecated and will be removed in the next release. Use <code>import_countries</code> instead [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
+<li><p>The <code>your_email</code> argument name of <code>ess_*</code> functions has be changed to <code>ess_email</code> [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
 </ul>
 </div>
 <div id="new-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h3>
 <ul>
-<li><p><code>import_rounds</code>, <code>import_all_rounds</code> and <code>download_rounds</code> have been introduced as replacements of <code>ess_rounds</code> and <code>ess_all_rounds</code>. Same changes were repeated for <code>ess_country</code> and <code>ess_all_cntrounds</code> <a href="https://github.com/ropensci/ess/issues/22"><a href='https://github.com/ropensci/essurvey/issues/22'>#22</a></a></p></li>
-<li><p><code>set_email</code> to set your email as environmental variable rather than write it in each call <a href="https://github.com/ropensci/ess/issues/23"><a href='https://github.com/ropensci/essurvey/issues/23'>#23</a></a></p></li>
-<li><p>All requests to the ESS website are now done through HTTPS rather than HTTP <a href="https://github.com/ropensci/ess/issues/24"><a href='https://github.com/ropensci/essurvey/issues/24'>#24</a></a></p></li>
-<li><p>Add package level documentation <a href="https://github.com/ropensci/ess/issues/20"><a href='https://github.com/ropensci/essurvey/issues/20'>#20</a></a></p></li>
+<li><p><code>import_rounds</code>, <code>import_all_rounds</code> and <code>download_rounds</code> have been introduced as replacements of <code>ess_rounds</code> and <code>ess_all_rounds</code>. Same changes were repeated for <code>ess_country</code> and <code>ess_all_cntrounds</code> [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
+<li><p><code>set_email</code> to set your email as environmental variable rather than write it in each call [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
+<li><p>All requests to the ESS website are now done through HTTPS rather than HTTP [<a href='https://github.com/ropensci/essurvey/issues/24'>#24</a>]</p></li>
+<li><p>Add package level documentation [<a href='https://github.com/ropensci/essurvey/issues/20'>#20</a>]</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
-<li><p><code>ess_email</code> had no default value but now has <code>NULL</code> as default <a href="https://github.com/ropensci/ess/issues/23"><a href='https://github.com/ropensci/essurvey/issues/23'>#23</a></a></p></li>
-<li><p>The <code>format</code> argument is now checked through <code>match.arg</code> rathern than manual check <a href="https://github.com/ropensci/ess/issues/25"><a href='https://github.com/ropensci/essurvey/issues/25'>#25</a></a></p></li>
+<li><p><code>ess_email</code> had no default value but now has <code>NULL</code> as default [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
+<li><p>The <code>format</code> argument is now checked through <code>match.arg</code> rathern than manual check [<a href='https://github.com/ropensci/essurvey/issues/25'>#25</a>]</p></li>
 </ul>
 </div>
 </div>
@@ -141,27 +141,26 @@
 <h3 class="hasAnchor">
 <a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h3>
 <ul>
-<li>Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list. <a href="https://github.com/ropensci/ess/issues/8"><a href='https://github.com/ropensci/essurvey/issues/8'>#8</a></a>
-</li>
+<li>Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list. [<a href='https://github.com/ropensci/essurvey/issues/8'>#8</a>]</li>
 </ul>
 </div>
 <div id="new-features-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-features-1" class="anchor"></a>New features</h3>
 <ul>
-<li><p>remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories ‘Not applicable’, ‘Don’t know’, etc.. into NA’s. See the vignette example for more details. <a href="https://github.com/ropensci/ess/issues/1"><a href='https://github.com/ropensci/essurvey/issues/1'>#1</a></a></p></li>
-<li><p>Can download files in ‘stata’, ‘spss’ and ‘sas’ formats for all functions (both for downloading to user’s directory and for reading data). <a href="https://github.com/ropensci/ess/issues/11"><a href='https://github.com/ropensci/essurvey/issues/11'>#11</a></a>.</p></li>
-<li><p>show_themes() and show_theme_rounds() now available to see which themes have been included in which rounds. <a href="https://github.com/ropensci/ess/issues/7"><a href='https://github.com/ropensci/essurvey/issues/7'>#7</a></a></p></li>
-<li><p>show_rounds_country() is now available to see which countries participated in which rounds <a href="https://github.com/ropensci/ess/issues/14"><a href='https://github.com/ropensci/essurvey/issues/14'>#14</a></a></p></li>
+<li><p>remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories ‘Not applicable’, ‘Don’t know’, etc.. into NA’s. See the vignette example for more details. [<a href='https://github.com/ropensci/essurvey/issues/1'>#1</a>]</p></li>
+<li><p>Can download files in ‘stata’, ‘spss’ and ‘sas’ formats for all functions (both for downloading to user’s directory and for reading data). [<a href='https://github.com/ropensci/essurvey/issues/11'>#11</a>]</p></li>
+<li><p>show_themes() and show_theme_rounds() now available to see which themes have been included in which rounds. [<a href='https://github.com/ropensci/essurvey/issues/7'>#7</a>]</p></li>
+<li><p>show_rounds_country() is now available to see which countries participated in which rounds [<a href='https://github.com/ropensci/essurvey/issues/14'>#14</a>]</p></li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li><p>The <code>ouput_dir</code> argument is now set to <code>getwd()</code> rather than <code>NULL</code> as default. <a href="https://github.com/ropensci/ess/issues/16"><a href='https://github.com/ropensci/essurvey/issues/16'>#16</a></a></p></li>
-<li><p>When parsing country rounds from the <a href="http://www.europeansocialsurvey.org/data/country_index.html">table</a>, shaded dots were being interpreted as valid rounds when in fact they’re not. show_* funs new exclude shaded dots until they’ve been added as valid rounds</p></li>
-<li><p>If any <code>ess_*</code> function can not connect to the ESS website they will return an explicit R error. <a href="https://github.com/ropensci/ess/issues/12"><a href='https://github.com/ropensci/essurvey/issues/12'>#12</a></a></p></li>
+<li><p>The <code>ouput_dir</code> argument is now set to <code>getwd()</code> rather than <code>NULL</code> as default. [<a href='https://github.com/ropensci/essurvey/issues/16'>#16</a>]</p></li>
+<li><p>When parsing country rounds from the ESS table from the website, shaded dots were being interpreted as valid rounds when in fact they’re not. show_* funs new exclude shaded dots until they’ve been added as valid rounds</p></li>
+<li><p>If any <code>ess_*</code> function can not connect to the ESS website they will return an explicit R error. [<a href='https://github.com/ropensci/essurvey/issues/12'>#12</a>]</p></li>
 <li><p><code>ess_all_cntrounds</code> and <code>ess_all_rounds</code> were returning the directory of each of the files. Now they only return the single directory where the files where saved as a message</p></li>
 </ul>
 </div>
