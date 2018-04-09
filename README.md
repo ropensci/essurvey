@@ -23,7 +23,12 @@ You can install and load the development version with these commands:
 devtools::install_github("ropensci/essurvey")
 ```
 
-<!-- or the stable version with: -->
+or the stable version with:
+
+``` r
+install.packages("essurvey")
+```
+
 Usage
 -----
 

@@ -2,10 +2,6 @@
 
 export(download_country)
 export(download_rounds)
-export(ess_all_cntrounds)
-export(ess_all_rounds)
-export(ess_country)
-export(ess_rounds)
 export(import_all_cntrounds)
 export(import_all_rounds)
 export(import_country)

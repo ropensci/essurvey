@@ -7,7 +7,7 @@
 #'
 #' @param ess_data  data frame or \code{\link[tibble]{tibble}} with data from the
 #'  European Social Survey. This data frame should come either
-#'  from \code{\link{ess_rounds}}, \code{\link{ess_country}} or read with
+#'  from \code{\link{import_rounds}}, \code{\link{import_country}} or read with
 #'  \code{\link[haven]{read_dta}} or \code{\link[haven]{read_spss}}. This is the case because it
 #'  identifies missing values using \code{\link[haven]{labelled}} classes.
 #' @param missing_codes a character vector with values 'Not applicable',

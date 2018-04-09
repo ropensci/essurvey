@@ -33,9 +33,9 @@ To install and load development version of the package use:
 devtools::install_github("ropensci/essurvey")
 ```
 
-<!-- to install the stable version from CRAN use: -->
+to install the stable version from CRAN use:
 
-```{r, echo = FALSE}
+```{r}
 install.packages("essurvey")
 ```
 
