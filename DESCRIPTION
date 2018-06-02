@@ -1,6 +1,6 @@
 Package: essurvey
 Title: Download Data from the European Social Survey on the Fly
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre")),   
     person("Thomas", "Leeper", role = "rev", comment = "Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201"),

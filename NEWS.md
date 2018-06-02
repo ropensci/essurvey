@@ -1,3 +1,11 @@
+## essurvey 1.0.1
+
+Minor release
+
+* Fixes test that checks the number of rounds that each country has. This test was a mistake
+because the rounds will change as time passes by and precise country rounds shouldn't be
+tested.
+
 ## essurvey 1.0.0
 
 The `ess` package has been renamed to `essurvey` for a name conflict with Emacs Speaks Statistics (ESS). See R-pkg mailing list, the post related to the release of ess-0-0-1.
