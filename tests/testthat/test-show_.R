@@ -89,18 +89,6 @@ test_that("show_country_rounds returns correct output", {
   expect_false(all(duplicated(show_country_rounds("United Kingdom"))))
 })
 
-# If this raises an error, it might that it needs to be 
-# upated every year with the new round the url is: 
-# http://www.europeansocialsurvey.org/data/country_index.html
-
-test_that("show_country_rounds returns correct rounds for countries", {
-  expect_equal(show_country_rounds("Germany"), 1:8)
-  expect_equal(show_country_rounds("Albania"), 6)
-  expect_equal(show_country_rounds("Turkey"), c(2, 4))
-  expect_equal(show_country_rounds("Italy"), c(1, 2, 6))
-  expect_equal(show_country_rounds("Spain"), 1:7)
-})
-
 # show_themes()
 test_that("show_themes returns correct output", {
   # Check whether show_countries is character
