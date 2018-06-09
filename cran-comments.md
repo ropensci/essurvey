@@ -18,10 +18,7 @@ There are currently no downstream dependencies for this package.
 
 ---
 
-**Change of name**
-
-`essurvey` was failing a test in the CRAN version. This version fixes the test
-and has been passing locally and on Travis-CI.
+`essurvey` was failing a test here: https://cran.rstudio.com/web/checks/check_results_essurvey.html. This version fixes the test and has been passing locally and on Travis-CI.
 
 ---
 
