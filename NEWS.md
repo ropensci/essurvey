@@ -1,3 +1,9 @@
+## essurvey 1.0.1.9999
+
+### Minor changes
+
+* Removes the `round` argument from `import_all_cntrounds` because it was a mistake. It already grabs the rounds internally.
+
 ## essurvey 1.0.1
 
 Minor release

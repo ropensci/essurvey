@@ -13,7 +13,7 @@ set_email(ess_email)
 Save your ESS email as an environment variable
 }
 \details{
-You should only run \code{set_email()} once and every \code{ess_*} function
+You should only run \code{set_email()} once and every \code{import_} and \code{download_} function
 should work fine. Make sure your email is registered at 
 \url{http://www.europeansocialsurvey.org/} before setting the email.
 }

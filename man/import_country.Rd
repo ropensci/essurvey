@@ -8,7 +8,7 @@
 \usage{
 import_country(country, rounds, ess_email = NULL, format = "stata")
 
-import_all_cntrounds(country, rounds, ess_email = NULL, format = "stata")
+import_all_cntrounds(country, ess_email = NULL, format = "stata")
 
 download_country(country, rounds, ess_email = NULL, output_dir = getwd(),
   format = "stata")

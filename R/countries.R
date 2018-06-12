@@ -108,7 +108,7 @@ import_country <- function(country, rounds, ess_email = NULL, format = 'stata') 
 
 #' @rdname import_country
 #' @export
-import_all_cntrounds <- function(country, rounds, ess_email = NULL, format = 'stata') {
+import_all_cntrounds <- function(country, ess_email = NULL, format = 'stata') {
   import_country(country, show_country_rounds(country), ess_email, format)
 }
 

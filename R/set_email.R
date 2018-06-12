@@ -2,7 +2,7 @@
 #'
 #' @param ess_email a character string with your registered email.
 #'
-#' @details You should only run \code{set_email()} once and every \code{ess_*} function
+#' @details You should only run \code{set_email()} once and every \code{import_} and \code{download_} function
 #' should work fine. Make sure your email is registered at 
 #' \url{http://www.europeansocialsurvey.org/} before setting the email.
 #' 
