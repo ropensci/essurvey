@@ -11,6 +11,9 @@ test_that("Download function return correct errors", {
   expect_error(authenticate("random@email.morerandom"),
                "email address you provided is not associated with any registered") # nolint
   
+  expect_error(authenticate(""),
+               "email address you provided is not associated with any registered") # nolint
+  
   # Remember that download_format is very sensitive to arguments
   # If both rounds and country are specified, then it downloads
   # country rounds. If only rounds are specified, only

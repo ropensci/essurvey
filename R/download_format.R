@@ -56,11 +56,17 @@ authenticate <- function(ess_email) {
   if(missing(ess_email)) {
     stop(
       "`ess_email` parameter must be specified. Create an account at https://www.europeansocialsurvey.org/user/new" # nolint
-    ) 
+    )
+  }
+  
+  if (nchar(ess_email) == 0) {
+    stop(
+      "The email address you provided is not associated with any registered user. Create an account at https://www.europeansocialsurvey.org/user/new" # nolint
+      )
   }
   
   # store your e-mail address in a list to be passed to the website
-  values <- list( u = ess_email )
+  values <- list(u = ess_email)
   
   url_login <- paste0(.global_vars$ess_website, .global_vars$path_login)
   # authenticate on the ess website

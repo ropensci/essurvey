@@ -2,6 +2,8 @@
 
 ### Minor changes
 
+* `ess_email` is now checked that it is not `""` because it wasn't raising an error before.
+
 * Removes the `round` argument from `import_all_cntrounds` because it was a mistake. It already grabs the rounds internally.
 
 ## essurvey 1.0.1
