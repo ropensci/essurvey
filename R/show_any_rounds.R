@@ -170,7 +170,7 @@ table_to_list <- function(ess_website, module_index) {
   # Recode the empty cells to FALSE and others to TRUE
   dirty_table_df[, -1] <-
     lapply(dirty_table_df[, -1],
-           function(x) ifelse(x == "", FALSE, TRUE)
+           function(x) ifelse(x == "" | is.na(x), FALSE, TRUE)
     )
   
   # Returns a list for every country containing the

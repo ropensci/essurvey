@@ -2,6 +2,10 @@
 
 ## essurvey 1.0.2
 
+### Minor changes
+
+`show_country_rounds` checks if there are missing values and excludes them.
+
 ### Breaking changes
 
 `import_all_cntrounds` and `import_country` returned incorrect countries [#31]
