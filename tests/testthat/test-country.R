@@ -14,6 +14,9 @@ test_that("import_country for one round", {
   # check is list
   expect_is(wave_one, "data.frame")
   
+  # Check it is indeed DK
+  expect_true(unique(wave_one$cntry) == "DK")
+  
   # check that the number of rows is greater than 0
   expect_gt(nrow(wave_one), 0)
   
@@ -37,6 +40,11 @@ test_that("import_country for all rounds of a country", {
   # check that all ess returns data frames
   expect_true(all(vapply(all_rounds,
                          function(x) "data.frame" %in% class(x),
+                         FUN.VALUE = logical(1))))
+  
+  # check that all waves are for netherlands
+  expect_true(all(vapply(all_rounds,
+                         function(x) unique(x$cntry) == "NL",
                          FUN.VALUE = logical(1))))
   
   # check that all data frames have more than 0 rows

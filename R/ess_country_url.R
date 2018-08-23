@@ -24,7 +24,8 @@ ess_country_url <- function(country, rounds, format) {
   
   # Returns the chosen countries html that contains
   # the links to all rounds.
-  country_round_html <- extract_html(country, available_countries,
+  country_round_html <- extract_html(country,
+                                     available_countries,
                                      .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
@@ -75,19 +76,23 @@ ess_country_url <- function(country, rounds, format) {
 # links to download that countries rounds.
 extract_html <- function(chosen_module, available_modules, module_index) {
   
+  country_refs  <- get_href(.global_vars$ess_website, module_index)
   # Returns "/data/country.html?c=ukraine" for all countries
   all_module_links <-
     xml2::xml_attr(
-      get_href(.global_vars$ess_website, module_index),
+      country_refs,
       "href"
     )
+  
+  all_module_countries <- xml2::xml_text(country_refs)
   
   # Build full url for chosen country
   chosen_module_link <-
     paste0(
       .global_vars$ess_website,
-      all_module_links[which(chosen_module == available_modules)] 
-      # index where the country is at
+      all_module_links[which(chosen_module == all_module_countries)] 
+      # index where the country because all_module_links and
+      # all_module_countries are in the same order
     )
   
   # Extract html from country link to donwnload rounds

@@ -1,4 +1,12 @@
-## essurvey 1.0.1.9999
+## essurvey 1.0.3.9999
+
+## essurvey 1.0.2
+
+### Breaking changes
+
+`import_all_cntrounds` and `import_country` returned incorrect countries [#31]
+
+## essurvey 1.0.1
 
 ### Minor changes
 
