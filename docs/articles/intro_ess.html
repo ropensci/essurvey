@@ -78,7 +78,7 @@
       <h1>Introduction to the essurvey package</h1>
                         <h4 class="author">Jorge Cimentada</h4>
             
-            <h4 class="date">2018-06-09</h4>
+            <h4 class="date">2018-08-23</h4>
       
       <small>Source: <a href="https:/github.com/ropensci/essurvey/blob/master/vignettes/intro_ess.Rmd"><code>vignettes/intro_ess.Rmd</code></a></small>
 
@@ -97,6 +97,7 @@
 <div id="downloading-country-specific-rounds" class="section level2">
 <h2 class="hasAnchor">
 <a href="#downloading-country-specific-rounds" class="anchor"></a>Downloading country specific rounds</h2>
+<p>Note: versions less than and including <code>essurvey 1.0.1</code> returned wrong countries. Please install the latest CRAN/Github version.</p>
 <p>To install and load development version of the package use:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/essurvey"</span>)</a></code></pre></div>
@@ -117,9 +118,10 @@
 ## [19] "Kosovo"             "Latvia"             "Lithuania"         
 ## [22] "Luxembourg"         "Netherlands"        "Norway"            
 ## [25] "Poland"             "Portugal"           "Romania"           
-## [28] "Russian Federation" "Slovakia"           "Slovenia"          
-## [31] "Spain"              "Sweden"             "Switzerland"       
-## [34] "Turkey"             "Ukraine"            "United Kingdom"</code></pre>
+## [28] "Russian Federation" "Serbia"             "Slovakia"          
+## [31] "Slovenia"           "Spain"              "Sweden"            
+## [34] "Switzerland"        "Turkey"             "Ukraine"           
+## [37] "United Kingdom"</code></pre>
 <p>This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let’s check out Turkey. How many rounds has Turkey participated in? We can use <code><a href="../reference/show_country_rounds.html">show_country_rounds()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">tk_rnds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/show_country_rounds.html">show_country_rounds</a></span>(<span class="st">"Turkey"</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">tk_rnds</a></code></pre></div>

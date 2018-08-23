@@ -9,16 +9,13 @@
 
 For win-builder:
 
-Status: 1 NOTE
-R Under development (unstable) (2018-02-19 r74276)
-
 ## Reverse dependencies
 
 There are currently no downstream dependencies for this package.
 
 ---
 
-`essurvey` was failing a test here: https://cran.rstudio.com/web/checks/check_results_essurvey.html. This version fixes the test and has been passing locally and on Travis-CI.
+`essurvey` was had a fatal bug documented here: https://github.com/ropensci/essurvey/issues/31. This version fixes the bug.
 
 ---
 

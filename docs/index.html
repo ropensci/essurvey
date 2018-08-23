@@ -89,7 +89,7 @@
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
-<p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions.</p>
+<p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions. Also, versions less than and including <code>essurvey 1.0.1</code> returned wrong countries. Please install the latest CRAN/Github version.</p>
 <p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://ropensci.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
 </div>
 <div id="installation" class="section level2">
@@ -119,9 +119,10 @@
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; [19] "Kosovo"             "Latvia"             "Lithuania"         </span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; [22] "Luxembourg"         "Netherlands"        "Norway"            </span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; [25] "Poland"             "Portugal"           "Romania"           </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; [28] "Russian Federation" "Slovakia"           "Slovenia"          </span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; [31] "Spain"              "Sweden"             "Switzerland"       </span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; [34] "Turkey"             "Ukraine"            "United Kingdom"</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; [28] "Russian Federation" "Serbia"             "Slovakia"          </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; [31] "Slovenia"           "Spain"              "Sweden"            </span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; [34] "Switzerland"        "Turkey"             "Ukraine"           </span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; [37] "United Kingdom"</span></a></code></pre></div>
 <p>To download the first round to use in R:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to <code>NA</code> for different programs (Stata, SPSS, SAS).</p>

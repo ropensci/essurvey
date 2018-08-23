@@ -27,6 +27,8 @@ Given that some `essurvey` functions require your email address, this vignette w
 
 ## Downloading country specific rounds
 
+Note: versions less than and including `essurvey 1.0.1` returned wrong countries. Please install the latest CRAN/Github version.
+
 To install and load development version of the package use:
 ```{r}
 # install.packages("devtools")
