@@ -19,8 +19,7 @@ Imports:
     httr,
     stringr,
     haven,
-    rvest,
-    tibble
+    rvest
 Suggests: 
     testthat,
     knitr,
