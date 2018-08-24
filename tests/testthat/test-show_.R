@@ -1,16 +1,27 @@
+check_format <- function(result, type = "numeric") {
+  # Check whether result is is of type
+  expect_is(result, type)
+  
+  # Check whether result has length greater than 0
+  expect_gt(length(result), 0)
+  
+  # # Check there are no duplicate rounds for results
+  expect_false(all(duplicated(result)))
+  
+  # Checks there are no missing values
+  expect_true(all(!is.na(result)))
+}
+
+
 # show_rounds
 test_that("show_rounds returns correct output", {
-  # Check whether show_countries is character
-  expect_is(show_rounds(), "numeric")
+  
+  all_rounds <- show_rounds()
+  
+  check_format(all_rounds)
   
   # Check that not input is available
   expect_error(show_rounds("whatever"), "unused argument")
-  
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_rounds()), 0)
-  
-  # Check there are no duplicate rounds
-  expect_false(all(duplicated(show_rounds())))
 })
 
 # show_rounds_country
@@ -23,12 +34,12 @@ test_that("show_rounds_country returns error when arguments are wrong", {
 })
 
 test_that("show_rounds_country returns correct output", {
-  # Check whether is character
-  expect_is(show_rounds_country(1), "character")
-  
+  country_rounds <- show_rounds_country(1)
+  check_format(country_rounds, "character")
   # Check whether has length 22, the number of countries
-  # as 20 December 2017
-  expect_equal(length(show_rounds_country(1)), 22)
+  # as 20 December 2017. This cannot increase as time passes by
+  # because a new country cannot participate in round one ever again
+  expect_equal(length(country_rounds), 22)
 })
 
 test_that("show_rounds_country returns non-duplicate rounds", {
@@ -39,7 +50,7 @@ test_that("show_rounds_country returns non-duplicate rounds", {
   # Participating and non participating should be different!
   non_pt <- show_rounds_country(7:2, participate = FALSE)
   part <- show_rounds_country(7:2, participate = TRUE)
-  all(!part %in% non_pt)
+  expect_true(all(!part %in% non_pt))
 })
 
 test_that("show_rounds_country returns correct countries always", {
@@ -61,14 +72,10 @@ test_that("show_rounds_country returns correct countries always", {
 
 # show_countries
 test_that("show_countries returns correct output", {
-  # Check whether show_countries is character
-  expect_is(show_countries(), "character")
   
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_countries()), 0)
+  all_countries <- show_countries()
   
-  # Check there are no duplicate countries
-  expect_false(all(duplicated(show_countries())))
+  check_format(all_countries, "character")
 })
 
 # show_country_rounds
@@ -78,30 +85,24 @@ test_that("show_country_rounds returns error when wrong country as argument", {
 })
 
 test_that("show_country_rounds returns correct output", {
-  # Check whether show_countries is character
-  expect_is(show_country_rounds("Denmark"), "numeric")
   
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_country_rounds("Denmark")), 0)
+  dk <- show_country_rounds("Denmark")
+  
+  check_format(dk)
   
   # # Check there are no duplicate rounds for countries
-  expect_false(all(duplicated(show_country_rounds("Denmark"))))
   expect_false(all(duplicated(show_country_rounds("United Kingdom"))))
 })
 
 # show_themes()
 test_that("show_themes returns correct output", {
-  # Check whether show_countries is character
-  expect_is(show_themes(), "character")
+  
+  all_themes <- show_themes()
+  
+  check_format(all_themes, "character")
   
   # Check that no input is available
   expect_error(show_themes("whatever"), "unused argument")
-  
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_themes()), 0)
-  
-  # Check there are no duplicate countries
-  expect_false(all(duplicated(show_themes())))
 })
 
 # show theme_rounds
@@ -111,24 +112,13 @@ test_that("show_theme_rounds returns error when wrong theme as argument", {
 })
 
 test_that("show_theme_rounds returns correct output for rounds  == 1", {
-  # Check whether show_countries is character
-  expect_is(show_theme_rounds("Democracy"), "numeric")
   
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_theme_rounds("Democracy")), 0)
-  
-  # # Check there are no duplicate rounds for countries
-  expect_false(all(duplicated(show_theme_rounds("Democracy"))))
+  theme_one <- show_theme_rounds("Democracy")
+  check_format(theme_one)
 })
 
 # show_theme_rounds
 test_that("show_theme_rounds returns correct output for rounds > 1", {
-  # Check whether show_countries is character
-  expect_is(show_theme_rounds("Politics"), "numeric")
-  
-  # Check whether show_countries has length greater than 0
-  expect_gt(length(show_theme_rounds("Politics")), 0)
-  
-  # # Check there are no duplicate rounds for countries
-  expect_false(all(duplicated(show_theme_rounds("Politics"))))
+  theme_two <- show_theme_rounds("Politics")
+  check_format(theme_two)
 })

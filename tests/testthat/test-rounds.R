@@ -13,6 +13,9 @@ test_that("import_round for only one round", {
   # check is list
   expect_is(round_one, "data.frame")
   
+  # check it is the first round
+  expect_true(unique(round_one$essround) == 1)
+  
   # check that the number of rows is greater than 0
   expect_gt(nrow(round_one), 0)
   
@@ -24,19 +27,26 @@ test_that("import_round for all rounds", {
   
   skip_on_cran()
   
+  available_rounds <- show_rounds()
+  
   # Test for all rounds
-  all_rounds <- import_rounds(1:7, ess_email)
+  all_rounds <- import_rounds(available_rounds, ess_email)
   
   # check is list
   expect_is(all_rounds, "list")
   
-  # check is length one
-  expect_length(all_rounds, 7)
+  # check is length seven
+  expect_length(all_rounds, length(available_rounds))
   
   # check that all ess returns data frames
   expect_true(all(vapply(all_rounds,
                          function(x) "data.frame" %in% class(x),
                          FUN.VALUE = logical(1))))
+  
+  # Check that all rounds are indeed the first seven rounds
+  expect_true(all(vapply(all_rounds,
+                         function(x) unique(x$essround),
+                         FUN.VALUE = numeric(1)) == available_rounds))
   
   # check that all data frames have more than 0 rows
   expect_equal(all(vapply(all_rounds, nrow, numeric(1)) > 0), TRUE)
