@@ -143,7 +143,7 @@ show_any_rounds <- function(module, module_index) {
 # and scrapes the table from the index and returns a list
 # where every slot is a country and contains a logical
 # for which rounds are available for every country
-table_to_list <- function(ess_website, module_index) {
+table_to_list <- function(ess_website, module_index) { # nocov start
   download_page <- safe_GET(paste0(ess_website, module_index))
   
   # Extract the table in xml format
@@ -182,4 +182,4 @@ table_to_list <- function(ess_website, module_index) {
   list_rounds <- lapply(list_rounds, as.logical)
   
   list_rounds
-}
+} # nocov end

@@ -1,4 +1,4 @@
-ess_round_url <- function(rounds, format) {
+ess_round_url <- function(rounds, format) { # nocov start
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   
@@ -38,15 +38,15 @@ ess_round_url <- function(rounds, format) {
   full_urls <- sort(paste0(.global_vars$ess_website, format.files))
   
   full_urls
-}
+} # nocov end
 
 # This will return a link like "/download.html?file=ESS8e01&y=2016"
 # for every round available in the ess website.
-grab_rounds_link <- function(ess_website) {
+grab_rounds_link <- function(ess_website) { # nocov start
   download_page <- safe_GET(paste0(ess_website, "/data/download.html?r="))
   html_ess <- xml2::read_html(download_page) 
   z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
   
   downloads <- unique(grep("^/download.html(.*)[0-9]{4, }$", z, value = TRUE))
   downloads
-}
+} # nocov end

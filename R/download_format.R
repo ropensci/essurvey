@@ -92,7 +92,7 @@ authenticate <- function(ess_email) {
 
 # Function downloads the url after authentification and saves
 # in the which_folder
-round_downloader <- function(each_url, which_round, which_folder) {
+round_downloader <- function(each_url, which_round, which_folder) { # nocov start
   
   # Download the data
   message(paste("Downloading", which_round))
@@ -106,9 +106,9 @@ round_downloader <- function(each_url, which_round, which_folder) {
   writeBin(httr::content(current_file, as = "raw") , temp_download)
   
   utils::unzip(temp_download, exdir = which_folder)
-}
+} # nocov end
 
 # Safe getter
-safe_GET <- function(url, config = list(), ...) {
+safe_GET <- function(url, config = list(), ...) { # nocov start
   httr::stop_for_status(httr::GET(url = url, config = config, ...))
-}
+} # nocov end

@@ -56,12 +56,12 @@ show_themes <- function() {
 
 # General function to show_* any index.
 
-show_any <- function(ess_website, module_index) {
+show_any <- function(ess_website, module_index) { # nocov start
   
   module_table <- table_to_list(ess_website, module_index)
 
   names(module_table)
-}
+} # nocov end
 
 # Here I define an environment to hold the ess_website vector
 # because it's a variable I'll use in nearly all functions to
