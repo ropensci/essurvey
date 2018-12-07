@@ -114,18 +114,14 @@ test_that("download_format can download COUNTRY files in SPSS format", {
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(download_link, pattern = "ESS", recursive = TRUE)
   
-  # Same number of stata files as the rounds attempted
+  # Same number of spss files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(".sav", ess_files)), which_rounds)
   
   # Same number of zip files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(".zip", ess_files)), which_rounds)
-  
-  # Same number of do files as the rounds attempted
-  # to download?
-  expect_equal(sum(grepl(".por", ess_files)), which_rounds)
-  
+
   # Delete all downloaded files
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
@@ -147,17 +143,13 @@ test_that("download_format can download ROUND files in SPSS format", {
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(download_link, pattern = "ESS", recursive = TRUE)
   
-  # Same number of stata files as the rounds attempted
+  # Same number of spss files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(".sav", ess_files)), which_rounds)
   
   # Same number of zip files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(".zip", ess_files)), which_rounds)
-  
-  # Same number of do files as the rounds attempted
-  # to download?
-  expect_equal(sum(grepl(".por", ess_files)), which_rounds)
   
   # Delete all downloaded files
   unlink(save_dir, recursive = TRUE, force = TRUE)
@@ -182,13 +174,10 @@ test_that("download_format can download COUNTRY files in SAS format", {
   ess_files <- list.files(download_link, pattern = "ESS", recursive = TRUE)
   
   # SAS needs more files that the number of rounds.
-  # It's actually 4 .sas files, 1 .zip file and 
-  # 1 .por file per round, so everything multipled by 2.
-  expect_equal(sum(grepl(".sas$", ess_files)), 4 * which_rounds)
+  # It's actually 3 .sas files per round, so everything multiplied by three.
+  expect_equal(sum(grepl(".sas$", ess_files)), 3 * which_rounds)
   
   expect_equal(sum(grepl(".zip$", ess_files)), 1 * which_rounds)
-  
-  expect_equal(sum(grepl(".por$", ess_files)), 1 * which_rounds)
   
   # Delete all downloaded files
   unlink(save_dir, recursive = TRUE, force = TRUE)
@@ -212,14 +201,11 @@ test_that("download_format can download ROUND files in SAS format", {
   ess_files <- list.files(download_link, pattern = "ESS", recursive = TRUE)
   
   # SAS needs more files that the number of rounds.
-  # It's actually 4 .sas files, 1 .zip file and 
-  # 1 .por file per round, so everything multipled by 2.
-  expect_equal(sum(grepl(".sas$", ess_files)), 4 * which_rounds)
+  # It's actually 3 .sas files per round, so everything multiplied by three.
+  expect_equal(sum(grepl(".sas$", ess_files)), 3 * which_rounds)
   
   expect_equal(sum(grepl(".zip$", ess_files)), 1 * which_rounds)
-  
-  expect_equal(sum(grepl(".por$", ess_files)), 1 * which_rounds)
-  
+
   # Delete all downloaded files
   unlink(save_dir, recursive = TRUE, force = TRUE)
 })
