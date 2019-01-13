@@ -31,8 +31,8 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201) [NA]
-  \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201) [NA]
+  \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201) [reviewer]
+  \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201) [reviewer]
 }
 
 }

@@ -92,7 +92,7 @@ import_country <- function(country, rounds, ess_email = NULL, format = 'stata') 
   
   if (format == "sas") {
     stop(
-      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?ess_country for more details" # nolint
+      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_country for more details" # nolint
     )
   }
   
