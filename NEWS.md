@@ -1,12 +1,14 @@
+## essurvey 1.0.3.9999
+
+### Bug fixes
+
+* Removes an unnecessary if statement in `set_email` that didn't allow to overwrite the email once set.
+
 ## essurvey 1.0.2
 
 ### Minor changes
 
 * `show_country_rounds` checks if there are missing values and excludes them.
-
-### Bug fixes
-
-* Removes an unnecessary if statement in `set_email` that didn't allow to overwrite the email once set.
 
 ### Breaking changes
 
