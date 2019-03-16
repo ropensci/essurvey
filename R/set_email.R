@@ -17,9 +17,7 @@
 #' }
 #' 
 set_email <- function(ess_email) {
-  if (Sys.getenv("ESS_EMAIL") == "") {
-    Sys.setenv("ESS_EMAIL" = ess_email)
-  }
+  Sys.setenv("ESS_EMAIL" = ess_email)
 }
 
 get_email <- function() {
