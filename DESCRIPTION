@@ -2,9 +2,10 @@ Package: essurvey
 Title: Download Data from the European Social Survey on the Fly
 Version: 1.0.2
 Authors@R: c(
-    person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre")),   
+    person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre")),
     person("Thomas", "Leeper", role = "rev", comment = "Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201"),
     person("Nujcharee", "Haswell", role = "rev", comment = "Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201")
+    person("Jorge", "Lopez", email = "jorge@loperez.com", role = c("ctb")),
   )
 BugReports: https://github.com/ropensci/essurvey/issues
 Description: Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two families of functions that allow you to download and interactively check all countries and rounds available.
