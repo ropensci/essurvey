@@ -21,11 +21,19 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Function reference" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">essurvey</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">essurvey</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +98,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,94 +106,90 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;1.0.2</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="import_country.html">import_country()</a></code> <code><a href="import_country.html">import_all_cntrounds()</a></code> <code><a href="import_country.html">download_country()</a></code> </p>
-          </td>
-          <td><p>Download integrated rounds separately for countries from the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="import_rounds.html">import_rounds()</a></code> <code><a href="import_rounds.html">import_all_rounds()</a></code> <code><a href="import_rounds.html">download_rounds()</a></code> </p>
-          </td>
-          <td><p>Download integrated rounds from the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="recode_missings.html">recode_missings()</a></code> <code><a href="recode_missings.html">recode_numeric_missing()</a></code> <code><a href="recode_missings.html">recode_strings_missing()</a></code> </p>
-          </td>
-          <td><p>Recode pre-defined missing values as NA</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_email.html">set_email()</a></code> </p>
-          </td>
-          <td><p>Save your ESS email as an environment variable</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_countries.html">show_countries()</a></code> </p>
-          </td>
-          <td><p>Return available countries in the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_country_rounds.html">show_country_rounds()</a></code> </p>
-          </td>
-          <td><p>Return available rounds for a country in the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_rounds.html">show_rounds()</a></code> </p>
-          </td>
-          <td><p>Return available rounds in the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_rounds_country.html">show_rounds_country()</a></code> </p>
-          </td>
-          <td><p>Return countries that participated in <strong>all</strong> of the specified rounds.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_themes.html">show_themes()</a></code> </p>
-          </td>
-          <td><p>Return available themes in the European Social Survey</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="show_theme_rounds.html">show_theme_rounds()</a></code> </p>
-          </td>
-          <td><p>Return available rounds for a theme in the European Social Survey</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="import_country.html">import_country()</a></code> <code><a href="import_country.html">import_all_cntrounds()</a></code> <code><a href="import_country.html">download_country()</a></code> </p>
+        </td>
+        <td><p>Download integrated rounds separately for countries from the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="import_rounds.html">import_rounds()</a></code> <code><a href="import_rounds.html">import_all_rounds()</a></code> <code><a href="import_rounds.html">download_rounds()</a></code> </p>
+        </td>
+        <td><p>Download integrated rounds from the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="recode_missings.html">recode_missings()</a></code> <code><a href="recode_missings.html">recode_numeric_missing()</a></code> <code><a href="recode_missings.html">recode_strings_missing()</a></code> </p>
+        </td>
+        <td><p>Recode pre-defined missing values as NA</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_email.html">set_email()</a></code> </p>
+        </td>
+        <td><p>Save your ESS email as an environment variable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_countries.html">show_countries()</a></code> </p>
+        </td>
+        <td><p>Return available countries in the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_country_rounds.html">show_country_rounds()</a></code> </p>
+        </td>
+        <td><p>Return available rounds for a country in the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_rounds.html">show_rounds()</a></code> </p>
+        </td>
+        <td><p>Return available rounds in the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_rounds_country.html">show_rounds_country()</a></code> </p>
+        </td>
+        <td><p>Return countries that participated in <strong>all</strong> of the specified rounds.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_themes.html">show_themes()</a></code> </p>
+        </td>
+        <td><p>Return available themes in the European Social Survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_theme_rounds.html">show_theme_rounds()</a></code> </p>
+        </td>
+        <td><p>Return available rounds for a theme in the European Social Survey</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -202,6 +211,8 @@
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

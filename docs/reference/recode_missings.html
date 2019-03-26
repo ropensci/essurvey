@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Recode pre-defined missing values as NA — recode_missings" />
 
 <meta property="og:description" content="Data from the European Social Survey is always accompanied by a script
@@ -32,6 +37,9 @@ that recodes the categories 'Not applicable', 'Refusal', 'Don't Know',
 'No answer' and 'Not available' to missing. This function recodes
 these categories to NA" />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -54,8 +62,12 @@ these categories to NA" />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">essurvey</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">essurvey</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -92,6 +104,7 @@ these categories to NA" />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -99,19 +112,22 @@ these categories to NA" />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Recode pre-defined missing values as NA</h1>
-    <small>Source: <a href='https:/github.com/ropensci/essurvey/blob/master/R/recode_missings.R'><code>R/recode_missings.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/essurvey/blob/master/R/recode_missings.R'><code>R/recode_missings.R</code></a></small>
+    <div class="hidden name"><code>recode_missings.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Data from the European Social Survey is always accompanied by a script
 that recodes the categories 'Not applicable', 'Refusal', 'Don't Know',
 'No answer' and 'Not available' to missing. This function recodes
 these categories to NA</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>recode_missings</span>(<span class='no'>ess_data</span>, <span class='no'>missing_codes</span>)
 
@@ -119,16 +135,16 @@ these categories to NA</p>
 
 <span class='fu'>recode_strings_missing</span>(<span class='no'>y</span>, <span class='no'>missing_codes</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ess_data</th>
-      <td><p>data frame or <code><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> with data from the
+      <td><p>data frame or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> with data from the
 European Social Survey. This data frame should come either
 from <code><a href='import_rounds.html'>import_rounds</a></code>, <code><a href='import_country.html'>import_country</a></code> or read with
-<code><a href='http://www.rdocumentation.org/packages/haven/topics/read_dta'>read_dta</a></code> or <code><a href='http://www.rdocumentation.org/packages/haven/topics/read_spss'>read_spss</a></code>. This is the case because it
-identifies missing values using <code><a href='http://www.rdocumentation.org/packages/haven/topics/labelled'>labelled</a></code> classes.</p></td>
+<code><a href='https://haven.tidyverse.org/reference/read_dta.html'>read_dta</a></code> or <code><a href='https://haven.tidyverse.org/reference/read_spss.html'>read_spss</a></code>. This is the case because it
+identifies missing values using <code><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></code> classes.</p></td>
     </tr>
     <tr>
       <th>missing_codes</th>
@@ -138,7 +154,7 @@ all values are chosen. Note that the wording is case sensitive.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>a <code><a href='http://www.rdocumentation.org/packages/haven/topics/labelled'>labelled</a></code> numeric</p></td>
+      <td><p>a <code><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></code> numeric</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -148,7 +164,7 @@ all values are chosen. Note that the wording is case sensitive.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The same data frame or <code><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> but with values 'Not applicable',
+    <p>The same data frame or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> but with values 'Not applicable',
 'Refusal', 'Don't Know', 'No answer' and 'Not available' recoded
 as NA.</p>
     
@@ -158,7 +174,7 @@ as NA.</p>
 the downloaded .zip file contains a script that recodes some categories
 as missings in Stata and SPSS formats.</p>
 <p>For recoding numeric variables <code>recode_numeric_missings</code>
-uses the labels provided by the <code><a href='http://www.rdocumentation.org/packages/haven/topics/labelled'>labelled</a></code>
+uses the labels provided by the <code><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></code>
 class to delete the labels matched in <code>missing_codes</code>. For the
 character variables matching is done with the underlying number assigned to
 each category, namely 6, 7, 8, 9 and 9 for 'Not applicable', Refusal',
@@ -227,6 +243,8 @@ for all rounds.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
