@@ -4,6 +4,8 @@
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/essurvey)](https://cran.r-project.org/package=essurvey)
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/essurvey.svg?branch=master)](https://travis-ci.org/ropensci/essurvey)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/ropensci/essurvey?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/essurvey)
 [![Coverage
 status](https://codecov.io/gh/ropensci/essurvey/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/essurvey?branch=master)
 [![rOpensci\_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/onboarding/issues/201)
@@ -66,20 +68,21 @@ To explore which rounds/countries are present in the ESS use the
 
 ``` r
 library(essurvey)
+#> Warning: package 'essurvey' was built under R version 3.5.2
 show_countries()
 #>  [1] "Albania"            "Austria"            "Belgium"           
 #>  [4] "Bulgaria"           "Croatia"            "Cyprus"            
-#>  [7] "Czech Republic"     "Denmark"            "Estonia"           
+#>  [7] "Czechia"            "Denmark"            "Estonia"           
 #> [10] "Finland"            "France"             "Germany"           
 #> [13] "Greece"             "Hungary"            "Iceland"           
 #> [16] "Ireland"            "Israel"             "Italy"             
 #> [19] "Kosovo"             "Latvia"             "Lithuania"         
-#> [22] "Luxembourg"         "Netherlands"        "Norway"            
-#> [25] "Poland"             "Portugal"           "Romania"           
-#> [28] "Russian Federation" "Serbia"             "Slovakia"          
-#> [31] "Slovenia"           "Spain"              "Sweden"            
-#> [34] "Switzerland"        "Turkey"             "Ukraine"           
-#> [37] "United Kingdom"
+#> [22] "Luxembourg"         "Montenegro"         "Netherlands"       
+#> [25] "Norway"             "Poland"             "Portugal"          
+#> [28] "Romania"            "Russian Federation" "Serbia"            
+#> [31] "Slovakia"           "Slovenia"           "Spain"             
+#> [34] "Sweden"             "Switzerland"        "Turkey"            
+#> [37] "Ukraine"            "United Kingdom"
 ```
 
 To download the first round to use in R:
