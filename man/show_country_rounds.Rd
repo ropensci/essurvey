@@ -11,7 +11,7 @@ show_country_rounds(country)
 Use \code{\link{show_countries}}for a list of available countries.}
 }
 \value{
-character vector with available rounds for \code{country}
+numeric vector with available rounds for \code{country}
 }
 \description{
 Return available rounds for a country in the European Social Survey

@@ -27,10 +27,10 @@ test_that("show_rounds returns correct output", {
 # show_rounds_country
 test_that("show_rounds_country returns error when arguments are wrong", {
   expect_error(show_rounds_country("whatever"),
-               "Rounds not available in ESS. Check show_rounds()")
+               "ESS round whatever is not available. Check show_rounds()")
   
-  expect_error(show_rounds_country(1:100),
-               "Rounds not available in ESS. Check show_rounds()")
+  expect_error(show_rounds_country(1:50),
+               "ESS round 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 is not available. Check show_rounds()")
 })
 
 test_that("show_rounds_country returns correct output", {
@@ -81,7 +81,7 @@ test_that("show_countries returns correct output", {
 # show_country_rounds
 test_that("show_country_rounds returns error when wrong country as argument", {
   expect_error(show_country_rounds("whatever"),
-               "Country not available in ESS. Check show_countries()")
+               "Country whatever not available in ESS. Check show_countries()")
 })
 
 test_that("show_country_rounds returns correct output", {
@@ -108,7 +108,7 @@ test_that("show_themes returns correct output", {
 # show theme_rounds
 test_that("show_theme_rounds returns error when wrong theme as argument", {
   expect_error(show_theme_rounds("whatever"),
-               "Theme not available in ESS. Check show_themes()")
+               "ESS theme whatever not available. Check show_themes()")
 })
 
 test_that("show_theme_rounds returns correct output for rounds  == 1", {
@@ -121,4 +121,16 @@ test_that("show_theme_rounds returns correct output for rounds  == 1", {
 test_that("show_theme_rounds returns correct output for rounds > 1", {
   theme_two <- show_theme_rounds("Politics")
   check_format(theme_two)
+})
+
+# show_sddf_rounds()
+test_that("show_sddf_rounds returns correct output", {
+  
+  all_spain_sddf <- show_sddf_rounds("Spain")
+  
+  check_format(all_spain_sddf, "numeric")
+  
+  # Check that no input is available
+  expect_error(show_sddf_rounds("whatever"),
+               "Country whatever not available in ESS. Check show_countries()")
 })

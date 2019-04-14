@@ -23,7 +23,7 @@ show_sddf_rounds <- function(country) {
   
   # Returns the chosen countries html that contains
   # the links to all rounds.
-  country_round_html <- extract_html(country, .global_vars$country_index)
+  country_round_html <- extract_country_html(country, .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")

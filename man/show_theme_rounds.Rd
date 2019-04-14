@@ -11,7 +11,7 @@ show_theme_rounds(theme)
 Use \code{\link{show_themes}}for a list of available themes.}
 }
 \value{
-character vector with available rounds for \code{country}
+numeric vector with available rounds for \code{country}
 }
 \description{
 This function returns the available rounds for any theme from

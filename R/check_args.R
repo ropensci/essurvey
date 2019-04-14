@@ -1,3 +1,6 @@
+## TODO
+## Properly document these functions if you want to export them.
+## Think about it or ask in the issues?
 check_rounds <- function(rounds) {
   all_rounds_present <- rounds %in% show_rounds()
   
@@ -50,6 +53,22 @@ check_country_rounds <- function(country, rounds) {
       paste0("ESS round ", failed_rounds,
             " not available for ", country,
             ". Check show_rounds()")
+    )
+  }
+  
+  TRUE
+}
+
+check_theme <- function(theme) {
+  
+  if (length(theme) > 1) stop("Argument `theme` should only contain one theme")
+  
+  all_theme_present <- theme %in% show_themes()
+  
+  if (!all(all_theme_present))  {
+    
+    stop(
+      paste0("ESS theme ", theme, " not available. Check show_themes()")
     )
   }
   

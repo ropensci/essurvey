@@ -30,10 +30,8 @@
 #' 
 show_rounds_country <- function(rounds, participate = TRUE) {
   
-  if (!all(rounds %in% show_rounds())) {
-    stop("Rounds not available in ESS. Check show_rounds()")
-  }
-  
+  check_rounds(rounds)
+
   # Obtain the country list with years that participated
   module_list <- table_to_list(.global_vars$ess_website,
                                .global_vars$country_index)
@@ -78,9 +76,7 @@ show_rounds_country <- function(rounds, participate = TRUE) {
 show_country_rounds <- function(country) {
 
   # Check if country is present
-  if (!country %in% show_countries()) {
-    stop("Country not available in ESS. Check show_countries()")
-  }
+  check_country(country)
   
   show_any_rounds(country, .global_vars$country_index)
   
@@ -112,10 +108,7 @@ show_country_rounds <- function(country) {
 #' 
 show_theme_rounds <- function(theme) {
   
-  # Check if country is present
-  if (!theme %in% show_themes()) {
-    stop("Theme not available in ESS. Check show_themes()")
-  }
+  check_theme(theme)
   
   show_any_rounds(theme, .global_vars$theme_index)
 }
