@@ -8,7 +8,7 @@
 #' show_rounds()
 #' 
 show_rounds <- function() {
-  incomplete_links <- grab_rounds_link(.global_vars$ess_website)
+  incomplete_links <- get_rounds_link(.global_vars$ess_website)
   
   # extract ESS* part to detect dupliacted
   ess_prefix <- sort(stringr::str_extract(incomplete_links,

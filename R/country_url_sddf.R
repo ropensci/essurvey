@@ -27,28 +27,15 @@ grab_url <- function(country, rounds, regex, sddf = FALSE) {
   # Get unique country to avoid repetitions  
   country <- sort(unique(country))
   
-  # Returns each countries href attribute with its website
-  # ess_website is a vector set as metadata
-  available_countries <- show_countries()
+  # Check country is available
+  check_countries(country)
   
-  if (!country %in% available_countries) {
-    stop("Country not available in ESS. Check show_countries()")
-  }
-  
-  available_rounds <- show_country_rounds(country)
-  
-  # If any ESS round is missing
-  if(any(!rounds %in% available_rounds)) {
-    stop("Only rounds ",
-         paste0("ESS", available_rounds, collapse = ", "),
-         " available for ", country)
-  }
+  # And also the rounds for that country
+  check_country_rounds(country, rounds)
   
   # Returns the chosen countries html that contains
   # the links to all rounds.
-  country_round_html <- extract_html(country,
-                                     available_countries,
-                                     .global_vars$country_index)
+  country_round_html <- extract_html(country, .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
@@ -81,27 +68,37 @@ grab_url <- function(country, rounds, regex, sddf = FALSE) {
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
   
-  format.files <- character(length(rounds))
+  full_urls <- get_download_url(round_links)
+  
+  full_urls
+}
+
+# Given a country/round website, extract all stata files 
+# (or spss, in that specific order if not available) and return
+# the complete url path
+get_download_url <- function(rounds_links) {
+  format.files <- character(length(rounds_links))
   
   # Build paths for each round
-  for (index in seq_along(round_links)) {
+  for (index in seq_along(rounds_links)) {
     download_page <- safe_GET(paste0(.global_vars$ess_website,
-                                     round_links[index]))
+                                     rounds_links[index]))
     html_ess <- xml2::read_html(download_page) 
     z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- format_preference(z, formats = c('stata', 'spss'))
   }
-
+  
   full_urls <- sort(paste0(.global_vars$ess_website, format.files))
   
   full_urls
+  
 }
 
 # Function accepts the chosen country and the list
 # of all available countries and returns the html doc
 # for the chosen country that contains the whole list of
 # links to download that countries rounds.
-extract_html <- function(chosen_module, available_modules, module_index) {
+extract_html <- function(chosen_module, module_index) {
   
   country_refs  <- get_href(.global_vars$ess_website, module_index)
   # Returns "/data/country.html?c=ukraine" for all countries
