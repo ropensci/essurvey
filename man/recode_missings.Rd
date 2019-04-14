@@ -57,7 +57,7 @@ for all rounds.
 }
 \examples{
 \dontrun{
-seven <- ess_rounds(7, your_email)
+seven <- import_rounds(7, your_email)
 
 attr(seven$tvtot, "labels")
 mean(seven$tvtot, na.rm = TRUE)

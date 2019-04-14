@@ -80,7 +80,7 @@
 #' # If selected rounds don't exist, error will arise
 #' 
 #' two_rounds <- import_rounds(c(1, 22))
-#' # Error in ess_round_url(rounds) : 
+#' # Error in round_url(rounds) : 
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
 #' 

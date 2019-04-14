@@ -1,4 +1,4 @@
-ess_country_url <- function(country, rounds, format) {
+country_url <- function(country, rounds, format) {
 
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))

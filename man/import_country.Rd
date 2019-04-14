@@ -102,7 +102,7 @@ uk_one <- import_country("United Kingdom", 5, "wrong_email@email.com")
 
 czech_two <- import_country("Czech Republic", c(1, 22))
 
-# Error in ess_country_url(country, rounds) : 
+# Error in country_url(country, rounds) : 
 # Only rounds ESS1, ESS2, ESS4, ESS5, ESS6, ESS7, ESS8 available
 # for Czech Republic
 }

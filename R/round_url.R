@@ -1,4 +1,4 @@
-ess_round_url <- function(rounds, format) { # nocov start
+round_url <- function(rounds, format) { # nocov start
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   

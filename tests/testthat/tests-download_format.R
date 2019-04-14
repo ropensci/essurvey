@@ -6,7 +6,7 @@ test_that("Download function return correct errors", {
   skip_on_cran()
   
   # These are the functions which are actually doing the work of testing this,
-  # not ess_rounds. For wrong emails, test it will through error
+  # not import_rounds. For wrong emails, test it will through error
   
   expect_error(authenticate("random@email.morerandom"),
                "email address you provided is not associated with any registered") # nolint

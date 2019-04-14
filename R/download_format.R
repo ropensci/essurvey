@@ -19,9 +19,9 @@ download_format <- function(rounds, country, ess_email, only_download = FALSE,
   # rounds by checking whether the rounds and country args
   # are both available
   if (!missing(rounds) && !missing(country)) {
-    urls <- ess_country_url(country, rounds, format = format)
+    urls <- country_url(country, rounds, format = format)
   } else {
-    urls <- ess_round_url(rounds, format = format)
+    urls <- round_url(rounds, format = format)
   }
   
   # Extract the ESS prefix with the round number
