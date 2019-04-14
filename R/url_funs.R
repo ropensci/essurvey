@@ -1,4 +1,4 @@
-round_url <- function(rounds, format) { # nocov start
+round_url <- function(rounds, format = NULL) { # nocov start
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   
@@ -18,7 +18,7 @@ round_url <- function(rounds, format) { # nocov start
   
 } # nocov end
 
-country_url <- function(country, rounds, format) { # nocov start
+country_url <- function(country, rounds, format = NULL) { # nocov start
   
   # Check country is available
   check_country(country)
@@ -42,7 +42,7 @@ country_url <- function(country, rounds, format) { # nocov start
 } # nocov end
 
 
-country_url_sddf <- function(country, rounds) {
+country_url_sddf <- function(country, rounds, format = NULL) {
   
   # Check country is available
   check_country(country)
@@ -76,7 +76,7 @@ country_url_sddf <- function(country, rounds) {
   sddf_regex <- "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
   
   
-  full_urls <- grab_url(country, rounds, sddf_regex)
+  full_urls <- grab_url(country, rounds, sddf_regex, format)
   
   full_urls
 }
@@ -120,8 +120,8 @@ grab_url <- function(country, rounds, regex, format) {
 # Given a country/round website such as https://www.europeansocialsurvey.org/download.html?file=ESS1ES&c=ES&y=2002,
 # extracts the stata (or spss, in that specific order if one is not available) path and 
 # returns the complete url path to download the data
-get_download_url <- function(rounds_links, format = NULL) { # nocov start
-  format <- if (is.null(format)) c('stata', 'spss')
+get_download_url <- function(rounds_links, format) { # nocov start
+  format <- if (is.null(format)) c('stata', 'spss') else format
   
   format.files <- character(length(rounds_links))
   

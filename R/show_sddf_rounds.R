@@ -6,6 +6,10 @@
 #'  
 #'  @details SDDF data are the equivalent weight data used to analyze the European
 #'  Social Survey properly.
+#'  
+#' @details Given that the new SDDF files from the ESS are now comming in a fully integrated
+#' file rather than separated by countries, this function only checks for SDDF files in
+#' rounds 1 through 6.
 #'
 #' @return numeric vector with available rounds for \code{country}
 #' @export

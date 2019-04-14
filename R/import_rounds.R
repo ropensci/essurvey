@@ -91,11 +91,13 @@ import_rounds <- function(rounds, ess_email = NULL, format = 'stata') {
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
   }
   
-  dir_download <- download_format(rounds = rounds,
-                                  ess_email = ess_email,
+  urls <- round_url(rounds, format = format)
+  
+  dir_download <- download_format(ess_email = ess_email,
+                                  urls = urls,
                                   format = format)
   
-  all_data <- read_format_data(dir_download, format, rounds)
+  all_data <- read_format_data(dir_download, rounds)
   
   all_data
 }
@@ -109,9 +111,12 @@ import_all_rounds <- function(ess_email = NULL, format = 'stata') {
 #' @rdname import_rounds 
 #' @export
 download_rounds <- function(rounds, ess_email = NULL, output_dir = getwd(), format = 'stata') {
-      invisible(download_format(rounds = rounds,
-                                ess_email= ess_email,
-                                only_download = TRUE,
-                                output_dir = output_dir,
-                                format = format))
+  
+  urls <- round_url(rounds, format = format)
+  
+  invisible(download_format(urls = urls,
+                            ess_email= ess_email,
+                            only_download = TRUE,
+                            output_dir = output_dir,
+                            format = format))
 }

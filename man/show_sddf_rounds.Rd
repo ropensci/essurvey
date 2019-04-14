@@ -19,6 +19,11 @@ numeric vector with available rounds for \code{country}
 \description{
 Return available SDDF rounds for a country in the European Social Survey
 }
+\details{
+Given that the new SDDF files from the ESS are now comming in a fully integrated
+file rather than separated by countries, this function only checks for SDDF files in
+rounds 1 through 6.
+}
 \examples{
 
 show_sddf_rounds("Spain")

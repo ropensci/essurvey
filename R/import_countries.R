@@ -96,12 +96,14 @@ import_country <- function(country, rounds, ess_email = NULL, format = 'stata') 
     )
   }
   
-  dir_download <- download_format(rounds = rounds,
-                                  country = country,
+  urls <- country_url(country, rounds, format = format)
+  
+  dir_download <- download_format(country = country,
+                                  urls,
                                   ess_email = ess_email,
                                   format = format)
   
-  all_data <- read_format_data(dir_download, format, rounds)
+  all_data <- read_format_data(dir_download, rounds)
   
   all_data
 }
@@ -116,9 +118,12 @@ import_all_cntrounds <- function(country, ess_email = NULL, format = 'stata') {
 #' @export
 download_country <- function(country, rounds, ess_email = NULL,
                              output_dir = getwd(), format = 'stata') {
+  
+  urls <- country_url(country, rounds, format = format)
+  
   invisible(
-    download_format(rounds = rounds,
-                    country = country,
+    download_format(country = country,
+                    urls = urls,
                     ess_email = ess_email,
                     only_download = TRUE,
                     output_dir = output_dir,
@@ -126,23 +131,25 @@ download_country <- function(country, rounds, ess_email = NULL,
   )
 }
 
-read_format_data <- function(urls, format, rounds) {
+read_format_data <- function(urls, rounds) {
   
-  # Use function ro read the specified format
-  format_read <-
-    switch(format,
-           'spss' = haven::read_spss,
-           'stata' = haven::read_dta
-    )
-  
-  format_ext <- c(".dta", ".sav")
+  format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
   format_dirs <- list.files(urls,
                             pattern = paste0(format_ext, "$", collapse = "|"),
                             full.names = TRUE)
   
   # Read only the .dta/.sav/ files
-  dataset <- lapply(format_dirs, format_read)
+  dataset <- lapply(format_dirs, function(.x) {
+    # Use function ro read the specified format
+    format_read <-
+      switch(file_ext(.x),
+             'sav' = haven::read_spss,
+             'dta' = haven::read_dta,
+             'por' = haven::read_por
+      )
+    format_read(.x)
+  })
   
   # Remove everything that was downloaded
   unlink(urls, recursive = TRUE, force = TRUE)
@@ -152,5 +159,11 @@ read_format_data <- function(urls, format, rounds) {
   
   dataset
   
+}
+
+# Taken from tools::file_ext
+file_ext <- function(x) {
+  pos <- regexpr("\\.([[:alnum:]]+)$", x)
+  ifelse(pos > -1L, substring(x, pos + 1L), "")
 }
 
