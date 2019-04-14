@@ -14,16 +14,19 @@ check_rounds <- function(rounds) {
   TRUE
 }
 
-check_countries <- function(countries) {
-  all_countries_present <- countries %in% show_countries()
+check_country <- function(country) {
+  
+  if (length(country) > 1) stop("Argument `country` should only contain one country")
+  
+  all_countries_present <- country %in% show_countries()
   
 
   if (!all(all_countries_present))  {
 
-    failed_countries <- paste0(countries[!all_countries_present], collapse = ", ")
+    failed_countries <- paste0(country[!all_countries_present], collapse = ", ")
     
     stop(
-      paste("Countries", failed_countries,
+      paste("Country", failed_countries,
             "not available in ESS. Check show_countries()",
             collapse = "\n")
     )
@@ -34,6 +37,8 @@ check_countries <- function(countries) {
 
 
 check_country_rounds <- function(country, rounds) {
+  
+  check_country(country)
   
   all_rounds_present <- rounds %in% show_country_rounds(country)
 

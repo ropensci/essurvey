@@ -1,9 +1,25 @@
 country_url_sddf <- function(country, rounds) {
   
+  # Check country is available
+  check_country(country)
+  
+  # And also the rounds for that country
+  check_country_rounds(country, rounds)
+  
   ## TODO
   ## You're only limiting SDDF files to rounds 1:6 until you can figure out
   ## how to include the SDDF from rounds 7:8 which are integrated for all countries
   if (any(rounds >= 7)) stop('SDDF files are only supported for rounds earlier than the 6th round')
+  
+  
+  sddf_rounds_available <- rounds %in% show_sddf_rounds(country)
+  # If ANY round doesn't not have SDDF data, raise error pointing
+  # to the rounds which don't have SDDF data.
+  if(any(!sddf_rounds_available)) {
+    stop("Rounds ",
+         paste0("ESS", rounds[!sddf_rounds_available], collapse = ", "),
+         " don't have SDDF data available for ", country)
+  }
   
   # Only select the rounds that match this:
   # /download.html\\?file= for the downoad section
@@ -15,26 +31,21 @@ country_url_sddf <- function(country, rounds) {
   
   sddf_regex <- "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
   
-  full_urls <- grab_url(country, rounds, sddf_regex, sddf = TRUE)
+  
+  full_urls <- grab_url(country, rounds, sddf_regex)
   
   full_urls
 }
 
-grab_url <- function(country, rounds, regex, sddf = FALSE) {
+grab_url <- function(country, rounds, regex) {
   
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
   # Get unique country to avoid repetitions  
   country <- sort(unique(country))
-  
-  # Check country is available
-  check_countries(country)
-  
-  # And also the rounds for that country
-  check_country_rounds(country, rounds)
-  
+
   # Returns the chosen countries html that contains
-  # the links to all rounds.
+  # the links to all round website.
   country_round_html <- extract_html(country, .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
@@ -52,19 +63,6 @@ grab_url <- function(country, rounds, regex, sddf = FALSE) {
   round_numbers <- as.numeric(stringr::str_extract(incomplete_links,
                                                    "[0-9]{1,2}"))
   
-  if (sddf) {
-    # How many rounds actually have sddf data?
-    sddf_rounds_available <- rounds %in% round_numbers
-    
-    # If ANY round doesn't not have SDDF data, raise error pointing
-    # to the rounds which don't have SDDF data.
-    if(any(!sddf_rounds_available)) {
-      stop("Rounds ",
-           paste0("ESS", rounds[!sddf_rounds_available], collapse = ", "),
-           " don't have SDDF data available for ", country)
-    }
-  }
-  
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
   
@@ -73,9 +71,9 @@ grab_url <- function(country, rounds, regex, sddf = FALSE) {
   full_urls
 }
 
-# Given a country/round website, extract all stata files 
-# (or spss, in that specific order if not available) and return
-# the complete url path
+# Given a country/round website such as https://www.europeansocialsurvey.org/data/country.html?c=germany,
+# extract all stata paths (or spss, in that specific order if one is not available) and return
+# the complete url path to download the data
 get_download_url <- function(rounds_links) {
   format.files <- character(length(rounds_links))
   
