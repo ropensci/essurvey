@@ -46,24 +46,24 @@ check_all_rounds <- function(x, rounds) {
   expect_equal(all(vapply(x, ncol, numeric(1)) > 0), TRUE)
 }
 
-check_downloaded_rounds <- function(x) {
+check_downloaded_rounds <- function(x, rounds) {
   # Test whether the downloaded files are indeed there
-  ess_files <- list.files(downloads, pattern = "ESS", recursive = TRUE)
+  ess_files <- list.files(x, pattern = "ESS", recursive = TRUE)
   
   # Same number of stata files as the rounds attempted
   # to download?
-  expect_equal(sum(grepl(".dta", ess_files)), which_rounds)
+  expect_equal(sum(grepl(".dta", ess_files)), rounds)
   
   # Same number of zip files as the rounds attempted
   # to download?
-  expect_equal(sum(grepl(".zip", ess_files)), which_rounds)
+  expect_equal(sum(grepl(".zip", ess_files)), rounds)
   
   # Same number of do files as the rounds attempted
   # to download?
-  expect_equal(sum(grepl(".do", ess_files)), which_rounds)
+  expect_equal(sum(grepl(".do", ess_files)), rounds)
   
   # Delete all downloaded files
-  unlink(dirname(downloads), recursive = TRUE, force = TRUE)
+  unlink(dirname(x), recursive = TRUE, force = TRUE)
   
 }
 
@@ -90,7 +90,7 @@ test_that("import_country for all rounds of a country", {
   # Test for all rounds
   all_rounds <- import_country("Netherlands", rounds, ess_email)
   
-  check_all_rounds(all_rounds)
+  check_all_rounds(all_rounds, rounds)
   
   # Check that all waves are correct rounds
   expect_true(all(vapply(all_rounds,
@@ -113,7 +113,7 @@ test_that("Test that downloading files is working fine", {
                    ),
                  "All files saved to")
   
-  check_downloaded_rounds(downloads)
+  check_downloaded_rounds(downloads, which_rounds)
   
 })
 
@@ -170,7 +170,7 @@ test_that("import_sddf_country for all rounds of a country", {
   check_all_rounds(all_rounds, rounds)
 })
 
-test_that("Test that downloading files is working fine", {
+test_that("Test that downloading files is working fine for sddf data", {
   
   skip_on_cran()
   
@@ -185,6 +185,6 @@ test_that("Test that downloading files is working fine", {
                    ),
                  "All files saved to")
   
-  check_downloaded_rounds(downloads)
+  check_downloaded_rounds(downloads, which_rounds)
   
 })

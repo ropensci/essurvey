@@ -12,7 +12,7 @@ round_url <- function(rounds, format = NULL) { # nocov start
                            x = get_rounds_link(.global_vars$ess_website),
                            value = TRUE))
   
-  full_url <- get_download_url(round_links)
+  full_url <- get_download_url(round_links, format)
   
   full_url
   

@@ -120,3 +120,4 @@ test_that("Specify 'sas' for import_rounds data throws error",{
   expect_error(import_rounds(1, ess_email, format = "sas"),
                "You cannot read SAS but only 'spss' and 'stata' files with this function") # nolint
 })
+
