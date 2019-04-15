@@ -1,7 +1,7 @@
 ess_email <- Sys.getenv("ess_email")
 save_dir <- tempdir()
 
-authenticate(ess_email)
+# authenticate(ess_email)
 
 test_that("authenticate works correctly for wrong emails", {
   expect_error(authenticate("random@email.morerandom"),
