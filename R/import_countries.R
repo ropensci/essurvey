@@ -144,9 +144,9 @@ read_format_data <- function(urls, rounds) {
     # Use function ro read the specified format
     format_read <-
       switch(file_ext(.x),
-             'sav' = haven::read_spss,
+             'sav' = haven::read_sav,
              'dta' = haven::read_dta,
-             'por' = haven::read_por
+             'por' = haven::read_sav
       )
     format_read(.x)
   })

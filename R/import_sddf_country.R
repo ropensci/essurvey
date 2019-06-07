@@ -1,8 +1,3 @@
-## TODO
-## Explain in the documentation what SDDF is and point to the links that help the reader understand.
-## Be verbose about the value and description of SDDF.
-## Also put some examples on how to use it.
-
 #' Download SDDF data by round for countries from the European Social Survey
 #'
 #' @param country a character of length 1 with the full name of the country. 
@@ -26,16 +21,23 @@
 #' \code{format} (only 'spss' and 'stata' supported, see details).
 #'
 #' @details
-#' Use \code{import_sddf_country} to download the SDDF (or weight data) data by country into R.
-#' \code{import_all_sddf_cntrounds} will download all available SDDF data for a given country by default
-#' and \code{download_sddf_country} will download SDDF data and save them in a specified
+#'
+#' SDDF data (Sample Design Data Files) are data sets that contain additional columns with the
+#' sample design and weights for a given country in a given rounds. These additional columns are
+#' required to perform any weighted analysis of the ESS data. Users interested in using this data
+#' should read the description of SDDF files \href{http://www.europeansocialsurvey.org/methodology/ess_methodology/sampling.html}{here}
+#' and should read \href{http://www.europeansocialsurvey.org/data/download_sample_data.html}{here} for the
+#' sampling design of the country of analysis for that specific round.
+#'
+#' Use \code{import_sddf_country} to download the SDDF data by country into R.
+#' \code{import_all_sddf_cntrounds} will download all available SDDF data for a given country by
+#' default and \code{download_sddf_country} will download SDDF data and save them in a specified
 #' \code{format} in the supplied directory.
 #'
 #' The \code{format} argument from \code{import_country} should not matter to the user
 #' because the data is read into R either way. However, different formats might have
 #' different handling of the encoding of some questions. This option was preserved
-#' so that the user
-#' can switch between formats if any encoding errors are found in the data. For more
+#' so that the user can switch between formats if any encoding errors are found in the data. For more
 #' details see the discussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
 #' 
 #' Given that the SDDF data is not very complete, some countries do not have SDDF data
@@ -46,13 +48,13 @@
 #' For this particular argument, 'sas' is not supported because the data formats have
 #' changed between ESS waves and separate formats require different functions to be
 #' read. To preserve parsimony and format errors between waves, the user should use
-#' 'spss' or 'stata'.
+#' 'stata' or 'spss'.
 #'
-#' @return for \code{import_sddf_country} if \code{length(rounds)} is 1, it returns a tibble
-#' with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
-#' containing the latest version of each round. For \code{download_sddf_country}, if 
-#' \code{output_dir} is a valid directory, it returns the saved directories invisibly
-#' and saves all the rounds in the chosen \code{format} in \code{output_dir}
+#' @return for \code{import_sddf_country} if \code{length(rounds)} is 1, it returns a tibble with
+#' the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
+#' containing the latest version of each round. For \code{download_sddf_country}, if
+#' \code{output_dir} is a valid directory, it returns the saved directories invisibly and saves
+#' all the rounds in the chosen \code{format} in \code{output_dir}
 #'
 #' @export
 #' @examples
@@ -96,7 +98,7 @@ import_sddf_country <- function(country, rounds, ess_email = NULL) {
                                   ess_email = ess_email)
   
   all_data <- read_format_data(dir_download, rounds)
-  
+
   all_data
 }
 
