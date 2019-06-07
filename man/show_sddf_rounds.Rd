@@ -8,10 +8,7 @@ show_sddf_rounds(country)
 }
 \arguments{
 \item{country}{A character of length 1 with the full name of the country.
-Use \code{\link{show_countries}}for a list of available countries.
-
-@details SDDF data are the equivalent weight data used to analyze the European
-Social Survey properly.}
+Use \code{\link{show_countries}} for a list of available countries.}
 }
 \value{
 numeric vector with available rounds for \code{country}
@@ -20,9 +17,10 @@ numeric vector with available rounds for \code{country}
 Return available SDDF rounds for a country in the European Social Survey
 }
 \details{
-Given that the new SDDF files from the ESS are now comming in a fully integrated
-file rather than separated by countries, this function only checks for SDDF files in
-rounds 1 through 6.
+SDDF data are the equivalent weight data used to analyze the European Social Survey
+  properly. For more information, see the details section of \code{\link{import_sddf_country}}
+  Given that the new SDDF files from the ESS are now comming in a fully integrated file rather
+  than separated by countries, this function only checks for SDDF files in rounds 1 through 6.
 }
 \examples{
 

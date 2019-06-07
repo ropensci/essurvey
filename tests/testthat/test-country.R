@@ -20,7 +20,7 @@ check_one_round <- function(x, cntry) {
   expect_gt(ncol(x), 0)
 }
 
-check_all_rounds <- function(x, rounds) {
+check_all_rounds <- function(x, rounds, country) {
   
   x <- lapply(x, function(x) {colnames(x) <- tolower(colnames(x)); x})
   # check is list
@@ -36,7 +36,7 @@ check_all_rounds <- function(x, rounds) {
   
   # check that all waves are for netherlands
   expect_true(all(vapply(x,
-                         function(x) unique(x$cntry) == "NL",
+                         function(x) unique(x$cntry) == country,
                          FUN.VALUE = logical(1))))
   
   # check that all data frames have more than 0 rows
@@ -90,7 +90,7 @@ test_that("import_country for all rounds of a country", {
   # Test for all rounds
   all_rounds <- import_country("Netherlands", rounds, ess_email)
   
-  check_all_rounds(all_rounds, rounds)
+  check_all_rounds(all_rounds, rounds, "NL")
   
   # Check that all waves are correct rounds
   expect_true(all(vapply(all_rounds,
@@ -159,6 +159,22 @@ test_that("import_sddf_country for one round", {
   check_one_round(wave_one, "ES")
 })
 
+# If you remember correctly, downloading .por files was raising an error
+# because these .por files are actually .sav files with the wrong extension.
+# I fixed it by switching .por to haven::read_sav. Here I test that It reads the correctly
+# Only rounds 1:4 had wrong .por files
+test_that("import_sddf_country for one/many rounds from rounds 1:4", {
+  
+  skip_on_cran()
+  
+  many_waves <- import_sddf_country("Spain", 1:2, ess_email)
+  check_all_rounds(many_waves, 1:2, "ES")
+
+  many_waves <- import_sddf_country("Slovenia", 1:4, ess_email)
+  check_all_rounds(many_waves, 1:4, "SI")
+})
+
+
 test_that("import_sddf_country for all rounds of a country", {
   
   skip_on_cran()
@@ -167,10 +183,10 @@ test_that("import_sddf_country for all rounds of a country", {
   # Test for all rounds
   all_rounds <- import_sddf_country("Netherlands", rounds, ess_email)
   
-  check_all_rounds(all_rounds, rounds)
+  check_all_rounds(all_rounds, rounds, "NL")
 })
 
-test_that("Test that downloading files is working fine for sddf data", {
+test_that("test that downloading files is working fine for sddf data", {
   
   skip_on_cran()
   
