@@ -1,7 +1,7 @@
 ## TODO
 ## Properly document these functions if you want to export them.
 ## Think about it or ask in the issues?
-check_rounds <- function(rounds) {
+check_rounds <- function(rounds) { # nocov start
   all_rounds_present <- rounds %in% show_rounds()
   
   if (!all(all_rounds_present))  {
@@ -15,9 +15,9 @@ check_rounds <- function(rounds) {
   }
   
   TRUE
-}
+} # nocov end
 
-check_country <- function(country) {
+check_country <- function(country) { # nocov start
   
   if (length(country) > 1) stop("Argument `country` should only contain one country")
   
@@ -36,10 +36,10 @@ check_country <- function(country) {
   }
   
   TRUE
-}
+} # nocov end
 
 
-check_country_rounds <- function(country, rounds) {
+check_country_rounds <- function(country, rounds) { # nocov start
   
   check_country(country)
   
@@ -57,9 +57,9 @@ check_country_rounds <- function(country, rounds) {
   }
   
   TRUE
-}
+} # nocov end
 
-check_theme <- function(theme) {
+check_theme <- function(theme) { # nocov start
   
   if (length(theme) > 1) stop("Argument `theme` should only contain one theme")
   
@@ -73,4 +73,4 @@ check_theme <- function(theme) {
   }
   
   TRUE
-}
+} # nocov end
