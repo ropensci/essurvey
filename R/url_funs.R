@@ -42,8 +42,8 @@ country_url <- function(country, rounds, format = NULL) { # nocov start
 } # nocov end
 
 
-country_url_sddf <- function(country, rounds, format = NULL) {
-  
+country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
+
   # Check country is available
   check_country(country)
   
@@ -79,9 +79,9 @@ country_url_sddf <- function(country, rounds, format = NULL) {
   full_urls <- grab_url(country, rounds, sddf_regex, format)
   
   full_urls
-}
+} # nocov end
 
-grab_url <- function(country, rounds, regex, format) {
+grab_url <- function(country, rounds, regex, format) { # nocov start
   
   # Get unique rounds to avoid repeting rounds
   rounds <- sort(unique(rounds))
@@ -115,20 +115,20 @@ grab_url <- function(country, rounds, regex, format) {
   full_urls <- get_download_url(round_links, format)
   
   full_urls
-}
+} # nocov end
 
 # Given a country/round website such as https://www.europeansocialsurvey.org/download.html?file=ESS1ES&c=ES&y=2002,
 # extracts the stata (or spss, in that specific order if one is not available) path and 
 # returns the complete url path to download the data
-get_download_url <- function(rounds_links, format) { # nocov start
-  format <- if (is.null(format)) c('stata', 'spss') else format
-  
-  format.files <- character(length(rounds_links))
+get_download_url <- function(round_links, format) { # nocov start
+  # Create empty character slot with the same length as round links
+  # to populate it in the loop
+  format.files <- character(length(round_links))
   
   # Build paths for each round
-  for (index in seq_along(rounds_links)) {
+  for (index in seq_along(round_links)) {
     download_page <- safe_GET(paste0(.global_vars$ess_website,
-                                     rounds_links[index]))
+                                     round_links[index]))
     html_ess <- xml2::read_html(download_page) 
     z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- format_preference(z, format)
@@ -205,9 +205,29 @@ clean_attr <- function(x, ...) { # nocov start
 } # nocov end
 
 # Function to find regex in x with preference in `formats`
-format_preference <- function(x, formats) { # nocov start
-  for (i in formats) {
-    format_link <- grep(i, x, value = TRUE)
-    if (length(format_link) > 0)  return(format_link)
+format_preference <- function(x, format) { # nocov start
+  format <- if (is.null(format)) c('stata', 'spss', 'sas') else format
+
+  # If the user didn't supply the format (user can only supply only one
+  # format and the format arg was manually imputed from above)
+  if (length(format) > 1) {
+
+    # Read each format and return the one that has a match
+    for (i in format) {
+      format_link <- grep(i, x, value = TRUE)
+      if (length(format_link) > 0)  return(format_link)
+    }
+    
+  } else {
+
+    # If the user supplied the format, try reading that format
+    # return the link if found or an error otherwise
+    format_link <- grep(format, x, value = TRUE)
+    if (length(format_link) > 0)  {
+      return(format_link)
+    } else {
+      stop(paste0("Format '", format, "' not available."))
+    }
+
   }
 } # nocov end

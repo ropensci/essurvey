@@ -46,13 +46,13 @@ check_all_rounds <- function(x, rounds, country) {
   expect_equal(all(vapply(x, ncol, numeric(1)) > 0), TRUE)
 }
 
-check_downloaded_rounds <- function(x, rounds) {
+check_downloaded_rounds <- function(x, rounds, format_args = c(".dta", ".do")) {
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(x, pattern = "ESS", recursive = TRUE)
   
   # Same number of stata files as the rounds attempted
   # to download?
-  expect_equal(sum(grepl(".dta", ess_files)), rounds)
+  expect_equal(sum(grepl(format_args[1], ess_files)), rounds)
   
   # Same number of zip files as the rounds attempted
   # to download?
@@ -60,7 +60,9 @@ check_downloaded_rounds <- function(x, rounds) {
   
   # Same number of do files as the rounds attempted
   # to download?
-  expect_equal(sum(grepl(".do", ess_files)), rounds)
+  if (".dta" %in% format_args) {
+    expect_equal(sum(grepl(format_args[2], ess_files)), rounds)
+  }
   
   # Delete all downloaded files
   unlink(dirname(x), recursive = TRUE, force = TRUE)
@@ -107,14 +109,36 @@ test_that("Test that downloading files is working fine", {
   which_rounds <- 2
   expect_message(downloads <-
                    download_country("Austria",
-                               1:which_rounds,
-                               ess_email,
-                               output_dir = tempdir()
-                   ),
+                                    1:which_rounds,
+                                    ess_email,
+                                    output_dir = tempdir()
+                                    ),
                  "All files saved to")
-  
+
   check_downloaded_rounds(downloads, which_rounds)
-  
+
+  expect_message(downloads <-
+                   download_country("Spain",
+                                    1:which_rounds,
+                                    ess_email,
+                                    output_dir = tempdir(),
+                                    format = 'spss'
+                                    ),
+                 "All files saved to")
+
+  check_downloaded_rounds(downloads, which_rounds, c(".sav", ".sps"))
+
+
+  expect_message(downloads <-
+                   download_country("Germany",
+                                    1:which_rounds,
+                                    ess_email,
+                                    output_dir = tempdir(),
+                                    format = NULL
+                                    ),
+                 "All files saved to")
+
+  check_downloaded_rounds(downloads, which_rounds, c(".dta", ".do"))  
 })
 
 test_that("output_dir should be valid", {
@@ -186,21 +210,43 @@ test_that("import_sddf_country for all rounds of a country", {
   check_all_rounds(all_rounds, rounds, "NL")
 })
 
-test_that("test that downloading files is working fine for sddf data", {
+test_that("Test that downloading files is working for sddf data", {
   
   skip_on_cran()
   
-  # Test whether you get a message where the downloads are at
-  rounds <- 4:6
-  which_rounds <- length(rounds)
+
+  # for very early sddf rounds there's no stata files, so this should
+  # raise an error
+  which_rounds <- 2
+  expect_error(downloads <-
+                   download_sddf_country("France",
+                                         1:which_rounds,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = 'stata'
+                                         ),
+               regexp = "Format 'stata' not available")
+
   expect_message(downloads <-
-                   download_country("Germany",
-                                    rounds,
-                                    ess_email,
-                                    output_dir = tempdir()
-                   ),
+                   download_sddf_country("France",
+                                         1:which_rounds,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = 'spss'
+                                         ),
                  "All files saved to")
-  
-  check_downloaded_rounds(downloads, which_rounds)
-  
-})
+
+  check_downloaded_rounds(downloads, which_rounds, c(".por", ".sps"))
+
+  # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'  
+  expect_message(downloads <-
+                   download_sddf_country("Spain",
+                                         1:which_rounds,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = NULL
+                                         ),
+                 "All files saved to")
+
+  check_downloaded_rounds(downloads, which_rounds, c(".por", ".sps"))
+  })
