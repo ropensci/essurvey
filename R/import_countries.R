@@ -14,11 +14,7 @@
 #' directory. This will be interpreted as a \strong{directory} and not a path with
 #' a file name.
 #' 
-#' @param format the format from which to download the data. Can either be 'stata',
-#' 'spss' or 'sas', with 'stata' as default. When using \code{import_country} the
-#' data will be downloaded and read in the \code{format} specified.
-#' For \code{download_country}, the data is downloaded from the specified
-#' \code{format} (only 'spss' and 'stata' supported, see details).
+#' @param format the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).
 #'
 #' @details
 #' Use \code{import_country} to download specified rounds for a given country and
@@ -88,9 +84,9 @@
 #' # for Czech Republic
 #' }
 #' 
-import_country <- function(country, rounds, ess_email = NULL, format = 'stata') {
+import_country <- function(country, rounds, ess_email = NULL, format = NULL) {
   
-  if (format == "sas") {
+  if (!is.null(format) && format == "sas") {
     stop(
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_country for more details" # nolint
     )
@@ -110,7 +106,7 @@ import_country <- function(country, rounds, ess_email = NULL, format = 'stata') 
 
 #' @rdname import_country
 #' @export
-import_all_cntrounds <- function(country, ess_email = NULL, format = 'stata') {
+import_all_cntrounds <- function(country, ess_email = NULL, format = NULL) {
   import_country(country, show_country_rounds(country), ess_email, format)
 }
 

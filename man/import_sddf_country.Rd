@@ -6,9 +6,9 @@
 \alias{download_sddf_country}
 \title{Download SDDF data by round for countries from the European Social Survey}
 \usage{
-import_sddf_country(country, rounds, ess_email = NULL)
+import_sddf_country(country, rounds, ess_email = NULL, format = NULL)
 
-import_all_sddf_cntrounds(country, ess_email = NULL)
+import_all_sddf_cntrounds(country, ess_email = NULL, format = NULL)
 
 download_sddf_country(country, rounds, ess_email = NULL,
   output_dir = getwd(), format = "stata")
@@ -25,16 +25,12 @@ If you haven't registered in the ESS website, create an account at
 \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 through \code{\link{set_email}}.}
 
+\item{format}{the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).}
+
 \item{output_dir}{a character vector with the output directory in case you want to
 only download the files using \code{download_country}. Defaults to your working
 directory. This will be interpreted as a \strong{directory} and not a path with
 a file name.}
-
-\item{format}{the format from which to download the data. Can either be 'stata',
-'spss' or 'sas', with 'stata' as default. When using \code{import_country} the
-data will be downloaded and read in the \code{format} specified.
-For \code{download_country}, the data is downloaded from the specified
-\code{format} (only 'spss' and 'stata' supported, see details).}
 }
 \value{
 for \code{import_sddf_country} if \code{length(rounds)} is 1, it returns a tibble with

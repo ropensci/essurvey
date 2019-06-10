@@ -11,12 +11,8 @@
 #' the \code{download_rounds}. Defaults to your working directory. This will be interpreted as
 #' a \strong{directory} and not a path with a file name.
 #' 
-#' @param format the format from which to download the data. Can either be 'stata',
-#' 'spss' or 'sas', with 'stata' as default. When using \code{import_rounds} the
-#' data will be downloaded and read in the \code{format} specified (only 'spss'
-#' and 'stata' supported, see details). For \code{download_rounds}, the data is
-#' downloaded from the specified \code{format}.
-#'
+#' @param format the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).
+#' 
 #' @details
 #' Use \code{import_rounds} to download specified rounds and import them to R.
 #' \code{import_all_rounds} will download all rounds by default and \code{download_rounds}
@@ -84,9 +80,9 @@
 #' # ESS round 22 is not a available. Check show_rounds()
 #' }
 #' 
-import_rounds <- function(rounds, ess_email = NULL, format = 'stata') {
+import_rounds <- function(rounds, ess_email = NULL, format = NULL) {
   
-  if (format == "sas") {
+  if (!is.null(format) && format == "sas") {
     stop(
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
   }
@@ -104,7 +100,7 @@ import_rounds <- function(rounds, ess_email = NULL, format = 'stata') {
 
 #' @rdname import_rounds 
 #' @export
-import_all_rounds <- function(ess_email = NULL, format = 'stata') {
+import_all_rounds <- function(ess_email = NULL, format = NULL) {
   import_rounds(show_rounds(), ess_email, format)
 }
 

@@ -13,13 +13,9 @@
 #' only download the files using \code{download_country}. Defaults to your working
 #' directory. This will be interpreted as a \strong{directory} and not a path with
 #' a file name.
-#' 
-#' @param format the format from which to download the data. Can either be 'stata',
-#' 'spss' or 'sas', with 'stata' as default. When using \code{import_country} the
-#' data will be downloaded and read in the \code{format} specified.
-#' For \code{download_country}, the data is downloaded from the specified
-#' \code{format} (only 'spss' and 'stata' supported, see details).
 #'
+#' @param format the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).
+#' 
 #' @details
 #'
 #' SDDF data (Sample Design Data Files) are data sets that contain additional columns with the
@@ -90,12 +86,19 @@
 #' 
 #' }
 #' 
-import_sddf_country <- function(country, rounds, ess_email = NULL) {
+import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL) {
+
+  if (!is.null(format) && format == "sas") {
+    stop(
+      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
+  }
+
   urls <- country_url_sddf(country, rounds)
   
   dir_download <- download_format(country = country,
                                   urls = urls,
-                                  ess_email = ess_email)
+                                  ess_email = ess_email,
+                                  format = format)
   
   all_data <- read_format_data(dir_download, rounds)
 
@@ -104,8 +107,8 @@ import_sddf_country <- function(country, rounds, ess_email = NULL) {
 
 #' @rdname import_sddf_country
 #' @export
-import_all_sddf_cntrounds <- function(country, ess_email = NULL) {
-  import_sddf_country(country, show_sddf_rounds(country), ess_email)
+import_all_sddf_cntrounds <- function(country, ess_email = NULL, format = NULL) {
+  import_sddf_country(country, show_sddf_rounds(country), ess_email, format = format)
 }
 
 #' @rdname import_sddf_country
