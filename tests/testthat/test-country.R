@@ -85,6 +85,24 @@ test_that("import_country checks for args", {
 
 })
 
+
+test_that("download_country checks for args", {
+
+  expect_error(download_country(numeric()),
+               regexp = "is.character(country) is not TRUE",
+               fixed = TRUE)
+
+  expect_error(download_country("Spain", numeric()),
+               regexp = "length(rounds) > 0",
+               fixed = TRUE)
+
+  expect_error(download_country(c("Spain", "France"), 1),
+               regexp = "Argument `country` should only contain one country",
+               fixed = TRUE)
+
+})
+
+
 test_that("import_country for one round", {
   
   skip_on_cran()
@@ -189,6 +207,23 @@ test_that("Specify 'sas' for reading ess data throws error",{
 })
 
 
+
+test_that("import_sddf_country checks for args", {
+
+  expect_error(import_sddf_country(numeric()),
+               regexp = "is.character(country) is not TRUE",
+               fixed = TRUE)
+
+  expect_error(import_sddf_country("Spain", numeric()),
+               regexp = "length(rounds) > 0",
+               fixed = TRUE)
+
+  expect_error(import_sddf_country(c("Spain", "France"), 1),
+               regexp = "Argument `country` should only contain one country",
+               fixed = TRUE)
+
+})
+
 test_that("import_sddf_country for one round", {
   
   skip_on_cran()
@@ -225,6 +260,24 @@ test_that("import_sddf_country for all rounds of a country", {
   
   check_all_rounds(all_rounds, rounds, "NL")
 })
+
+
+test_that("download_sddf_country checks for args", {
+
+  expect_error(download_sddf_country(numeric()),
+               regexp = "is.character(country) is not TRUE",
+               fixed = TRUE)
+
+  expect_error(download_sddf_country("Spain", numeric()),
+               regexp = "length(rounds) > 0",
+               fixed = TRUE)
+
+  expect_error(download_sddf_country(c("Spain", "France"), 1),
+               regexp = "Argument `country` should only contain one country",
+               fixed = TRUE)
+
+})
+
 
 test_that("Test that downloading files is working for sddf data", {
   
