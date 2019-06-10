@@ -19,7 +19,7 @@ Imports:
     xml2,
     httr,
     stringr,
-    haven,
+    haven (>= 2.1.0),
     rvest
 Suggests: 
     testthat,

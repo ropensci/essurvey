@@ -1,5 +1,7 @@
 #' Recode pre-defined missing values as NA
 #' 
+#' This function is not neeeded any more, please see the details section.
+#'
 #' Data from the European Social Survey is always accompanied by a script
 #' that recodes the categories 'Not applicable', 'Refusal', 'Don't Know',
 #' 'No answer' and 'Not available' to missing. This function recodes
@@ -20,6 +22,13 @@
 #' as NA.
 #' 
 #' @details 
+#'
+#' The European Social Survey now provides these values recoded automatically
+#' in Stata data files. These missing categories are now read as missing values
+#' by \code{\link[haven]{read_dta}}, reading the missing categories correctly from Stata.For an example on how these values are coded, see \href{https://github.com/ropensci/essurvey/issues/35}{here}.
+#'
+#' Old details:
+#' 
 #' When downloading data directly from the European Social Survey's website,
 #' the downloaded .zip file contains a script that recodes some categories
 #' as missings in Stata and SPSS formats. 
@@ -70,6 +79,7 @@
 #' }
 #' 
 recode_missings <- function(ess_data, missing_codes) {
+
   stopifnot(is.data.frame(ess_data))
   
   labelled_numerics <- vapply(ess_data, is_labelled_numeric, logical(1))
