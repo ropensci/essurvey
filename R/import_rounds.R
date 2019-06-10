@@ -81,7 +81,8 @@
 #' }
 #' 
 import_rounds <- function(rounds, ess_email = NULL, format = NULL) {
-  
+
+  stopifnot(is.numeric(rounds), length(rounds) > 0)
   if (!is.null(format) && format == "sas") {
     stop(
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
@@ -107,7 +108,7 @@ import_all_rounds <- function(ess_email = NULL, format = NULL) {
 #' @rdname import_rounds 
 #' @export
 download_rounds <- function(rounds, ess_email = NULL, output_dir = getwd(), format = 'stata') {
-  
+  stopifnot(is.numeric(rounds), length(rounds) > 0)
   urls <- round_url(rounds, format = format)
   
   invisible(download_format(urls = urls,

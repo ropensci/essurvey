@@ -3,6 +3,20 @@ ess_email <- Sys.getenv("ess_email")
 
 ### Tests for import_ and download_
 
+
+test_that("import_rounds checks for args", {
+  expect_error(import_rounds(numeric()),
+               regexp = "length(rounds) > 0",
+               fixed = TRUE)
+})
+
+test_that("download_rounds checks for args", {
+  expect_error(download_rounds(numeric()),
+               regexp = "length(rounds) > 0",
+               fixed = TRUE)
+})
+
+
 test_that("import_round for only one round", {
   
   skip_on_cran()

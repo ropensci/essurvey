@@ -74,3 +74,8 @@ check_theme <- function(theme) { # nocov start
   
   TRUE
 } # nocov end
+
+validate_arguments <- function(country, round) {
+  stopifnot(is.character(country), length(country) > 0)
+  stopifnot(is.character(round), length(round) > 0)
+}

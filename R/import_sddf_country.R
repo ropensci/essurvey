@@ -88,6 +88,9 @@
 #' 
 import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL) {
 
+  stopifnot(is.character(country), length(country) > 0)
+  stopifnot(is.numeric(rounds), length(rounds) > 0)
+  
   if (!is.null(format) && format == "sas") {
     stop(
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
@@ -115,7 +118,10 @@ import_all_sddf_cntrounds <- function(country, ess_email = NULL, format = NULL) 
 #' @export
 download_sddf_country <- function(country, rounds, ess_email = NULL,
                                   output_dir = getwd(), format = 'stata') {
-  
+
+  stopifnot(is.character(country), length(country) > 0)
+  stopifnot(is.numeric(rounds), length(rounds) > 0)
+
   urls <- country_url_sddf(country, rounds, format = format)
   
   invisible(
