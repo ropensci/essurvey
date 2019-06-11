@@ -1,4 +1,4 @@
-ess_email <- Sys.getenv("ess_email")
+ess_email <- Sys.getenv("ESS_EMAIL")
 save_dir <- tempdir()
 
 # authenticate(ess_email)
@@ -15,7 +15,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
   
   skip_on_cran()
   
-  ess_email <- Sys.getenv("ess_email")
+  ess_email <- Sys.getenv("ESS_EMAIL")
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
