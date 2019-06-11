@@ -22,6 +22,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
                    download_format(
                      urls = urls,
                      country = "Italy",
+                     ess_email = ess_email,
                      only_download = TRUE,
                      output_dir = tempdir(),
                      format = 'stata'
