@@ -5,7 +5,7 @@
 
 # If only wants to download rounds, then name every argument after rounds.
 # If rounds and country are specified, country rounds will be downloaded.
-download_format <- function(country, urls, ess_email, only_download = FALSE,
+download_format <- function(country, urls, ess_email = NULL, only_download = FALSE,
                             output_dir = NULL, format = NULL) {
   
   # Check if the format is either 'stata', 'spss' or 'sas'.
