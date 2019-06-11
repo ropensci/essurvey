@@ -16,7 +16,8 @@ cache:
 # Adapt as necessary starting from here
 
 environment:
-  PKGTYPE: win.binary  
+  PKGTYPE: win.binary
+  NOT_CRAN: true
   
 build_script:
   - travis-tool.sh install_deps
