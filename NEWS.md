@@ -4,6 +4,10 @@
 
 * If you don't know which format is available for a round/country, `import_*` and `download_*` functions now accept a NULL argument which runs through `'stata'`, `'spss'` and `'sas'` formats automatically. By default, `import_*` functions have now format set to `NULL` to automatically try the three different formats. This breaks backward dependency but only slightly where it had 'stata' set as default.
 
+### New features
+
+* Users can now download SDDF (weight data) for each country/round combination of files. Functions import_sddf_country and download_sddf_country are now introduced. These functions only work for rounds `1:6` for now.
+
 ### Minor changes
 
 * Bumps `haven` to minimum package version 2.1.0
