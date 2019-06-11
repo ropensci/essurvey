@@ -1,6 +1,8 @@
 ess_email <- Sys.getenv("ess_email")
 save_dir <- tempdir()
 
+# authenticate(ess_email)
+
 test_that("authenticate works correctly for wrong emails", {
   expect_error(authenticate("random@email.morerandom"),
                "email address you provided is not associated with any registered") # nolint
@@ -13,6 +15,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
   
   skip_on_cran()
   
+  # ess_email <- Sys.getenv("ess_email")
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
@@ -29,6 +32,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
                    ),
                  "All files saved to"
                  )
+
   
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(download_link, pattern = "ESS", recursive = TRUE)
