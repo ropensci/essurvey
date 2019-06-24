@@ -30,7 +30,7 @@ read_format_data <- function(urls, rounds) {
       )
       # Switch to `foreign`
       foreign_read <-
-        switch(ext,
+        switch(file_ext(.x),
                'dta' = foreign::read.dta,
                'por' = read_foreign_spss,
                'sav' = read_foreign_spss
