@@ -6,7 +6,7 @@ read_format_data <- function(urls, rounds) {
                             pattern = paste0(format_ext, "$", collapse = "|"),
                             full.names = TRUE)
   
-  # Read only the .dta/.sav/ files
+  # Read only the .dta/.sav/.por files
   dataset <- lapply(format_dirs, function(.x) {
     # Use function ro read the specified format
     format_read <-
