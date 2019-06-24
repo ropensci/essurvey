@@ -16,7 +16,31 @@ read_format_data <- function(urls, rounds) {
              'por' = haven::read_sav,
              'sav' = haven::read_sav
       )
-    format_read(.x)
+    
+    # Catch potential read errors
+    x <- try(format_read(.x), silent = TRUE)
+    
+    if ("try-error" %in% class(x)) {
+      # Ask for a user report
+      warning(
+        "Some data had to be read with the `foreign` package rather than with ",
+        "the `haven` package.\n",
+        "Please report the issue at ",
+        "https://github.com/ropensci/essurvey/issues"
+      )
+      # Switch to `foreign`
+      foreign_read <-
+        switch(ext,
+               'dta' = foreign::read.dta,
+               'por' = read_foreign_spss,
+               'sav' = read_foreign_spss
+        )
+      foreign_read(.x)
+      
+    } else {
+      x
+    }
+    
   })
   
   # Remove everything that was downloaded
@@ -27,6 +51,10 @@ read_format_data <- function(urls, rounds) {
   
   dataset
   
+}
+
+read_foreign_spss <- function(x) {
+  foreign::read.spss(x, to.data.frame = TRUE, stringsAsFactors = FALSE)
 }
 
 # Taken from tools::file_ext
