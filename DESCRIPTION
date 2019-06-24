@@ -22,6 +22,7 @@ Imports:
     haven (>= 2.1.0),
     rvest
 Suggests: 
+    foreign,
     testthat,
     knitr,
     rmarkdown,

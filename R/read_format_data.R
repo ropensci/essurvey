@@ -8,12 +8,13 @@ read_format_data <- function(urls, rounds) {
   
   # Read only the .dta/.sav/.por files
   dataset <- lapply(format_dirs, function(.x) {
-    # Use function ro read the specified format
+    
+    # Use function to read the specified format
     format_read <-
       switch(file_ext(.x),
-             'sav' = haven::read_sav,
              'dta' = haven::read_dta,
-             'por' = haven::read_sav
+             'por' = haven::read_sav,
+             'sav' = haven::read_sav
       )
     format_read(.x)
   })
