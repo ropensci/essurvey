@@ -21,7 +21,8 @@ Imports:
     httr,
     stringr,
     haven (>= 2.1.0),
-    rvest
+    rvest,
+    tibble
 Suggests: 
     foreign,
     testthat,
