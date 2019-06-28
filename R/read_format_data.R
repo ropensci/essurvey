@@ -13,7 +13,7 @@ read_format_data <- function(urls, rounds) {
     format_read <-
       switch(file_ext(.x),
              'dta' = haven::read_dta,
-             'por' = haven::read_sav,
+             'por' = haven::read_por,
              'sav' = haven::read_sav
       )
     
