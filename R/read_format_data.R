@@ -35,11 +35,12 @@ read_format_data <- function(urls, rounds) {
                'por' = read_foreign_spss,
                'sav' = read_foreign_spss
         )
-      foreign_read(.x)
-      
-    } else {
-      x
+      # Read with `foreign` (should never fail)
+      x <- foreign_read(.x)
     }
+    
+    # Always a return a tibble with lowercase variable names
+    tibble::as_tibble(x, .name_repair = tolower)
     
   })
   
