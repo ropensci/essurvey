@@ -96,7 +96,7 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
   }
 
-  urls <- country_url_sddf(country, rounds)
+  urls <- country_url_sddf(country, rounds, format)
   
   dir_download <- download_format(country = country,
                                   urls = urls,
