@@ -34,6 +34,7 @@ Other contributors:
   \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201) [reviewer]
   \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201) [reviewer]
   \item Jorge Lopez \email{jorge@loperez.com} [contributor]
+  \item François Briatte \email{f.briatte@gmail.com} [contributor]
 }
 
 }
