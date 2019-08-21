@@ -12,11 +12,11 @@ read_format_data <- function(dir_download, rounds) {
     # Use function to read the specified format
     format_read <-
       switch(file_ext(.x),
-             'dta' = haven::read_dta,
-             'por' = haven::read_por,
-             'sav' = haven::read_sav
+             "dta" = haven::read_dta,
+             "por" = haven::read_por,
+             "sav" = haven::read_sav
       )
-    
+
     # Catch potential read errors
     x <- try(format_read(.x), silent = TRUE)
     
@@ -31,10 +31,10 @@ read_format_data <- function(dir_download, rounds) {
       # Switch to `foreign`
       foreign_read <-
         switch(file_ext(.x),
-               'dta' = foreign::read.dta,
-               'por' = read_foreign_spss,
-               'sav' = read_foreign_spss
-        )
+               "dta" = foreign::read.dta,
+               "por" = read_foreign_spss,
+               "sav" = read_foreign_spss
+               )
       # Read with `foreign` (should never fail)
       x <- foreign_read(.x)
     }
