@@ -259,6 +259,16 @@ test_that("import_sddf_country for one/many rounds from rounds 1:4", {
 })
 
 
+test_that("import_sddf_country can read files with foreign for France", {
+  ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
+  
+  skip_on_cran()
+  
+  many_waves <- import_sddf_country("France", 1:3, ess_email)
+  check_all_rounds(many_waves, 1:3, "FR")
+})
+
+
 test_that("import_sddf_country for all rounds of a country", {
   
   skip_on_cran()
