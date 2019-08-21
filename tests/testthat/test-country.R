@@ -245,8 +245,8 @@ test_that("import_sddf_country for one round", {
 
 # If you remember correctly, downloading .por files was raising an error
 # because these .por files are actually .sav files with the wrong extension.
-# I fixed it by switching .por to haven::read_sav. Here I test that It reads the correctly
-# Only rounds 1:4 had wrong .por files
+# I fixed it by switching .por to haven::read_sav. Here I test that It reads the
+## correctly. Only rounds 1:4 had wrong .por files
 test_that("import_sddf_country for one/many rounds from rounds 1:4", {
   
   skip_on_cran()
@@ -258,16 +258,38 @@ test_that("import_sddf_country for one/many rounds from rounds 1:4", {
   check_all_rounds(many_waves, 1:4, "SI")
 })
 
-
-test_that("import_sddf_country can read files with foreign for France", {
-  ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
-  
-  skip_on_cran()
-  
-  many_waves <- import_sddf_country("France", 1:3, ess_email)
-  check_all_rounds(many_waves, 1:3, "FR")
+test_that("foreign installation is checked", {
+  # See https://community.rstudio.com/t/how-can-i-make-testthat-think-i-dont-have-a-package-installed/33441/3 #nolintr
+  with_mock(
+    "essurvey:::is_foreign_installed" = function() FALSE,
+    expect_error(import_sddf_country("France", 1:6, ess_email),
+                 "Package `foreign` is needed to read some SDDF data. Please install with install.packages(\"foreign\")", #nolintr
+                 fixed = TRUE) 
+  )
 })
 
+if (is_foreign_installed()) {
+
+  test_that("import_sddf_country can read files with foreign for France", {
+    ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
+    ## Later I unconvered the it also happened in round 4, not sure if it was
+    ## because the ESS started tinkering with the old files
+    
+    skip_on_cran()
+
+    warning_msg <-
+      "Round 4 for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues" #nolintr
+    
+    many_waves <-
+      expect_warning(import_sddf_country("France", 1:6, ess_email),
+                     warning_msg,
+                     fixed = TRUE
+                     )
+
+    check_all_rounds(many_waves, 1:6, "FR")
+  })
+
+}
 
 test_that("import_sddf_country for all rounds of a country", {
   
