@@ -1,8 +1,8 @@
-read_format_data <- function(urls, rounds) {
+read_format_data <- function(dir_download, rounds) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
-  format_dirs <- list.files(urls,
+  format_dirs <- list.files(dir_download,
                             pattern = paste0(format_ext, "$", collapse = "|"),
                             full.names = TRUE)
   
@@ -45,7 +45,7 @@ read_format_data <- function(urls, rounds) {
   })
   
   # Remove everything that was downloaded
-  unlink(urls, recursive = TRUE, force = TRUE)
+  unlink(dir_download, recursive = TRUE, force = TRUE)
   
   # If it's only one round, return a df rather than a list
   if (length(rounds) == 1) dataset <- dataset[[1]]
