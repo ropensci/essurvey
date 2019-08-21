@@ -7,9 +7,10 @@ ess_email <- Sys.getenv("ess_email")
 check_one_round <- function(x, cntry) {
   # check is list
   expect_is(x, "data.frame")
-  
-  colnames(x) <- tolower(colnames(x))
-  
+
+  # check all columns are lower case
+  expect_true(all(tolower(names(x)) == names(x)))
+
   # Check it is indeed the cntry
   expect_true(unique(x$cntry) == cntry)
   
@@ -18,9 +19,17 @@ check_one_round <- function(x, cntry) {
   
   # check that the number of columns is greater than 0
   expect_gt(ncol(x), 0)
+  
 }
 
 check_all_rounds <- function(x, rounds, country) {
+
+  # Check all column names within each df are all lower case
+  is_lowercase <- vapply(x,
+                         function(dt) all(tolower(names(dt)) == names(df)),
+                         FUN.VALUE = logical(1))
+  # Check that all rounds downloaded are TRUE
+  expect_true(all(is_lowercase))
   
   x <- lapply(x, function(x) {colnames(x) <- tolower(colnames(x)); x})
   # check is list
