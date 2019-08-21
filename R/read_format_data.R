@@ -18,16 +18,32 @@ read_format_data <- function(dir_download, rounds) {
       )
 
     # Catch potential read errors
-    x <- try(format_read(.x), silent = TRUE)
-    
-    if ("try-error" %in% class(x)) {
+    dt <- try(format_read(.x), silent = TRUE)
+
+    if ("try-error" %in% class(dt)) {
+
+      if (!is_foreign_installed()) {
+        stop("Package `foreign` is needed to read some SDDF data. Please install with install.packages(\"foreign\")") #nolintr
+      }
+
+      # Identify country + round for message
+      # Match everything from _ to the first dash to extract the country name
+      cnt <- regmatches(.x, regexpr("_.+?(?=\\/)", .x, perl = TRUE))
+      round_search <- basename(.x)
+      round <- regmatches(round_search,
+                          regexpr("\\d", round_search, perl = TRUE))
+
       # Ask for a user report
       warning(
-        "Some data had to be read with the `foreign` package rather than with ",
-        "the `haven` package.\n",
-        "Please report the issue at ",
-        "https://github.com/ropensci/essurvey/issues"
+        paste("Round", round, "for", gsub("_", "", cnt),
+              "was read with the `foreign` package rather than with ",
+              "the `haven` package for compatibility reasons.\n",
+              "Please report any issues at",
+              "https://github.com/ropensci/essurvey/issues"
+              ),
+        call. = FALSE
       )
+
       # Switch to `foreign`
       foreign_read <-
         switch(file_ext(.x),
@@ -36,11 +52,11 @@ read_format_data <- function(dir_download, rounds) {
                "sav" = read_foreign_spss
                )
       # Read with `foreign` (should never fail)
-      x <- foreign_read(.x)
+      dt <- suppressMessages(foreign_read(.x))
     }
-    
+
     # Always a return a tibble with lowercase variable names
-    tibble::as_tibble(x, .name_repair = tolower)
+    tibble::as_tibble(dt, .name_repair = tolower)
     
   })
   
@@ -62,4 +78,9 @@ read_foreign_spss <- function(x) {
 file_ext <- function(x) {
   pos <- regexpr("\\.([[:alnum:]]+)$", x)
   ifelse(pos > -1L, substring(x, pos + 1L), "")
+}
+
+
+is_foreign_installed <- function() {
+  requireNamespace("foreign", quietly = TRUE)
 }
