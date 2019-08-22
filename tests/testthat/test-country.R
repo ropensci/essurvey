@@ -31,7 +31,11 @@ check_all_rounds <- function(x, rounds, country) {
   # Check that all rounds downloaded are TRUE
   expect_true(all(is_lowercase))
   
-  x <- lapply(x, function(x) {colnames(x) <- tolower(colnames(x)); x})
+  x <- lapply(x, function(x) {
+    colnames(x) <- tolower(colnames(x))
+    x
+  })
+
   # check is list
   expect_is(x, "list")
   
@@ -272,21 +276,27 @@ if (is_foreign_installed()) {
 
   test_that("import_sddf_country can read files with foreign for France", {
     ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
-    ## Later I unconvered the it also happened in round 4, not sure if it was
-    ## because the ESS started tinkering with the old files
     
     skip_on_cran()
 
+    rounds <- 1:3
     warning_msg <-
-      "Round 4 for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues" #nolintr
-    
-    many_waves <-
-      expect_warning(import_sddf_country("France", 1:6, ess_email),
-                     warning_msg,
-                     fixed = TRUE
-                     )
+      paste("Round",
+            rounds,
+            "for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues") #nolintr
+            
+    cnty_name <- c("FR", "FR", "France")
 
-    check_all_rounds(many_waves, 1:6, "FR")
+      for (i in rounds) {
+
+        one_wave <-
+          expect_warning(
+            import_sddf_country("France", i, ess_email),
+            warning_msg[i], fixed = TRUE
+          )
+
+        check_one_round(one_wave, cnty_name[i])
+      }
   })
 
 }
