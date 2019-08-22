@@ -1,4 +1,5 @@
-#' Download integrated rounds separately for countries from the European Social Survey
+#' Download integrated rounds separately for countries from the European Social
+#' Survey
 #'
 #' @param country a character of length 1 with the full name of the country. 
 #' Use \code{\link{show_countries}} for a list of available countries.

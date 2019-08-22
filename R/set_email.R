@@ -1,6 +1,6 @@
 #' Save your ESS email as an environment variable
 #'
-#' @param ess_email a character string with your registered email.
+#' @param ess_email a character string with your registered email. 
 #'
 #' @details You should only run \code{set_email()} once and every \code{import_} and \code{download_} function
 #' should work fine. Make sure your email is registered at 

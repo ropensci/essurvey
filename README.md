@@ -21,7 +21,7 @@ populations in more than thirty nations. Taken from the [ESS
 website](http://www.europeansocialsurvey.org/about/).
 
 Note: The `essurvey` package was originally called `ess`. Since
-`essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of
+`essurvey 1.0.0` all `ess_*` functions have been deprecated in favor of
 the `import_*` and `download_*` functions. Also, versions less than and
 including `essurvey 1.0.1` returned wrong countries. Please install the
 latest CRAN/Github version.
