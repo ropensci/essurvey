@@ -16,6 +16,15 @@ test_that("download_format can download COUNTRY files in STATA format", {
   skip_on_cran()
   
   ess_email <- Sys.getenv("ess_email")
+
+  
+  print(paste("ess_email variable inside download_format STATA is", ess_email))
+  print(paste("Environmental ess_email variaboe inside stata-downloadformat-test is", Sys.getenv("ess_email")))
+  print(paste("Environmental ESS_EMAIL variaboe inside stata-downloadformat-test is", Sys.getenv("ESS_EMAIL")))
+
+  # Check if the format is either 'stata', 'spss' or 'sas'.
+  format <- match.arg(format, c("stata", "spss", "sas"))
+
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
