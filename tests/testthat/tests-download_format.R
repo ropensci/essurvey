@@ -15,7 +15,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
   
   skip_on_cran()
   
-  # ess_email <- Sys.getenv("ess_email")
+  ess_email <- Sys.getenv("ess_email")
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
@@ -56,6 +56,8 @@ test_that("download_format can download COUNTRY files in STATA format", {
 test_that("download_format can download ROUND files in STATA format", {
   
   skip_on_cran()
+
+  ess_email <- Sys.getenv("ess_email")
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
