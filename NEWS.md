@@ -10,7 +10,7 @@
 
 ### Minor changes
 
-* Bumps `haven` to minimum package version 2.1.0
+* Bumps `haven` to minimum package version 2.1.1
 
 ### Bug fixes
 
