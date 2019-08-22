@@ -31,7 +31,7 @@ download_format <- function(country, urls, ess_email = NULL, only_download = FAL
     td <- file.path(alt_dir, ess_round)
   }
 
-  for (directory in td) dir.create(directory, recursive = TRUE)
+  for (dire in td) dir.create(dire, recursive = TRUE, showWarnings = FALSE)
   # Loop throuch each url, round name and specific round folder,
   # download the data and save in the round-specific folder
   mapply(round_downloader, urls, ess_round, td)
