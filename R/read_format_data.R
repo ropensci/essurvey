@@ -18,7 +18,12 @@ read_format_data <- function(dir_download, rounds) {
       )
 
     # Catch potential read errors
-    dt <- try(format_read(.x), silent = TRUE)
+    # Reading some data such as SDDF data for France round 1 was
+    # raising the message "Invalid time string (length=8): 0-------"
+    # coming directly from Rcpp (https://github.com/WizardMac/ReadStat/search?q=Invalid+time+string&unscoped_q=Invalid+time+string) #nolintr
+    # capture.output redirects the message to a tmpfile.
+    utils::capture.output(dt <- try(format_read(.x), silent = TRUE),
+                          file = tempfile())
 
     if ("try-error" %in% class(dt)) {
 
@@ -30,12 +35,12 @@ read_format_data <- function(dir_download, rounds) {
       # Match everything from _ to the first dash to extract the country name
       cnt <- regmatches(.x, regexpr("_.+?(?=\\/)", .x, perl = TRUE))
       round_search <- basename(.x)
-      round <- regmatches(round_search,
+      rnd <- regmatches(round_search,
                           regexpr("\\d", round_search, perl = TRUE))
 
       # Ask for a user report
       warning(
-        paste("Round", round, "for", gsub("_", "", cnt),
+        paste("Round", rnd, "for", gsub("_", "", cnt),
               "was read with the `foreign` package rather than with ",
               "the `haven` package for compatibility reasons.\n",
               "Please report any issues at",

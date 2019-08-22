@@ -22,7 +22,8 @@ Imports:
     stringr,
     haven (>= 2.1.0),
     rvest,
-    tibble
+    tibble,
+    utils
 Suggests: 
     foreign,
     testthat,
