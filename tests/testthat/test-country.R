@@ -7,9 +7,10 @@ ess_email <- Sys.getenv("ess_email")
 check_one_round <- function(x, cntry) {
   # check is list
   expect_is(x, "data.frame")
-  
-  colnames(x) <- tolower(colnames(x))
-  
+
+  # check all columns are lower case
+  expect_true(all(tolower(names(x)) == names(x)))
+
   # Check it is indeed the cntry
   expect_true(unique(x$cntry) == cntry)
   
@@ -18,11 +19,23 @@ check_one_round <- function(x, cntry) {
   
   # check that the number of columns is greater than 0
   expect_gt(ncol(x), 0)
+  
 }
 
 check_all_rounds <- function(x, rounds, country) {
+
+  # Check all column names within each df are all lower case
+  is_lowercase <- vapply(x,
+                         function(dt) all(tolower(names(dt)) == names(df)),
+                         FUN.VALUE = logical(1))
+  # Check that all rounds downloaded are TRUE
+  expect_true(all(is_lowercase))
   
-  x <- lapply(x, function(x) {colnames(x) <- tolower(colnames(x)); x})
+  x <- lapply(x, function(x) {
+    colnames(x) <- tolower(colnames(x))
+    x
+  })
+
   # check is list
   expect_is(x, "list")
   
@@ -236,8 +249,8 @@ test_that("import_sddf_country for one round", {
 
 # If you remember correctly, downloading .por files was raising an error
 # because these .por files are actually .sav files with the wrong extension.
-# I fixed it by switching .por to haven::read_sav. Here I test that It reads the correctly
-# Only rounds 1:4 had wrong .por files
+# I fixed it by switching .por to haven::read_sav. Here I test that It reads the
+## correctly. Only rounds 1:4 had wrong .por files
 test_that("import_sddf_country for one/many rounds from rounds 1:4", {
   
   skip_on_cran()
@@ -249,6 +262,44 @@ test_that("import_sddf_country for one/many rounds from rounds 1:4", {
   check_all_rounds(many_waves, 1:4, "SI")
 })
 
+test_that("foreign installation is checked", {
+  # See https://community.rstudio.com/t/how-can-i-make-testthat-think-i-dont-have-a-package-installed/33441/3 #nolintr
+  with_mock(
+    "essurvey:::is_foreign_installed" = function() FALSE,
+    expect_error(import_sddf_country("France", 1:6, ess_email),
+                 "Package `foreign` is needed to read some SDDF data. Please install with install.packages(\"foreign\")", #nolintr
+                 fixed = TRUE) 
+  )
+})
+
+if (is_foreign_installed()) {
+
+  test_that("import_sddf_country can read files with foreign for France", {
+    ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
+    
+    skip_on_cran()
+
+    rounds <- 1:3
+    warning_msg <-
+      paste("Round",
+            rounds,
+            "for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues") #nolintr
+            
+    cnty_name <- c("FR", "FR", "France")
+
+      for (i in rounds) {
+
+        one_wave <-
+          expect_warning(
+            import_sddf_country("France", i, ess_email),
+            warning_msg[i], fixed = TRUE
+          )
+
+        check_one_round(one_wave, cnty_name[i])
+      }
+  })
+
+}
 
 test_that("import_sddf_country for all rounds of a country", {
   
