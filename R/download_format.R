@@ -7,10 +7,7 @@
 # If rounds and country are specified, country rounds will be downloaded.
 download_format <- function(country, urls, ess_email = NULL, only_download = FALSE,
                             output_dir = NULL, format = NULL) {
-
-  print(paste("ess_email variable inside download_format is", ess_email))
-  print(paste("Environmental ess_email variaboe inside download_format is", Sys.getenv("ess_email")))
-  print(paste("Environmental ESS_EMAIL variaboe inside download_format is", Sys.getenv("ESS_EMAIL")))
+  
   # Check if the format is either 'stata', 'spss' or 'sas'.
   format <- match.arg(format, c("stata", "spss", "sas"))
 

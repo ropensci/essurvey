@@ -15,10 +15,6 @@ test_that("download_format can download COUNTRY files in STATA format", {
   
   skip_on_cran()
   
-  print(paste("ess_email variable inside download_format STATA is", ess_email))
-  print(paste("Environmental ess_email variaboe inside stata-downloadformat-test is", Sys.getenv("ess_email")))
-  print(paste("Environmental ESS_EMAIL variaboe inside stata-downloadformat-test is", Sys.getenv("ESS_EMAIL")))
-
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
