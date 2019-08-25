@@ -12,7 +12,7 @@ BugReports: https://github.com/ropensci/essurvey/issues
 Description: Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two families of functions that allow you to download and interactively check all countries and rounds available.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/essurvey, https://ropensci.github.io/essurvey/
+URL: https://docs.ropensci.org/essurvey/, https://github.com/ropensci/essurvey
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
