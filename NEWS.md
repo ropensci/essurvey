@@ -8,11 +8,10 @@
 
 * Users can now download SDDF (weight data) for each country/round combination of files. Functions `import_sddf_country` and `download_sddf_country` are now introduced. These functions only work for rounds `1:6` for now [#9].
 
-
-
 ### Minor changes
 
 * Bumps `haven` to minimum package version 2.1.1
+* New package website at https://docs.ropensci.org/essurvey
 
 ### Internal
 * `read_format_data` now tries to read data using `haven` but falls backs to `foreign` in case there's an error. This should only work for SDDF data [#38].
