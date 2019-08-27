@@ -91,8 +91,7 @@ import_rounds <- function(rounds, ess_email = NULL, format = NULL) {
   urls <- round_url(rounds, format = format)
   
   dir_download <- download_format(ess_email = ess_email,
-                                  urls = urls,
-                                  format = format)
+                                  urls = urls)
   
   all_data <- read_format_data(dir_download, rounds)
   
@@ -114,6 +113,5 @@ download_rounds <- function(rounds, ess_email = NULL, output_dir = getwd(), form
   invisible(download_format(urls = urls,
                             ess_email= ess_email,
                             only_download = TRUE,
-                            output_dir = output_dir,
-                            format = format))
+                            output_dir = output_dir))
 }

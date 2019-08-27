@@ -26,9 +26,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
                      country = "Italy",
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'stata'
-                   ),
+                     output_dir = tempdir()),
                  "All files saved to"
                  )
 
@@ -66,8 +64,7 @@ test_that("download_format can download ROUND files in STATA format", {
                      urls = urls,
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'stata'),
+                     output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there
@@ -103,8 +100,7 @@ test_that("download_format can download COUNTRY files in SPSS format", {
                      country = "Germany",
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'spss'),
+                     output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there
@@ -135,8 +131,7 @@ test_that("download_format can download ROUND files in SPSS format", {
                      urls = urls,
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'spss'),
+                     output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there
@@ -168,8 +163,7 @@ test_that("download_format can download COUNTRY files in SAS format", {
                      country = "Sweden",
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'sas'),
+                     output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there
@@ -198,8 +192,7 @@ test_that("download_format can download ROUND files in SAS format", {
                      urls = urls,
                      ess_email = ess_email,
                      only_download = TRUE,
-                     output_dir = tempdir(),
-                     format = 'sas'),
+                     output_dir = tempdir()),
                  "All files saved to")
   
   # Test whether the downloaded files are indeed there

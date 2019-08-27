@@ -100,8 +100,7 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
   
   dir_download <- download_format(country = country,
                                   urls = urls,
-                                  ess_email = ess_email,
-                                  format = format)
+                                  ess_email = ess_email)
   
   all_data <- read_format_data(dir_download, rounds)
 
@@ -129,7 +128,6 @@ download_sddf_country <- function(country, rounds, ess_email = NULL,
                     country = country,
                     ess_email = ess_email,
                     only_download = TRUE,
-                    output_dir = output_dir,
-                    format = format)
+                    output_dir = output_dir)
   )
 }

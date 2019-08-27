@@ -6,11 +6,8 @@
 # If only wants to download rounds, then name every argument after rounds.
 # If rounds and country are specified, country rounds will be downloaded.
 download_format <- function(country, urls, ess_email = NULL, only_download = FALSE,
-                            output_dir = NULL, format = NULL) {
+                            output_dir = NULL) {
   
-  # Check if the format is either 'stata', 'spss' or 'sas'.
-  format <- match.arg(format, c("stata", "spss", "sas"))
-
   if (is.null(ess_email)) ess_email <- get_email()
   # Check user is valid
   authenticate(ess_email)
