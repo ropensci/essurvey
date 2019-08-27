@@ -57,7 +57,7 @@ read_format_data <- function(dir_download, rounds) {
                "sav" = read_foreign_spss
                )
       # Read with `foreign` (should never fail)
-      dt <- suppressMessages(foreign_read(.x))
+      dt <- suppress_all(foreign_read(.x))
     }
 
     # Always a return a tibble with lowercase variable names
@@ -89,3 +89,5 @@ file_ext <- function(x) {
 is_foreign_installed <- function() {
   requireNamespace("foreign", quietly = TRUE)
 }
+
+suppress_all <- function(x) suppressMessages(suppressWarnings(x))
