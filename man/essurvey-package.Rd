@@ -20,8 +20,8 @@ at \url{https://ropensci.github.io/essurvey/}
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://docs.ropensci.org/essurvey/}
   \item \url{https://github.com/ropensci/essurvey}
-  \item \url{https://ropensci.github.io/essurvey/}
   \item Report bugs at \url{https://github.com/ropensci/essurvey/issues}
 }
 

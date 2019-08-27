@@ -4,7 +4,8 @@
 \alias{import_country}
 \alias{import_all_cntrounds}
 \alias{download_country}
-\title{Download integrated rounds separately for countries from the European Social Survey}
+\title{Download integrated rounds separately for countries from the European Social
+Survey}
 \usage{
 import_country(country, rounds, ess_email = NULL, format = NULL)
 
@@ -40,7 +41,8 @@ containing the latest version of each round. For \code{download_country}, if
 and saves all the rounds in the chosen \code{format} in \code{output_dir}
 }
 \description{
-Download integrated rounds separately for countries from the European Social Survey
+Download integrated rounds separately for countries from the European Social
+Survey
 }
 \details{
 Use \code{import_country} to download specified rounds for a given country and

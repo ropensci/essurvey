@@ -96,7 +96,8 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
   
   # Returns the chosen countries html that contains
   # the links to all round website.
-  country_round_html <- extract_country_html(country, .global_vars$country_index)
+  country_round_html <- extract_country_html(country,
+                                             .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
@@ -168,6 +169,7 @@ get_download_url <- function(round_links, format) { # nocov start
   for (index in seq_along(round_links)) {
     download_page <- safe_GET(paste0(.global_vars$ess_website,
                                      round_links[index]))
+
     html_ess <- xml2::read_html(download_page) 
     z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- format_preference(z, format)
@@ -252,7 +254,7 @@ clean_attr <- function(x, ...) { # nocov start
 
 # Function to find regex in x with preference in `formats`
 format_preference <- function(x, format) { # nocov start
-  format <- if (is.null(format)) c('stata', 'spss', 'sas') else format
+  format <- if (is.null(format)) c("stata", "spss", "sas") else format
 
   # If the user didn't supply the format (user can only supply only one
   # format and the format arg was manually imputed from above)
