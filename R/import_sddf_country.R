@@ -46,6 +46,17 @@
 #' read. To preserve parsimony and format errors between waves, the user should use
 #' 'stata' or 'spss'.
 #'
+#' Starting from round 7 (including), the ESS switched the layout of SDDF data.
+#' Before the rounds, SDDF data was published separately by wave-country
+#' combination. From round 7 onwards, all SDDF data is released as a single
+#' integrated file with all countries combined. \code{import_sddf_country}
+#' takes care of this nuance by reading the data and filtering the chosen
+#' country. \code{download_sddf_country} downloads the raw file but also
+#' reads in memory to subset the specific country requested. This shouldn't
+#' raise any problems but beware that reading/writing the data might delete
+#' some properties such as wrongly saved labels. For this reason, 'sas' format
+#' is not supported for this specific function.
+#'
 #' @return for \code{import_sddf_country} if \code{length(rounds)} is 1, it returns a tibble with
 #' the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
 #' containing the latest version of each round. For \code{download_sddf_country}, if
@@ -137,18 +148,81 @@ import_all_sddf_cntrounds <- function(country, ess_email = NULL, format = NULL) 
 #' @rdname import_sddf_country
 #' @export
 download_sddf_country <- function(country, rounds, ess_email = NULL,
-                                  output_dir = getwd(), format = 'stata') {
+                                  output_dir = getwd(), format = "stata") {
 
   stopifnot(is.character(country), length(country) > 0)
   stopifnot(is.numeric(rounds), length(rounds) > 0)
 
-  urls <- country_url_sddf(country, rounds, format = format)
+  if (!is.null(format) && format == "sas") {
+    stop(
+      "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?download_sddf_country for more details") # nolint
+  }
+
+
+  late_rounds <- rounds > 6
+  
+  if (any(late_rounds)) {
+
+    urls <- c(country_url_sddf(country, rounds[!late_rounds], format),
+              country_url_sddf_late_rounds(country, rounds[late_rounds], format)
+              )
+  } else {
+
+    urls <- country_url_sddf(country, rounds, format)
+
+  }
+
   
   invisible(
-    download_format(urls = urls,
-                    country = country,
-                    ess_email = ess_email,
-                    only_download = TRUE,
-                    output_dir = output_dir)
+    dir_download <-
+      download_format(urls = urls,
+                      country = country,
+                      ess_email = ess_email,
+                      only_download = TRUE,
+                      output_dir = output_dir)
   )
+
+  ## if (any(late_rounds)) {
+
+  ##   downloaded_rounds <-
+  ##     as.numeric(
+  ##       gsub(
+  ##         "ESS",
+  ##         "",
+  ##         stringr::str_extract(dir_download, "ESS[0-9]{1,}")
+  ##       )
+  ##     )
+
+  ##   new_late_rounds <- downloaded_rounds > 6
+
+  ##   all_data <-
+  ##     suppress_all(
+  ##       read_format_data(dir_download[new_late_rounds], rounds[late_rounds])
+  ##     )
+
+  ## # Search for the 2 letter code because we need to subset
+  ## # from the integrated SDDF for the current country
+  ## country_code <- country_lookup[country]
+
+  ## # Subset the selected country from the integrated late rounds
+  ## all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
+
+  ## format_ext <- c(".dta", ".sav", ".por")
+  ## # Get all paths from the format
+  ## format_dirs <- list.files(dir_download[new_late_rounds],
+  ##                           pattern = paste0(format_ext, "$", collapse = "|"),
+  ##                           full.names = TRUE)
+  
+  ## # Read only the .dta/.sav/.por files
+  ## dataset <- lapply(format_dirs, function(.x) {
+  
+  ##   # Use function to read the specified format
+  ##   format_read <-
+  ##     switch(file_ext(.x),
+  ##            "dta" = haven::read_dta,
+  ##            "por" = haven::read_sav,
+  ##            "sav" = haven::read_sav
+  ##            )
+
+
 }

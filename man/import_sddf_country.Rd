@@ -70,6 +70,17 @@ For this particular argument, 'sas' is not supported because the data formats ha
 changed between ESS waves and separate formats require different functions to be
 read. To preserve parsimony and format errors between waves, the user should use
 'stata' or 'spss'.
+
+Starting from round 7 (including), the ESS switched the layout of SDDF data.
+Before the rounds, SDDF data was published separately by wave-country
+combination. From round 7 onwards, all SDDF data is released as a single
+integrated file with all countries combined. \code{import_sddf_country}
+takes care of this nuance by reading the data and filtering the chosen
+country. \code{download_sddf_country} downloads the raw file but also
+reads in memory to subset the specific country requested. This shouldn't
+raise any problems but beware that reading/writing the data might delete
+some properties such as wrongly saved labels. For this reason, 'sas' format
+is not supported for this specific function.
 }
 \examples{
 \dontrun{
