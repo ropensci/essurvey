@@ -71,7 +71,8 @@ check_country_sddf_rounds <- function(country, rounds) { # nocov start
     
     stop(
       paste0("ESS round ", failed_rounds,
-            " doesn't have SDDF data available for ", country,
+             ifelse(length(all_rounds_present) > 1, " don't", " doesn't"),
+             " have SDDF data available for ", country,
             ". Check show_sddf_rounds('", country, "')")
     )
   }
