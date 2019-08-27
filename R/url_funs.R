@@ -48,23 +48,13 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
   check_country(country)
   
   # And also the rounds for that country
-  check_country_rounds(country, rounds)
+  check_country_sddf_rounds(country, rounds)
   
   ## TODO
   ## You're only limiting SDDF files to rounds 1:6 until you can figure out
   ## how to include the SDDF from rounds 7:8 which are integrated for all countries
   if (any(rounds >= 7)) stop('SDDF files are only supported for rounds earlier than the 6th round')
-  
-  
-  sddf_rounds_available <- rounds %in% show_sddf_rounds(country)
-  # If ANY round doesn't not have SDDF data, raise error pointing
-  # to the rounds which don't have SDDF data.
-  if(any(!sddf_rounds_available)) {
-    stop("Rounds ",
-         paste0("ESS", rounds[!sddf_rounds_available], collapse = ", "),
-         " don't have SDDF data available for ", country)
-  }
-  
+    
   # Only select the rounds that match this:
   # /download.html\\?file= for the downoad section
   # ESS[0-9]{1,} for any of the rounds
