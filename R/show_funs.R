@@ -73,6 +73,7 @@ var_names <- c(
   "path_login",
   "theme_index",
   "country_index",
+  "sddf_index",
   "all_codes"
 )
 
@@ -88,6 +89,7 @@ var_values <-
   "/user/login",
   "/data/module-index.html",
   "/data/country_index.html",
+  "/data/download_sample_data.html",
   codes
 )
 

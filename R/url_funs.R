@@ -71,6 +71,22 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
   full_urls
 } # nocov end
 
+country_url_sddf_late_rounds <- function(country, rounds, format = NULL) { # nocov start
+
+  # Check country is available
+  check_country(country)
+  
+  # And also the rounds for that country
+  check_country_sddf_rounds(country, rounds)
+
+  # No need to add regex as in country_url because grabbing the rounds
+  # returns the direct paths
+  full_urls <- grab_url_sddf_late_rounds(rounds, format)
+  
+  full_urls
+} # nocov end
+
+
 grab_url <- function(country, rounds, regex, format) { # nocov start
   
   # Get unique rounds to avoid repeting rounds
@@ -106,6 +122,39 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
   
   full_urls
 } # nocov end
+
+
+grab_url_sddf_late_rounds <- function(rounds, format) { #nocov start
+  
+  # Get unique rounds to avoid repeting rounds
+  rounds <- sort(unique(rounds))
+  
+  # Returns the all late SDDF rounds main page
+   late_sddf_mainpage <-
+    get_href(
+      .global_vars$ess_website,
+      .global_vars$sddf_index,
+      "//ul [@class='docliste']//a"
+    )
+    
+  # Here we have all late SDDF main websites
+  late_sddf_href <- xml2::xml_attrs(late_sddf_mainpage, "href")
+    
+  # Extract round numbers
+  round_numbers <-
+    as.numeric(
+      stringr::str_extract(late_sddf_href, "[0-9]{1,}")
+    )
+  
+  # Build final ESS round links
+  round_links <- late_sddf_href[which(round_numbers %in% rounds)]
+  
+  # Using each separate round html, extract the stata or spss direct link
+  # to download the data. Return the full direct path.
+  full_urls <- get_download_url(round_links, format)
+  
+  full_urls  
+} #nocov end
 
 # Given a country/round website such as https://www.europeansocialsurvey.org/download.html?file=ESS1ES&c=ES&y=2002,
 # extracts the stata (or spss, in that specific order if one is not available) path and 
@@ -164,13 +213,20 @@ extract_country_html <- function(chosen_module, module_index) { # nocov start
 } # nocov end
 
 # Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
-# for each country
-get_href <- function(ess_website, module_index) { # nocov start
+# for each country. The default href path should take all td lists
+# of class labelled (most ESS HTML lists) but for SDDF this changes
+# to all li lists of clas docliste
+get_href <- function(ess_website,
+                     module_index,
+                     href_xpath = "//td [@class='label']//a") { # nocov start
+
   download_page <- safe_GET(paste0(ess_website, module_index))
   
-  # Get the <a href="/data/country.html?c=latvia">Latvia</a> for each country
-  country_node <- xml2::xml_find_all(xml2::read_html(download_page),
-                                     '//td [@class="label"]//a')
+  country_node <-
+    xml2::xml_find_all(
+      xml2::read_html(download_page),
+      href_xpath
+    )
   
   country_node
 } # nocov end
