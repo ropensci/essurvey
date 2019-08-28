@@ -63,7 +63,8 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
   # (.*) anything in between
   # [0-9]{4, } for the year of round
   
-  sddf_regex <- "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
+  sddf_regex <-
+    "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
   
   
   full_urls <- grab_url(country, rounds, sddf_regex, format)

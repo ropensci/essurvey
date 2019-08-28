@@ -143,14 +143,24 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
 
 #' @rdname import_sddf_country
 #' @export
-import_all_sddf_cntrounds <- function(country, ess_email = NULL, format = NULL) {
-  import_sddf_country(country, show_sddf_rounds(country), ess_email, format = format)
+import_all_sddf_cntrounds <- function(country,
+                                      ess_email = NULL,
+                                      format = NULL) {
+  import_sddf_country(
+    country,
+    show_sddf_rounds(country),
+    ess_email,
+    format = format
+  )
 }
 
 #' @rdname import_sddf_country
 #' @export
-download_sddf_country <- function(country, rounds, ess_email = NULL,
-                                  output_dir = getwd(), format = "stata") {
+download_sddf_country <- function(country,
+                                  rounds,
+                                  ess_email = NULL,
+                                  output_dir = getwd(),
+                                  format = "stata") {
 
   stopifnot(is.character(country), length(country) > 0)
   stopifnot(is.numeric(rounds), length(rounds) > 0)
