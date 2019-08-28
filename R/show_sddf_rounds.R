@@ -34,7 +34,9 @@ show_sddf_rounds <- function(country) {
               value = TRUE))
   
   # Extract round numbers
-  round_numbers <- as.numeric(stringr::str_extract(incomplete_links, "[0-9]{1,2}"))
-  
-  round_numbers
+  early_rounds <-
+    as.numeric(
+      string_extract(incomplete_links, "[0-9]{1,2}")
+    )
+
 }

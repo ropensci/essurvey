@@ -33,10 +33,9 @@ read_format_data <- function(dir_download, rounds) {
 
       # Identify country + round for message
       # Match everything from _ to the first dash to extract the country name
-      cnt <- regmatches(.x, regexpr("_.+?(?=\\/)", .x, perl = TRUE))
+      cnt <- string_extract(.x, "_.+?(?=\\/)", perl = TRUE)
       round_search <- basename(.x)
-      rnd <- regmatches(round_search,
-                          regexpr("\\d", round_search, perl = TRUE))
+      rnd <- string_extract(round_search, "\\d", perl = TRUE)
 
       # Ask for a user report
       warning(
@@ -88,3 +87,7 @@ is_foreign_installed <- function() {
 }
 
 suppress_all <- function(x) suppressMessages(suppressWarnings(x))
+
+string_extract <- function(string, pattern, ...) {
+  regmatches(string, regexpr(pattern, string, ...))
+}

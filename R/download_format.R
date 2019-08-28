@@ -13,7 +13,7 @@ download_format <- function(country, urls, ess_email = NULL, only_download = FAL
   authenticate(ess_email)
   
   # Extract the ESS prefix with the round number
-  ess_round <- stringr::str_extract(urls, "ESS[:digit:]")
+  ess_round <- string_extract(urls, "ESS[[:digit:]]")
   
   # The saving path is output if download is set to TRUE
   # otherwise tempdir()

@@ -111,8 +111,8 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
               value = TRUE))
   
   # Extract round numbers
-  round_numbers <- as.numeric(stringr::str_extract(incomplete_links,
-                                                   "[0-9]{1,2}"))
+  round_numbers <- as.numeric(string_extract(incomplete_links,
+                                             "[0-9]{1,2}"))
   
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
@@ -144,7 +144,7 @@ grab_url_sddf_late_rounds <- function(rounds, format) { #nocov start
   # Extract round numbers
   round_numbers <-
     as.numeric(
-      stringr::str_extract(late_sddf_href, "[0-9]{1,}")
+      string_extract(late_sddf_href, "[0-9]{1,}")
     )
   
   # Build final ESS round links
