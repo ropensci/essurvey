@@ -1,3 +1,7 @@
+# Environment variables from Travis CI
+
+ess_email <- Sys.getenv("ess_email")
+
 check_format <- function(result, type = "numeric") {
   # Check whether result is is of type
   expect_is(result, type)
@@ -126,7 +130,7 @@ test_that("show_theme_rounds returns correct output for rounds > 1", {
 # show_sddf_rounds()
 test_that("show_sddf_rounds returns correct output", {
   
-  all_spain_sddf <- show_sddf_rounds("Spain")
+  all_spain_sddf <- show_sddf_rounds("Spain", ess_email)
   
   check_format(all_spain_sddf, "numeric")
   

@@ -2,25 +2,38 @@
 #'
 #' @param country A character of length 1 with the full name of the country.
 #' Use \code{\link{show_countries}} for a list of available countries.
-#'  
-#' @details SDDF data are the equivalent weight data used to analyze the European Social Survey
-#'   properly. For more information, see the details section of \code{\link{import_sddf_country}}
-#'   Given that the new SDDF files from the ESS are now comming in a fully integrated file rather
-#'   than separated by countries, this function only checks for SDDF files in rounds 1 through 6.
+#'
+#' @param ess_email a character vector with your email, such as "your_email@email.com".
+#' If you haven't registered in the ESS website, create an account at 
+#' \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
+#' through \code{\link{set_email}}.
+#' 
+#' @details
+#' SDDF data are the equivalent weight data used to analyze the European Social Survey
+#' properly. For more information, see the details section of \code{\link{import_sddf_country}}.
+#' As an exception to the \code{show_*} family of functions, \code{show_sddf rounds}
+#' needs your ESS email to check which rounds are available. Be sure to add it
+#' with \code{\link{set_email}}.
+#' 
 #'
 #' @return numeric vector with available rounds for \code{country}
 #' @export
 #'
 #' @examples
+#'
+#' \dontrun{
+#' set_email("your_email@email.com")
 #' 
 #' show_sddf_rounds("Spain")
+#' }
 #'
-show_sddf_rounds <- function(country) {
+show_sddf_rounds <- function(country, ess_email = NULL) {
   check_country(country)
   
   # Returns the chosen countries html that contains
   # the links to all rounds.
-  country_round_html <- extract_country_html(country, .global_vars$country_index)
+  country_round_html <- extract_country_html(country,
+                                             .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
@@ -29,9 +42,11 @@ show_sddf_rounds <- function(country) {
   country_href <- xml2::xml_attrs(country_node, "href")
   
   incomplete_links <-
-    sort(grep("^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$",
-              country_href,
-              value = TRUE))
+    sort(
+      grep("^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$",
+           country_href,
+           value = TRUE)
+    )
   
   # Extract round numbers
   early_rounds <-
@@ -39,4 +54,35 @@ show_sddf_rounds <- function(country) {
       string_extract(incomplete_links, "[0-9]{1,2}")
     )
 
+  # Extracting late rounds
+  all_rounds <- show_rounds()
+  late_rounds <- all_rounds[all_rounds > 6]
+
+  url_download <- grab_url_sddf_late_rounds(late_rounds, format = NULL)
+
+  if (!all(dir.exists(.global_vars$sddf_laterounds_dir))) {
+
+    utils::capture.output(
+      dir_downloads <- suppress_all(download_format(country,
+                                                    url_download,
+                                                    ess_email)
+                                    ),
+      file = tempfile()
+    )
+
+    .global_vars$sddf_laterounds_dir <- dir_downloads
+  }
+
+  late_data <-
+    suppress_all(
+      read_format_data(.global_vars$sddf_laterounds_dir, late_rounds)
+    )
+
+  country_code <- country_lookup[country]
+
+  nrow_data <-
+    vapply(late_data, function(x) nrow(x[x$cntry == country_code, ]),
+           FUN.VALUE = numeric(1))
+
+  c(early_rounds, late_rounds[nrow_data > 0])
 }

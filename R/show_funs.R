@@ -75,6 +75,7 @@ var_names <- c(
   "theme_index",
   "country_index",
   "sddf_index",
+  "sddf_laterounds_dir",
   "all_codes"
 )
 
@@ -91,6 +92,7 @@ var_values <-
   "/data/module-index.html",
   "/data/country_index.html",
   "/data/download_sample_data.html",
+  "",
   codes
 )
 
