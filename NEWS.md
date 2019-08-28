@@ -6,7 +6,7 @@
 
 ### New features
 
-* Users can now download SDDF (weight data) for each country/round combination of files. Functions `import_sddf_country` and `download_sddf_country` are now introduced. These functions only work for rounds `1:6` for now [#9].
+* Users can now download SDDF (weight data) for each country/round combination of files. Functions `show_sddf_rounds`, `import_sddf_country` and `download_sddf_country` are now introduced [#9].
 
 ### Minor changes
 

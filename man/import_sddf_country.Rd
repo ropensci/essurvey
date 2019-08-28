@@ -17,8 +17,8 @@ download_sddf_country(country, rounds, ess_email = NULL,
 \item{country}{a character of length 1 with the full name of the country. 
 Use \code{\link{show_countries}} for a list of available countries.}
 
-\item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_rounds}}
-for all available rounds.}
+\item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_sddf_rounds}}
+for all available rounds for any given country.}
 
 \item{ess_email}{a character vector with your email, such as "your_email@email.com".
 If you haven't registered in the ESS website, create an account at 
@@ -28,7 +28,7 @@ through \code{\link{set_email}}.}
 \item{format}{the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).}
 
 \item{output_dir}{a character vector with the output directory in case you want to
-only download the files using \code{download_country}. Defaults to your working
+only download the files using \code{download_sddf_country}. Defaults to your working
 directory. This will be interpreted as a \strong{directory} and not a path with
 a file name.}
 }
@@ -44,8 +44,8 @@ Download SDDF data by round for countries from the European Social Survey
 }
 \details{
 SDDF data (Sample Design Data Files) are data sets that contain additional columns with the
-sample design and weights for a given country in a given rounds. These additional columns are
-required to perform any weighted analysis of the ESS data. Users interested in using this data
+sample design and weights for a given country in a given round. These additional columns are
+required to perform any complex weighted analysis of the ESS data. Users interested in using this data
 should read the description of SDDF files \href{http://www.europeansocialsurvey.org/methodology/ess_methodology/sampling.html}{here}
 and should read \href{http://www.europeansocialsurvey.org/data/download_sample_data.html}{here} for the
 sampling design of the country of analysis for that specific round.
@@ -61,8 +61,8 @@ different handling of the encoding of some questions. This option was preserved
 so that the user can switch between formats if any encoding errors are found in the data. For more
 details see the discussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
 
-Given that the SDDF data is not very complete, some countries do not have SDDF data
-in Stata or SPSS. For that reason, the \code{format} argument is not used in \code{import_sddf_country}.
+Additionally, given that the SDDF data is not very complete, some countries do not have SDDF data
+in Stata or SPSS formats. For that reason, the \code{format} argument is not used in \code{import_sddf_country}.
 Internally, \code{Stata} is chosen over \code{SPSS} and \code{SPSS} over \code{SAS} in that
 order of preference.
 
@@ -74,23 +74,20 @@ read. To preserve parsimony and format errors between waves, the user should use
 Starting from round 7 (including), the ESS switched the layout of SDDF data.
 Before the rounds, SDDF data was published separately by wave-country
 combination. From round 7 onwards, all SDDF data is released as a single
-integrated file with all countries combined. \code{import_sddf_country}
+integrated file with all countries combined for that given round. \code{import_sddf_country}
 takes care of this nuance by reading the data and filtering the chosen
-country. \code{download_sddf_country} downloads the raw file but also
-reads in memory to subset the specific country requested. This shouldn't
-raise any problems but beware that reading/writing the data might delete
-some properties such as wrongly saved labels. For this reason, 'sas' format
-is not supported for this specific function.
+country automatically. \code{download_sddf_country} downloads the raw file but also
+reads the data into memory to subset the specific country requested. This
+process should be transparent to the user but beware that reading/writing the data might delete
+some of it's properties such as dropping the labels or label attribute.
 }
 \examples{
 \dontrun{
 
 set_email("your_email@email.com")
 
-# Get first three rounds for Denmark
 sp_three <- import_sddf_country("Spain", 5:6)
 
-# For now, only SDDF files from rounds 1:6 are implemented in the package
 show_sddf_rounds("Spain")
 
 # Only download the files, this will return nothing
@@ -106,9 +103,9 @@ download_sddf_country(
 # By default, download_sddf_country downloads 'stata' files but
 # you can also download 'spss' or 'sas' files.
 
-download_country(
+download_sddf_country(
  "Spain",
- rounds = 5:6,
+ rounds = 1:8,
  output_dir = temp_dir,
  format = 'spss'
 )
