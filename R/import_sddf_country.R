@@ -109,15 +109,19 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
 
   late_rounds <- rounds > 6
   
-  if (any(late_rounds)) {
+  if (all(late_rounds)) {
 
-    urls <- c(country_url_sddf(country, rounds[!late_rounds], format),
-              country_url_sddf_late_rounds(country, rounds[late_rounds], format)
-              )
-  } else {
+    urls <- country_url_sddf_late_rounds(country, rounds[late_rounds], format)
+    
+
+  } else if (all(!late_rounds)) {
 
     urls <- country_url_sddf(country, rounds, format)
 
+  } else {
+    urls <- c(country_url_sddf(country, rounds[!late_rounds], format),
+              country_url_sddf_late_rounds(country, rounds[late_rounds], format)
+              )
   }
 
   
@@ -126,16 +130,22 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
                                   ess_email = ess_email)
   
   all_data <- read_format_data(dir_download, rounds)
+
   # Remove everything that was downloaded
   unlink(dir_download, recursive = TRUE, force = TRUE)
 
   if (any(late_rounds)) {
+
+    all_data <- if (!inherits(all_data, "list")) list(all_data) else all_data
+
     # Search for the 2 letter code because we need to subset
     # from the integrated SDDF for the current country
     country_code <- country_lookup[country]
 
     # Subset the selected country from the integrated late rounds
     all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
+
+    all_data <- if (length(all_data) == 1) all_data[[1]] else all_data
   }
 
   all_data
