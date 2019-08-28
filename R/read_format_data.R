@@ -65,9 +65,6 @@ read_format_data <- function(dir_download, rounds) {
     
   })
   
-  # Remove everything that was downloaded
-  unlink(dir_download, recursive = TRUE, force = TRUE)
-  
   # If it's only one round, return a df rather than a list
   if (length(rounds) == 1) dataset <- dataset[[1]]
   

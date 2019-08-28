@@ -103,6 +103,8 @@ import_country <- function(country, rounds, ess_email = NULL, format = NULL) {
                                   ess_email = ess_email)
   
   all_data <- read_format_data(dir_download, rounds)
+  # Remove everything that was downloaded
+  unlink(dir_download, recursive = TRUE, force = TRUE)
   
   all_data
 }

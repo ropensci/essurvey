@@ -94,6 +94,8 @@ import_rounds <- function(rounds, ess_email = NULL, format = NULL) {
                                   urls = urls)
   
   all_data <- read_format_data(dir_download, rounds)
+  # Remove everything that was downloaded
+  unlink(dir_download, recursive = TRUE, force = TRUE)
   
   all_data
 }

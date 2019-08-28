@@ -126,6 +126,8 @@ import_sddf_country <- function(country, rounds, ess_email = NULL, format = NULL
                                   ess_email = ess_email)
   
   all_data <- read_format_data(dir_download, rounds)
+  # Remove everything that was downloaded
+  unlink(dir_download, recursive = TRUE, force = TRUE)
 
   if (any(late_rounds)) {
     # Search for the 2 letter code because we need to subset
