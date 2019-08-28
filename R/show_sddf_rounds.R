@@ -75,7 +75,7 @@ show_sddf_rounds <- function(country, ess_email = NULL) {
 
   late_data <-
     suppress_all(
-      read_format_data(.global_vars$sddf_laterounds_dir, late_rounds)
+      read_format_data(.global_vars$sddf_laterounds_dir)
     )
 
   country_code <- country_lookup[country]

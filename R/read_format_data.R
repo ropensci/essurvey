@@ -1,4 +1,4 @@
-read_format_data <- function(dir_download, rounds) {
+read_format_data <- function(dir_download) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
@@ -65,7 +65,7 @@ read_format_data <- function(dir_download, rounds) {
   })
   
   # If it's only one round, return a df rather than a list
-  if (length(rounds) == 1) dataset <- dataset[[1]]
+  if (length(dir_download) == 1) dataset <- dataset[[1]]
   
   dataset
   
