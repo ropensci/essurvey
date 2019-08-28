@@ -17,11 +17,11 @@
 #' }
 #' 
 set_email <- function(ess_email) {
-  Sys.setenv("ESS_EMAIL" = ess_email)
+  Sys.setenv("ess_email" = ess_email)
 }
 
 get_email <- function() {
-  ess_email <- Sys.getenv("ESS_EMAIL")
+  ess_email <- Sys.getenv("ess_email")
   if (ess_email == "") {
     stop("No email account set as environment variable. Use set_email to set your email.")
   }
