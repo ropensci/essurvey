@@ -60,6 +60,14 @@ show_sddf_rounds <- function(country, ess_email = NULL) {
 
   url_download <- grab_url_sddf_late_rounds(late_rounds, format = NULL)
 
+  # Here I thought I might've introduced a bug because
+  # if I run show_sddf_rounds("Spain") and then
+  # show_sddf_rounds("Italy") then I thought that
+  # because the sddf_laterounds_dir was already created and existed
+  # for Spain, it WON'T download the data files for Italy. The thing
+  # is that it doesn't matter because late rounds are integrated for
+  # all countries, so I just reread the Spanish downloaded one
+  # and filter for ITALY.
   if (!all(dir.exists(.global_vars$sddf_laterounds_dir))) {
 
     utils::capture.output(
@@ -75,14 +83,11 @@ show_sddf_rounds <- function(country, ess_email = NULL) {
 
   late_data <-
     suppress_all(
-      read_format_data(.global_vars$sddf_laterounds_dir)
+      read_sddf_data(.global_vars$sddf_laterounds_dir,
+                     country)
     )
 
-  country_code <- country_lookup[country]
-
-  nrow_data <-
-    vapply(late_data, function(x) nrow(x[x$cntry == country_code, ]),
-           FUN.VALUE = numeric(1))
+  nrow_data <- vapply(late_data, nrow, FUN.VALUE = numeric(1))
 
   c(early_rounds, late_rounds[nrow_data > 0])
 }

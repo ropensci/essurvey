@@ -88,3 +88,16 @@ suppress_all <- function(x) suppressMessages(suppressWarnings(x))
 string_extract <- function(string, pattern, ...) {
   regmatches(string, regexpr(pattern, string, ...))
 }
+
+read_sddf_data <- function(dir_downloads, country) {
+  all_data <- read_format_data(dir_downloads)
+
+  # Search for the 2 letter code because we need to subset
+  # from the integrated SDDF for the current country
+  country_code <- country_lookup[country]
+
+  # Subset the selected country from the integrated late rounds
+  all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
+
+  all_data
+}

@@ -125,30 +125,16 @@ import_sddf_country <- function(country,
               country_url_sddf_late_rounds(country, rounds[late_rounds], format)
               )
   }
-
   
   dir_download <- download_format(country = country,
                                   urls = urls,
                                   ess_email = ess_email)
   
-  all_data <- read_format_data(dir_download, rounds)
+  all_data <- read_sddf_data(dir_download, country)
 
-  # Remove everything that was downloaded
+    # Remove everything that was downloaded
   unlink(dir_download, recursive = TRUE, force = TRUE)
 
-  if (any(late_rounds)) {
-
-    all_data <- if (!inherits(all_data, "list")) list(all_data) else all_data
-
-    # Search for the 2 letter code because we need to subset
-    # from the integrated SDDF for the current country
-    country_code <- country_lookup[country]
-
-    # Subset the selected country from the integrated late rounds
-    all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
-
-    all_data <- if (length(all_data) == 1) all_data[[1]] else all_data
-  }
   if (length(dir_download) == 1) all_data <- all_data[[1]]
 
   all_data
@@ -215,18 +201,8 @@ download_sddf_country <- function(country,
 
     all_data <-
       suppress_all(
-        read_format_data(dir_download[late_rounds], rounds[late_rounds])
+        read_sddf_data(dir_download[late_rounds], country)
       )
-
-    # Turn to a list in case it's only one round
-    all_data <- if (!inherits(all_data, "list")) list(all_data) else all_data
-
-    # Search for the 2 letter code because we need to subset
-    # from the integrated SDDF for the current country
-    country_code <- country_lookup[country]
-
-    # Subset the selected country from the integrated late rounds
-    all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
 
     format_ext <- c(".dta", ".sav", ".por")
     # Get all paths from the format
