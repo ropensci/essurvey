@@ -127,23 +127,23 @@ test_that("show_theme_rounds returns correct output for rounds > 1", {
   check_format(theme_two)
 })
 
-# show_sddf_rounds()
+# show_sddf_cntrounds()
 # This must be the FIRST test! Don't move.
 # This is because we use the email ONLY in the first download, then save the
 # file and the email is not needed.
-test_that("show_sddf_rounds raises error when email not set / not correct", {
+test_that("show_sddf_cntrounds raises error when email not set / not correct", {
 
   old_env <- Sys.getenv("ess_email")
   set_email(ess_email = "")
 
-  expect_error(show_sddf_rounds("Netherlands"),
+  expect_error(show_sddf_cntrounds("Netherlands"),
                regexp = "No email account set as environment variable. Use set_email to set your email.", #nolintr
                fixed = TRUE
                )
 
   set_email(old_env)
 
-  expect_error(show_sddf_rounds("Netherlands", "wrongemail"),
+  expect_error(show_sddf_cntrounds("Netherlands", "wrongemail"),
                regexp = "The email address you provided is not associated with any registered user. Create an account at https://www.europeansocialsurvey.org/user/new", #nolintr
                fixed = TRUE
                )
@@ -154,7 +154,7 @@ test_that("show_sddf_rounds raises error when email not set / not correct", {
 # since we save files in other tests that get reused, this needs to be the first
 # download test
 
-test_that("show_sddf_rounds is faster on second iteration because of reusing the save filed", { #nolintr
+test_that("show_sddf_cntrounds is faster on second iteration because of reusing the save filed", { #nolintr
 
   skip_on_cran()
 
@@ -167,13 +167,13 @@ test_that("show_sddf_rounds is faster on second iteration because of reusing the
   if (length(already_dl) > 0) unlink(already_dl, recursive = TRUE, force = TRUE)
 
   init_first <- Sys.time()
-  show_sddf_rounds("Germany")
+  show_sddf_cntrounds("Germany")
   finish_first <- Sys.time()
 
   time_first <- finish_first - init_first
 
   init_second <- Sys.time()
-  show_sddf_rounds("Germany")
+  show_sddf_cntrounds("Germany")
   finish_second <- Sys.time()
 
   time_second <- finish_second - init_second
@@ -183,11 +183,11 @@ test_that("show_sddf_rounds is faster on second iteration because of reusing the
 })
 
 
-test_that("show_sddf_rounds returns correct output for Spain", {
+test_that("show_sddf_cntrounds returns correct output for Spain", {
 
   skip_on_cran()
   
-  all_spain_sddf <- show_sddf_rounds("Spain", ess_email)
+  all_spain_sddf <- show_sddf_cntrounds("Spain", ess_email)
   
   check_format(all_spain_sddf, "numeric")
 
@@ -196,15 +196,15 @@ test_that("show_sddf_rounds returns correct output for Spain", {
   expect_true(all(1:8 %in% all_spain_sddf))
   
   # Check that no input is available
-  expect_error(show_sddf_rounds("whatever"),
+  expect_error(show_sddf_cntrounds("whatever"),
                "Country whatever not available in ESS. Check show_countries()")
 })
 
-test_that("show_sddf_rounds returns correct output for Denmark", {
+test_that("show_sddf_cntrounds returns correct output for Denmark", {
 
   skip_on_cran()
   
-  all_dk_sddf <- show_sddf_rounds("Denmark", ess_email)
+  all_dk_sddf <- show_sddf_cntrounds("Denmark", ess_email)
 
   check_format(all_dk_sddf, "numeric")
 

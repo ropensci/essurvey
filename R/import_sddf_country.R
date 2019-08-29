@@ -3,7 +3,7 @@
 #' @param country a character of length 1 with the full name of the country. 
 #' Use \code{\link{show_countries}} for a list of available countries.
 #' 
-#' @param rounds a numeric vector with the rounds to download. See \code{\link{show_sddf_rounds}}
+#' @param rounds a numeric vector with the rounds to download. See \code{\link{show_sddf_cntrounds}}
 #' for all available rounds for any given country.
 #' 
 #' @param ess_email a character vector with your email, such as "your_email@email.com".
@@ -72,7 +72,7 @@
 #' 
 #' sp_three <- import_sddf_country("Spain", 5:6)
 #' 
-#' show_sddf_rounds("Spain")
+#' show_sddf_cntrounds("Spain")
 #' 
 #' # Only download the files, this will return nothing
 #' 
@@ -147,7 +147,7 @@ import_all_sddf_cntrounds <- function(country,
                                       format = NULL) {
   import_sddf_country(
     country,
-    show_sddf_rounds(country),
+    show_sddf_cntrounds(country),
     ess_email,
     format = format
   )

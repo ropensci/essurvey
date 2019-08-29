@@ -17,7 +17,7 @@ download_sddf_country(country, rounds, ess_email = NULL,
 \item{country}{a character of length 1 with the full name of the country. 
 Use \code{\link{show_countries}} for a list of available countries.}
 
-\item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_sddf_rounds}}
+\item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_sddf_cntrounds}}
 for all available rounds for any given country.}
 
 \item{ess_email}{a character vector with your email, such as "your_email@email.com".
@@ -88,7 +88,7 @@ set_email("your_email@email.com")
 
 sp_three <- import_sddf_country("Spain", 5:6)
 
-show_sddf_rounds("Spain")
+show_sddf_cntrounds("Spain")
 
 # Only download the files, this will return nothing
 

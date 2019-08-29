@@ -235,15 +235,15 @@ test_that("import_sddf_country checks for args", {
                fixed = TRUE)
 
   expect_error(import_sddf_country("Spain", 22, ess_email),
-               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
                fixed = TRUE)
 
   expect_error(import_sddf_country("Spain", c(1, 22), ess_email),
-               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
                fixed = TRUE)
 
   expect_error(import_sddf_country("Spain", c(24, 22), ess_email),
-               regexp = "ESS round 24, 22 don't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               regexp = "ESS round 24, 22 don't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
                fixed = TRUE)
 
 })
@@ -333,7 +333,7 @@ test_that("import_sddf_country for all rounds of a country", {
   # from the integrated file
 
   test_all_rounds <- function(long_cnt, short_cnt) {
-    rounds <- show_sddf_rounds(long_cnt, ess_email)
+    rounds <- show_sddf_cntrounds(long_cnt, ess_email)
 
     all_rounds <-
       expect_warning(
@@ -427,7 +427,7 @@ test_that("Test that downloading all rounds is working for sddf data", {
   
   skip_on_cran()
 
-  available_rounds <- show_sddf_rounds("Spain")
+  available_rounds <- show_sddf_cntrounds("Spain")
   
   # Test if downloads all data for Spain and subsets correctly
   expect_message(downloads <-

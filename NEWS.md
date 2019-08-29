@@ -6,7 +6,7 @@
 
 ### New features
 
-* Users can now download SDDF (weight data) for each country/round combination of files. Functions `show_sddf_rounds`, `import_sddf_country` and `download_sddf_country` are now introduced. For technical purposes, `show_sddf_rounds` needs for the user to have set their registered ESS email with `set_email`. [#9]
+* Users can now download SDDF (weight data) for each country/round combination of files. Functions `show_sddf_cntrounds`, `import_sddf_country` and `download_sddf_country` are now introduced. For technical purposes, `show_sddf_cntrounds` needs for the user to have set their registered ESS email with `set_email`. [#9]
 
 ### Minor changes
 
