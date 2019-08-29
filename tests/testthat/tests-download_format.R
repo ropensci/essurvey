@@ -18,7 +18,7 @@ test_that("download_format can download COUNTRY files in STATA format", {
   # Test whether you get a message where the downloads are at
   which_rounds <- 2
   
-  urls <- country_url("Italy", 1:which_rounds, format = 'stata')
+  urls <- country_url("Italy", 1:which_rounds, format = "stata")
   
   expect_message(download_link <-
                    download_format(

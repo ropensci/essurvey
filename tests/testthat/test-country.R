@@ -18,8 +18,7 @@ check_one_round <- function(x, cntry) {
   expect_gt(nrow(x), 0)
   
   # check that the number of columns is greater than 0
-  expect_gt(ncol(x), 0)
-  
+  expect_gt(ncol(x), 0)  
 }
 
 check_all_rounds <- function(x, rounds, country) {
@@ -47,7 +46,7 @@ check_all_rounds <- function(x, rounds, country) {
                          function(x) "data.frame" %in% class(x),
                          FUN.VALUE = logical(1))))
   
-  # check that all waves are for netherlands
+  # check that all waves are for same country
   expect_true(all(vapply(x,
                          function(x) unique(x$cntry) == country,
                          FUN.VALUE = logical(1))))
@@ -235,11 +234,30 @@ test_that("import_sddf_country checks for args", {
                regexp = "Argument `country` should only contain one country",
                fixed = TRUE)
 
+  expect_error(import_sddf_country("Spain", 22, ess_email),
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               fixed = TRUE)
+
+  expect_error(import_sddf_country("Spain", c(1, 22), ess_email),
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               fixed = TRUE)
+
+  expect_error(import_sddf_country("Spain", c(24, 22), ess_email),
+               regexp = "ESS round 24, 22 don't have SDDF data available for Spain. Check show_sddf_rounds('Spain')", #nolintr
+               fixed = TRUE)
+
 })
 
 test_that("import_sddf_country for one round", {
   
   skip_on_cran()
+
+  ## Tests for three waves from beginning to end
+
+  # Test for only one wave
+  wave_one <- import_sddf_country("Hungary", 1, ess_email)
+
+  check_one_round(wave_one, "HU")
   
   # Test for only one wave
   wave_one <- import_sddf_country("Spain", 5, ess_email)
@@ -395,7 +413,7 @@ test_that("Test that downloading files is working for sddf data", {
                                          ),
                  "All files saved to")
   # In SDDF no need to check for .do or .sps in the second argument
-  check_downloaded_rounds(downloads, 2, c(".dta|.por|.sav", ""))
+  check_downloaded_rounds(downloads, 1, c(".dta|.por|.sav", ""))
 })
 
 test_that("Test that downloading all rounds is working for sddf data", {
