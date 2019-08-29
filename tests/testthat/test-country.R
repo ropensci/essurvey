@@ -308,17 +308,16 @@ if (is_foreign_installed()) {
             rounds,
             "for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues") #nolintr
             
-            cnty_name <- c("FR", "FR", "France")
-
             for (i in rounds) {
 
               one_wave <-
                 expect_warning(
                   import_sddf_country("France", i, ess_email),
-                  warning_msg[i], fixed = TRUE
+                  warning_msg[i],
+                  fixed = TRUE
                 )
 
-              check_one_round(one_wave, cnty_name[i])
+              check_one_round(one_wave, "FR")
             }
   })
 

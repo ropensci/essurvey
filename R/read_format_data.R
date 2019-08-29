@@ -1,4 +1,4 @@
-read_format_data <- function(dir_download) {
+read_format_data <- function(dir_download, sddf = FALSE) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
@@ -56,20 +56,29 @@ read_format_data <- function(dir_download) {
                "sav" = read_foreign_spss
                )
       # Read with `foreign` (should never fail)
-      dt <- suppress_all(foreign_read(.x))
+      dt <-
+        suppress_all(
+          foreign_read(.x,
+                       use.value.labels = if (sddf) FALSE else TRUE
+          )
+        )
     }
 
     # Always a return a tibble with lowercase variable names
     tibble::as_tibble(dt, .name_repair = tolower)
     
   })
-    
+  
   dataset
   
 }
 
-read_foreign_spss <- function(x) {
-  foreign::read.spss(x, to.data.frame = TRUE, stringsAsFactors = FALSE)
+read_foreign_spss <- function(x, ...) {
+  foreign::read.spss(x,
+                     to.data.frame = TRUE,
+                     stringsAsFactors = FALSE,
+                     ...
+                     )
 }
 
 # Taken from tools::file_ext
@@ -89,8 +98,8 @@ string_extract <- function(string, pattern, ...) {
   regmatches(string, regexpr(pattern, string, ...))
 }
 
-read_sddf_data <- function(dir_downloads, country) {
-  all_data <- read_format_data(dir_downloads)
+read_sddf_data <- function(dir_download, country) {
+  all_data <- read_format_data(dir_download, sddf = TRUE)
 
   # Search for the 2 letter code because we need to subset
   # from the integrated SDDF for the current country
