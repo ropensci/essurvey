@@ -334,7 +334,17 @@ test_that("import_sddf_country for all rounds of a country", {
 
   test_all_rounds <- function(long_cnt, short_cnt) {
     rounds <- show_sddf_rounds(long_cnt, ess_email)
-    all_rounds <- import_sddf_country(long_cnt, rounds, ess_email)
+
+    all_rounds <-
+      expect_warning(
+        import_sddf_country(long_cnt, rounds, ess_email),
+        regexp = paste("Round 7 for",
+                       long_cnt,
+                       "was read with the `foreign` package rather than with  the `haven` package for compatibility reasons. Please report any issues at https://github.com/ropensci/essurvey/issues"), #nolintr
+        fixed = TRUE
+      )
+
+
     check_all_rounds(all_rounds, rounds, short_cnt)
   }
 
