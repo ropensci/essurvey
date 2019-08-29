@@ -52,15 +52,13 @@ read_format_data <- function(dir_download, sddf = FALSE) {
       foreign_read <-
         switch(file_ext(.x),
                "dta" = foreign::read.dta,
-               "por" = read_foreign_spss,
-               "sav" = read_foreign_spss
+               "por" = read_foreign_spss_partial(sddf = sddf),
+               "sav" = read_foreign_spss_partial(sddf = sddf)
                )
       # Read with `foreign` (should never fail)
       dt <-
         suppress_all(
-          foreign_read(.x,
-                       use.value.labels = if (sddf) FALSE else TRUE
-          )
+          foreign_read(.x)
         )
     }
 
@@ -73,12 +71,17 @@ read_format_data <- function(dir_download, sddf = FALSE) {
   
 }
 
-read_foreign_spss <- function(x, ...) {
-  foreign::read.spss(x,
-                     to.data.frame = TRUE,
-                     stringsAsFactors = FALSE,
-                     ...
-                     )
+read_foreign_spss_partial <- function(sddf = FALSE, ...) {
+  function(x, ...) {
+    sddf <- get("sddf", envir = environment())
+    foreign::read.spss(file = x,
+                       to.data.frame = TRUE,
+                       stringsAsFactors = FALSE,
+                       use.value.labels = if (sddf) FALSE else TRUE,
+                       ...
+                       )
+
+  }
 }
 
 # Taken from tools::file_ext
