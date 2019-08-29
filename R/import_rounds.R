@@ -91,11 +91,15 @@ import_rounds <- function(rounds, ess_email = NULL, format = NULL) {
   urls <- round_url(rounds, format = format)
   
   dir_download <- download_format(ess_email = ess_email,
-                                  urls = urls,
-                                  format = format)
+                                  urls = urls)
   
-  all_data <- read_format_data(dir_download, rounds)
-  
+  all_data <- read_format_data(dir_download)
+  # Remove everything that was downloaded
+  unlink(dir_download, recursive = TRUE, force = TRUE)
+
+  # If only one dataframe, return that
+  all_data <- if (length(all_data) == 1) all_data[[1]] else all_data
+
   all_data
 }
 
@@ -107,13 +111,16 @@ import_all_rounds <- function(ess_email = NULL, format = NULL) {
 
 #' @rdname import_rounds 
 #' @export
-download_rounds <- function(rounds, ess_email = NULL, output_dir = getwd(), format = 'stata') {
+download_rounds <- function(rounds,
+                            ess_email = NULL,
+                            output_dir = getwd(),
+                            format = 'stata') {
+  
   stopifnot(is.numeric(rounds), length(rounds) > 0)
   urls <- round_url(rounds, format = format)
   
   invisible(download_format(urls = urls,
                             ess_email= ess_email,
                             only_download = TRUE,
-                            output_dir = output_dir,
-                            format = format))
+                            output_dir = output_dir))
 }

@@ -1,4 +1,4 @@
-read_format_data <- function(dir_download, rounds) {
+read_format_data <- function(dir_download, sddf = FALSE) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
@@ -33,10 +33,9 @@ read_format_data <- function(dir_download, rounds) {
 
       # Identify country + round for message
       # Match everything from _ to the first dash to extract the country name
-      cnt <- regmatches(.x, regexpr("_.+?(?=\\/)", .x, perl = TRUE))
+      cnt <- string_extract(.x, "_.+?(?=\\/)", perl = TRUE)
       round_search <- basename(.x)
-      rnd <- regmatches(round_search,
-                          regexpr("\\d", round_search, perl = TRUE))
+      rnd <- string_extract(round_search, "\\d", perl = TRUE)
 
       # Ask for a user report
       warning(
@@ -53,11 +52,14 @@ read_format_data <- function(dir_download, rounds) {
       foreign_read <-
         switch(file_ext(.x),
                "dta" = foreign::read.dta,
-               "por" = read_foreign_spss,
-               "sav" = read_foreign_spss
+               "por" = read_foreign_spss_partial(sddf = sddf),
+               "sav" = read_foreign_spss_partial(sddf = sddf)
                )
       # Read with `foreign` (should never fail)
-      dt <- suppressMessages(foreign_read(.x))
+      dt <-
+        suppress_all(
+          foreign_read(.x)
+        )
     }
 
     # Always a return a tibble with lowercase variable names
@@ -65,18 +67,21 @@ read_format_data <- function(dir_download, rounds) {
     
   })
   
-  # Remove everything that was downloaded
-  unlink(dir_download, recursive = TRUE, force = TRUE)
-  
-  # If it's only one round, return a df rather than a list
-  if (length(rounds) == 1) dataset <- dataset[[1]]
-  
   dataset
   
 }
 
-read_foreign_spss <- function(x) {
-  foreign::read.spss(x, to.data.frame = TRUE, stringsAsFactors = FALSE)
+read_foreign_spss_partial <- function(sddf = FALSE, ...) {
+  function(x, ...) {
+    sddf <- get("sddf", envir = environment())
+    foreign::read.spss(file = x,
+                       to.data.frame = TRUE,
+                       stringsAsFactors = FALSE,
+                       use.value.labels = if (sddf) FALSE else TRUE,
+                       ...
+                       )
+
+  }
 }
 
 # Taken from tools::file_ext
@@ -88,4 +93,23 @@ file_ext <- function(x) {
 
 is_foreign_installed <- function() {
   requireNamespace("foreign", quietly = TRUE)
+}
+
+suppress_all <- function(x) suppressMessages(suppressWarnings(x))
+
+string_extract <- function(string, pattern, ...) {
+  regmatches(string, regexpr(pattern, string, ...))
+}
+
+read_sddf_data <- function(dir_download, country) {
+  all_data <- read_format_data(dir_download, sddf = TRUE)
+
+  # Search for the 2 letter code because we need to subset
+  # from the integrated SDDF for the current country
+  country_code <- country_lookup[country]
+
+  # Subset the selected country from the integrated late rounds
+  all_data <- lapply(all_data, function(x) x[x$cntry == country_code, ])
+
+  all_data
 }

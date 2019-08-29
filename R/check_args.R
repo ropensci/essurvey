@@ -52,7 +52,28 @@ check_country_rounds <- function(country, rounds) { # nocov start
     stop(
       paste0("ESS round ", failed_rounds,
             " not available for ", country,
-            ". Check show_rounds()")
+            ". Check show_country_rounds('", country, "')")
+    )
+  }
+  
+  TRUE
+} # nocov end
+
+check_country_sddf_rounds <- function(country, rounds) { # nocov start
+  
+  check_country(country)
+  
+  all_rounds_present <- rounds %in% show_sddf_cntrounds(country)
+
+  if (!all(all_rounds_present))  {
+    
+    failed_rounds <- paste0(rounds[!all_rounds_present], collapse = ", ")
+    
+    stop(
+      paste0("ESS round ", failed_rounds,
+             ifelse(length(all_rounds_present) > 1, " don't", " doesn't"),
+             " have SDDF data available for ", country,
+            ". Check show_sddf_cntrounds('", country, "')")
     )
   }
   

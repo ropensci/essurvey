@@ -134,7 +134,7 @@ recode_strings_missing <- function(y, missing_codes) {
     
     values_to_recode <- paste0(missing_codes, collapse = "")
     search_expr <- paste0("^([", values_to_recode,"])\\1{1,}$")
-    missings <- stringr::str_detect(y, search_expr)
+    missings <- grepl(search_expr, y)
     y[missings] <- NA
     y
 }

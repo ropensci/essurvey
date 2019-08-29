@@ -100,10 +100,14 @@ import_country <- function(country, rounds, ess_email = NULL, format = NULL) {
   
   dir_download <- download_format(country = country,
                                   urls,
-                                  ess_email = ess_email,
-                                  format = format)
+                                  ess_email = ess_email)
   
-  all_data <- read_format_data(dir_download, rounds)
+  all_data <- read_format_data(dir_download)
+  # Remove everything that was downloaded
+  unlink(dir_download, recursive = TRUE, force = TRUE)
+
+  # If only one dataframe, return that
+  if (length(dir_download) == 1) all_data <- all_data[[1]]
   
   all_data
 }
@@ -129,7 +133,6 @@ download_country <- function(country, rounds, ess_email = NULL,
                     urls = urls,
                     ess_email = ess_email,
                     only_download = TRUE,
-                    output_dir = output_dir,
-                    format = format)
+                    output_dir = output_dir)
   )
 }

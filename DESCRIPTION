@@ -19,14 +19,13 @@ RoxygenNote: 6.1.1
 Imports: 
     xml2,
     httr,
-    stringr,
     haven (>= 2.1.0),
     rvest,
     tibble,
     utils
 Suggests: 
     foreign,
-    testthat,
+    testthat (>= 2.1.0),
     knitr,
     rmarkdown,
     covr

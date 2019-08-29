@@ -18,8 +18,7 @@ check_one_round <- function(x, cntry) {
   expect_gt(nrow(x), 0)
   
   # check that the number of columns is greater than 0
-  expect_gt(ncol(x), 0)
-  
+  expect_gt(ncol(x), 0)  
 }
 
 check_all_rounds <- function(x, rounds, country) {
@@ -47,7 +46,7 @@ check_all_rounds <- function(x, rounds, country) {
                          function(x) "data.frame" %in% class(x),
                          FUN.VALUE = logical(1))))
   
-  # check that all waves are for netherlands
+  # check that all waves are for same country
   expect_true(all(vapply(x,
                          function(x) unique(x$cntry) == country,
                          FUN.VALUE = logical(1))))
@@ -121,7 +120,7 @@ test_that("import_country for one round", {
   skip_on_cran()
 
   # Test for only one wave
-  wave_one <- import_country("Denmark", 1, ess_email, format = 'stata')
+  wave_one <- import_country("Denmark", 1, ess_email, format = "stata")
   
   check_one_round(wave_one, "DK")
   
@@ -194,9 +193,9 @@ test_that("output_dir should be valid", {
   
   # Here output_dir is set to NULL
   expect_error(download_country("Austria",
-                           1:which_rounds,
-                           ess_email,
-                           output_dir = NULL))
+                                1:which_rounds,
+                                ess_email,
+                                output_dir = NULL))
 })
 
 test_that("import_country files with other non-stata format", {
@@ -235,16 +234,40 @@ test_that("import_sddf_country checks for args", {
                regexp = "Argument `country` should only contain one country",
                fixed = TRUE)
 
+  expect_error(import_sddf_country("Spain", 22, ess_email),
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
+               fixed = TRUE)
+
+  expect_error(import_sddf_country("Spain", c(1, 22), ess_email),
+               regexp = "ESS round 22 doesn't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
+               fixed = TRUE)
+
+  expect_error(import_sddf_country("Spain", c(24, 22), ess_email),
+               regexp = "ESS round 24, 22 don't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
+               fixed = TRUE)
+
 })
 
 test_that("import_sddf_country for one round", {
   
   skip_on_cran()
+
+  ## Tests for three waves from beginning to end
+
+  # Test for only one wave
+  wave_one <- import_sddf_country("Hungary", 1, ess_email)
+
+  check_one_round(wave_one, "HU")
   
   # Test for only one wave
   wave_one <- import_sddf_country("Spain", 5, ess_email)
   
   check_one_round(wave_one, "ES")
+
+  # Test for only one wave
+  wave_one <- import_sddf_country("Germany", 8, ess_email)
+
+  check_one_round(wave_one, "DE")
 })
 
 # If you remember correctly, downloading .por files was raising an error
@@ -285,18 +308,17 @@ if (is_foreign_installed()) {
             rounds,
             "for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues") #nolintr
             
-    cnty_name <- c("FR", "FR", "France")
+            for (i in rounds) {
 
-      for (i in rounds) {
+              one_wave <-
+                expect_warning(
+                  import_sddf_country("France", i, ess_email),
+                  warning_msg[i],
+                  fixed = TRUE
+                )
 
-        one_wave <-
-          expect_warning(
-            import_sddf_country("France", i, ess_email),
-            warning_msg[i], fixed = TRUE
-          )
-
-        check_one_round(one_wave, cnty_name[i])
-      }
+              check_one_round(one_wave, country_lookup["France"])
+            }
   })
 
 }
@@ -304,12 +326,29 @@ if (is_foreign_installed()) {
 test_that("import_sddf_country for all rounds of a country", {
   
   skip_on_cran()
-  
-  rounds <- show_sddf_rounds("Netherlands")
-  # Test for all rounds
-  all_rounds <- import_sddf_country("Netherlands", rounds, ess_email)
-  
-  check_all_rounds(all_rounds, rounds, "NL")
+  # I test several countries because they have different rounds available
+  # I want to test that the function is robust to different rounds, which
+  # are ready with different strategies: early rounds sometimes read with
+  # foreign, middel rounds are read with haven and late rounds are read
+  # from the integrated file
+
+  test_all_rounds <- function(long_cnt, short_cnt) {
+    rounds <- show_sddf_cntrounds(long_cnt, ess_email)
+
+    all_rounds <-
+      expect_warning(
+        import_sddf_country(long_cnt, rounds, ess_email),
+        regexp = paste("Round 7 for", long_cnt, "was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues"), #nolintr
+        fixed = TRUE
+      )
+
+
+    check_all_rounds(all_rounds, rounds, short_cnt)
+  }
+
+  test_all_rounds("Netherlands", country_lookup["Netherlands"])
+  test_all_rounds("Denmark", country_lookup["Denmark"])
+  test_all_rounds("Ireland", country_lookup["Ireland"])
 })
 
 
@@ -333,18 +372,17 @@ test_that("download_sddf_country checks for args", {
 test_that("Test that downloading files is working for sddf data", {
   
   skip_on_cran()
-  
 
   # for very early sddf rounds there's no stata files, so this should
   # raise an error
   which_rounds <- 2
   expect_error(downloads <-
-                   download_sddf_country("France",
-                                         1:which_rounds,
-                                         ess_email,
-                                         output_dir = tempdir(),
-                                         format = 'stata'
-                                         ),
+                 download_sddf_country("France",
+                                       1:which_rounds,
+                                       ess_email,
+                                       output_dir = tempdir(),
+                                       format = "stata"
+                                       ),
                regexp = "Format 'stata' not available")
 
   expect_message(downloads <-
@@ -352,21 +390,80 @@ test_that("Test that downloading files is working for sddf data", {
                                          1:which_rounds,
                                          ess_email,
                                          output_dir = tempdir(),
-                                         format = 'spss'
+                                         format = "spss"
                                          ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, which_rounds, c(".por", ".sps"))
+  # In SDDF no need to check for .do or .sps in the second argument
+  check_downloaded_rounds(downloads, which_rounds, c(".por", ""))
 
-  # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'  
+  # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
+  
   expect_message(downloads <-
                    download_sddf_country("Spain",
-                                         1:which_rounds,
+                                         1:8,
                                          ess_email,
                                          output_dir = tempdir(),
                                          format = NULL
                                          ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, which_rounds, c(".por", ".sps"))
+  # In SDDF no need to check for .do or .sps in the second argument
+  check_downloaded_rounds(downloads, 8, c(".dta|.por|.sav", ""))
+
+  expect_message(downloads <-
+                   download_sddf_country("Germany",
+                                         8,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = NULL
+                                         ),
+                 "All files saved to")
+  # In SDDF no need to check for .do or .sps in the second argument
+  check_downloaded_rounds(downloads, 1, c(".dta|.por|.sav", ""))
+})
+
+test_that("Test that downloading all rounds is working for sddf data", {
+  
+  skip_on_cran()
+
+  available_rounds <- show_sddf_cntrounds("Spain")
+  
+  # Test if downloads all data for Spain and subsets correctly
+  expect_message(downloads <-
+                   download_sddf_country("Spain",
+                                         available_rounds,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = NULL
+                                         ),
+                 "All files saved to")
+
+
+  format_ext <- c(".dta", ".sav", ".por")
+
+  file_names <-
+    list.files(downloads,
+               recursive = TRUE,
+               full.names = TRUE,
+               pattern = paste(format_ext, collapse = "|"))
+
+  expect_equal(seq_along(file_names), available_rounds)
+
+  country_abbrv <- lapply(file_names, function(.x) {
+
+    # Use function to read the specified format
+    format_read <-
+      switch(file_ext(.x),
+             "dta" = haven::read_dta,
+             "por" = haven::read_sav,
+             "sav" = haven::read_sav
+             )
+
+    dt <- format_read(.x)
+    names(dt) <- tolower(names(dt))
+    unique(dt$cntry)
   })
+
+  expect_true(all(country_abbrv == country_lookup["Spain"]))
+})

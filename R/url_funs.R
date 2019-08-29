@@ -48,22 +48,7 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
   check_country(country)
   
   # And also the rounds for that country
-  check_country_rounds(country, rounds)
-  
-  ## TODO
-  ## You're only limiting SDDF files to rounds 1:6 until you can figure out
-  ## how to include the SDDF from rounds 7:8 which are integrated for all countries
-  if (any(rounds >= 7)) stop('SDDF files are only supported for rounds earlier than the 6th round')
-  
-  
-  sddf_rounds_available <- rounds %in% show_sddf_rounds(country)
-  # If ANY round doesn't not have SDDF data, raise error pointing
-  # to the rounds which don't have SDDF data.
-  if(any(!sddf_rounds_available)) {
-    stop("Rounds ",
-         paste0("ESS", rounds[!sddf_rounds_available], collapse = ", "),
-         " don't have SDDF data available for ", country)
-  }
+  check_country_sddf_rounds(country, rounds)
   
   # Only select the rounds that match this:
   # /download.html\\?file= for the downoad section
@@ -73,13 +58,30 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
   # (.*) anything in between
   # [0-9]{4, } for the year of round
   
-  sddf_regex <- "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
+  sddf_regex <-
+    "^/download.html\\?file=ESS[0-9]{1,}_[A-Z]{1,2}_SDDF(.*)[0-9]{4, }$"
   
   
   full_urls <- grab_url(country, rounds, sddf_regex, format)
   
   full_urls
 } # nocov end
+
+country_url_sddf_late_rounds <- function(country, rounds, format = NULL) { # nocov start
+
+  # Check country is available
+  check_country(country)
+  
+  # And also the rounds for that country
+  check_country_sddf_rounds(country, rounds)
+
+  # No need to add regex as in country_url because grabbing the rounds
+  # returns the direct paths
+  full_urls <- grab_url_sddf_late_rounds(rounds, format)
+  
+  full_urls
+} # nocov end
+
 
 grab_url <- function(country, rounds, regex, format) { # nocov start
   
@@ -90,7 +92,8 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
   
   # Returns the chosen countries html that contains
   # the links to all round website.
-  country_round_html <- extract_country_html(country, .global_vars$country_index)
+  country_round_html <- extract_country_html(country,
+                                             .global_vars$country_index)
   
   # Go deeper in the node to grab that countries url to the rounds
   country_node <- xml2::xml_find_all(country_round_html, "//ul //li //a")
@@ -104,8 +107,8 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
               value = TRUE))
   
   # Extract round numbers
-  round_numbers <- as.numeric(stringr::str_extract(incomplete_links,
-                                                   "[0-9]{1,2}"))
+  round_numbers <- as.numeric(string_extract(incomplete_links,
+                                             "[0-9]{1,2}"))
   
   # Build final ESS round links
   round_links <- incomplete_links[which(round_numbers %in% rounds)]
@@ -116,6 +119,39 @@ grab_url <- function(country, rounds, regex, format) { # nocov start
   
   full_urls
 } # nocov end
+
+
+grab_url_sddf_late_rounds <- function(rounds, format) { #nocov start
+  
+  # Get unique rounds to avoid repeting rounds
+  rounds <- sort(unique(rounds))
+  
+  # Returns the all late SDDF rounds main page
+   late_sddf_mainpage <-
+    get_href(
+      .global_vars$ess_website,
+      .global_vars$sddf_index,
+      "//ul [@class='docliste']//a"
+    )
+    
+  # Here we have all late SDDF main websites
+  late_sddf_href <- xml2::xml_attrs(late_sddf_mainpage, "href")
+    
+  # Extract round numbers
+  round_numbers <-
+    as.numeric(
+      string_extract(late_sddf_href, "[0-9]{1,}")
+    )
+  
+  # Build final ESS round links
+  round_links <- late_sddf_href[which(round_numbers %in% rounds)]
+  
+  # Using each separate round html, extract the stata or spss direct link
+  # to download the data. Return the full direct path.
+  full_urls <- get_download_url(round_links, format)
+  
+  full_urls  
+} #nocov end
 
 # Given a country/round website such as https://www.europeansocialsurvey.org/download.html?file=ESS1ES&c=ES&y=2002,
 # extracts the stata (or spss, in that specific order if one is not available) path and 
@@ -129,6 +165,7 @@ get_download_url <- function(round_links, format) { # nocov start
   for (index in seq_along(round_links)) {
     download_page <- safe_GET(paste0(.global_vars$ess_website,
                                      round_links[index]))
+
     html_ess <- xml2::read_html(download_page) 
     z <- xml2::xml_text(xml2::xml_find_all(html_ess, "//a/@href"))
     format.files[index] <- format_preference(z, format)
@@ -174,13 +211,20 @@ extract_country_html <- function(chosen_module, module_index) { # nocov start
 } # nocov end
 
 # Function to grab <a href="/data/country.html?c=latvia">Latvia</a>
-# for each country
-get_href <- function(ess_website, module_index) { # nocov start
+# for each country. The default href path should take all td lists
+# of class labelled (most ESS HTML lists) but for SDDF this changes
+# to all li lists of clas docliste
+get_href <- function(ess_website,
+                     module_index,
+                     href_xpath = "//td [@class='label']//a") { # nocov start
+
   download_page <- safe_GET(paste0(ess_website, module_index))
   
-  # Get the <a href="/data/country.html?c=latvia">Latvia</a> for each country
-  country_node <- xml2::xml_find_all(xml2::read_html(download_page),
-                                     '//td [@class="label"]//a')
+  country_node <-
+    xml2::xml_find_all(
+      xml2::read_html(download_page),
+      href_xpath
+    )
   
   country_node
 } # nocov end
@@ -206,7 +250,7 @@ clean_attr <- function(x, ...) { # nocov start
 
 # Function to find regex in x with preference in `formats`
 format_preference <- function(x, format) { # nocov start
-  format <- if (is.null(format)) c('stata', 'spss', 'sas') else format
+  format <- if (is.null(format)) c("stata", "spss", "sas") else format
 
   # If the user didn't supply the format (user can only supply only one
   # format and the format arg was manually imputed from above)
