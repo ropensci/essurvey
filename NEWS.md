@@ -6,7 +6,7 @@
 
 ### New features
 
-* Users can now download SDDF (weight data) for each country/round combination of files. Functions `show_sddf_rounds`, `import_sddf_country` and `download_sddf_country` are now introduced [#9].
+* Users can now download SDDF (weight data) for each country/round combination of files. Functions `show_sddf_rounds`, `import_sddf_country` and `download_sddf_country` are now introduced. For technical purposes, `show_sddf_rounds` needs for the user to have set their registered ESS email with `set_email`. [#9]
 
 ### Minor changes
 
@@ -14,7 +14,9 @@
 * New package website at https://docs.ropensci.org/essurvey
 
 ### Internal
+
 * `read_format_data` now tries to read data using `haven` but falls backs to `foreign` in case there's an error. This should only work for SDDF data [#38].
+* `read_format_data` and `read_sddf_data` now always return a list. Checking the length of data to return a data frame now happens within each `import_*` function.
 
 ### Bug fixes
 
