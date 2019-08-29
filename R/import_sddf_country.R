@@ -149,6 +149,7 @@ import_sddf_country <- function(country,
 
     all_data <- if (length(all_data) == 1) all_data[[1]] else all_data
   }
+  if (length(dir_download) == 1) all_data <- all_data[[1]]
 
   all_data
 }

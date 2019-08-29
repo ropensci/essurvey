@@ -63,10 +63,7 @@ read_format_data <- function(dir_download) {
     tibble::as_tibble(dt, .name_repair = tolower)
     
   })
-  
-  # If it's only one round, return a df rather than a list
-  if (length(dir_download) == 1) dataset <- dataset[[1]]
-  
+    
   dataset
   
 }
