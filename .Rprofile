@@ -1,3 +1,6 @@
 if (interactive()) {
-  message("Remember to run devtools::check using cimentadaj::adapted_check(env_vars = c(\"ess_email\" = \"cimentadaj@gmail.com\")) because it sets the NOT_CRAN variable to 'true' to run the skipped tests.") #nolintr
+  cat("One important thing:\n
+* If you've just cloned the repository, remember to create a new .Renviron files which has\nthese two variables set (filling out your email):\n
+ess_email = ''
+NOT_CRAN = 'true'\n\n")
 }
