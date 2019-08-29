@@ -317,7 +317,7 @@ if (is_foreign_installed()) {
                   fixed = TRUE
                 )
 
-              check_one_round(one_wave, "FR")
+              check_one_round(one_wave, country_lookup["France"])
             }
   })
 
@@ -338,9 +338,7 @@ test_that("import_sddf_country for all rounds of a country", {
     all_rounds <-
       expect_warning(
         import_sddf_country(long_cnt, rounds, ess_email),
-        regexp = paste("Round 7 for",
-                       long_cnt,
-                       "was read with the `foreign` package rather than with  the `haven` package for compatibility reasons. Please report any issues at https://github.com/ropensci/essurvey/issues"), #nolintr
+        regexp = paste("Round 7 for", long_cnt, "was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues"), #nolintr
         fixed = TRUE
       )
 
@@ -348,9 +346,9 @@ test_that("import_sddf_country for all rounds of a country", {
     check_all_rounds(all_rounds, rounds, short_cnt)
   }
 
-  test_all_rounds("Netherlands", "NL")
-  test_all_rounds("Denmark", "DK")
-  test_all_rounds("Italy", "IT")
+  test_all_rounds("Netherlands", country_lookup["Netherlands"])
+  test_all_rounds("Denmark", country_lookup["Denmark"])
+  test_all_rounds("Ireland", country_lookup["Ireland"])
 })
 
 
