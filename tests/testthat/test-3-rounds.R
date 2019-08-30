@@ -1,7 +1,7 @@
 # Environment variables from Travis CI
 ess_email <- Sys.getenv("ess_email")
 
-### Tests for import_ and download_
+## Many of the data files used here come from 'helper-data.R' in testthat
 
 
 test_that("import_rounds checks for args", {
@@ -21,8 +21,6 @@ test_that("import_round for only one round", {
   
   skip_on_cran()
   
-  # Test for only one round
-  round_one <- import_rounds(1, ess_email)
   
   # check is list
   expect_is(round_one, "data.frame")
