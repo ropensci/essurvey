@@ -2,12 +2,17 @@ read_format_data <- function(dir_download, sddf = FALSE) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
-  format_dirs <- list.files(dir_download,
-                            pattern = paste0(format_ext, "$", collapse = "|"),
-                            full.names = TRUE)
+  # I know list.files is vectorized, but list.files
+  # sorts each results and I want to preserve round
+  # orderings here.
+  format_dirs <- vapply(dir_download,
+                        list.files,
+                        pattern = paste0(format_ext, "$", collapse = "|"),
+                        full.names = TRUE,
+                        FUN.VALUE = character(1))
   
   # Read only the .dta/.sav/.por files
-  dataset <- lapply(format_dirs, function(.x) {
+  dataset <- lapply(unname(format_dirs), function(.x) {
     
     # Use function to read the specified format
     format_read <-

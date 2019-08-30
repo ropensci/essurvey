@@ -16,7 +16,13 @@
 #' directory. This will be interpreted as a \strong{directory} and not a path with
 #' a file name.
 #'
-#' @param format the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the \code{download_*} functions it is set to 'stata' because the format should be specificied down the download. When using \code{import_country} the data will be downloaded and read in the \code{format} specified. For \code{download_country}, the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported, see details).
+#' @param format the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'.
+#' For the \code{download_*} functions it is set to 'stata' because the format should be
+#' specificied down the download. Setting it to \code{NULL} will iterate over 'stata',
+#' 'spss' and 'sas' and download the first that is available. When using \code{import_country}
+#' the data will be downloaded and read in the \code{format} specified. For \code{download_country},
+#' the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported,
+#' see details).
 #' 
 #' @details
 #'
@@ -109,6 +115,7 @@ import_sddf_country <- function(country,
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
   }
 
+  rounds <- sort(rounds)
   late_rounds <- rounds > 6
   
   if (all(late_rounds)) {
@@ -125,15 +132,36 @@ import_sddf_country <- function(country,
               country_url_sddf_late_rounds(country, rounds[late_rounds], format)
               )
   }
-  
-  dir_download <- download_format(country = country,
+
+  # Iff SDDF already downloaded, exclude from URLs and don't download again
+  sddf_cached <- all(dir.exists(.global_vars$sddf_laterounds_dir))
+  sddf_ready <- any(late_rounds) && sddf_cached
+  if (sddf_ready) urls <- urls[!late_rounds]
+
+  dir_download_tmp <- download_format(country = country,
                                   urls = urls,
                                   ess_email = ess_email)
-  
+
+  if (sddf_ready) {
+    message("SDDF Round(s) ",
+            paste0(rounds[late_rounds], collapse = ", "),
+            " reused from cache.")
+
+    rnds_dl <- string_extract(basename(.global_vars$sddf_laterounds_dir), "\\d")
+    pos_match <- match(rounds[late_rounds], rnds_dl)
+    dir_download <- c(dir_download_tmp,
+                      .global_vars$sddf_laterounds_dir[pos_match])
+    
+  } else {
+
+    dir_download <- dir_download_tmp
+
+  }
+
   all_data <- read_sddf_data(dir_download, country)
 
-    # Remove everything that was downloaded
-  unlink(dir_download, recursive = TRUE, force = TRUE)
+  # Remove only the non SDDF directories
+  unlink(dir_download_tmp, recursive = TRUE, force = TRUE)
 
   if (length(dir_download) == 1) all_data <- all_data[[1]]
 
