@@ -19,10 +19,6 @@ round_url <- function(rounds, format = NULL) { # nocov start
 } # nocov end
 
 country_url <- function(country, rounds, format = NULL) { # nocov start
-  
-  # Check country is available
-  check_country(country)
-  
   # And also the rounds for that country
   check_country_rounds(country, rounds)
   
@@ -43,9 +39,6 @@ country_url <- function(country, rounds, format = NULL) { # nocov start
 
 
 country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
-
-  # Check country is available
-  check_country(country)
   
   # And also the rounds for that country
   check_country_sddf_rounds(country, rounds)
@@ -69,9 +62,6 @@ country_url_sddf <- function(country, rounds, format = NULL) { # nocov start
 
 country_url_sddf_late_rounds <- function(country, rounds, format = NULL) { # nocov start
 
-  # Check country is available
-  check_country(country)
-  
   # And also the rounds for that country
   check_country_sddf_rounds(country, rounds)
 
