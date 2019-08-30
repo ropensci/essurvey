@@ -71,10 +71,13 @@ show_sddf_cntrounds <- function(country, ess_email = NULL) {
   if (!all(dir.exists(.global_vars$sddf_laterounds_dir))) {
 
     utils::capture.output(
-      dir_downloads <- suppress_all(download_format(country,
-                                                    url_download,
-                                                    ess_email)
-                                    ),
+      dir_downloads <-
+        suppress_all(
+          download_format(urls = url_download,
+                          ess_email = ess_email,
+                          only_download = TRUE,
+                          output_dir = file.path(tempdir(), "ESS_SDDF"))
+        ),
       file = tempfile()
     )
 

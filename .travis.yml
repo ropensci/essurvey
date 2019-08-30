@@ -5,6 +5,9 @@ sudo: false
 cache: packages
 install: travis_wait 20 mvn install
 
+env:
+  - NOT_CRAN=true
+
 r_github_packages:
   - r-lib/covr
 after_success:

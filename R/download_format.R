@@ -5,7 +5,10 @@
 
 # If only wants to download rounds, then name every argument after rounds.
 # If rounds and country are specified, country rounds will be downloaded.
-download_format <- function(country, urls, ess_email = NULL, only_download = FALSE,
+download_format <- function(country,
+                            urls,
+                            ess_email = NULL,
+                            only_download = FALSE,
                             output_dir = NULL) {
   
   if (is.null(ess_email)) ess_email <- get_email()
