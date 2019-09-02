@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>License • essurvey</title>
+<title>Return available SDDF rounds for a country in the European Social Survey — show_sddf_cntrounds • essurvey</title>
 
 
 <!-- jquery -->
@@ -27,13 +27,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="License" />
+<meta property="og:title" content="Return available SDDF rounds for a country in the European Social Survey — show_sddf_cntrounds" />
+<meta property="og:description" content="Return available SDDF rounds for a country in the European Social Survey" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -51,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -63,7 +65,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">essurvey</a>
+        <a class="navbar-link" href="../index.html">essurvey</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
@@ -71,13 +73,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -87,12 +89,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/intro_ess.html">Introduction to the essurvey package</a>
+      <a href="../articles/intro_ess.html">Introduction to the essurvey package</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -112,19 +114,67 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>License</h1>
+    <h1>Return available SDDF rounds for a country in the European Social Survey</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/essurvey/blob/master/R/show_sddf_cntrounds.R'><code>R/show_sddf_cntrounds.R</code></a></small>
+    <div class="hidden name"><code>show_sddf_cntrounds.Rd</code></div>
     </div>
 
-<pre>YEAR: 2018
-COPYRIGHT HOLDER: Jorge Cimentada
-</pre>
+    <div class="ref-description">
+    <p>Return available SDDF rounds for a country in the European Social Survey</p>
+    </div>
+
+    <pre class="usage"><span class='fu'>show_sddf_cntrounds</span>(<span class='no'>country</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>country</th>
+      <td><p>A character of length 1 with the full name of the country.
+Use <code><a href='show_countries.html'>show_countries</a></code> for a list of available countries.</p></td>
+    </tr>
+    <tr>
+      <th>ess_email</th>
+      <td><p>a character vector with your email, such as "your_email@email.com".
+If you haven't registered in the ESS website, create an account at 
+<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A preferred method is to login
+through <code><a href='set_email.html'>set_email</a></code>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>numeric vector with available rounds for <code>country</code></p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>SDDF data are the equivalent weight data used to analyze the European Social Survey
+properly. For more information, see the details section of <code><a href='import_sddf_country.html'>import_sddf_country</a></code>.
+As an exception to the <code>show_*</code> family of functions, <code>show_sddf rounds</code>
+needs your ESS email to check which rounds are available. Be sure to add it
+with <code><a href='set_email.html'>set_email</a></code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
+
+<span class='fu'>show_sddf_cntrounds</span>(<span class='st'>"Spain"</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
-
 </div>
-
 
       <footer>
       <div class="copyright">

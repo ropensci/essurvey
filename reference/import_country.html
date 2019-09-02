@@ -6,13 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download integrated rounds separately for countries from the European Social Survey — import_country • essurvey</title>
+<title>Download integrated rounds separately for countries from the European Social
+Survey — import_country • essurvey</title>
+
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +33,13 @@
 
 
 
-<meta property="og:title" content="Download integrated rounds separately for countries from the European Social Survey — import_country" />
 
-<meta property="og:description" content="Download integrated rounds separately for countries from the European Social Survey" />
+<meta property="og:title" content="Download integrated rounds separately for countries from the European Social
+Survey — import_country" />
+<meta property="og:description" content="Download integrated rounds separately for countries from the European Social
+Survey" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -94,7 +100,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/essurvey">
@@ -114,15 +119,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download integrated rounds separately for countries from the European Social Survey</h1>
+    <h1>Download integrated rounds separately for countries from the European Social
+Survey</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/essurvey/blob/master/R/import_countries.R'><code>R/import_countries.R</code></a></small>
     <div class="hidden name"><code>import_country.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>Download integrated rounds separately for countries from the European Social Survey</p>
-    
+    <p>Download integrated rounds separately for countries from the European Social
+Survey</p>
     </div>
 
     <pre class="usage"><span class='fu'>import_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
@@ -131,7 +136,7 @@
 
 <span class='fu'>download_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -164,7 +169,7 @@ directory. This will be interpreted as a <strong>directory</strong> and not a pa
 a file name.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>for <code>import_country</code> if <code><a href='https://www.rdocumentation.org/packages/base/topics/length'>length(rounds)</a></code> is 1, it returns a tibble
@@ -172,7 +177,6 @@ with the latest version of that round. Otherwise it returns a list of <code><a h
 containing the latest version of each round. For <code>download_country</code>, if 
 <code>output_dir</code> is a valid directory, it returns the saved directories invisibly
 and saves all the rounds in the chosen <code>format</code> in <code>output_dir</code></p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Use <code>import_country</code> to download specified rounds for a given country and
@@ -190,7 +194,6 @@ For this particular argument, 'sas' is not supported because the data formats ha
 changed between ESS waves and separate formats require different functions to be
 read. To preserve parsimony and format errors between waves, the user should use
 'spss' or 'stata'.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -239,11 +242,8 @@ read. To preserve parsimony and format errors between waves, the user should use
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

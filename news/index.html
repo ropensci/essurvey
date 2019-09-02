@@ -8,11 +8,13 @@
 
 <title>Changelog • essurvey</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,7 +32,9 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+
 
 
 
@@ -91,7 +95,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/essurvey">
@@ -129,7 +132,7 @@
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h3>
 <ul>
-<li>Users can now download SDDF (weight data) for each country/round combination of files. Functions <code>import_sddf_country</code> and <code>download_sddf_country</code> are now introduced. These functions only work for rounds <code>1:6</code> for now [<a href='https://github.com/ropensci/essurvey/issues/9'>#9</a>].</li>
+<li>Users can now download SDDF (weight data) for each country/round combination of files. Functions <code>show_sddf_cntrounds</code>, <code>import_sddf_country</code> and <code>download_sddf_country</code> are now introduced. For technical purposes, <code>show_sddf_cntrounds</code> needs for the user to have set their registered ESS email with <code>set_email</code>. [<a href='https://github.com/ropensci/essurvey/issues/9'>#9</a>]</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level3">
@@ -147,6 +150,8 @@
 <ul>
 <li>
 <code>read_format_data</code> now tries to read data using <code>haven</code> but falls backs to <code>foreign</code> in case there’s an error. This should only work for SDDF data [<a href='https://github.com/ropensci/essurvey/issues/38'>#38</a>].</li>
+<li>
+<code>read_format_data</code> and <code>read_sddf_data</code> now always return a list. Checking the length of data to return a data frame now happens within each <code>import_*</code> function.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level3">

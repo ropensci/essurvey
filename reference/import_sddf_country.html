@@ -8,11 +8,13 @@
 
 <title>Download SDDF data by round for countries from the European Social Survey — import_sddf_country • essurvey</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,11 @@
 
 
 
-<meta property="og:title" content="Download SDDF data by round for countries from the European Social Survey — import_sddf_country" />
 
+<meta property="og:title" content="Download SDDF data by round for countries from the European Social Survey — import_sddf_country" />
 <meta property="og:description" content="Download SDDF data by round for countries from the European Social Survey" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -94,7 +97,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/essurvey">
@@ -120,9 +122,7 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Download SDDF data by round for countries from the European Social Survey</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>import_sddf_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
@@ -131,7 +131,7 @@
 
 <span class='fu'>download_sddf_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -142,8 +142,8 @@ Use <code><a href='show_countries.html'>show_countries</a></code> for a list of 
     </tr>
     <tr>
       <th>rounds</th>
-      <td><p>a numeric vector with the rounds to download. See <code><a href='show_rounds.html'>show_rounds</a></code>
-for all available rounds.</p></td>
+      <td><p>a numeric vector with the rounds to download. See <code><a href='show_sddf_cntrounds.html'>show_sddf_cntrounds</a></code>
+for all available rounds for any given country.</p></td>
     </tr>
     <tr>
       <th>ess_email</th>
@@ -154,17 +154,23 @@ through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
       <th>format</th>
-      <td><p>the format from which to download the data. By default it is NULL for <code>import_*</code> functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the <code>download_*</code> functions it is set to 'stata' because the format should be specificied down the download. When using <code>import_country</code> the data will be downloaded and read in the <code>format</code> specified. For <code>download_country</code>, the data is downloaded from the specified <code>format</code> (only 'spss' and 'stata' supported, see details).</p></td>
+      <td><p>the format from which to download the data. By default it is NULL for <code>import_*</code> functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'.
+For the <code>download_*</code> functions it is set to 'stata' because the format should be
+specificied down the download. Setting it to <code>NULL</code> will iterate over 'stata',
+'spss' and 'sas' and download the first that is available. When using <code>import_country</code>
+the data will be downloaded and read in the <code>format</code> specified. For <code>download_country</code>,
+the data is downloaded from the specified <code>format</code> (only 'spss' and 'stata' supported,
+see details).</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
       <td><p>a character vector with the output directory in case you want to
-only download the files using <code>download_country</code>. Defaults to your working
+only download the files using <code>download_sddf_country</code>. Defaults to your working
 directory. This will be interpreted as a <strong>directory</strong> and not a path with
 a file name.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>for <code>import_sddf_country</code> if <code><a href='https://www.rdocumentation.org/packages/base/topics/length'>length(rounds)</a></code> is 1, it returns a tibble with
@@ -172,12 +178,11 @@ the latest version of that round. Otherwise it returns a list of <code><a href='
 containing the latest version of each round. For <code>download_sddf_country</code>, if
 <code>output_dir</code> is a valid directory, it returns the saved directories invisibly and saves
 all the rounds in the chosen <code>format</code> in <code>output_dir</code></p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>SDDF data (Sample Design Data Files) are data sets that contain additional columns with the
-sample design and weights for a given country in a given rounds. These additional columns are
-required to perform any weighted analysis of the ESS data. Users interested in using this data
+sample design and weights for a given country in a given round. These additional columns are
+required to perform any complex weighted analysis of the ESS data. Users interested in using this data
 should read the description of SDDF files <a href='http://www.europeansocialsurvey.org/methodology/ess_methodology/sampling.html'>here</a>
 and should read <a href='http://www.europeansocialsurvey.org/data/download_sample_data.html'>here</a> for the
 sampling design of the country of analysis for that specific round.</p>
@@ -190,25 +195,31 @@ because the data is read into R either way. However, different formats might hav
 different handling of the encoding of some questions. This option was preserved
 so that the user can switch between formats if any encoding errors are found in the data. For more
 details see the discussion <a href='https://github.com/ropensci/essurvey/issues/11'>here</a>.</p>
-<p>Given that the SDDF data is not very complete, some countries do not have SDDF data
-in Stata or SPSS. For that reason, the <code>format</code> argument is not used in <code>import_sddf_country</code>.
+<p>Additionally, given that the SDDF data is not very complete, some countries do not have SDDF data
+in Stata or SPSS formats. For that reason, the <code>format</code> argument is not used in <code>import_sddf_country</code>.
 Internally, <code>Stata</code> is chosen over <code>SPSS</code> and <code>SPSS</code> over <code>SAS</code> in that
 order of preference.</p>
 <p>For this particular argument, 'sas' is not supported because the data formats have
 changed between ESS waves and separate formats require different functions to be
 read. To preserve parsimony and format errors between waves, the user should use
 'stata' or 'spss'.</p>
-    
+<p>Starting from round 7 (including), the ESS switched the layout of SDDF data.
+Before the rounds, SDDF data was published separately by wave-country
+combination. From round 7 onwards, all SDDF data is released as a single
+integrated file with all countries combined for that given round. <code>import_sddf_country</code>
+takes care of this nuance by reading the data and filtering the chosen
+country automatically. <code>download_sddf_country</code> downloads the raw file but also
+reads the data into memory to subset the specific country requested. This
+process should be transparent to the user but beware that reading/writing the data might delete
+some of it's properties such as dropping the labels or label attribute.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
 
-<span class='co'># Get first three rounds for Denmark</span>
 <span class='no'>sp_three</span> <span class='kw'>&lt;-</span> <span class='fu'>import_sddf_country</span>(<span class='st'>"Spain"</span>, <span class='fl'>5</span>:<span class='fl'>6</span>)
 
-<span class='co'># For now, only SDDF files from rounds 1:6 are implemented in the package</span>
-<span class='fu'><a href='show_sddf_rounds.html'>show_sddf_rounds</a></span>(<span class='st'>"Spain"</span>)
+<span class='fu'><a href='show_sddf_cntrounds.html'>show_sddf_cntrounds</a></span>(<span class='st'>"Spain"</span>)
 
 <span class='co'># Only download the files, this will return nothing</span>
 
@@ -223,9 +234,9 @@ read. To preserve parsimony and format errors between waves, the user should use
 <span class='co'># By default, download_sddf_country downloads 'stata' files but</span>
 <span class='co'># you can also download 'spss' or 'sas' files.</span>
 
-<span class='fu'><a href='import_country.html'>download_country</a></span>(
+<span class='fu'>download_sddf_country</span>(
  <span class='st'>"Spain"</span>,
- <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>6</span>,
+ <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>,
  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>'spss'</span>
 )
@@ -237,11 +248,8 @@ read. To preserve parsimony and format errors between waves, the user should use
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
