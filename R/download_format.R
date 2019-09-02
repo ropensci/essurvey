@@ -20,6 +20,10 @@ download_format <- function(country,
   
   # The saving path is output if download is set to TRUE
   # otherwise tempdir()
+  if (only_download && is.null(output_dir)) {
+    stop("`output_dir` should be a valid directory")
+  }
+
   alt_dir <- ifelse(only_download, output_dir, tempdir())
   
   # create a temporary directory to unzip the files

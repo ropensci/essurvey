@@ -121,7 +121,7 @@ import_all_cntrounds <- function(country, ess_email = NULL, format = NULL) {
 #' @rdname import_country
 #' @export
 download_country <- function(country, rounds, ess_email = NULL,
-                             output_dir = getwd(), format = 'stata') {
+                             output_dir = getwd(), format = "stata") {
 
   stopifnot(is.character(country), length(country) > 0)
   stopifnot(is.numeric(rounds), length(rounds) > 0)
