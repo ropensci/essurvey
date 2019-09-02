@@ -1,6 +1,28 @@
-# Environment variables from Travis CI
+    # Environment variables from Travis CI
 
 ess_email <- Sys.getenv("ess_email")
+
+skip_cran <- skip_on_cran()
+
+if (skip_cran) {
+
+  # Test for only one round
+  round_one <- import_rounds(1, ess_email)
+
+  # Test for only one wave
+  wave_one_stata <- import_country("Denmark", 1, ess_email, format = "stata")
+  wave_one_spss <- import_country("Denmark", 1, ess_email, format = "spss")
+
+  # Test for all rounds
+  rounds <- show_country_rounds("Netherlands")
+  all_rounds <- import_country("Netherlands", rounds, ess_email)
+
+  # Test for only one wave SDDF
+  sample_round <- sample(show_sddf_cntrounds("Germany"), 1)
+  wave_one_sddf <- import_sddf_country("Germany", sample_round, ess_email)
+
+}
+
 
 ###### Tests for import_ and download_ functions.
 
@@ -58,7 +80,10 @@ check_all_rounds <- function(x, rounds, country) {
   expect_equal(all(vapply(x, ncol, numeric(1)) > 0), TRUE)
 }
 
-check_downloaded_rounds <- function(x, rounds, format_args = c(".dta", ".do")) {
+check_downloaded_rounds <- function(x,
+                                    rounds,
+                                    format_args = c(".dta", ".do"),
+                                    remove_dir = TRUE) {
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(x, pattern = "ESS", recursive = TRUE)
   
@@ -77,8 +102,7 @@ check_downloaded_rounds <- function(x, rounds, format_args = c(".dta", ".do")) {
   }
   
   # Delete all downloaded files
-  unlink(dirname(x), recursive = TRUE, force = TRUE)
-  
+  if (remove_dir) unlink(dirname(x), recursive = TRUE, force = TRUE)
 }
 
 test_that("import_country checks for args", {
@@ -133,11 +157,6 @@ test_that("import_country for all rounds of a country", {
   
   skip_on_cran()
   
-  rounds <- show_country_rounds("Netherlands")
-  
-  # Test for all rounds
-  all_rounds <- import_country("Netherlands", rounds, ess_email)
-  
   check_all_rounds(all_rounds, rounds, "NL")
   
   # Check that all waves are correct rounds
@@ -152,48 +171,51 @@ test_that("Test that downloading files is working fine", {
   skip_on_cran()
   
   # Test whether you get a message where the downloads are at
-  which_rounds <- 2
   expect_message(downloads <-
                    download_country("Austria",
-                                    1:which_rounds,
+                                    1,
                                     ess_email,
-                                    output_dir = tempdir()
+                                    output_dir = tempdir(),
+                                    format = "stata"
                                     ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, which_rounds)
+  check_downloaded_rounds(downloads, 1)
 
   expect_message(downloads <-
                    download_country("Spain",
-                                    1:which_rounds,
+                                    4,
                                     ess_email,
                                     output_dir = tempdir(),
-                                    format = 'spss'
+                                    format = "spss"
                                     ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, which_rounds, c(".sav", ".sps"))
+  check_downloaded_rounds(downloads, 1, c(".sav", ".sps"))
 
 
+  # NULL iterates over each format ("stata", "spss", "sas") and read
+  # the error-free attempt
   expect_message(downloads <-
                    download_country("Germany",
-                                    1:which_rounds,
+                                    7,
                                     ess_email,
                                     output_dir = tempdir(),
                                     format = NULL
                                     ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, which_rounds, c(".dta", ".do"))  
+  check_downloaded_rounds(downloads, 1, c(".dta", ".do"))  
 })
 
+# TODO: output_dir could be checked earlier
 test_that("output_dir should be valid", {
   
   skip_on_cran()
   
   # Here output_dir is set to NULL
   expect_error(download_country("Austria",
-                                1:which_rounds,
+                                1,
                                 ess_email,
                                 output_dir = NULL))
 })
@@ -201,17 +223,14 @@ test_that("output_dir should be valid", {
 test_that("import_country files with other non-stata format", {
   skip_on_cran()
   
-  # Test for only one wave
-  wave_one <- import_country("Denmark", 1, ess_email, format = "spss")
-  
-  check_one_round(wave_one, "DK")
+  check_one_round(wave_one_spss, "DK")
   
   # Check it is indeed first round
-  expect_true(unique(wave_one$essround) == 1)
+  expect_true(unique(wave_one_spss$essround) == 1)
   
 })
 
-test_that("Specify 'sas' for reading ess data throws error",{
+test_that("Specify 'sas' for reading ess data throws error", {
   skip_on_cran()
   
   expect_error(import_country("Denmark", 1, ess_email, format = "sas"),
@@ -243,7 +262,7 @@ test_that("import_sddf_country checks for args", {
                fixed = TRUE)
 
   expect_error(import_sddf_country("Spain", c(24, 22), ess_email),
-               regexp = "ESS round 24, 22 don't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
+               regexp = "ESS round 22, 24 don't have SDDF data available for Spain. Check show_sddf_cntrounds('Spain')", #nolintr
                fixed = TRUE)
 
 })
@@ -254,20 +273,10 @@ test_that("import_sddf_country for one round", {
 
   ## Tests for three waves from beginning to end
 
-  # Test for only one wave
-  wave_one <- import_sddf_country("Hungary", 1, ess_email)
-
-  check_one_round(wave_one, "HU")
-  
-  # Test for only one wave
-  wave_one <- import_sddf_country("Spain", 5, ess_email)
-  
-  check_one_round(wave_one, "ES")
-
-  # Test for only one wave
-  wave_one <- import_sddf_country("Germany", 8, ess_email)
-
-  check_one_round(wave_one, "DE")
+  # Test for only one wave. This round downloaded
+  # for hungary changes randomly each time the test is run
+  # to try to catch edge cases.
+  check_one_round(wave_one_sddf, "DE")
 })
 
 # If you remember correctly, downloading .por files was raising an error
@@ -326,9 +335,8 @@ if (is_foreign_installed()) {
 test_that("import_sddf_country for all rounds of a country", {
   
   skip_on_cran()
-  # I test several countries because they have different rounds available
   # I want to test that the function is robust to different rounds, which
-  # are ready with different strategies: early rounds sometimes read with
+  # are read with different strategies: early rounds sometimes read with
   # foreign, middel rounds are read with haven and late rounds are read
   # from the integrated file
 
@@ -346,9 +354,9 @@ test_that("import_sddf_country for all rounds of a country", {
     check_all_rounds(all_rounds, rounds, short_cnt)
   }
 
-  test_all_rounds("Netherlands", country_lookup["Netherlands"])
-  test_all_rounds("Denmark", country_lookup["Denmark"])
-  test_all_rounds("Ireland", country_lookup["Ireland"])
+  # I had the same test repeated for other countries
+  # but it takes too much time to run the tests
+  test_all_rounds("Spain", country_lookup["Spain"])
 })
 
 
@@ -369,16 +377,33 @@ test_that("download_sddf_country checks for args", {
 })
 
 
+# DO NOT MOVE this download function to the top of the script
+# with the other downloads. I leave it here because it is used
+# in this test and in the next and some of the tests above
+# delete the tempdir (I think), deleting the downloaded files.
+available_rounds <- show_sddf_cntrounds("Spain")
+
+# Test if downloads all data for Spain and subsets correctly
+# Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
+expect_message(downloads_spain <-
+                 download_sddf_country("Spain",
+                                       available_rounds,
+                                       ess_email,
+                                       output_dir = tempdir(),
+                                       format = NULL
+                                       ),
+               "All files saved to")
+
+
 test_that("Test that downloading files is working for sddf data", {
   
   skip_on_cran()
 
   # for very early sddf rounds there's no stata files, so this should
   # raise an error
-  which_rounds <- 2
   expect_error(downloads <-
                  download_sddf_country("France",
-                                       1:which_rounds,
+                                       1,
                                        ess_email,
                                        output_dir = tempdir(),
                                        format = "stata"
@@ -387,7 +412,7 @@ test_that("Test that downloading files is working for sddf data", {
 
   expect_message(downloads <-
                    download_sddf_country("France",
-                                         1:which_rounds,
+                                         1,
                                          ess_email,
                                          output_dir = tempdir(),
                                          format = "spss"
@@ -395,55 +420,25 @@ test_that("Test that downloading files is working for sddf data", {
                  "All files saved to")
 
   # In SDDF no need to check for .do or .sps in the second argument
-  check_downloaded_rounds(downloads, which_rounds, c(".por", ""))
-
-  # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
-  
-  expect_message(downloads <-
-                   download_sddf_country("Spain",
-                                         1:8,
-                                         ess_email,
-                                         output_dir = tempdir(),
-                                         format = NULL
-                                         ),
-                 "All files saved to")
+  check_downloaded_rounds(downloads, rounds = 1, c(".por", ""))
 
   # In SDDF no need to check for .do or .sps in the second argument
-  check_downloaded_rounds(downloads, 8, c(".dta|.por|.sav", ""))
-
-  expect_message(downloads <-
-                   download_sddf_country("Germany",
-                                         8,
-                                         ess_email,
-                                         output_dir = tempdir(),
-                                         format = NULL
-                                         ),
-                 "All files saved to")
-  # In SDDF no need to check for .do or .sps in the second argument
-  check_downloaded_rounds(downloads, 1, c(".dta|.por|.sav", ""))
+  # See the definition of downloading data at the beginning of the script
+  check_downloaded_rounds(downloads_spain,
+                          rounds = 8,
+                          c(".dta|.por|.sav", ""),
+                          # do not remove, files used in next test
+                          remove_dir = FALSE)
 })
 
 test_that("Test that downloading all rounds is working for sddf data", {
   
   skip_on_cran()
 
-  available_rounds <- show_sddf_cntrounds("Spain")
-  
-  # Test if downloads all data for Spain and subsets correctly
-  expect_message(downloads <-
-                   download_sddf_country("Spain",
-                                         available_rounds,
-                                         ess_email,
-                                         output_dir = tempdir(),
-                                         format = NULL
-                                         ),
-                 "All files saved to")
-
-
   format_ext <- c(".dta", ".sav", ".por")
 
   file_names <-
-    list.files(downloads,
+    list.files(downloads_spain,
                recursive = TRUE,
                full.names = TRUE,
                pattern = paste(format_ext, collapse = "|"))

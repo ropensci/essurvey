@@ -1,7 +1,7 @@
 context("test-recode_missings.R")
 
 ess_email <- Sys.getenv("ess_email")
-
+round_seven <- import_rounds(7, ess_email)
 
 test_that("recoded object is a df", {
   skip_on_cran()
