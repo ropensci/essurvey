@@ -1,4 +1,4 @@
-read_format_data <- function(dir_download, sddf = FALSE) {
+read_format_data <- function(dir_download, country = NULL, sddf = FALSE) {
   
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
@@ -36,15 +36,14 @@ read_format_data <- function(dir_download, sddf = FALSE) {
         stop("Package `foreign` is needed to read some SDDF data. Please install with install.packages(\"foreign\")") #nolintr
       }
 
-      # Identify country + round for message
-      # Match everything from _ to the first dash to extract the country name
-      cnt <- string_extract(.x, "_.+?(?=\\/)", perl = TRUE)
       round_search <- basename(.x)
       rnd <- string_extract(round_search, "\\d", perl = TRUE)
 
       # Ask for a user report
       warning(
-        paste("Round", rnd, "for", gsub("_", "", cnt),
+        paste("Round",
+              rnd,
+              if (is.null(country)) "" else paste("for", country),
               "was read with the `foreign` package rather than with ",
               "the `haven` package for compatibility reasons.\n",
               "Please report any issues at",
@@ -107,7 +106,7 @@ string_extract <- function(string, pattern, ...) {
 }
 
 read_sddf_data <- function(dir_download, country) {
-  all_data <- read_format_data(dir_download, sddf = TRUE)
+  all_data <- read_format_data(dir_download, country, sddf = TRUE)
 
   # Search for the 2 letter code because we need to subset
   # from the integrated SDDF for the current country
