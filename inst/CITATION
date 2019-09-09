@@ -1,0 +1,19 @@
+citHeader("To cite essurvey in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(
+  entry    = "Manual",
+  title    = "essurvey: Download Data from the European Social Survey on the Fly",
+  author   = "Jorge Cimentada",
+  year     = year,
+  note     = vers,
+  url      = "https://docs.ropensci.org/essurvey/",
+  textVersion = paste(
+    "Cimentada, Jorge (",
+    year,
+    "). essurvey: Download Data from the European Social Survey on the Fly. ",
+    vers, ".", sep = ""
+  )
+)

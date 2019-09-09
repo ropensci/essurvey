@@ -21,7 +21,7 @@ populations in more than thirty nations. Taken from the [ESS
 website](http://www.europeansocialsurvey.org/about/).
 
 Note: The `essurvey` package was originally called `ess`. Since
-`essurvey 1.0.0` all `ess_*` functions have been deprecated in favor of
+`essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of
 the `import_*` and `download_*` functions. Also, versions less than and
 including `essurvey 1.0.1` returned wrong countries. Please install the
 latest CRAN/Github version.
@@ -33,6 +33,24 @@ rounds for a selected country and to show which rounds/countries are
 available. Check out the vignette and other documentation in the
 [package’s website](https://ropensci.github.io/essurvey/) for more
 detailed examples of the `essurvey` package.
+
+## Citation
+
+    #> 
+    #> To cite essurvey in publications use:
+    #> 
+    #>   Cimentada, Jorge (2019). essurvey: Download Data from the
+    #>   European Social Survey on the Fly. R package version 1.0.2.
+    #> 
+    #> A BibTeX entry for LaTeX users is
+    #> 
+    #>   @Manual{,
+    #>     title = {essurvey: Download Data from the European Social Survey on the Fly},
+    #>     author = {Jorge Cimentada},
+    #>     year = {2019},
+    #>     note = {R package version 1.0.2},
+    #>     url = {https://docs.ropensci.org/essurvey/},
+    #>   }
 
 ## Installation
 
@@ -68,7 +86,6 @@ To explore which rounds/countries are present in the ESS use the
 
 ``` r
 library(essurvey)
-#> Warning: package 'essurvey' was built under R version 3.5.2
 show_countries()
 #>  [1] "Albania"            "Austria"            "Belgium"           
 #>  [4] "Bulgaria"           "Croatia"            "Cyprus"            
@@ -167,7 +184,6 @@ R with the `haven` package for all `essurvey` related functions to work.
 
 Please note that this project is released with a [Contributor Code of
 Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its
-terms.
+abide by its terms.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
