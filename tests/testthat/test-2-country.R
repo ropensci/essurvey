@@ -342,11 +342,13 @@ test_that("import_sddf_country for all rounds of a country", {
 
   test_all_rounds <- function(long_cnt, short_cnt) {
     rounds <- show_sddf_cntrounds(long_cnt, ess_email)
-
+    # Round 7 was being read with foreign in the past, so I tried to capture
+    # the warning that states that foreign read the package. Apparently they
+    # fixed it, so now I test that NO WARNINGS occur.
     all_rounds <-
       expect_warning(
         import_sddf_country(long_cnt, rounds, ess_email),
-        regexp = paste("Round 7 for", long_cnt, "was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues"), #nolintr
+        regexp = NA,
         fixed = TRUE
       )
 
