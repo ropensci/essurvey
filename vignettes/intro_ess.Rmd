@@ -45,7 +45,7 @@ install.packages("essurvey")
 library(essurvey)
 ```
 
-Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with `set_email`.
+Downloading the ESS data requires validating your email every time you download data. We can set our email as an environment variable with `set_email`.
 
 ```{r}
 set_email("your@email.com")
@@ -69,7 +69,7 @@ tk_rnds
 ```
 Note that country names are case sensitive. Use the exact name printed out by `show_countries()`
 
-Using this information, we can download those specific rounds easily with `import_country`. Since `essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of the `import_*` and `download_*` functions.
+Using this information, we can download those specific rounds easily with `import_country`. Since `essurvey 1.0.0` all `ess_*` functions have been deprecated in favor of the `import_*` and `download_*` functions.
 
 ```{r}
 turkey <-
@@ -157,7 +157,7 @@ table(other_newcoding$tvpol)
 # 167 460 610 252  95  36  26  31  45 
 ```
 
-...still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn't and who did answer questions. If the user is decided to do so, use `recode_missings` to recode everything and the corresponding `recode_*_missings` functions for numeric and character recodings separately. See the documentation of `?recode_missings` for more information.
+...still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial differences between people who didn't and who did answer questions. If the user is decided to do so, use `recode_missings` to recode everything and the corresponding `recode_*_missings` functions for numeric and character recodings separately. See the documentation of `?recode_missings` for more information.
 
 ## Analyzing ESS data
 

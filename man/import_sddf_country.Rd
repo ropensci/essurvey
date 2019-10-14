@@ -27,7 +27,7 @@ through \code{\link{set_email}}.}
 
 \item{format}{the format from which to download the data. By default it is NULL for \code{import_*} functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'.
 For the \code{download_*} functions it is set to 'stata' because the format should be
-specificied down the download. Setting it to \code{NULL} will iterate over 'stata',
+specified before downloading. Setting it to \code{NULL} will iterate over 'stata',
 'spss' and 'sas' and download the first that is available. When using \code{import_country}
 the data will be downloaded and read in the \code{format} specified. For \code{download_country},
 the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported,

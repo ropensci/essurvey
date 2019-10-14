@@ -33,7 +33,7 @@ The same data frame or \code{\link[tibble]{tibble}} but with values 'Not applica
 as NA.
 }
 \description{
-This function is not neeeded any more, please see the details section.
+This function is not needed any more, please see the details section.
 }
 \details{
 Data from the European Social Survey is always accompanied by a script

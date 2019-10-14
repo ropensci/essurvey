@@ -16,12 +16,12 @@ The European Social Survey (ESS) is an academically driven
 cross-national survey that has been conducted across Europe since its
 establishment in 2001. Every two years, face-to-face interviews are
 conducted with newly selected, cross-sectional samples. The survey
-measures the attitudes, beliefs and behaviour patterns of diverse
+measures the attitudes, beliefs and behavior patterns of diverse
 populations in more than thirty nations. Taken from the [ESS
 website](http://www.europeansocialsurvey.org/about/).
 
 Note: The `essurvey` package was originally called `ess`. Since
-`essurvey 1.0.0` all `ess_*` functions have been deprecated in favour of
+`essurvey 1.0.0` all `ess_*` functions have been deprecated in favor of
 the `import_*` and `download_*` functions. Also, versions less than and
 including `essurvey 1.0.1` returned wrong countries. Please install the
 latest CRAN/Github version.
@@ -39,17 +39,17 @@ detailed examples of the `essurvey` package.
     #> 
     #> To cite essurvey in publications use:
     #> 
-    #>   Cimentada, Jorge (2019). essurvey: Download Data from the
-    #>   European Social Survey on the Fly. R package version 1.0.2.
+    #>   Cimentada, Jorge (2019). Download Data from the European Social
+    #>   Survey on the Fly R package version 1.0.2.
     #> 
     #> A BibTeX entry for LaTeX users is
     #> 
     #>   @Manual{,
-    #>     title = {essurvey: Download Data from the European Social Survey on the Fly},
+    #>     title = {Download Data from the European Social Survey on the Fly},
     #>     author = {Jorge Cimentada},
     #>     year = {2019},
     #>     note = {R package version 1.0.2},
-    #>     url = {https://docs.ropensci.org/essurvey/},
+    #>     url = {https://docs.ropensci.org/essurvey/, https://github.com/ropensci/essurvey},
     #>   }
 
 ## Installation
@@ -86,6 +86,9 @@ To explore which rounds/countries are present in the ESS use the
 
 ``` r
 library(essurvey)
+#> 
+#> Please cite as:
+#> Cimentada, Jorge (2019). Download Data from the European Social Survey on the Fly R package version 1.0.2.
 show_countries()
 #>  [1] "Albania"            "Austria"            "Belgium"           
 #>  [4] "Bulgaria"           "Croatia"            "Cyprus"            

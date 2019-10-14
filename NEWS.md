@@ -76,7 +76,7 @@ replacements of `ess_rounds` and `ess_all_rounds`. Same changes were repeated fo
 
 * `ess_email` had no default value but now has `NULL` as default [#23]
 
-* The `format` argument is now checked through `match.arg` rathern than manual check [#25]
+* The `format` argument is now checked through `match.arg` rather than manual check [#25]
 
 ## ess 0.1.1 (2018-03-05)
 

@@ -1,6 +1,6 @@
 #' Recode pre-defined missing values as NA
 #' 
-#' This function is not neeeded any more, please see the details section.
+#' This function is not needed any more, please see the details section.
 #'
 #' Data from the European Social Survey is always accompanied by a script
 #' that recodes the categories 'Not applicable', 'Refusal', 'Don't Know',
