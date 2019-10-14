@@ -163,7 +163,7 @@ through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     <tr>
       <th>format</th>
-      <td><p>the format from which to download the data. By default it is NULL for <code>import_*</code> functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the <code>download_*</code> functions it is set to 'stata' because the format should be specificied down the download. When using <code>import_country</code> the data will be downloaded and read in the <code>format</code> specified. For <code>download_country</code>, the data is downloaded from the specified <code>format</code> (only 'spss' and 'stata' supported, see details).</p></td>
+      <td><p>the format from which to download the data. By default it is NULL for <code>import_*</code> functions and tries to read 'stata', 'spss' and 'sas' in the specific order. This can be useful if some countries don't have a particular format available.  Alternatively, the user can specify the format which can either be 'stata', 'spss' or 'sas'. For the <code>download_*</code> functions it is set to 'stata' because the format should be specified before the downloading. When using <code>import_country</code> the data will be downloaded and read in the <code>format</code> specified. For <code>download_country</code>, the data is downloaded from the specified <code>format</code> (only 'spss' and 'stata' supported, see details).</p></td>
     </tr>
     <tr>
       <th>output_dir</th>

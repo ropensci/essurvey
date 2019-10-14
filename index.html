@@ -91,8 +91,8 @@
 <div id="description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
-<p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behaviour patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
-<p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions. Also, versions less than and including <code>essurvey 1.0.1</code> returned wrong countries. Please install the latest CRAN/Github version.</p>
+<p>The European Social Survey (ESS) is an academically driven cross-national survey that has been conducted across Europe since its establishment in 2001. Every two years, face-to-face interviews are conducted with newly selected, cross-sectional samples. The survey measures the attitudes, beliefs and behavior patterns of diverse populations in more than thirty nations. Taken from the <a href="http://www.europeansocialsurvey.org/about/">ESS website</a>.</p>
+<p>Note: The <code>essurvey</code> package was originally called <code>ess</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favor of the <code>import_*</code> and <code>download_*</code> functions. Also, versions less than and including <code>essurvey 1.0.1</code> returned wrong countries. Please install the latest CRAN/Github version.</p>
 <p>The <code>essurvey</code> package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the <a href="https://ropensci.github.io/essurvey/">package’s website</a> for more detailed examples of the <code>essurvey</code> package.</p>
 </div>
 <div id="citation" class="section level2">
@@ -101,17 +101,17 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; To cite essurvey in publications use:</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;   Cimentada, Jorge (2019). essurvey: Download Data from the</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;   European Social Survey on the Fly. R package version 1.0.2.</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;   Cimentada, Jorge (2019). Download Data from the European Social</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;   Survey on the Fly R package version 1.0.2.</span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt;   @Manual{,</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt;     title = {essurvey: Download Data from the European Social Survey on the Fly},</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt;     title = {Download Data from the European Social Survey on the Fly},</span></a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;     author = {Jorge Cimentada},</span></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;     year = {2019},</span></a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;     note = {R package version 1.0.2},</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt;     url = {https://docs.ropensci.org/essurvey/},</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt;     url = {https://docs.ropensci.org/essurvey/, https://github.com/ropensci/essurvey},</span></a>
 <a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;   }</span></a></code></pre></div>
 </div>
 <div id="installation" class="section level2">
@@ -131,20 +131,23 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</a></code></pre></div>
 <p>To explore which rounds/countries are present in the ESS use the <code>show_*()</code> family of functions.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(essurvey)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/show_countries.html">show_countries</a></span>()</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;  [1] "Albania"            "Austria"            "Belgium"           </span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  [4] "Bulgaria"           "Croatia"            "Cyprus"            </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  [7] "Czechia"            "Denmark"            "Estonia"           </span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; [10] "Finland"            "France"             "Germany"           </span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; [13] "Greece"             "Hungary"            "Iceland"           </span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; [16] "Ireland"            "Israel"             "Italy"             </span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; [19] "Kosovo"             "Latvia"             "Lithuania"         </span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [22] "Luxembourg"         "Montenegro"         "Netherlands"       </span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [25] "Norway"             "Poland"             "Portugal"          </span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [28] "Romania"            "Russian Federation" "Serbia"            </span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [31] "Slovakia"           "Slovenia"           "Spain"             </span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [34] "Sweden"             "Switzerland"        "Turkey"            </span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; [37] "Ukraine"            "United Kingdom"</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; Please cite as:</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Cimentada, Jorge (2019). Download Data from the European Social Survey on the Fly R package version 1.0.2.</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw"><a href="reference/show_countries.html">show_countries</a></span>()</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  [1] "Albania"            "Austria"            "Belgium"           </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  [4] "Bulgaria"           "Croatia"            "Cyprus"            </span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;  [7] "Czechia"            "Denmark"            "Estonia"           </span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; [10] "Finland"            "France"             "Germany"           </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [13] "Greece"             "Hungary"            "Iceland"           </span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [16] "Ireland"            "Israel"             "Italy"             </span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [19] "Kosovo"             "Latvia"             "Lithuania"         </span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; [22] "Luxembourg"         "Montenegro"         "Netherlands"       </span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [25] "Norway"             "Poland"             "Portugal"          </span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; [28] "Romania"            "Russian Federation" "Serbia"            </span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; [31] "Slovakia"           "Slovenia"           "Spain"             </span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; [34] "Sweden"             "Switzerland"        "Turkey"            </span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; [37] "Ukraine"            "United Kingdom"</span></a></code></pre></div>
 <p>To download the first round to use in R:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">one_round &lt;-<span class="st"> </span><span class="kw"><a href="reference/import_rounds.html">import_rounds</a></span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>This will return a data frame containing the first round. Typically, the European Social Survey data files comes with a script that recodes missing values to <code>NA</code> for different programs (Stata, SPSS, SAS).</p>

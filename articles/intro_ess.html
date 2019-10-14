@@ -110,7 +110,7 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/essurvey"</span>)</a></code></pre></div>
 <p>to install the stable version from CRAN use:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"essurvey"</span>)</a></code></pre></div>
-<p>Downloading the ESS data requires validating your email everytime you download data. We can set our email as an environment variable with <code>set_email</code>.</p>
+<p>Downloading the ESS data requires validating your email every time you download data. We can set our email as an environment variable with <code>set_email</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</a></code></pre></div>
 <p>Once that’s executed you can delete the previous line and any <code>import_*</code> call will look for the email automatically, stored as an environment variable.</p>
 <p>Let’s suppose you don’t know which countries or rounds are available for the ESS. Then the <code>show_*</code> family of functions is your friend.</p>
@@ -134,7 +134,7 @@
 <a class="sourceLine" id="cb6-2" data-line-number="2">tk_rnds</a></code></pre></div>
 <pre><code>## [1] 2 4</code></pre>
 <p>Note that country names are case sensitive. Use the exact name printed out by <code><a href="../reference/show_countries.html">show_countries()</a></code></p>
-<p>Using this information, we can download those specific rounds easily with <code>import_country</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favour of the <code>import_*</code> and <code>download_*</code> functions.</p>
+<p>Using this information, we can download those specific rounds easily with <code>import_country</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favor of the <code>import_*</code> and <code>download_*</code> functions.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">turkey &lt;-</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/import_country.html">import_country</a></span>(</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">country =</span> <span class="st">"Turkey"</span>,</a>
@@ -185,7 +185,7 @@
 <a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/table.html">table</a></span>(other_newcoding<span class="op">$</span>tvpol)</a>
 <a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#  0   1   2   3   4   5   6   7  66 </span></a>
 <a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># 167 460 610 252  95  36  26  31  45 </span></a></code></pre></div>
-<p>…still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial diferences between people who didn’t and who did answer questions. If the user is decided to do so, use <code>recode_missings</code> to recode everything and the corresponding <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code><a href="../reference/recode_missings.html">?recode_missings</a></code> for more information.</p>
+<p>…still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial differences between people who didn’t and who did answer questions. If the user is decided to do so, use <code>recode_missings</code> to recode everything and the corresponding <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code><a href="../reference/recode_missings.html">?recode_missings</a></code> for more information.</p>
 </div>
 <div id="analyzing-ess-data" class="section level2">
 <h2 class="hasAnchor">
