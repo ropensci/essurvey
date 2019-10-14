@@ -1,20 +1,15 @@
 ## Test environments
-* local Ubuntu 18.04.5 LTS, R-3.6.1
-* win-builder ()
+- local Ubuntu 18.04.5 LTS, R-3.6.1
+- R-hub windows-x86_64-devel (r-devel)
+- R-hub ubuntu-gcc-release (r-release)
+- R-hub fedora-clang-devel (r-devel)
 
 ## R CMD check results
-
-0 errors | 0 warnings | 0 notes
-
-For win-builder:
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Reverse dependencies
 
 There are currently no downstream dependencies for this package.
-
----
-
-`essurvey` was had a fatal bug documented here: https://github.com/ropensci/essurvey/issues/31. This version fixes the bug.
 
 ---
 
