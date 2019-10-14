@@ -1,7 +1,6 @@
 ## Test environments
-* local macOS High Sierra 10.13.3, R-3.4.4
-* Ubuntu 14.04.5 LTS (on travis-ci), R-3.4.4
-* win-builder
+* local Ubuntu 18.04.5 LTS, R-3.6.1
+* win-builder ()
 
 ## R CMD check results
 

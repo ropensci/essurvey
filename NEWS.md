@@ -1,4 +1,4 @@
-## essurvey 1.0.3.9999
+## essurvey 1.0.3
 
 ### Breaking changes
 
