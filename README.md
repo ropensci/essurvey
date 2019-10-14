@@ -40,7 +40,7 @@ detailed examples of the `essurvey` package.
     #> To cite essurvey in publications use:
     #> 
     #>   Cimentada, Jorge (2019). Download Data from the European Social
-    #>   Survey on the Fly R package version 1.0.2.
+    #>   Survey on the Fly R package version 1.0.3
     #> 
     #> A BibTeX entry for LaTeX users is
     #> 
@@ -48,8 +48,8 @@ detailed examples of the `essurvey` package.
     #>     title = {Download Data from the European Social Survey on the Fly},
     #>     author = {Jorge Cimentada},
     #>     year = {2019},
-    #>     note = {R package version 1.0.2},
-    #>     url = {https://docs.ropensci.org/essurvey/, https://github.com/ropensci/essurvey},
+    #>     note = {R package version 1.0.3},
+    #>     url = {https://docs.ropensci.org/essurvey/},
     #>   }
 
 ## Installation

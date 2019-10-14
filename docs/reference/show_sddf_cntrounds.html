@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Save your ESS email as an environment variable — set_email • essurvey</title>
+<title>Return available SDDF rounds for a country in the European Social Survey — show_sddf_cntrounds • essurvey</title>
 
 
 <!-- jquery -->
@@ -33,8 +33,8 @@
 
 
 
-<meta property="og:title" content="Save your ESS email as an environment variable — set_email" />
-<meta property="og:description" content="Save your ESS email as an environment variable" />
+<meta property="og:title" content="Return available SDDF rounds for a country in the European Social Survey — show_sddf_cntrounds" />
+<meta property="og:description" content="Return available SDDF rounds for a country in the European Social Survey" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,38 +116,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Save your ESS email as an environment variable</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/essurvey/blob/master/R/set_email.R'><code>R/set_email.R</code></a></small>
-    <div class="hidden name"><code>set_email.Rd</code></div>
+    <h1>Return available SDDF rounds for a country in the European Social Survey</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/essurvey/blob/master/R/show_sddf_cntrounds.R'><code>R/show_sddf_cntrounds.R</code></a></small>
+    <div class="hidden name"><code>show_sddf_cntrounds.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Save your ESS email as an environment variable</p>
+    <p>Return available SDDF rounds for a country in the European Social Survey</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_email</span>(<span class='no'>ess_email</span>)</pre>
+    <pre class="usage"><span class='fu'>show_sddf_cntrounds</span>(<span class='no'>country</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>country</th>
+      <td><p>A character of length 1 with the full name of the country.
+Use <code><a href='show_countries.html'>show_countries</a></code> for a list of available countries.</p></td>
+    </tr>
+    <tr>
       <th>ess_email</th>
-      <td><p>a character string with your registered email.</p></td>
+      <td><p>a character vector with your email, such as "your_email@email.com".
+If you haven't registered in the ESS website, create an account at 
+<a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A preferred method is to login
+through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>numeric vector with available rounds for <code>country</code></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>You should only run <code>set_email()</code> once and every <code>import_</code> and <code>download_</code> function
-should work fine. Make sure your email is registered at 
-<a href='http://www.europeansocialsurvey.org/'>http://www.europeansocialsurvey.org/</a> before setting the email.</p>
+    <p>SDDF data are the equivalent weight data used to analyze the European Social Survey
+properly. For more information, see the details section of <code><a href='import_sddf_country.html'>import_sddf_country</a></code>.
+As an exception to the <code>show_*</code> family of functions, <code>show_sddf rounds</code>
+needs your ESS email to check which rounds are available. Be sure to add it
+with <code><a href='set_email.html'>set_email</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
-<span class='fu'>set_email</span>(<span class='st'>"my_registered@email.com"</span>)
+<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
 
-<span class='fu'>ess_country</span>(<span class='fl'>1</span>)
+<span class='fu'>show_sddf_cntrounds</span>(<span class='st'>"Spain"</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -155,6 +168,7 @@ should work fine. Make sure your email is registered at
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
