@@ -186,7 +186,7 @@ R with the `haven` package for all `essurvey` related functions to work.
 -----
 
 Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+Conduct](https://ropensci.github.io/essurvey/CONDUCT.html). By
+participating in this project you agree to abide by its terms.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

@@ -1,12 +1,17 @@
-# Environment variables from Travis CI
-ess_email <- Sys.getenv("ess_email")
 
-round_one <- import_rounds(1, ess_email)
+run_tests <- Sys.getenv("NOT_CRAN") == "true"
+if (run_tests) {
+  # Environment variables from Travis CI
+  ess_email <- Sys.getenv("ess_email")
+  round_one <- import_rounds(1, ess_email)
+}
 
-# Test for all rounds
-available_rounds <- show_rounds()
-all_rounds <- import_rounds(available_rounds, ess_email)
-  
+
+if (run_tests) {
+  # Test for all rounds
+  available_rounds <- show_rounds()
+  all_rounds <- import_rounds(available_rounds, ess_email)
+}
 
 test_that("import_rounds checks for args", {
   expect_error(import_rounds(numeric()),
