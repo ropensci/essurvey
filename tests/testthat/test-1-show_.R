@@ -33,8 +33,8 @@ test_that("show_rounds_country returns error when arguments are wrong", {
   expect_error(show_rounds_country("whatever"),
                "ESS round whatever is not available. Check show_rounds()")
   
-  expect_error(show_rounds_country(1:50),
-               "ESS round 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 is not available. Check show_rounds()")
+  expect_error(show_rounds_country(100:110),
+               "ESS round 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110 is not available. Check show_rounds()")
 })
 
 test_that("show_rounds_country returns correct output", {

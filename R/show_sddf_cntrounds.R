@@ -58,7 +58,13 @@ show_sddf_cntrounds <- function(country, ess_email = NULL) {
   all_rounds <- show_rounds()
   late_rounds <- all_rounds[all_rounds > 6]
 
+  # Extract country-specific late SDDF rounds
   url_download <- grab_url_sddf_late_rounds(late_rounds, format = NULL)
+
+  late_rounds <-
+    as.numeric(
+      gsub("ESS", "", string_extract(url_download, "ESS[0-9{1,2}]"))
+    )
 
   # Here I thought I might've introduced a bug because
   # if I run show_sddf_cntrounds("Spain") and then
@@ -68,6 +74,7 @@ show_sddf_cntrounds <- function(country, ess_email = NULL) {
   # is that it doesn't matter because late rounds are integrated for
   # all countries, so I just reread the Spanish downloaded one
   # and filter for ITALY.
+
   if (!all(dir.exists(.global_vars$sddf_laterounds_dir))) {
 
     utils::capture.output(
@@ -76,7 +83,8 @@ show_sddf_cntrounds <- function(country, ess_email = NULL) {
           download_format(urls = url_download,
                           ess_email = ess_email,
                           only_download = TRUE,
-                          output_dir = file.path(tempdir(), "ESS_SDDF"))
+                          output_dir = file.path(tempdir(), "ESS_SDDF")
+                          )
         ),
       file = tempfile()
     )
