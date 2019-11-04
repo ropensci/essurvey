@@ -13,6 +13,9 @@ There are currently no downstream dependencies for this package.
 
 ---
 
+Maintenance check due to release of new data in the European Social Survey. 
+All CRAN checks have been corrected.
+
 - *Most* examples are wrapped in \dontrun{} because they cannot be run
   in < 5 seconds. No smaller toy examples can be created. Functions
   which can be executed in < 5 are allow to run.

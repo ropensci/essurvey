@@ -1,3 +1,9 @@
+## essurvey 1.0.4.9999
+
+## essurvey 1.0.4
+
+CRAN maintenance check after release of ESS round 9.
+
 ## essurvey 1.0.3
 
 ### Breaking changes
