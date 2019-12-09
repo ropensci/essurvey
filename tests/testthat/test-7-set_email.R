@@ -4,6 +4,7 @@ save_dir <- tempdir()
 
 # Test for set_email
 test_that("test email is correctly set and can be overwritten", {
+  skip_on_cran()
   old_env_var <- Sys.getenv("ess_email")
   
   set_email(ess_email = "test@test.com")
@@ -16,6 +17,7 @@ test_that("test email is correctly set and can be overwritten", {
 })
 
 test_that("authenticate works correctly for wrong emails", {
+  skip_on_cran()
   expect_error(authenticate("random@email.morerandom"),
                "email address you provided is not associated with any registered") # nolint
   

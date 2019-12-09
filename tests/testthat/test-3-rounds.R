@@ -12,12 +12,14 @@ if (run_long_tests) {
 }
 
 test_that("import_rounds checks for args", {
+  skip_on_cran()
   expect_error(import_rounds(numeric()),
                regexp = "length(rounds) > 0",
                fixed = TRUE)
 })
 
 test_that("download_rounds checks for args", {
+  skip_on_cran()
   expect_error(download_rounds(numeric()),
                regexp = "length(rounds) > 0",
                fixed = TRUE)

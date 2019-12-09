@@ -106,6 +106,7 @@ check_downloaded_rounds <- function(x,
 }
 
 test_that("import_country checks for args", {
+  skip_on_cran()
 
   expect_error(import_country(numeric()),
                regexp = "is.character(country) is not TRUE",
@@ -123,6 +124,7 @@ test_that("import_country checks for args", {
 
 
 test_that("download_country checks for args", {
+  skip_on_cran()
 
   expect_error(download_country(numeric()),
                regexp = "is.character(country) is not TRUE",
@@ -242,6 +244,7 @@ test_that("Specify 'sas' for reading ess data throws error", {
 
 
 test_that("import_sddf_country checks for args", {
+  skip_on_cran()
 
   expect_error(import_sddf_country(numeric()),
                regexp = "is.character(country) is not TRUE",
@@ -298,6 +301,7 @@ test_that("import_sddf_country for one/many rounds from rounds 1:4", {
 })
 
 test_that("foreign installation is checked", {
+  skip_on_cran()
 
   # See https://community.rstudio.com/t/how-can-i-make-testthat-think-i-dont-have-a-package-installed/33441/3 #nolintr
   with_mock(
@@ -369,6 +373,7 @@ test_that("import_sddf_country for all rounds of a country", {
 
 
 test_that("download_sddf_country checks for args", {
+  skip_on_cran()
 
   expect_error(download_sddf_country(numeric()),
                regexp = "is.character(country) is not TRUE",

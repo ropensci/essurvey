@@ -13,10 +13,14 @@ There are currently no downstream dependencies for this package.
 
 ---
 
-Maintenance check due to release of new data in the European Social Survey. 
-All CRAN checks have been corrected.
+Maintenance check excluding all examples/tests based on the comment from Brian
+Ripley saying that "Packages which use Internet resources should fail gracefully
+with an informative message if the resource is not available (and not give a
+check warning nor error)". 
 
-- *Most* examples are wrapped in \dontrun{} because they cannot be run
+All tests are run weekly on Travis, which are available at https://travis-ci.org/ropensci/essurvey
+
+- *All* examples are wrapped in \dontrun{} because they cannot be run
   in < 5 seconds. No smaller toy examples can be created. Functions
   which can be executed in < 5 are allow to run.
 

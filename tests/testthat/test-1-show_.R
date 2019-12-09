@@ -19,6 +19,7 @@ check_format <- function(result, type = "numeric") {
 
 # show_rounds
 test_that("show_rounds returns correct output", {
+  skip_on_cran()
 
   all_rounds <- show_rounds()
   
@@ -30,6 +31,7 @@ test_that("show_rounds returns correct output", {
 
 # show_rounds_country
 test_that("show_rounds_country returns error when arguments are wrong", {
+  skip_on_cran()
 
   expect_error(show_rounds_country("whatever"),
                "ESS round whatever is not available. Check show_rounds()")
@@ -39,6 +41,7 @@ test_that("show_rounds_country returns error when arguments are wrong", {
 })
 
 test_that("show_rounds_country returns correct output", {
+  skip_on_cran()
   country_rounds <- show_rounds_country(1)
   check_format(country_rounds, "character")
   # Check whether has length 22, the number of countries
@@ -48,6 +51,7 @@ test_that("show_rounds_country returns correct output", {
 })
 
 test_that("show_rounds_country returns non-duplicate rounds", {
+  skip_on_cran()
   # # Check there are no duplicate countries
   expect_false(all(duplicated(show_rounds_country(1:6))))
   
@@ -58,6 +62,7 @@ test_that("show_rounds_country returns non-duplicate rounds", {
 })
 
 test_that("show_rounds_country returns correct countries always", {
+  skip_on_cran()
   
   # Countries that participated in the first three rounds. This
   # shouldn't change and was like this as of 20 of December of 2017
@@ -73,6 +78,7 @@ test_that("show_rounds_country returns correct countries always", {
 
 # show_countries
 test_that("show_countries returns correct output", {
+  skip_on_cran()
   all_countries <- show_countries()
   
   check_format(all_countries, "character")
@@ -80,11 +86,13 @@ test_that("show_countries returns correct output", {
 
 # show_country_rounds
 test_that("show_country_rounds returns error when wrong country as argument", {
+  skip_on_cran()
   expect_error(show_country_rounds("whatever"),
                "Country whatever not available in ESS. Check show_countries()")
 })
 
 test_that("show_country_rounds returns correct output", {
+  skip_on_cran()
   dk <- show_country_rounds("Denmark")
   
   check_format(dk)
@@ -95,6 +103,7 @@ test_that("show_country_rounds returns correct output", {
 
 # show_themes()
 test_that("show_themes returns correct output", {
+  skip_on_cran()
   
   all_themes <- show_themes()
   
@@ -106,17 +115,20 @@ test_that("show_themes returns correct output", {
 
 # show theme_rounds
 test_that("show_theme_rounds returns error when wrong theme as argument", {
+  skip_on_cran()
   expect_error(show_theme_rounds("whatever"),
                "ESS theme whatever not available. Check show_themes()")
 })
 
 test_that("show_theme_rounds returns correct output for rounds  == 1", {
+  skip_on_cran()
   theme_one <- show_theme_rounds("Democracy")
   check_format(theme_one)
 })
 
 # show_theme_rounds
 test_that("show_theme_rounds returns correct output for rounds > 1", {
+  skip_on_cran()
   theme_two <- show_theme_rounds("Politics")
   check_format(theme_two)
 })

@@ -4,6 +4,16 @@
 
 CRAN maintenance release to add more informative message when the status code of the HTTP request of 'www.europeansocialsurvey.org' is more than 300.
 
+# Minor changes
+
+All tests/examples are now excluded from running on CRAN based on the warning from Brian Ripley:
+
+'Packages which use Internet resources should fail gracefully with an
+informative message if the resource is not available (and not give a check
+warning nor error).'
+
+They are all forced to run on Travis and Appveyor and this is made clear on the `cran-comments.md`
+
 ## essurvey 1.0.4
 
 CRAN maintenance check after release of ESS round 9.
