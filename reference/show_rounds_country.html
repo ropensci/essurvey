@@ -159,31 +159,21 @@ participate in <strong>both</strong> round 1 and round 2.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+
 <span class='co'># Return countries that participated in round 2</span>
 
-<span class='fu'>show_rounds_country</span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt;  [1] "Austria"        "Belgium"        "Czechia"        "Denmark"       
-#&gt;  [5] "Estonia"        "Finland"        "France"         "Germany"       
-#&gt;  [9] "Greece"         "Hungary"        "Iceland"        "Ireland"       
-#&gt; [13] "Italy"          "Luxembourg"     "Netherlands"    "Norway"        
-#&gt; [17] "Poland"         "Portugal"       "Slovakia"       "Slovenia"      
-#&gt; [21] "Spain"          "Sweden"         "Switzerland"    "Turkey"        
-#&gt; [25] "Ukraine"        "United Kingdom"</div><div class='input'>
+<span class='fu'>show_rounds_country</span>(<span class='fl'>2</span>)
+
 <span class='co'># Return countries that participated in all rounds</span>
 
-<span class='fu'>show_rounds_country</span>(<span class='fl'>1</span>:<span class='fl'>8</span>)</div><div class='output co'>#&gt;  [1] "Belgium"        "Finland"        "France"         "Germany"       
-#&gt;  [5] "Hungary"        "Ireland"        "Netherlands"    "Norway"        
-#&gt;  [9] "Poland"         "Portugal"       "Slovenia"       "Spain"         
-#&gt; [13] "Sweden"         "Switzerland"    "United Kingdom"</div><div class='input'>
+<span class='fu'>show_rounds_country</span>(<span class='fl'>1</span>:<span class='fl'>8</span>)
+
 <span class='co'># Return countries that didn't participate in the first three rounds</span>
 
-<span class='fu'>show_rounds_country</span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>participate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;  [1] "Albania"            "Bulgaria"           "Croatia"           
-#&gt;  [4] "Cyprus"             "Czechia"            "Estonia"           
-#&gt;  [7] "Greece"             "Iceland"            "Israel"            
-#&gt; [10] "Italy"              "Kosovo"             "Latvia"            
-#&gt; [13] "Lithuania"          "Luxembourg"         "Montenegro"        
-#&gt; [16] "Romania"            "Russian Federation" "Serbia"            
-#&gt; [19] "Slovakia"           "Turkey"             "Ukraine"           </div><div class='input'>
-</div></pre>
+<span class='fu'>show_rounds_country</span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>participate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

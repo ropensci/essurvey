@@ -122,163 +122,14 @@
       <small>Source: <a href='https://github.com/ropensci/essurvey/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="essurvey-1-0-4-9999" class="section level2">
+    <div id="essurvey-1-0-6-9999" class="section level2">
 <h2 class="hasAnchor">
-<a href="#essurvey-1-0-4-9999" class="anchor"></a>essurvey 1.0.4.9999</h2>
+<a href="#essurvey-1-0-6-9999" class="anchor"></a>essurvey 1.0.6.9999</h2>
 </div>
-    <div id="essurvey-1-0-4" class="section level2">
+    <div id="essurvey-1-0-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#essurvey-1-0-4" class="anchor"></a>essurvey 1.0.4</h2>
-<p>CRAN maintenance check after release of ESS round 9.</p>
-</div>
-    <div id="essurvey-1-0-3" class="section level2">
-<h2 class="hasAnchor">
-<a href="#essurvey-1-0-3" class="anchor"></a>essurvey 1.0.3</h2>
-<div id="breaking-changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h3>
-<ul>
-<li>If you don’t know which format is available for a round/country, <code>import_*</code> and <code>download_*</code> functions now accept a NULL argument which runs through <code>'stata'</code>, <code>'spss'</code> and <code>'sas'</code> formats automatically. By default, <code>import_*</code> functions have now format set to <code>NULL</code> to automatically try the three different formats. This breaks backward dependency but only slightly where it had ‘stata’ set as default.</li>
-</ul>
-</div>
-<div id="new-features" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h3>
-<ul>
-<li>Users can now download SDDF (weight data) for each country/round combination of files. Functions <code>show_sddf_cntrounds</code>, <code>import_sddf_country</code> and <code>download_sddf_country</code> are now introduced. For technical purposes, <code>show_sddf_cntrounds</code> needs for the user to have set their registered ESS email with <code>set_email</code>. [<a href='https://github.com/ropensci/essurvey/issues/9'>#9</a>]</li>
-</ul>
-</div>
-<div id="minor-changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>Bumps <code>haven</code> to minimum package version 2.1.1</li>
-<li>New package website at <a href="https://docs.ropensci.org/essurvey" class="uri">https://docs.ropensci.org/essurvey</a>
-</li>
-</ul>
-</div>
-<div id="internal" class="section level3">
-<h3 class="hasAnchor">
-<a href="#internal" class="anchor"></a>Internal</h3>
-<ul>
-<li>
-<code>read_format_data</code> now tries to read data using <code>haven</code> but falls backs to <code>foreign</code> in case there’s an error. This should only work for SDDF data [<a href='https://github.com/ropensci/essurvey/issues/38'>#38</a>].</li>
-<li>
-<code>read_format_data</code> and <code>read_sddf_data</code> now always return a list. Checking the length of data to return a data frame now happens within each <code>import_*</code> function.</li>
-</ul>
-</div>
-<div id="bug-fixes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
-<ul>
-<li>Removes an unnecessary if statement in <code>set_email</code> that didn’t allow to overwrite the email once set.</li>
-</ul>
-</div>
-</div>
-    <div id="essurvey-1-0-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#essurvey-1-0-2" class="anchor"></a>essurvey 1.0.2</h2>
-<div id="minor-changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>
-<code>show_country_rounds</code> checks if there are missing values and excludes them.</li>
-</ul>
-</div>
-<div id="breaking-changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h3>
-<p><code>import_all_cntrounds</code> and <code>import_country</code> returned incorrect countries [<a href='https://github.com/ropensci/essurvey/issues/31'>#31</a>]</p>
-</div>
-</div>
-    <div id="essurvey-1-0-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#essurvey-1-0-1" class="anchor"></a>essurvey 1.0.1</h2>
-<div id="minor-changes-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
-<ul>
-<li><p><code>ess_email</code> is now checked that it is not <code>""</code> because it wasn’t raising an error before.</p></li>
-<li><p>Removes the <code>round</code> argument from <code>import_all_cntrounds</code> because it was a mistake. It already grabs the rounds internally.</p></li>
-</ul>
-</div>
-</div>
-    <div id="essurvey-1-0-1-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#essurvey-1-0-1-1" class="anchor"></a>essurvey 1.0.1</h2>
-<p>Minor release</p>
-<ul>
-<li>Fixes test that checks the number of rounds that each country has. This test was a mistake because the rounds will change as time passes by and precise country rounds shouldn’t be tested.</li>
-</ul>
-</div>
-    <div id="essurvey-1-0-0" class="section level2">
-<h2 class="hasAnchor">
-<a href="#essurvey-1-0-0" class="anchor"></a>essurvey 1.0.0</h2>
-<p>The <code>ess</code> package has been renamed to <code>essurvey</code> for a name conflict with Emacs Speaks Statistics (ESS). See R-pkg mailing list, the post related to the release of ess-0-0-1.</p>
-<div id="breaking-changes-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h3>
-<ul>
-<li><p><code>ess_rounds</code> and <code>ess_all_rounds</code> are deprecated and will be removed in the next release. Use <code>import_rounds</code> instead [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
-<li><p><code>ess_country</code> and <code>ess_all_cntrounds</code> are deprecated and will be removed in the next release. Use <code>import_countries</code> instead [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
-<li><p>The <code>your_email</code> argument name of <code>ess_*</code> functions has be changed to <code>ess_email</code> [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
-</ul>
-</div>
-<div id="new-features-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New features</h3>
-<ul>
-<li><p><code>import_rounds</code>, <code>import_all_rounds</code> and <code>download_rounds</code> have been introduced as replacements of <code>ess_rounds</code> and <code>ess_all_rounds</code>. Same changes were repeated for <code>ess_country</code> and <code>ess_all_cntrounds</code> [<a href='https://github.com/ropensci/essurvey/issues/22'>#22</a>]</p></li>
-<li><p><code>set_email</code> to set your email as environmental variable rather than write it in each call [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
-<li><p>All requests to the ESS website are now done through HTTPS rather than HTTP [<a href='https://github.com/ropensci/essurvey/issues/24'>#24</a>]</p></li>
-<li><p>Add package level documentation [<a href='https://github.com/ropensci/essurvey/issues/20'>#20</a>]</p></li>
-</ul>
-</div>
-<div id="minor-changes-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
-<ul>
-<li><p><code>ess_email</code> had no default value but now has <code>NULL</code> as default [<a href='https://github.com/ropensci/essurvey/issues/23'>#23</a>]</p></li>
-<li><p>The <code>format</code> argument is now checked through <code>match.arg</code> rather than manual check [<a href='https://github.com/ropensci/essurvey/issues/25'>#25</a>]</p></li>
-</ul>
-</div>
-</div>
-    <div id="ess-0-1-1-2018-03-05" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ess-0-1-1-2018-03-05" class="anchor"></a>ess 0.1.1 (2018-03-05)</h2>
-<div id="breaking-changes-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#breaking-changes-3" class="anchor"></a>Breaking changes</h3>
-<ul>
-<li>Downloading 1 round both for countries or single rounds now returns a data frame rather than a list. If download is more than two rounds it returns a list. [<a href='https://github.com/ropensci/essurvey/issues/8'>#8</a>]</li>
-</ul>
-</div>
-<div id="new-features-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#new-features-2" class="anchor"></a>New features</h3>
-<ul>
-<li><p>remove_missings() together with remove_numeric_missings() and remove_character_missings() now allow you to recode the typical categories ‘Not applicable’, ‘Don’t know’, etc.. into NA’s. See the vignette example for more details. [<a href='https://github.com/ropensci/essurvey/issues/1'>#1</a>]</p></li>
-<li><p>Can download files in ‘stata’, ‘spss’ and ‘sas’ formats for all functions (both for downloading to user’s directory and for reading data). [<a href='https://github.com/ropensci/essurvey/issues/11'>#11</a>]</p></li>
-<li><p>show_themes() and show_theme_rounds() now available to see which themes have been included in which rounds. [<a href='https://github.com/ropensci/essurvey/issues/7'>#7</a>]</p></li>
-<li><p>show_rounds_country() is now available to see which countries participated in which rounds [<a href='https://github.com/ropensci/essurvey/issues/14'>#14</a>]</p></li>
-</ul>
-</div>
-<div id="bug-fixes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h3>
-<ul>
-<li><p>The <code>ouput_dir</code> argument is now set to <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> rather than <code>NULL</code> as default. [<a href='https://github.com/ropensci/essurvey/issues/16'>#16</a>]</p></li>
-<li><p>When parsing country rounds from the ESS table from the website, shaded dots were being interpreted as valid rounds when in fact they’re not. show_* funs new exclude shaded dots until they’ve been added as valid rounds</p></li>
-<li><p>If any <code>ess_*</code> function can not connect to the ESS website they will return an explicit R error. [<a href='https://github.com/ropensci/essurvey/issues/12'>#12</a>]</p></li>
-<li><p><code>ess_all_cntrounds</code> and <code>ess_all_rounds</code> were returning the directory of each of the files. Now they only return the single directory where the files where saved as a message</p></li>
-</ul>
-</div>
-</div>
-    <div id="ess-0-0-1-2017-11-07" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ess-0-0-1-2017-11-07" class="anchor"></a>ess 0.0.1 (2017-11-07)</h2>
-<p>First release</p>
+<a href="#essurvey-1-0-5" class="anchor"></a>essurvey 1.0.5</h2>
+<p>CRAN maintenance release to add more informative message when the status code of the HTTP request of ‘www.europeansocialsurvey.org’ is more than 300.</p>
 </div>
   </div>
 
@@ -286,15 +137,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#essurvey-1-0-4-9999">1.0.4.9999</a></li>
-        <li><a href="#essurvey-1-0-4">1.0.4</a></li>
-        <li><a href="#essurvey-1-0-3">1.0.3</a></li>
-        <li><a href="#essurvey-1-0-2">1.0.2</a></li>
-        <li><a href="#essurvey-1-0-1">1.0.1</a></li>
-        <li><a href="#essurvey-1-0-1-1">1.0.1</a></li>
-        <li><a href="#essurvey-1-0-0">1.0.0</a></li>
-        <li><a href="#ess-0-1-1-2018-03-05">0.1.1</a></li>
-        <li><a href="#ess-0-0-1-2017-11-07">0.0.1</a></li>
+        <li><a href="#essurvey-1-0-6-9999">1.0.6.9999</a></li>
+        <li><a href="#essurvey-1-0-5">1.0.5</a></li>
       </ul>
     </div>
   </div>

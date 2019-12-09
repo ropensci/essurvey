@@ -153,13 +153,16 @@ Use <code><a href='show_themes.html'>show_themes</a></code>for a list of availab
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>chosen_theme</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='show_themes.html'>show_themes</a></span>()[<span class='fl'>3</span>]
 
 <span class='co'># In which rounds was the topic of 'Democracy' asked?</span>
-<span class='fu'>show_theme_rounds</span>(<span class='no'>chosen_theme</span>)</div><div class='output co'>#&gt; [1] 6</div><div class='input'>
+<span class='fu'>show_theme_rounds</span>(<span class='no'>chosen_theme</span>)
+
 <span class='co'># And politics?</span>
-<span class='fu'>show_theme_rounds</span>(<span class='st'>"Politics"</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7 8 9</div><div class='input'>
-</div></pre>
+<span class='fu'>show_theme_rounds</span>(<span class='st'>"Politics"</span>)
+
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
