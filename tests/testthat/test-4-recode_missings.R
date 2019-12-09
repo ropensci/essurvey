@@ -1,7 +1,8 @@
 context("test-recode_missings.R")
 
-run_tests <- Sys.getenv("NOT_CRAN") == "true"
-if (run_tests) {
+run_long_tests <- identical("true", Sys.getenv("NOT_CRAN"))
+
+if (run_long_tests) {
   ess_email <- Sys.getenv("ess_email")
   round_seven <- import_rounds(7, ess_email)
 }

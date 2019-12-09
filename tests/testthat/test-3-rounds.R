@@ -1,13 +1,11 @@
 
-run_tests <- Sys.getenv("NOT_CRAN") == "true"
-if (run_tests) {
+run_long_tests <- identical("true", Sys.getenv("NOT_CRAN"))
+
+if (run_long_tests) {
   # Environment variables from Travis CI
   ess_email <- Sys.getenv("ess_email")
   round_one <- import_rounds(1, ess_email)
-}
 
-
-if (run_tests) {
   # Test for all rounds
   available_rounds <- show_rounds()
   all_rounds <- import_rounds(available_rounds, ess_email)

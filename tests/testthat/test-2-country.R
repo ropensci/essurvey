@@ -2,9 +2,9 @@
 
 ess_email <- Sys.getenv("ess_email")
 
-skip_cran <- skip_on_cran()
+run_long_tests <- identical("true", Sys.getenv("NOT_CRAN"))
 
-if (skip_cran) {
+if (run_long_tests) {
 
   # Test for only one round
   round_one <- import_rounds(1, ess_email)

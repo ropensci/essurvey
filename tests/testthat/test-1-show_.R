@@ -19,7 +19,7 @@ check_format <- function(result, type = "numeric") {
 
 # show_rounds
 test_that("show_rounds returns correct output", {
-  
+
   all_rounds <- show_rounds()
   
   check_format(all_rounds)
@@ -30,6 +30,7 @@ test_that("show_rounds returns correct output", {
 
 # show_rounds_country
 test_that("show_rounds_country returns error when arguments are wrong", {
+
   expect_error(show_rounds_country("whatever"),
                "ESS round whatever is not available. Check show_rounds()")
   
