@@ -105,5 +105,11 @@ round_downloader <- function(each_url, which_round, which_folder) { # nocov star
 
 # Safe getter
 safe_GET <- function(url, config = list(), ...) { # nocov start
-  httr::stop_for_status(httr::GET(url = url, config = config, ...))
+  resp_conn <- httr::GET(url = url, config = config, ...)
+
+  if (httr::status_code(resp_conn) > 300) {
+    stop("We're unable to reach 'www.europeansocialsurvey.org'. Are you connected to the internet or is the website down?'")
+  }
+
+  resp_conn
 } # nocov end
