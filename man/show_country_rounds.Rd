@@ -18,8 +18,12 @@ Return available rounds for a country in the European Social Survey
 }
 \examples{
 
+\dontrun{
+
 show_country_rounds("Spain")
 
 show_country_rounds("Turkey")
+
+}
 
 }

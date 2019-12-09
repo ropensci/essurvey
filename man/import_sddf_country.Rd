@@ -10,8 +10,13 @@ import_sddf_country(country, rounds, ess_email = NULL, format = NULL)
 
 import_all_sddf_cntrounds(country, ess_email = NULL, format = NULL)
 
-download_sddf_country(country, rounds, ess_email = NULL,
-  output_dir = getwd(), format = "stata")
+download_sddf_country(
+  country,
+  rounds,
+  ess_email = NULL,
+  output_dir = getwd(),
+  format = "stata"
+)
 }
 \arguments{
 \item{country}{a character of length 1 with the full name of the country. 

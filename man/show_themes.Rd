@@ -17,6 +17,8 @@ themes can not be downloaded as separate datasets. This and
 }
 \examples{
 
+\dontrun{
 show_themes()
+}
 
 }

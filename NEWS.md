@@ -1,4 +1,8 @@
-## essurvey 1.0.4.9999
+## essurvey 1.0.6.9999
+
+## essurvey 1.0.5
+
+CRAN maintenance release to add more informative message when the status code of the HTTP request of 'www.europeansocialsurvey.org' is more than 300.
 
 ## essurvey 1.0.4
 

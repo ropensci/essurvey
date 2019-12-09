@@ -28,6 +28,8 @@ participate in \strong{both} round 1 and round 2.
 }
 \examples{
 
+\dontrun{
+
 # Return countries that participated in round 2
 
 show_rounds_country(2)
@@ -40,4 +42,5 @@ show_rounds_country(1:8)
 
 show_rounds_country(1:3, participate = FALSE)
 
+}
 }

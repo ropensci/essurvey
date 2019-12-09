@@ -10,8 +10,12 @@ import_rounds(rounds, ess_email = NULL, format = NULL)
 
 import_all_rounds(ess_email = NULL, format = NULL)
 
-download_rounds(rounds, ess_email = NULL, output_dir = getwd(),
-  format = "stata")
+download_rounds(
+  rounds,
+  ess_email = NULL,
+  output_dir = getwd(),
+  format = "stata"
+)
 }
 \arguments{
 \item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_rounds}}

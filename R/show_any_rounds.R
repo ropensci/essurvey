@@ -15,6 +15,8 @@
 #' @export
 #'
 #' @examples
+#'
+#' \dontrun{
 #' 
 #' # Return countries that participated in round 2
 #' 
@@ -27,7 +29,8 @@
 #' # Return countries that didn't participate in the first three rounds
 #' 
 #' show_rounds_country(1:3, participate = FALSE)
-#' 
+#'
+#' }
 show_rounds_country <- function(rounds, participate = TRUE) {
   
   check_rounds(rounds)
@@ -68,10 +71,14 @@ show_rounds_country <- function(rounds, participate = TRUE) {
 #' @export
 #'
 #' @examples
+#'
+#' \dontrun{
 #' 
 #' show_country_rounds("Spain")
 #' 
 #' show_country_rounds("Turkey")
+#'
+#' }
 #' 
 show_country_rounds <- function(country) {
 
@@ -97,7 +104,8 @@ show_country_rounds <- function(country) {
 #' @export
 #'
 #' @examples
-#' 
+#'
+#' \dontrun{
 #' chosen_theme <- show_themes()[3]
 #' 
 #' # In which rounds was the topic of 'Democracy' asked?
@@ -105,6 +113,8 @@ show_country_rounds <- function(country) {
 #' 
 #' # And politics?
 #' show_theme_rounds("Politics")
+#'
+#' }
 #' 
 show_theme_rounds <- function(theme) {
   

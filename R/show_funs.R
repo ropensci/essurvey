@@ -4,8 +4,11 @@
 #' @export
 #'
 #' @examples
-#' 
+#'
+#' \dontrun{
 #' show_rounds()
+#' }
+#' 
 #' 
 show_rounds <- function() {
   incomplete_links <- get_rounds_link(.global_vars$ess_website)
@@ -29,8 +32,11 @@ show_rounds <- function() {
 #' @export
 #'
 #' @examples
-#' 
+#'
+#' \dontrun{
 #' show_countries()
+#' }
+#' 
 #' 
 show_countries <- function() {
   show_any(.global_vars$ess_website, .global_vars$country_index)
@@ -48,7 +54,9 @@ show_countries <- function() {
 #'
 #' @examples
 #' 
+#' \dontrun{
 #' show_themes()
+#' }
 #' 
 show_themes <- function() {
   show_any(.global_vars$ess_website, .global_vars$theme_index)
