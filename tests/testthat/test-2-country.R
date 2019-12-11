@@ -1,4 +1,4 @@
-    # Environment variables from Travis CI
+# Environment variables from Travis CI
 
 ess_email <- Sys.getenv("ess_email")
 
@@ -394,18 +394,23 @@ test_that("download_sddf_country checks for args", {
 # with the other downloads. I leave it here because it is used
 # in this test and in the next and some of the tests above
 # delete the tempdir (I think), deleting the downloaded files.
-available_rounds <- show_sddf_cntrounds("Spain")
+if (run_long_tests) available_rounds <- show_sddf_cntrounds("Spain")
 
 # Test if downloads all data for Spain and subsets correctly
 # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
-expect_message(downloads_spain <-
-                 download_sddf_country("Spain",
-                                       available_rounds,
-                                       ess_email,
-                                       output_dir = tempdir(),
-                                       format = NULL
-                                       ),
-               "All files saved to")
+test_that("test if downloads all data for Spain and subsets correctly", {
+  skip_on_cran()
+  
+  expect_message(downloads_spain <-
+                   download_sddf_country("Spain",
+                                         available_rounds,
+                                         ess_email,
+                                         output_dir = tempdir(),
+                                         format = NULL
+                                         ),
+                 "All files saved to")
+
+})
 
 
 test_that("Test that downloading files is working for sddf data", {
