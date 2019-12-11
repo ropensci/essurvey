@@ -394,13 +394,11 @@ test_that("download_sddf_country checks for args", {
 # with the other downloads. I leave it here because it is used
 # in this test and in the next and some of the tests above
 # delete the tempdir (I think), deleting the downloaded files.
-if (run_long_tests) available_rounds <- show_sddf_cntrounds("Spain")
+if (run_long_tests) {
+  available_rounds <- show_sddf_cntrounds("Spain")
 
-# Test if downloads all data for Spain and subsets correctly
-# Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
-test_that("test if downloads all data for Spain and subsets correctly", {
-  skip_on_cran()
-  
+  # Test if downloads all data for Spain and subsets correctly
+  # Test for when format is NULL which moves through 'stata', 'spss', and 'spss'
   expect_message(downloads_spain <-
                    download_sddf_country("Spain",
                                          available_rounds,
@@ -409,8 +407,7 @@ test_that("test if downloads all data for Spain and subsets correctly", {
                                          format = NULL
                                          ),
                  "All files saved to")
-
-})
+}
 
 
 test_that("Test that downloading files is working for sddf data", {
