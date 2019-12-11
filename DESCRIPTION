@@ -1,6 +1,6 @@
 Package: essurvey
 Title: Download Data from the European Social Survey on the Fly
-Version: 1.0.4.9999
+Version: 1.0.5
 Date: 2019-10-14
 Authors@R: c(
     person("Jorge", "Cimentada", email = "cimentadaj@gmail.com", role = c("aut", "cre")),

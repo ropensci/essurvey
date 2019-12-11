@@ -22,7 +22,9 @@ All tests are run weekly on Travis, which are available at https://travis-ci.org
 
 - *All* examples are wrapped in \dontrun{} because they cannot be run
   in < 5 seconds. No smaller toy examples can be created. Functions
-  which can be executed in < 5 are allow to run.
+  which can be executed in < 5 are allow to run only if they don't
+  make any requests to internet resources. All tests/examples are run
+  on Travis/Appveyor
 
   Also, most functions use personal emails to actually run. Even if using
   \dontshow{} I wouldn’t want to reveal any information (either on Github or
