@@ -1,5 +1,5 @@
 read_format_data <- function(dir_download, country = NULL, sddf = FALSE) {
-  
+
   format_ext <- c(".dta", ".sav", ".por")
   # Get all paths from the format
   # I know list.files is vectorized, but list.files
@@ -10,10 +10,10 @@ read_format_data <- function(dir_download, country = NULL, sddf = FALSE) {
                         pattern = paste0(format_ext, "$", collapse = "|"),
                         full.names = TRUE,
                         FUN.VALUE = character(1))
-  
+
   # Read only the .dta/.sav/.por files
   dataset <- lapply(unname(format_dirs), function(.x) {
-    
+
     # Use function to read the specified format
     format_read <-
       switch(file_ext(.x),

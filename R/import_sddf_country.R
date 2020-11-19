@@ -1,16 +1,16 @@
 #' Download SDDF data by round for countries from the European Social Survey
 #'
-#' @param country a character of length 1 with the full name of the country. 
+#' @param country a character of length 1 with the full name of the country.
 #' Use \code{\link{show_countries}} for a list of available countries.
-#' 
+#'
 #' @param rounds a numeric vector with the rounds to download. See \code{\link{show_sddf_cntrounds}}
 #' for all available rounds for any given country.
-#' 
+#'
 #' @param ess_email a character vector with your email, such as "your_email@email.com".
-#' If you haven't registered in the ESS website, create an account at 
+#' If you haven't registered in the ESS website, create an account at
 #' \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 #' through \code{\link{set_email}}.
-#' 
+#'
 #' @param output_dir a character vector with the output directory in case you want to
 #' only download the files using \code{download_sddf_country}. Defaults to your working
 #' directory. This will be interpreted as a \strong{directory} and not a path with
@@ -23,7 +23,7 @@
 #' the data will be downloaded and read in the \code{format} specified. For \code{download_country},
 #' the data is downloaded from the specified \code{format} (only 'spss' and 'stata' supported,
 #' see details).
-#' 
+#'
 #' @details
 #'
 #' SDDF data (Sample Design Data Files) are data sets that contain additional columns with the
@@ -43,12 +43,12 @@
 #' different handling of the encoding of some questions. This option was preserved
 #' so that the user can switch between formats if any encoding errors are found in the data. For more
 #' details see the discussion \href{https://github.com/ropensci/essurvey/issues/11}{here}.
-#' 
+#'
 #' Additionally, given that the SDDF data is not very complete, some countries do not have SDDF data
 #' in Stata or SPSS formats. For that reason, the \code{format} argument is not used in \code{import_sddf_country}.
 #' Internally, \code{Stata} is chosen over \code{SPSS} and \code{SPSS} over \code{SAS} in that
 #' order of preference.
-#' 
+#'
 #' For this particular argument, 'sas' is not supported because the data formats have
 #' changed between ESS waves and separate formats require different functions to be
 #' read. To preserve parsimony and format errors between waves, the user should use
@@ -73,35 +73,35 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' set_email("your_email@email.com")
-#' 
+#'
 #' sp_three <- import_sddf_country("Spain", 5:6)
-#' 
+#'
 #' show_sddf_cntrounds("Spain")
-#' 
+#'
 #' # Only download the files, this will return nothing
-#' 
+#'
 #' temp_dir <- tempdir()
-#' 
+#'
 #' download_sddf_country(
 #'  "Spain",
 #'  rounds = 5:6,
 #'  output_dir = temp_dir
 #' )
-#' 
+#'
 #' # By default, download_sddf_country downloads 'stata' files but
 #' # you can also download 'spss' or 'sas' files.
-#' 
+#'
 #' download_sddf_country(
 #'  "Spain",
 #'  rounds = 1:8,
 #'  output_dir = temp_dir,
 #'  format = 'spss'
 #' )
-#' 
+#'
 #' }
-#' 
+#'
 import_sddf_country <- function(country,
                                 rounds,
                                 ess_email = NULL,
@@ -109,7 +109,7 @@ import_sddf_country <- function(country,
 
   stopifnot(is.character(country), length(country) > 0)
   stopifnot(is.numeric(rounds), length(rounds) > 0)
-  
+
   if (!is.null(format) && format == "sas") {
     stop(
       "You cannot read SAS but only 'spss' and 'stata' files with this function. See ?import_rounds for more details") # nolint
@@ -117,11 +117,11 @@ import_sddf_country <- function(country,
 
   rounds <- sort(rounds)
   late_rounds <- rounds > 6
-  
+
   if (all(late_rounds)) {
 
     urls <- country_url_sddf_late_rounds(country, rounds[late_rounds], format)
-    
+
 
   } else if (all(!late_rounds)) {
 
@@ -151,7 +151,7 @@ import_sddf_country <- function(country,
     pos_match <- match(rounds[late_rounds], rnds_dl)
     dir_download <- c(dir_download_tmp,
                       .global_vars$sddf_laterounds_dir[pos_match])
-    
+
   } else {
 
     dir_download <- dir_download_tmp
@@ -199,11 +199,11 @@ download_sddf_country <- function(country,
 
   rounds <- sort(rounds)
   late_rounds <- rounds > 6
-  
+
   if (all(late_rounds)) {
 
     urls <- country_url_sddf_late_rounds(country, rounds[late_rounds], format)
-    
+
 
   } else if (all(!late_rounds)) {
 
@@ -250,10 +250,10 @@ download_sddf_country <- function(country,
             with exact line of code that generated the error. For example:
             download_country_sddf('Italy', 1:3)")
     }
-    
+
     # Save only the .dta/.sav/.por files
     for (.x in seq_along(format_dirs)) {
-      
+
       # Use function to read the specified format
       format_save <-
         switch(file_ext(format_dirs[[.x]]),
@@ -268,6 +268,6 @@ download_sddf_country <- function(country,
       format_save(all_data[[.x]], gsub(".por", ".sav", format_dirs[.x]))
     }
   }
-  
+
   invisible(dir_download)
 }
