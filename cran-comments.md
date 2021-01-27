@@ -13,27 +13,10 @@ There are currently no downstream dependencies for this package.
 
 ---
 
-Maintenance check excluding all examples/tests based on the comment from Brian
-Ripley saying that "Packages which use Internet resources should fail gracefully
-with an informative message if the resource is not available (and not give a
-check warning nor error)". 
+Maintenance check for problem with Solaris warning saying that 'Warning in engine$weave(file, quiet = quiet, encoding = enc) :
+Pandoc (>= 1.12.3) and/or pandoc-citeproc not available. Falling back to R Markdown v1'. This is what the CRAN checks
+were saying https://www.r-project.org/nosvn/R.check/r-patched-solaris-x86/essurvey-00check.html yet this runs well on
+Solaris in Rhub https://builder.r-hub.io/status/original/essurvey_1.0.5.tar.gz-843e084a807144a2acc95d9dcdc9acb0. Oddly,
+this warning is only present in Solaris with all other platforms passing gracefully.
 
-All tests are run weekly on Travis, which are available at https://travis-ci.org/ropensci/essurvey
-
-- *All* examples are wrapped in \dontrun{} because they cannot be run
-  in < 5 seconds. No smaller toy examples can be created. Functions
-  which can be executed in < 5 are allow to run only if they don't
-  make any requests to internet resources. All tests/examples are run
-  on Travis/Appveyor
-
-  Also, most functions use personal emails to actually run. Even if using
-  \dontshow{} I wouldn’t want to reveal any information (either on Github or
-  somewhere on the CRAN repo) of personal use.
-
-- The tests are wrapped skip_on_cran()
-  since they absolutely require using a private email. Full tests
-  are run on Travis (weekly) with results available for review:
-  https://travis-ci.org/ropensci/essurvey
-  
-  The Travis tests have an environment variable containing the email. This
-  allows the tests to run smoothly.
+All tests are run weekly on Travis, which are available at https://travis-ci.com/github/ropensci/essurvey

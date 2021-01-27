@@ -1,4 +1,10 @@
-## essurvey 1.0.6.9999
+## essurvey 1.0.7.9999
+
+## essurvey 1.0.6
+
+- CRAN maintenance release to fix Solaris warnings `Warning in engine$weave(file, quiet = quiet, encoding = enc) : Pandoc (>= 1.12.3) and/or pandoc-citeproc not available. Falling back to R Markdown v1` on CRAN. Tested on Rhub and all passes OK, notifying CRAN.
+
+- Removes automatic citation message when loading package. It's actually annoying.
 
 ## essurvey 1.0.5
 

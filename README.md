@@ -34,24 +34,6 @@ available. Check out the vignette and other documentation in the
 [package’s website](https://ropensci.github.io/essurvey/) for more
 detailed examples of the `essurvey` package.
 
-## Citation
-
-    #> 
-    #> To cite essurvey in publications use:
-    #> 
-    #>   Cimentada, Jorge (2019). Download Data from the European Social
-    #>   Survey on the Fly R package version 1.0.3
-    #> 
-    #> A BibTeX entry for LaTeX users is
-    #> 
-    #>   @Manual{,
-    #>     title = {Download Data from the European Social Survey on the Fly},
-    #>     author = {Jorge Cimentada},
-    #>     year = {2019},
-    #>     note = {R package version 1.0.3},
-    #>     url = {https://docs.ropensci.org/essurvey/},
-    #>   }
-
 ## Installation
 
 You can install and load the development version with these commands:
@@ -86,9 +68,6 @@ To explore which rounds/countries are present in the ESS use the
 
 ``` r
 library(essurvey)
-#> 
-#> Please cite as:
-#> Cimentada, Jorge (2019). Download Data from the European Social Survey on the Fly R package version 1.0.2.
 show_countries()
 #>  [1] "Albania"            "Austria"            "Belgium"           
 #>  [4] "Bulgaria"           "Croatia"            "Cyprus"            

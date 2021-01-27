@@ -30,13 +30,6 @@ Note: The `essurvey` package was originally called `ess`. Since `essurvey 1.0.0`
 
 The `essurvey` package is designed to download the ESS data as easily as possible. It has a few helper functions to download rounds (a term synonym to waves to denote the same survey in different time points), rounds for a selected country and to show which rounds/countries are available. Check out the vignette and other documentation in the [package's website](https://ropensci.github.io/essurvey/) for more detailed examples of the `essurvey` package.
 
-## Citation
-
-```{r echo = FALSE, eval = TRUE}
-citation("essurvey")
-```
-
-
 ## Installation
 
 You can install and load the development version with these commands:

@@ -19,14 +19,14 @@ download_sddf_country(
 )
 }
 \arguments{
-\item{country}{a character of length 1 with the full name of the country. 
+\item{country}{a character of length 1 with the full name of the country.
 Use \code{\link{show_countries}} for a list of available countries.}
 
 \item{rounds}{a numeric vector with the rounds to download. See \code{\link{show_sddf_cntrounds}}
 for all available rounds for any given country.}
 
 \item{ess_email}{a character vector with your email, such as "your_email@email.com".
-If you haven't registered in the ESS website, create an account at 
+If you haven't registered in the ESS website, create an account at
 \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 through \code{\link{set_email}}.}
 

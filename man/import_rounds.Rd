@@ -22,7 +22,7 @@ download_rounds(
 for all available rounds.}
 
 \item{ess_email}{a character vector with your email, such as "your_email@email.com".
-If you haven't registered in the ESS website, create an account at 
+If you haven't registered in the ESS website, create an account at
 \url{http://www.europeansocialsurvey.org/user/new}. A preferred method is to login
 through \code{\link{set_email}}.}
 
@@ -35,7 +35,7 @@ a \strong{directory} and not a path with a file name.}
 \value{
 for \code{import_rounds} if \code{length(rounds)} is 1, it returns a tibble
 with the latest version of that round. Otherwise it returns a list of \code{length(rounds)}
-containing the latest version of each round. For \code{download_rounds}, if 
+containing the latest version of each round. For \code{download_rounds}, if
 \code{output_dir} is a valid directory, it returns the saved directories invisibly
 and saves all the rounds in the chosen \code{format} in \code{output_dir}
 }
@@ -91,14 +91,14 @@ two_rounds <- import_rounds(c(1, 1))
 # If email is not registered at ESS website, error will arise
 two_rounds <- import_rounds(c(1, 2), "wrong_email@email.com")
 
-# Error in authenticate(ess_email) : 
+# Error in authenticate(ess_email) :
 # The email address you provided is not associated with any registered user.
 # Create an account at https://www.europeansocialsurvey.org/user/new
 
 # If selected rounds don't exist, error will arise
 
 two_rounds <- import_rounds(c(1, 22))
-# Error in round_url(rounds) : 
+# Error in round_url(rounds) :
 # ESS round 22 is not a available. Check show_rounds()
 }
 
