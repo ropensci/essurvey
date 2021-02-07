@@ -15,7 +15,7 @@ design of each country/round combination as well as sampling between rounds.
 For some examples, check out the work of Anthony Damico and Daniel Oberski 
 \href{http://asdfree.com/european-social-survey-ess.html}{here}. For detailed
 examples on how to explore/download data using this package, visit the package website
-at \url{https://ropensci.github.io/essurvey/}
+at \url{https://docs.ropensci.org/essurvey/}
 }
 \seealso{
 Useful links:
@@ -31,8 +31,8 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/onboarding/issues/201) [reviewer]
-  \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/onboarding/issues/201) [reviewer]
+  \item Thomas Leeper (Thomas reviewed the package for rOpensci,see https://github.com/ropensci/software-review/issues/201) [reviewer]
+  \item Nujcharee Haswell (Nujcharee reviewed the package for rOpensci, see https://github.com/ropensci/software-review/issues/201) [reviewer]
   \item Jorge Lopez \email{jorge@loperez.com} [contributor]
   \item François Briatte \email{f.briatte@gmail.com} [contributor]
 }

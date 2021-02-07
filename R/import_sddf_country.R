@@ -139,8 +139,8 @@ import_sddf_country <- function(country,
   if (sddf_ready) urls <- urls[!late_rounds]
 
   dir_download_tmp <- download_format(country = country,
-                                  urls = urls,
-                                  ess_email = ess_email)
+                                      urls = urls,
+                                      ess_email = ess_email)
 
   if (sddf_ready) {
     message("SDDF Round(s) ",
