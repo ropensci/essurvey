@@ -16,3 +16,4 @@
 ^intro_ropensci\.*$
 ^intro_ropensci.Rmd$
 ^CRAN-RELEASE$
+^vignettes/precompile.R$
