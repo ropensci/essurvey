@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Download SDDF data by round for countries from the European Social Survey — import_sddf_country" />
 <meta property="og:description" content="Download SDDF data by round for countries from the European Social Survey" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">essurvey</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
       </span>
     </div>
 
@@ -77,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,8 +105,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ropensci/essurvey">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ropensci/essurvey/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,24 +132,24 @@
     <p>Download SDDF data by round for countries from the European Social Survey</p>
     </div>
 
-    <pre class="usage"><span class='fu'>import_sddf_country</span>(<span class='no'>country</span>, <span class='no'>rounds</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>import_sddf_country</span><span class='op'>(</span><span class='va'>country</span>, <span class='va'>rounds</span>, ess_email <span class='op'>=</span> <span class='cn'>NULL</span>, format <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>import_all_sddf_cntrounds</span>(<span class='no'>country</span>, <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>import_all_sddf_cntrounds</span><span class='op'>(</span><span class='va'>country</span>, ess_email <span class='op'>=</span> <span class='cn'>NULL</span>, format <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>download_sddf_country</span>(
-  <span class='no'>country</span>,
-  <span class='no'>rounds</span>,
-  <span class='kw'>ess_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"stata"</span>
-)</pre>
+<span class='fu'>download_sddf_country</span><span class='op'>(</span>
+  <span class='va'>country</span>,
+  <span class='va'>rounds</span>,
+  ess_email <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,
+  format <span class='op'>=</span> <span class='st'>"stata"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>country</th>
-      <td><p>a character of length 1 with the full name of the country. 
+      <td><p>a character of length 1 with the full name of the country.
 Use <code><a href='show_countries.html'>show_countries</a></code> for a list of available countries.</p></td>
     </tr>
     <tr>
@@ -157,7 +160,7 @@ for all available rounds for any given country.</p></td>
     <tr>
       <th>ess_email</th>
       <td><p>a character vector with your email, such as "your_email@email.com".
-If you haven't registered in the ESS website, create an account at 
+If you haven't registered in the ESS website, create an account at
 <a href='http://www.europeansocialsurvey.org/user/new'>http://www.europeansocialsurvey.org/user/new</a>. A preferred method is to login
 through <code><a href='set_email.html'>set_email</a></code>.</p></td>
     </tr>
@@ -223,45 +226,42 @@ process should be transparent to the user but beware that reading/writing the da
 some of it's properties such as dropping the labels or label attribute.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='fu'><a href='set_email.html'>set_email</a></span>(<span class='st'>"your_email@email.com"</span>)
+<span class='fu'><a href='set_email.html'>set_email</a></span><span class='op'>(</span><span class='st'>"your_email@email.com"</span><span class='op'>)</span>
 
-<span class='no'>sp_three</span> <span class='kw'>&lt;-</span> <span class='fu'>import_sddf_country</span>(<span class='st'>"Spain"</span>, <span class='fl'>5</span>:<span class='fl'>6</span>)
+<span class='va'>sp_three</span> <span class='op'>&lt;-</span> <span class='fu'>import_sddf_country</span><span class='op'>(</span><span class='st'>"Spain"</span>, <span class='fl'>5</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>)</span>
 
-<span class='fu'><a href='show_sddf_cntrounds.html'>show_sddf_cntrounds</a></span>(<span class='st'>"Spain"</span>)
+<span class='fu'><a href='show_sddf_cntrounds.html'>show_sddf_cntrounds</a></span><span class='op'>(</span><span class='st'>"Spain"</span><span class='op'>)</span>
 
 <span class='co'># Only download the files, this will return nothing</span>
 
-<span class='no'>temp_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
+<span class='va'>temp_dir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>download_sddf_country</span>(
+<span class='fu'>download_sddf_country</span><span class='op'>(</span>
  <span class='st'>"Spain"</span>,
- <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>6</span>,
- <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>
-)
+ rounds <span class='op'>=</span> <span class='fl'>5</span><span class='op'>:</span><span class='fl'>6</span>,
+ output_dir <span class='op'>=</span> <span class='va'>temp_dir</span>
+<span class='op'>)</span>
 
 <span class='co'># By default, download_sddf_country downloads 'stata' files but</span>
 <span class='co'># you can also download 'spss' or 'sas' files.</span>
 
-<span class='fu'>download_sddf_country</span>(
+<span class='fu'>download_sddf_country</span><span class='op'>(</span>
  <span class='st'>"Spain"</span>,
- <span class='kw'>rounds</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>,
- <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='no'>temp_dir</span>,
- <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>'spss'</span>
-)
+ rounds <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>,
+ output_dir <span class='op'>=</span> <span class='va'>temp_dir</span>,
+ format <span class='op'>=</span> <span class='st'>'spss'</span>
+<span class='op'>)</span>
 
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -272,7 +272,7 @@ some of it's properties such as dropping the labels or label attribute.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
