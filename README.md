@@ -2,10 +2,8 @@
 ## essurvey <img src="man/figures/ess_logo.png" align="right" />
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/essurvey)](https://cran.r-project.org/package=essurvey)
-[![Travis-CI Build
-Status](https://travis-ci.org/ropensci/essurvey.svg?branch=master)](https://travis-ci.org/ropensci/essurvey)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/ropensci/essurvey?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/essurvey)
+[![R build
+status](https://github.com/ropensci/essurvey/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/essurvey/actions)
 [![Coverage
 status](https://codecov.io/gh/ropensci/essurvey/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/essurvey?branch=master)
 [![rOpensci\_Badge](https://badges.ropensci.org/201_status.svg)](https://github.com/ropensci/software-review/issues/201)
