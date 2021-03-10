@@ -15,6 +15,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      ESS_EMAIL: ${{ secrets.ESS_EMAIL }}
     steps:
       - uses: actions/checkout@v2
 
