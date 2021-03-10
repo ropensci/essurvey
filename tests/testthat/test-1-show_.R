@@ -1,17 +1,17 @@
-# Environment variables from Travis CI
+# Environment variables from GH actions
 
-ess_email <- Sys.getenv("ess_email")
+ess_email <- Sys.getenv("ESS_EMAIL")
 
 check_format <- function(result, type = "numeric") {
   # Check whether result is is of type
   expect_is(result, type)
-  
+
   # Check whether result has length greater than 0
   expect_gt(length(result), 0)
-  
+
   # # Check there are no duplicate rounds for results
   expect_false(all(duplicated(result)))
-  
+
   # Checks there are no missing values
   expect_true(all(!is.na(result)))
 }
@@ -22,9 +22,9 @@ test_that("show_rounds returns correct output", {
   skip_on_cran()
 
   all_rounds <- show_rounds()
-  
+
   check_format(all_rounds)
-  
+
   # Check that not input is available
   expect_error(show_rounds("whatever"), "unused argument")
 })
@@ -35,7 +35,7 @@ test_that("show_rounds_country returns error when arguments are wrong", {
 
   expect_error(show_rounds_country("whatever"),
                "ESS round whatever is not available. Check show_rounds()")
-  
+
   expect_error(show_rounds_country(100:110),
                "ESS round 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110 is not available. Check show_rounds()")
 })
@@ -54,7 +54,7 @@ test_that("show_rounds_country returns non-duplicate rounds", {
   skip_on_cran()
   # # Check there are no duplicate countries
   expect_false(all(duplicated(show_rounds_country(1:6))))
-  
+
   # Participating and non participating should be different!
   non_pt <- show_rounds_country(7:2, participate = FALSE)
   part <- show_rounds_country(7:2, participate = TRUE)
@@ -63,15 +63,15 @@ test_that("show_rounds_country returns non-duplicate rounds", {
 
 test_that("show_rounds_country returns correct countries always", {
   skip_on_cran()
-  
+
   # Countries that participated in the first three rounds. This
   # shouldn't change and was like this as of 20 of December of 2017
   one_to_three <-
-    c("Austria", "Belgium", "Denmark", "Finland", "France", "Germany", 
-      "Hungary", "Ireland", "Netherlands", "Norway", "Poland", "Portugal", 
+    c("Austria", "Belgium", "Denmark", "Finland", "France", "Germany",
+      "Hungary", "Ireland", "Netherlands", "Norway", "Poland", "Portugal",
       "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"
     )
-  
+
   # Check it returns the same countries all the time
   expect_equal(show_rounds_country(1:3), one_to_three)
 })
@@ -80,7 +80,7 @@ test_that("show_rounds_country returns correct countries always", {
 test_that("show_countries returns correct output", {
   skip_on_cran()
   all_countries <- show_countries()
-  
+
   check_format(all_countries, "character")
 })
 
@@ -94,9 +94,9 @@ test_that("show_country_rounds returns error when wrong country as argument", {
 test_that("show_country_rounds returns correct output", {
   skip_on_cran()
   dk <- show_country_rounds("Denmark")
-  
+
   check_format(dk)
-  
+
   # # Check there are no duplicate rounds for countries
   expect_false(all(duplicated(dk)))
 })
@@ -104,11 +104,11 @@ test_that("show_country_rounds returns correct output", {
 # show_themes()
 test_that("show_themes returns correct output", {
   skip_on_cran()
-  
+
   all_themes <- show_themes()
-  
+
   check_format(all_themes, "character")
-  
+
   # Check that no input is available
   expect_error(show_themes("whatever"), "unused argument")
 })
@@ -140,7 +140,7 @@ test_that("show_theme_rounds returns correct output for rounds > 1", {
 test_that("show_sddf_cntrounds raises error when email not set / not correct", {
   skip_on_cran()
 
-  old_env <- Sys.getenv("ess_email")
+  old_env <- Sys.getenv("ESS_EMAIL")
   set_email(ess_email = "")
 
   expect_error(show_sddf_cntrounds("Netherlands"),
@@ -194,15 +194,15 @@ test_that("show_sddf_cntrounds raises error when email not set / not correct", {
 test_that("show_sddf_cntrounds returns correct output for Spain", {
 
   skip_on_cran()
-  
+
   all_spain_sddf <- show_sddf_cntrounds("Spain", ess_email)
-  
+
   check_format(all_spain_sddf, "numeric")
 
   # Tests that we can downloaded the SDDF rounds appropriately as
   # they start from round 7 and 8
   expect_true(all(1:8 %in% all_spain_sddf))
-  
+
   # Check that no input is available
   expect_error(show_sddf_cntrounds("whatever"),
                "Country whatever not available in ESS. Check show_countries()")
@@ -213,7 +213,7 @@ test_that("show_sddf_cntrounds returns correct output for Spain", {
 test_that("show_sddf_cntrounds returns correct output for Denmark", {
 
   skip_on_cran()
-  
+
   all_dk_sddf <- show_sddf_cntrounds("Denmark", ess_email)
 
   check_format(all_dk_sddf, "numeric")

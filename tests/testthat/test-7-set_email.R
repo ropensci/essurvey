@@ -1,19 +1,19 @@
 context("test-set_email")
-ess_email <- Sys.getenv("ess_email")
+ess_email <- Sys.getenv("ESS_EMAIL")
 save_dir <- tempdir()
 
 # Test for set_email
 test_that("test email is correctly set and can be overwritten", {
   skip_on_cran()
-  old_env_var <- Sys.getenv("ess_email")
+  old_env_var <- Sys.getenv("ESS_EMAIL")
   
   set_email(ess_email = "test@test.com")
-  expect_equal(Sys.getenv("ess_email"), "test@test.com")
+  expect_equal(Sys.getenv("ESS_EMAIL"), "test@test.com")
   set_email(ess_email = "test_bis@test.com")
-  expect_equal(Sys.getenv("ess_email"), "test_bis@test.com")
+  expect_equal(Sys.getenv("ESS_EMAIL"), "test_bis@test.com")
 
   # Reset
-  Sys.setenv("ess_email" = old_env_var)
+  Sys.setenv("ESS_EMAIL" = old_env_var)
 })
 
 test_that("authenticate works correctly for wrong emails", {

@@ -1,6 +1,6 @@
-# Environment variables from Travis CI
+# Environment variables from GH actions
 
-ess_email <- Sys.getenv("ess_email")
+ess_email <- Sys.getenv("ESS_EMAIL")
 
 run_long_tests <- identical("true", Sys.getenv("NOT_CRAN"))
 
@@ -35,12 +35,12 @@ check_one_round <- function(x, cntry) {
 
   # Check it is indeed the cntry
   expect_true(unique(x$cntry) == cntry)
-  
+
   # check that the number of rows is greater than 0
   expect_gt(nrow(x), 0)
-  
+
   # check that the number of columns is greater than 0
-  expect_gt(ncol(x), 0)  
+  expect_gt(ncol(x), 0)
 }
 
 check_all_rounds <- function(x, rounds, country) {
@@ -51,7 +51,7 @@ check_all_rounds <- function(x, rounds, country) {
                          FUN.VALUE = logical(1))
   # Check that all rounds downloaded are TRUE
   expect_true(all(is_lowercase))
-  
+
   x <- lapply(x, function(x) {
     colnames(x) <- tolower(colnames(x))
     x
@@ -59,23 +59,23 @@ check_all_rounds <- function(x, rounds, country) {
 
   # check is list
   expect_is(x, "list")
-  
+
   # check is length one
   expect_length(x, length(rounds))
-  
+
   # check that all ess returns data frames
   expect_true(all(vapply(x,
                          function(x) "data.frame" %in% class(x),
                          FUN.VALUE = logical(1))))
-  
+
   # check that all waves are for same country
   expect_true(all(vapply(x,
                          function(x) unique(x$cntry) == country,
                          FUN.VALUE = logical(1))))
-  
+
   # check that all data frames have more than 0 rows
   expect_equal(all(vapply(x, nrow, numeric(1)) > 0), TRUE)
-  
+
   # check that all data frames have more than 0 columns
   expect_equal(all(vapply(x, ncol, numeric(1)) > 0), TRUE)
 }
@@ -86,21 +86,21 @@ check_downloaded_rounds <- function(x,
                                     remove_dir = TRUE) {
   # Test whether the downloaded files are indeed there
   ess_files <- list.files(x, pattern = "ESS", recursive = TRUE)
-  
+
   # Same number of stata files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(format_args[1], ess_files)), rounds)
-  
+
   # Same number of zip files as the rounds attempted
   # to download?
   expect_equal(sum(grepl(".zip", ess_files)), rounds)
-  
+
   # Same number of do files as the rounds attempted
   # to download?
   if (".dta" %in% format_args) {
     expect_equal(sum(grepl(format_args[2], ess_files)), rounds)
   }
-  
+
   # Delete all downloaded files
   if (remove_dir) unlink(dirname(x), recursive = TRUE, force = TRUE)
 }
@@ -142,25 +142,25 @@ test_that("download_country checks for args", {
 
 
 test_that("import_country for one round", {
-  
+
   skip_on_cran()
 
   # Test for only one wave
   wave_one <- import_country("Denmark", 1, ess_email, format = "stata")
-  
+
   check_one_round(wave_one, "DK")
-  
+
   # Check it is indeed first round
   expect_true(unique(wave_one$essround) == 1)
-  
+
 })
 
 test_that("import_country for all rounds of a country", {
-  
+
   skip_on_cran()
-  
+
   check_all_rounds(all_rounds, rounds, "NL")
-  
+
   # Check that all waves are correct rounds
   expect_true(all(vapply(all_rounds,
                          function(x) unique(x$essround),
@@ -169,9 +169,9 @@ test_that("import_country for all rounds of a country", {
 })
 
 test_that("Test that downloading files is working fine", {
-  
+
   skip_on_cran()
-  
+
   # Test whether you get a message where the downloads are at
   expect_message(downloads <-
                    download_country("Austria",
@@ -207,15 +207,15 @@ test_that("Test that downloading files is working fine", {
                                     ),
                  "All files saved to")
 
-  check_downloaded_rounds(downloads, 1, c(".dta", ".do"))  
+  check_downloaded_rounds(downloads, 1, c(".dta", ".do"))
 
 })
 
 # TODO: output_dir could be checked earlier
 test_that("output_dir should be valid", {
-  
+
   skip_on_cran()
-  
+
   # Here output_dir is set to NULL
   expect_error(download_country("Austria",
                                 1,
@@ -226,17 +226,17 @@ test_that("output_dir should be valid", {
 
 test_that("import_country files with other non-stata format", {
   skip_on_cran()
-  
+
   check_one_round(wave_one_spss, "DK")
-  
+
   # Check it is indeed first round
   expect_true(unique(wave_one_spss$essround) == 1)
-  
+
 })
 
 test_that("Specify 'sas' for reading ess data throws error", {
   skip_on_cran()
-  
+
   expect_error(import_country("Denmark", 1, ess_email, format = "sas"),
                "You cannot read SAS but only 'spss' and 'stata' files with this function") #nolint
 })
@@ -273,7 +273,7 @@ test_that("import_sddf_country checks for args", {
 })
 
 test_that("import_sddf_country for one round", {
-  
+
   skip_on_cran()
 
   ## Tests for three waves from beginning to end
@@ -289,9 +289,9 @@ test_that("import_sddf_country for one round", {
 # I fixed it by switching .por to haven::read_sav. Here I test that It reads the
 ## correctly. Only rounds 1:4 had wrong .por files
 test_that("import_sddf_country for one/many rounds from rounds 1:4", {
-  
+
   skip_on_cran()
-  
+
   many_waves <- import_sddf_country("Spain", 1:2, ess_email)
   check_all_rounds(many_waves, 1:2, "ES")
 
@@ -308,7 +308,7 @@ test_that("foreign installation is checked", {
     "essurvey:::is_foreign_installed" = function() FALSE,
     expect_error(import_sddf_country("France", 1:6, ess_email),
                  "Package `foreign` is needed to read some SDDF data. Please install with install.packages(\"foreign\")", #nolintr
-                 fixed = TRUE) 
+                 fixed = TRUE)
   )
 
 })
@@ -317,7 +317,7 @@ if (is_foreign_installed()) {
 
   test_that("import_sddf_country can read files with foreign for France", {
     ## See https://github.com/ropensci/essurvey/issues/9#issuecomment-500131013
-    
+
     skip_on_cran()
 
     rounds <- 1:3
@@ -325,7 +325,7 @@ if (is_foreign_installed()) {
       paste("Round",
             rounds,
             "for France was read with the `foreign` package rather than with  the `haven` package for compatibility reasons.\n Please report any issues at https://github.com/ropensci/essurvey/issues") #nolintr
-            
+
             for (i in rounds) {
 
               one_wave <-
@@ -342,7 +342,7 @@ if (is_foreign_installed()) {
 }
 
 test_that("import_sddf_country for all rounds of a country", {
-  
+
   skip_on_cran()
   # I want to test that the function is robust to different rounds, which
   # are read with different strategies: early rounds sometimes read with
@@ -411,7 +411,7 @@ if (run_long_tests) {
 
 
 test_that("Test that downloading files is working for sddf data", {
-  
+
   skip_on_cran()
 
   # for very early sddf rounds there's no stata files, so this should
@@ -447,7 +447,7 @@ test_that("Test that downloading files is working for sddf data", {
 })
 
 test_that("Test that downloading all rounds is working for sddf data", {
-  
+
   skip_on_cran()
 
   format_ext <- c(".dta", ".sav", ".por")

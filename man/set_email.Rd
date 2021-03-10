@@ -14,7 +14,7 @@ Save your ESS email as an environment variable
 }
 \details{
 You should only run \code{set_email()} once and every \code{import_} and \code{download_} function
-should work fine. Make sure your email is registered at 
+should work fine. Make sure your email is registered at
 \url{http://www.europeansocialsurvey.org/} before setting the email.
 }
 \examples{
@@ -22,7 +22,7 @@ should work fine. Make sure your email is registered at
 \dontrun{
 set_email("my_registered@email.com")
 
-ess_country(1)
+import_rounds(1)
 }
 
 }

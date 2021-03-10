@@ -2,8 +2,8 @@
 run_long_tests <- identical("true", Sys.getenv("NOT_CRAN"))
 
 if (run_long_tests) {
-  # Environment variables from Travis CI
-  ess_email <- Sys.getenv("ess_email")
+  # Environment variables from GH actions 
+  ess_email <- Sys.getenv("ESS_EMAIL")
   round_one <- import_rounds(1, ess_email)
 
   # Test for all rounds
