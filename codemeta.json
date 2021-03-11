@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/essurvey",
   "issueTracker": "https://github.com/ropensci/essurvey/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -171,11 +170,14 @@
       "name": "utils"
     }
   ],
-  "contIntegration": "https://travis-ci.org/ropensci/essurvey",
+  "contIntegration": "https://codecov.io/github/ropensci/essurvey?branch=master",
   "releaseNotes": "https://github.com/ropensci/essurvey/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/essurvey/blob/master/README.md",
-  "fileSize": "63.788KB",
-  "relatedLink": ["https://docs.ropensci.org/essurvey/", "https://CRAN.R-project.org/package=essurvey"],
+  "fileSize": "552.282KB",
+  "relatedLink": [
+    "https://docs.ropensci.org/essurvey/",
+    "https://CRAN.R-project.org/package=essurvey"
+  ],
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -198,7 +200,12 @@
   ],
   "copyrightHolder": {},
   "funder": {},
-  "keywords": ["ess", "r", "rstats", "r-package"],
+  "keywords": [
+    "ess",
+    "r",
+    "rstats",
+    "r-package"
+  ],
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -214,5 +221,10 @@
       "url": "https://docs.ropensci.org/essurvey/",
       "description": "R package version 1.0.3"
     }
-  ]
+  ],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/201",
+    "provider": "https://ropensci.org"
+  }
 }

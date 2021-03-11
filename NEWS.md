@@ -3,7 +3,7 @@
 
 ## essurvey 1.0.7
 
-- CRAN maintenance release. All vigenttes are now precompiled to avoid errors when the ESS website breaks for some reason.
+- CRAN maintenance release. All vignettes are now precompiled to avoid errors when the ESS website breaks for some reason.
 - `ess_email` environmental variable has been renamed to `ESS_EMAIL` to comply with Github Actions standards
 
 ## essurvey 1.0.6
