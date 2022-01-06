@@ -8,16 +8,7 @@
 
 ## R CMD check results
 
-- - 0 errors ✔ | 0 warnings ✔ | 1 notes ✔
-
-* checking CRAN incoming feasibility ... NOTE
-
-Maintainer: ‘Jorge Cimentada <cimentadaj@gmail.com>’
-New submission
-Package was archived on CRAN
-CRAN repository db overrides:
-  X-CRAN-Comment: Archived on 2021-02-27 for policy violation.
-  On Internet access, despite reminder and subsequent update.
+- - 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Reverse dependencies
 
@@ -25,8 +16,6 @@ There are currently no downstream dependencies for this package.
 
 ---
 
- `essurvey` was recently removed from CRAN because of some errors being raised in the vignette. Unfortunately, this was an error on my side because the European Social Survey website was having some certificate issues and vignettes were throwing errors. All vignettes are now precompiled by default and should never throw an error. Furthermore, I made sure all examples are wrapped in \dontrun, so no actual execution will happen when running R CMD check.
-
-This should fix any execution errors for posterity.
+Fixed bugs from the library. Standard patch release.
 
 - All tests are run weekly on Github Actions, which are available at https://github.com/ropensci/essurvey/action
