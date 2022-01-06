@@ -1,5 +1,8 @@
 ## essurvey 1.0.8.9999
 
+## essurvey 1.0.8
+
+- Fixes URL creation big (#53)
 
 ## essurvey 1.0.7
 
