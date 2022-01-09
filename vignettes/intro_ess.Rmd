@@ -4,7 +4,7 @@ author: "Jorge Cimentada"
 date: "2021-03-09"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using essurvey for R and Stata users}
+  %\VignetteIndexEntry{Introduction to the essurvey package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

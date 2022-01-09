@@ -6,18 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introduction to the essurvey package • essurvey</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the essurvey package">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="essurvey">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">essurvey</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.8</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -63,8 +60,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropensci/essurvey">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/ropensci/essurvey/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,149 +74,162 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Introduction to the essurvey package</h1>
-                        <h4 class="author">Jorge Cimentada</h4>
+      <h1 data-toc-skip>Introduction to the essurvey package</h1>
+                        <h4 data-toc-skip class="author">Jorge Cimentada</h4>
             
-            <h4 class="date">2019-10-14</h4>
+            <h4 data-toc-skip class="date">2021-03-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ropensci/essurvey/blob/master/vignettes/intro_ess.Rmd"><code>vignettes/intro_ess.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/essurvey/blob/HEAD/vignettes/intro_ess.Rmd" class="external-link"><code>vignettes/intro_ess.Rmd</code></a></small>
       <div class="hidden name"><code>intro_ess.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>Using the <code>essurvey</code> package is fairly easy. There are are two main families of functions: <code>import_*</code> and <code>show_*</code>. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven’t registered, create an account at <a href="http://www.europeansocialsurvey.org/user/new" class="uri">http://www.europeansocialsurvey.org/user/new</a>. For those unfamiliar with the ESS, this vignette uses the term rounds, here a synonym of waves to denote the same survey in different time points.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>Using the <code>essurvey</code> package is fairly easy. There are are two main families of functions: <code>import_*</code> and <code>show_*</code>. They each complement each other and allow the user to almost never have to go to the European Social Survey (ESS) website. The only scenario where you need to enter the ESS website is to validate your email. If you haven’t registered, create an account at <a href="http://www.europeansocialsurvey.org/user/new" class="external-link uri">http://www.europeansocialsurvey.org/user/new</a>. For those unfamiliar with the ESS, this vignette uses the term rounds, here a synonym of waves to denote the same survey in different time points.</p>
 <p>Once you register visit your email account to validate the account and you’re ready to access the data.</p>
 <p>Given that some <code>essurvey</code> functions require your email address, this vignette will use a fake email but everything should work accordingly if you registered with the ESS.</p>
 </div>
-<div id="downloading-country-specific-rounds" class="section level2">
-<h2 class="hasAnchor">
-<a href="#downloading-country-specific-rounds" class="anchor"></a>Downloading country specific rounds</h2>
+<div class="section level2">
+<h2 id="downloading-country-specific-rounds">Downloading country specific rounds<a class="anchor" aria-label="anchor" href="#downloading-country-specific-rounds"></a>
+</h2>
 <p>Note: versions less than and including <code>essurvey 1.0.1</code> returned wrong countries. Please install the latest CRAN/Github version.</p>
 <p>To install and load development version of the package use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"ropensci/essurvey"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropensci/essurvey"</span><span class="op">)</span></code></pre></div>
 <p>to install the stable version from CRAN use:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"essurvey"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"essurvey"</span><span class="op">)</span></code></pre></div>
 <p>Downloading the ESS data requires validating your email every time you download data. We can set our email as an environment variable with <code>set_email</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="../reference/set_email.html">set_email</a></span>(<span class="st">"your@email.com"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/set_email.html">set_email</a></span><span class="op">(</span><span class="st">"your@email.com"</span><span class="op">)</span></code></pre></div>
 <p>Once that’s executed you can delete the previous line and any <code>import_*</code> call will look for the email automatically, stored as an environment variable.</p>
 <p>Let’s suppose you don’t know which countries or rounds are available for the ESS. Then the <code>show_*</code> family of functions is your friend.</p>
 <p>To find out which countries have participated you can use <code><a href="../reference/show_countries.html">show_countries()</a></code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="../reference/show_countries.html">show_countries</a></span>()</span></code></pre></div>
-<pre><code>##  [1] "Albania"            "Austria"            "Belgium"           
-##  [4] "Bulgaria"           "Croatia"            "Cyprus"            
-##  [7] "Czechia"            "Denmark"            "Estonia"           
-## [10] "Finland"            "France"             "Germany"           
-## [13] "Greece"             "Hungary"            "Iceland"           
-## [16] "Ireland"            "Israel"             "Italy"             
-## [19] "Kosovo"             "Latvia"             "Lithuania"         
-## [22] "Luxembourg"         "Montenegro"         "Netherlands"       
-## [25] "Norway"             "Poland"             "Portugal"          
-## [28] "Romania"            "Russian Federation" "Serbia"            
-## [31] "Slovakia"           "Slovenia"           "Spain"             
-## [34] "Sweden"             "Switzerland"        "Turkey"            
-## [37] "Ukraine"            "United Kingdom"</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/show_countries.html">show_countries</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##  [1] "Albania"            "Austria"            "Belgium"           </span>
+<span class="co">##  [4] "Bulgaria"           "Croatia"            "Cyprus"            </span>
+<span class="co">##  [7] "Czechia"            "Denmark"            "Estonia"           </span>
+<span class="co">## [10] "Finland"            "France"             "Germany"           </span>
+<span class="co">## [13] "Greece"             "Hungary"            "Iceland"           </span>
+<span class="co">## [16] "Ireland"            "Israel"             "Italy"             </span>
+<span class="co">## [19] "Kosovo"             "Latvia"             "Lithuania"         </span>
+<span class="co">## [22] "Luxembourg"         "Montenegro"         "Netherlands"       </span>
+<span class="co">## [25] "Norway"             "Poland"             "Portugal"          </span>
+<span class="co">## [28] "Romania"            "Russian Federation" "Serbia"            </span>
+<span class="co">## [31] "Slovakia"           "Slovenia"           "Spain"             </span>
+<span class="co">## [34] "Sweden"             "Switzerland"        "Turkey"            </span>
+<span class="co">## [37] "Ukraine"            "United Kingdom"</span></code></pre>
 <p>This function actually looks up the countries in the ESS website. If new countries enter, this will automatically grab those countries as well. Let’s check out Turkey. How many rounds has Turkey participated in? We can use <code><a href="../reference/show_country_rounds.html">show_country_rounds()</a></code></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>tk_rnds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/show_country_rounds.html">show_country_rounds</a></span>(<span class="st">"Turkey"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>tk_rnds</span></code></pre></div>
-<pre><code>## [1] 2 4</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tk_rnds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/show_country_rounds.html">show_country_rounds</a></span><span class="op">(</span><span class="st">"Turkey"</span><span class="op">)</span>
+<span class="va">tk_rnds</span></code></pre></div>
+<pre><code><span class="co">## [1] 2 4</span></code></pre>
 <p>Note that country names are case sensitive. Use the exact name printed out by <code><a href="../reference/show_countries.html">show_countries()</a></code></p>
 <p>Using this information, we can download those specific rounds easily with <code>import_country</code>. Since <code>essurvey 1.0.0</code> all <code>ess_*</code> functions have been deprecated in favor of the <code>import_*</code> and <code>download_*</code> functions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>turkey &lt;-</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw"><a href="../reference/import_country.html">import_country</a></span>(</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="dt">country =</span> <span class="st">"Turkey"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="dt">rounds =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    )</span></code></pre></div>
-<p><code>turkey</code> will now be a list of <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length(rounds)</a></code> containing a data frame for each round. If you only specified one round, then all <code>import_*</code> functions return a data frame. <code>import_country</code> is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use <code>import_all_cntrounds</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="../reference/import_country.html">import_all_cntrounds</a></span>(<span class="st">"Turkey"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">turkey</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/import_country.html">import_country</a></span><span class="op">(</span>
+    country <span class="op">=</span> <span class="st">"Turkey"</span>,
+    rounds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>
+    <span class="op">)</span></code></pre></div>
+<p><code>turkey</code> will now be a list of <code>length(rounds)</code> containing a data frame for each round. If you only specified one round, then all <code>import_*</code> functions return a data frame. <code>import_country</code> is useful for when you want to download specific rounds, but not all. To download all rounds for a country automatically you can use <code>import_all_cntrounds</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/import_country.html">import_all_cntrounds</a></span><span class="op">(</span><span class="st">"Turkey"</span><span class="op">)</span></code></pre></div>
 <p>The <code>import_*</code> family is concerned with downloading the data and thus always returns a list containing data frames unless only one round is specified, in which it returns a <code>tibble</code>. Conversely, the <code>show_*</code> family grabs information from the ESS website and always returns vectors.</p>
 </div>
-<div id="download-complete-rounds" class="section level2">
-<h2 class="hasAnchor">
-<a href="#download-complete-rounds" class="anchor"></a>Download complete rounds</h2>
+<div class="section level2">
+<h2 id="download-complete-rounds">Download complete rounds<a class="anchor" aria-label="anchor" href="#download-complete-rounds"></a>
+</h2>
 <p>Similarly, we can use other functions to download rounds. To see which rounds are currently available, use <code>show_rounds</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="../reference/show_rounds.html">show_rounds</a></span>()</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/show_rounds.html">show_rounds</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 1 2 3 4 5 6 7 8 9</span></code></pre>
 <p>Similar to <code>show_countries</code>, <code>show_rounds</code> interactively looks up rounds in the ESS website, so any future rounds will automatically be included.</p>
 <p>To download all available rounds, use <code>import_all_rounds</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>all_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/import_rounds.html">import_all_rounds</a></span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_rounds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_rounds.html">import_all_rounds</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, use <code>import_rounds</code> for selected ones.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>selected_rounds &lt;-<span class="st"> </span><span class="kw"><a href="../reference/import_rounds.html">import_rounds</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">selected_rounds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_rounds.html">import_rounds</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="downloading-data-for-stata-spss-and-sas-users" class="section level2">
-<h2 class="hasAnchor">
-<a href="#downloading-data-for-stata-spss-and-sas-users" class="anchor"></a>Downloading data for Stata, SPSS and SAS users</h2>
+<div class="section level2">
+<h2 id="downloading-data-for-stata-spss-and-sas-users">Downloading data for Stata, SPSS and SAS users<a class="anchor" aria-label="anchor" href="#downloading-data-for-stata-spss-and-sas-users"></a>
+</h2>
 <p>All <code>import_*</code> functions have an equivalent <code>download_*</code> function that allows the user to save the datasets in a specified folder in <code>'stata'</code>, <code>'spss'</code> or <code>'sas'</code> formats.</p>
 <p>For example, to save round two from Turkey in a folder called <code>./my_folder</code>, we use:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw"><a href="../reference/import_country.html">download_country</a></span>(<span class="st">"Turkey"</span>, <span class="dv">2</span>,</span>
-<span id="cb14-2"><a href="#cb14-2"></a>                 <span class="dt">output_dir =</span> <span class="st">"./myfolder/"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/import_country.html">download_country</a></span><span class="op">(</span><span class="st">"Turkey"</span>, <span class="fl">2</span>,
+                 output_dir <span class="op">=</span> <span class="st">"./myfolder/"</span><span class="op">)</span></code></pre></div>
 <p>By default it saves the data as <code>'stata'</code> files. Alternatively you can use <code>'spss'</code> or <code>'sas'</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="../reference/import_country.html">download_country</a></span>(<span class="st">"Turkey"</span>, <span class="dv">2</span>,</span>
-<span id="cb15-2"><a href="#cb15-2"></a>                 <span class="dt">output_dir =</span> <span class="st">"./myfolder/"</span>,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>                 <span class="dt">format =</span> <span class="st">'sas'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/import_country.html">download_country</a></span><span class="op">(</span><span class="st">"Turkey"</span>, <span class="fl">2</span>,
+                 output_dir <span class="op">=</span> <span class="st">"./myfolder/"</span>,
+                 format <span class="op">=</span> <span class="st">'sas'</span><span class="op">)</span></code></pre></div>
 <p>This will save the data to <code>./myfolder/ESS_Turkey</code> and inside that folder there will be the <code>ESS2</code> folder that contains the data.</p>
 </div>
-<div id="correcting-for-missing-values" class="section level2">
-<h2 class="hasAnchor">
-<a href="#correcting-for-missing-values" class="anchor"></a>Correcting for missing values</h2>
+<div class="section level2">
+<h2 id="correcting-for-missing-values">Correcting for missing values<a class="anchor" aria-label="anchor" href="#correcting-for-missing-values"></a>
+</h2>
 <p>Whenever you download the ESS data, it comes together with a script that recodes the values 6 = ‘Not applicable’, 7 = ‘Refusal’, 8 = ‘Don’t know’, 9 = ‘No answer’ and 9 = ‘Not available’ as missings. However, that is the case for variables that have a scaling of 1-5. For variables which have a scaling from 1-10 the corresponding missings are 66, 77, and so on. At first glance new users might not know this and start calculating statistics with these variables such as…</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>sp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/import_country.html">import_country</a></span>(<span class="st">"Spain"</span>, <span class="dv">1</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(sp<span class="op">$</span>tvtot)</span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co"># 4.622406</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_country.html">import_country</a></span><span class="op">(</span><span class="st">"Spain"</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">sp</span><span class="op">$</span><span class="va">tvtot</span><span class="op">)</span>
+<span class="co"># 4.622406</span></code></pre></div>
 <p>..but that vector contains numbers such as <code>66</code>, <code>77</code>, that shouldn’t be there. <code><a href="../reference/recode_missings.html">recode_missings()</a></code> removes the corresponding missings for numeric variables as well as for character variables. It accepts the complete <code>tibble</code> and recodes all variables that should be recoded.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>new_coding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_coding<span class="op">$</span>tvtot, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># 4.527504</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_coding</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/recode_missings.html">recode_missings</a></span><span class="op">(</span><span class="va">sp</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new_coding</span><span class="op">$</span><span class="va">tvtot</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co"># 4.527504</span></code></pre></div>
 <p>It also gives you the option of recoding only specific categories. For example…</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>other_newcoding &lt;-<span class="st"> </span><span class="kw"><a href="../reference/recode_missings.html">recode_missings</a></span>(sp, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Don't know"</span>, <span class="st">"Refusal"</span>))</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(other_newcoding<span class="op">$</span>tvpol)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="co">#  0   1   2   3   4   5   6   7  66 </span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="co"># 167 460 610 252  95  36  26  31  45 </span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">other_newcoding</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/recode_missings.html">recode_missings</a></span><span class="op">(</span><span class="va">sp</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Don't know"</span>, <span class="st">"Refusal"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">other_newcoding</span><span class="op">$</span><span class="va">tvpol</span><span class="op">)</span>
+<span class="co">#  0   1   2   3   4   5   6   7  66 </span>
+<span class="co"># 167 460 610 252  95  36  26  31  45 </span></code></pre></div>
 <p>…still has missing values but recoded the ones that were specified. I strongly suggest the user not to recode these categories as missing without looking at the data as there might be substantial differences between people who didn’t and who did answer questions. If the user is decided to do so, use <code>recode_missings</code> to recode everything and the corresponding <code>recode_*_missings</code> functions for numeric and character recodings separately. See the documentation of <code><a href="../reference/recode_missings.html">?recode_missings</a></code> for more information.</p>
 </div>
-<div id="analyzing-ess-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#analyzing-ess-data" class="anchor"></a>Analyzing ESS data</h2>
-<p>Be aware that for analyzing data from the ESS survey you should take into consideration the sampling and weights of the survey. The <a href="http://r-survey.r-forge.r-project.org/survey/">survey</a> package provides very good support for this. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html">here</a>.</p>
+<div class="section level2">
+<h2 id="analyzing-ess-data">Analyzing ESS data<a class="anchor" aria-label="anchor" href="#analyzing-ess-data"></a>
+</h2>
+<p>Be aware that for analyzing data from the ESS survey you should take into consideration the sampling and weights of the survey. The <a href="http://r-survey.r-forge.r-project.org/survey/" class="external-link">survey</a> package provides very good support for this. A useful example comes from the work of Anthony Damico and Daniel Oberski <a href="http://asdfree.com/european-social-survey-ess.html" class="external-link">here</a>.</p>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li><a href="#downloading-country-specific-rounds">Downloading country specific rounds</a></li>
-      <li><a href="#download-complete-rounds">Download complete rounds</a></li>
-      <li><a href="#downloading-data-for-stata-spss-and-sas-users">Downloading data for Stata, SPSS and SAS users</a></li>
-      <li><a href="#correcting-for-missing-values">Correcting for missing values</a></li>
-      <li><a href="#analyzing-ess-data">Analyzing ESS data</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
-  <p>Developed by Jorge Cimentada.</p>
+  <p></p>
+<p>Developed by Jorge Cimentada.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
+
       </footer>
 </div>
+
+  
+
 
   
 
