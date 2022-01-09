@@ -1,28 +1,46 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "essurvey",
   "description": "Download data from the European Social Survey directly from their website <http://www.europeansocialsurvey.org/>. There are two families of functions that allow you to download and interactively check all countries and rounds available.",
   "name": "essurvey: Download Data from the European Social Survey on the Fly",
+  "relatedLink": ["https://docs.ropensci.org/essurvey/", "https://CRAN.R-project.org/package=essurvey"],
   "codeRepository": "https://github.com/ropensci/essurvey",
   "issueTracker": "https://github.com/ropensci/essurvey/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
       "givenName": "Jorge",
       "familyName": "Cimentada",
       "email": "cimentadaj@gmail.com"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Jorge",
+      "familyName": "Lopez",
+      "email": "jorge@loperez.com"
+    },
+    {
+      "@type": "Person",
+      "givenName": "François",
+      "familyName": "Briatte",
+      "email": "f.briatte@gmail.com"
     }
   ],
   "maintainer": [
@@ -96,14 +114,14 @@
       "sameAs": "https://CRAN.R-project.org/package=covr"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.4.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "xml2",
       "name": "xml2",
@@ -115,7 +133,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=xml2"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
@@ -127,7 +145,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "haven",
       "name": "haven",
@@ -140,7 +158,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=haven"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "rvest",
       "name": "rvest",
@@ -152,7 +170,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rvest"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -164,48 +182,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
-    }
-  ],
-  "contIntegration": "https://codecov.io/github/ropensci/essurvey?branch=master",
-  "releaseNotes": "https://github.com/ropensci/essurvey/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/essurvey/blob/master/README.md",
-  "fileSize": "552.282KB",
-  "relatedLink": [
-    "https://docs.ropensci.org/essurvey/",
-    "https://CRAN.R-project.org/package=essurvey"
-  ],
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Jorge",
-      "familyName": "Lopez",
-      "email": "jorge@loperez.com"
     },
-    {
-      "@type": "Person",
-      "givenName": "François",
-      "familyName": "Briatte",
-      "email": "f.briatte@gmail.com"
-    }
-  ],
-  "copyrightHolder": {},
-  "funder": {},
-  "keywords": [
-    "ess",
-    "r",
-    "rstats",
-    "r-package"
-  ],
+    "SystemRequirements": null
+  },
+  "fileSize": "180.107KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -222,9 +206,13 @@
       "description": "R package version 1.0.3"
     }
   ],
+  "releaseNotes": "https://github.com/ropensci/essurvey/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/essurvey/blob/master/README.md",
+  "contIntegration": ["https://github.com/ropensci/essurvey/actions", "https://codecov.io/github/ropensci/essurvey?branch=master"],
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/201",
     "provider": "https://ropensci.org"
-  }
+  },
+  "keywords": ["ess", "r", "rstats", "r-package"]
 }
