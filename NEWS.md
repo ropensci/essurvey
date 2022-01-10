@@ -2,7 +2,7 @@
 
 # essurvey 1.0.8
 
-- Fixes URL creation big (#53)
+- Fixes URL creation bug (#53)
 
 # essurvey 1.0.7
 
